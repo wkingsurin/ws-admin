@@ -3,5 +3,5 @@ interface IProps {
 }
 
 export default function Main({ children }: IProps) {
-    return <main className="ml-25">{children}</main>;
+    return <main className="ml-10 py-4">{children}</main>;
 }
