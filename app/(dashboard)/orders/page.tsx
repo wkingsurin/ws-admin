@@ -1,3 +1,6 @@
+import { Orders } from "@/features/orders/constants";
+import OrdersClient from "./client";
+
 export default function OrdersPage() {
-  return <h1>Orders page</h1>;
+  return <OrdersClient data={Orders} />;
 }
