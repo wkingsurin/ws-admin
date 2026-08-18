@@ -1,6 +1,6 @@
 import Container from "../container";
 import Section from "../section";
-import SearchBar from "./search";
+import DashboardContent from "./dashboard-content";
 import TopBar from "./topbar";
 
 export default function Dashboard({ children }: { children: React.ReactNode }) {
@@ -9,8 +9,7 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
       <Container>
         <div className="flex flex-col gap-3">
           <TopBar />
-          <SearchBar />
-          {children}
+          <DashboardContent>{children}</DashboardContent>
         </div>
       </Container>
     </Section>
