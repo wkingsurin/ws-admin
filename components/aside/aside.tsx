@@ -9,7 +9,7 @@ export default function Aside() {
   const page = path.slice(1);
 
   return (
-    <aside className="group/aside absolute flex flex-col justify-between w-10  hover:w-45 h-[100dvh] bg-black/10 backdrop-blur-[12px] px-[5px] py-4 transiton duration-100 border-[0.5px] border-r-black/5">
+    <aside className="group/aside absolute z-10000 flex flex-col justify-between w-10  hover:w-45 h-[100dvh] bg-black/10 backdrop-blur-[12px] px-[5px] py-4 transiton duration-100 border-[0.5px] border-r-black/5">
       <nav className="flex flex-col gap-1 w-full">
         {DASHBOARD_NAVIGATION.map((link) => {
           const Icon = link.icon;
