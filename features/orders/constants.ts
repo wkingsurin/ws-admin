@@ -1,5 +1,5 @@
 import { DataTableColumn } from "@/components/data-table/types";
-import { IOrder } from "./types";
+import { IOrder, IOrderItem } from "./types";
 
 export const OrderColumns: DataTableColumn<IOrder>[] = [
   {
@@ -170,5 +170,117 @@ export const Orders: IOrder[] = [
     status: "CANCELLED",
     payment: { method: "CARD", isPaid: false },
     delivery: { method: "PICKUP" },
+  },
+];
+
+export const OrderProductColumns: DataTableColumn<IOrderItem>[] = [
+  {
+    id: "image",
+    header: "image",
+    accessorKey: "image",
+    initialWidth: 220,
+    minWidth: 150,
+    maxWidth: 300,
+  },
+  {
+    id: "orderId",
+    header: "orderId",
+    accessorKey: "orderId",
+    initialWidth: 220,
+    minWidth: 150,
+    maxWidth: 300,
+  },
+  {
+    id: "productId",
+    header: "productId",
+    accessorKey: "productId",
+    initialWidth: 220,
+    minWidth: 150,
+    maxWidth: 300,
+  },
+  {
+    id: "variantId",
+    header: "variantId",
+    accessorKey: "variantId",
+    initialWidth: 220,
+    minWidth: 150,
+    maxWidth: 300,
+  },
+  {
+    id: "title",
+    header: "title",
+    accessorKey: "title",
+    initialWidth: 220,
+    minWidth: 150,
+    maxWidth: 300,
+  },
+  {
+    id: "sku",
+    header: "sku",
+    accessorKey: "sku",
+    initialWidth: 220,
+    minWidth: 150,
+    maxWidth: 300,
+  },
+  {
+    id: "price",
+    header: "price",
+    accessorKey: "price",
+    initialWidth: 220,
+    minWidth: 150,
+    maxWidth: 300,
+  },
+  {
+    id: "quantity",
+    header: "quantity",
+    accessorKey: "quantity",
+    initialWidth: 220,
+    minWidth: 150,
+    maxWidth: 300,
+  },
+  {
+    id: "selectedColor",
+    header: "selectedColor",
+    accessorKey: "selectedColor",
+    initialWidth: 220,
+    minWidth: 150,
+    maxWidth: 300,
+  },
+  {
+    id: "selectedSize",
+    header: "selectedSize",
+    accessorKey: "selectedSize",
+    initialWidth: 220,
+    minWidth: 150,
+    maxWidth: 300,
+  },
+];
+
+export const OrderItems: IOrderItem[] = [
+  {
+    id: "cms0ifi5c0007m4ua5fuim1hz",
+    orderId: "cms0ifi2r0006m4ualesgoszd",
+    productId: "cms0hvxjm006h3wuakimzot9p",
+    variantId: "cms0hvybj006w3wuaz8vrp21a",
+    title: "Under Armour Hoodie",
+    sku: "HOOD-UA-WHT-50",
+    price: 7790,
+    quantity: 1,
+    selectedColor: "White",
+    selectedSize: "50",
+    image: "/products/hoodies/under-armour-white/image-1-480.png",
+  },
+  {
+    id: "cms0ifi5c0008m4ua8nmdviak",
+    orderId: "cms0ifi2r0006m4ualesgoszd",
+    productId: "cms0hw77900e33wuarj5bay17",
+    variantId: "cms0hw8lz00fa3wuazscwlcip",
+    title: "Adidas Sports Sneakers",
+    sku: "SNRK-ADST-BLE-41",
+    price: 7790,
+    quantity: 1,
+    selectedColor: "Blue",
+    selectedSize: "41",
+    image: "/products/sneakers/adidas-sports-blue/image-1-480.png",
   },
 ];
