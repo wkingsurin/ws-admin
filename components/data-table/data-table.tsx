@@ -31,10 +31,6 @@ export default function DataTable<T>({ data, columns }: DataTableProps<T>) {
     ),
   );
 
-  const setColumnWidth = (columnId: string, width: number) => {
-    setColumnWidths((prev) => ({ ...prev, [columnId]: width }));
-  };
-
   const handleResizeStart = (event: React.PointerEvent, columnId: string) => {
     const startX = event.clientX;
     const startWidth = columnWidths[columnId];
@@ -69,6 +65,17 @@ export default function DataTable<T>({ data, columns }: DataTableProps<T>) {
     window.addEventListener("pointerup", handlePointerUp);
   };
 
+  const handleCopy = async (event: React.MouseEvent): Promise<void> => {
+    const value = event.currentTarget.textContent;
+
+    try {
+      await navigator.clipboard.writeText(value);
+      console.log(`Text is copied!`);
+    } catch (err) {
+      console.error(`Failed to copy text:`, value);
+    }
+  };
+
   return (
     <div className="overflow-x-auto">
       <Table className="table-fixed whitespace-nowrap">
@@ -86,7 +93,10 @@ export default function DataTable<T>({ data, columns }: DataTableProps<T>) {
         <TableHeader>
           <TableRow>
             {columns.map((column) => (
-              <TableHead key={column.id} className="relative min-w-0">
+              <TableHead
+                key={column.id}
+                className="relative min-w-0 hover:bg-black/10"
+              >
                 <div className="flex justify-between gap-3 w-full">
                   <span className="min-w-0 truncate">{column.header}</span>
                   <ColumnSort />
@@ -104,7 +114,11 @@ export default function DataTable<T>({ data, columns }: DataTableProps<T>) {
           {data.map((row, rowIndex) => (
             <TableRow key={rowIndex}>
               {columns.map((column) => (
-                <TableCell key={column.id} className="min-w-0 truncate">
+                <TableCell
+                  key={column.id}
+                  className="min-w-0 truncate hover:bg-black/10 cursor-copy"
+                  onClick={handleCopy}
+                >
                   {column.render
                     ? column.render(row)
                     : column.accessorKey
