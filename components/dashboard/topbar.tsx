@@ -1,11 +1,11 @@
-import AddOrderButton from "../../features/orders/components/add-order-button";
+import { ReactNode } from "react";
 import Navigation from "./navigation";
 
-export default function TopBar() {
+export default function TopBar({ children }: { children: ReactNode }) {
   return (
     <div className="flex gap-3">
       <Navigation />
-      <AddOrderButton />
+      {children}
     </div>
   );
 }

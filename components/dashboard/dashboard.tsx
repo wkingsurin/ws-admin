@@ -7,7 +7,6 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
     <Section>
       <Container>
         <div className="flex flex-col gap-3">
-          <TopBar />
           {children}
         </div>
       </Container>
