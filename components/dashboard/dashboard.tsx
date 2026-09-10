@@ -1,6 +1,5 @@
 import Container from "../container";
 import Section from "../section";
-import TopBar from "./topbar";
 
 export default function Dashboard({ children }: { children: React.ReactNode }) {
   return (

@@ -1,4 +1,3 @@
-import Dashboard from "@/components/dashboard/dashboard";
 import Main from "@/components/main";
 
 export default function DashboardLayout({
