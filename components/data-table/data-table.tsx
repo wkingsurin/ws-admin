@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import ColumnSort from "./column-sort";
 import {
   Table,
   TableBody,
@@ -10,12 +9,32 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-import { DataTableProps } from "./types";
+import {
+  ColumnFilters,
+  ColumnWidths,
+  DataTableProps,
+  SortState,
+} from "./types";
 import DataTableResizer from "./data-table-resizer";
+import LinkCell from "./service-cells/link-cell";
+import CheckboxCell from "./service-cells/checkbox-cell";
+import LinkHead from "./service-cells/link-head";
+import CheckboxHead from "./service-cells/checkbox-head";
+import ColumnActions from "./column-actions";
 
-type ColumnWidths = Record<string, number>;
-
-export default function DataTable<T>({ data, columns }: DataTableProps<T>) {
+export default function DataTable<T>({
+  data,
+  columns,
+  getRowId,
+  selectedIds,
+  toggleAll,
+  onToggleRow,
+}: DataTableProps<T>) {
+  const [sort, setSort] = useState<SortState>({
+    columnId: null,
+    direction: null,
+  });
+  const [columnFilters, setColumnFilters] = useState<ColumnFilters>({});
   const [columnWidths, setColumnWidths] = useState<ColumnWidths>(() =>
     Object.fromEntries(
       columns.map((column) => {
@@ -65,6 +84,38 @@ export default function DataTable<T>({ data, columns }: DataTableProps<T>) {
     window.addEventListener("pointerup", handlePointerUp);
   };
 
+  const sortedData = [...data].sort((a, b) => {
+    if (!sort) return 0;
+
+    const column = columns.find((column) => column.id === sort.columnId);
+
+    if (!column?.accessorKey) return 0;
+
+    const aValue = a[column.accessorKey];
+    const bValue = b[column.accessorKey];
+
+    if (aValue == null || bValue == null) return 0;
+    if (aValue == null) return 1;
+    if (bValue == null) return -1;
+
+    if (aValue < bValue) {
+      return sort.direction === "asc" ? -1 : 1;
+    }
+
+    if (bValue < aValue) {
+      return sort.direction === "asc" ? 1 : -1;
+    }
+
+    return 0;
+  });
+  const rowIds = sortedData.map(getRowId);
+
+  const selectedCount = rowIds.filter((id) => selectedIds[id]).length;
+  const allSelected =
+    rowIds.length > 0 && rowIds.every((id) => selectedIds[id]);
+  const someSelected =
+    selectedCount > 0 && rowIds.some((id) => selectedIds[id]) && !allSelected;
+
   const handleCopy = async (event: React.MouseEvent): Promise<void> => {
     const value = event.currentTarget.textContent;
 
@@ -77,9 +128,12 @@ export default function DataTable<T>({ data, columns }: DataTableProps<T>) {
   };
 
   return (
-    <div className="overflow-x-auto">
+    <div className="group/table relative overflow-x-auto">
       <Table className="table-fixed whitespace-nowrap">
         <colgroup>
+          <col style={{ width: "40px" }} />
+          <col style={{ width: "80px" }} />
+
           {columns.map((column) => (
             <col
               key={column.id}
@@ -92,14 +146,44 @@ export default function DataTable<T>({ data, columns }: DataTableProps<T>) {
 
         <TableHeader>
           <TableRow>
+            <CheckboxHead
+              checked={allSelected}
+              indeterminate={someSelected}
+              onSelect={() => toggleAll(rowIds)}
+            />
+            <LinkHead label="page" />
+
             {columns.map((column) => (
               <TableHead
                 key={column.id}
                 className="relative min-w-0 hover:bg-black/10"
               >
-                <div className="flex justify-between gap-3 w-full">
-                  <span className="min-w-0 truncate">{column.header}</span>
-                  <ColumnSort />
+                <div className="flex items-center justify-between gap-3 w-full">
+                  <span className="min-w-0 truncate text-black/75">
+                    {column.header}
+                  </span>
+                  <ColumnActions
+                    column={column}
+                    selectedFilters={columnFilters[column.id] ?? []}
+                    onFilterChange={(value, checked) => {
+                      setColumnFilters((prev) => {
+                        const current = prev[column.id] ?? [];
+
+                        return {
+                          ...prev,
+                          [column.id]: checked
+                            ? [...current, value]
+                            : current.filter((item) => item !== value),
+                        };
+                      });
+                    }}
+                    sortDirection={
+                      sort?.columnId === column.id ? sort.direction : null
+                    }
+                    onSort={(direction) => {
+                      setSort({ columnId: column.id, direction });
+                    }}
+                  />
                 </div>
 
                 <DataTableResizer
@@ -111,23 +195,33 @@ export default function DataTable<T>({ data, columns }: DataTableProps<T>) {
         </TableHeader>
 
         <TableBody>
-          {data.map((row, rowIndex) => (
-            <TableRow key={rowIndex}>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  className="min-w-0 truncate hover:bg-black/10 cursor-copy"
-                  onClick={handleCopy}
-                >
-                  {column.render
-                    ? column.render(row)
-                    : column.accessorKey
-                      ? String(row[column.accessorKey])
-                      : null}
-                </TableCell>
-              ))}
-            </TableRow>
-          ))}
+          {sortedData.map((row) => {
+            const rowId = getRowId(row);
+
+            return (
+              <TableRow key={rowId}>
+                <CheckboxCell
+                  checked={selectedIds[rowId] === true}
+                  onSelect={() => onToggleRow(rowId)}
+                />
+                <LinkCell label="View" />
+
+                {columns.map((column) => (
+                  <TableCell
+                    key={column.id}
+                    className="min-w-0 truncate hover:bg-black/10 cursor-copy"
+                    onClick={handleCopy}
+                  >
+                    {column.render
+                      ? column.render(row)
+                      : column.accessorKey
+                        ? String(row[column.accessorKey])
+                        : null}
+                  </TableCell>
+                ))}
+              </TableRow>
+            );
+          })}
         </TableBody>
       </Table>
     </div>
