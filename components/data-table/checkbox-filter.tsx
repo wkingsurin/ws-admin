@@ -26,7 +26,7 @@ export default function CheckboxFilter({
             onCheckedChange={(checked) =>
               onCheckedChange(option.value, checked)
             }
-            className={`text-white/50 group-hover/item:text-white ${checked && "text-white"}`}
+            className={`text-black/50 group-hover/item:text-black ${checked && "text-black bg-black/10"}`}
           >
             {option.label}
           </DropdownMenuCheckboxItem>
