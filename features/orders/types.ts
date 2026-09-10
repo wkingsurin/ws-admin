@@ -1,12 +1,12 @@
-type DeliveryMethod = "COURIER" | "PICKUP" | "POST";
-type OrderStatus =
+export type DeliveryMethod = "COURIER" | "PICKUP" | "POST";
+export type OrderStatus =
   | "PENDING"
   | "PAID"
   | "PROCESSING"
   | "SHIPPED"
   | "DELIVERED"
   | "CANCELLED";
-type PaymentMethod = "CARD" | "CASH" | "PAYPAL";
+export type PaymentMethod = "CARD" | "CASH" | "PAYPAL";
 
 export interface IOrderCustomer {
   name: string;

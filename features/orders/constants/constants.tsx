@@ -1,5 +1,5 @@
 import { DataTableColumn } from "@/components/data-table/types";
-import { IOrder, IOrderItem } from "./types";
+import { IOrder, IOrderItem } from "../types";
 
 export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   {
@@ -78,6 +78,14 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     initialWidth: 160,
     minWidth: 120,
     render: (order) => order.payment.method,
+    filter: {
+      type: "checkbox",
+      options: [
+        { label: "Card", value: "CARD" },
+        { label: "Cash", value: "CASH" },
+        { label: "PayPal", value: "PAYPAl" },
+      ],
+    },
   },
   {
     id: "deliveryMethod",
@@ -87,6 +95,14 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     minWidth: 120,
     maxWidth: 300,
     render: (order) => order.delivery.method,
+    filter: {
+      type: "checkbox",
+      options: [
+        { label: "Courier", value: "COURIER" },
+        { label: "Pick up", value: "PICKUP" },
+        { label: "Post", value: "POST" },
+      ],
+    },
   },
   {
     id: "price",
@@ -104,7 +120,14 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     initialWidth: 100,
     minWidth: 80,
     maxWidth: 300,
-    render: (order) => String(order.payment.isPaid),
+    render: (order) => order.payment.isPaid === true ? 'Оплачен' : 'Не оплачен',
+    filter: {
+      type: "checkbox",
+      options: [
+        { label: "Оплачен", value: "PAID" },
+        { label: "Не оплачен", value: "" },
+      ],
+    },
   },
   {
     id: "createdAt",

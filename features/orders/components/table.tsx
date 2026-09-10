@@ -2,7 +2,7 @@
 
 import DataTable from "@/components/data-table/data-table";
 import { useOrdersTableStore } from "../store/orders";
-import { ORDER_COLUMNS, ORDERS_DATA } from "../constants";
+import { ORDER_COLUMNS, ORDERS_DATA } from "../constants/constants";
 
 export default function OrdersTable() {
   const selectedIds = useOrdersTableStore((s) => s.selectedIds);
