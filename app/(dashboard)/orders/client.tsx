@@ -1,13 +1,14 @@
 "use client";
 
 import DashboardTable from "@/components/dashboard/dashboard-table";
-import { OrderColumns } from "@/features/orders/constants";
-import { IOrder } from "@/features/orders/types";
+import OrdersTable from "@/features/orders/components/table";
 
-export default function OrdersClient({ data }: { data: IOrder[] }) {
+export default function OrdersClient() {
   return (
     <div>
-      <DashboardTable data={data} columns={OrderColumns} />
+      <DashboardTable>
+        <OrdersTable />
+      </DashboardTable>
     </div>
   );
 }
