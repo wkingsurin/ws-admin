@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -21,6 +21,7 @@ import CheckboxCell from "./service-cells/checkbox-cell";
 import LinkHead from "./service-cells/link-head";
 import CheckboxHead from "./service-cells/checkbox-head";
 import ColumnActions from "./column-actions";
+import CellValue from "./cell-value";
 
 export default function DataTable<T>({
   data,
@@ -30,6 +31,8 @@ export default function DataTable<T>({
   toggleAll,
   onToggleRow,
 }: DataTableProps<T>) {
+  const [pressedCtrl, setPressedCtrl] = useState<boolean>(false);
+
   const [sort, setSort] = useState<SortState>({
     columnId: null,
     direction: null,
@@ -127,6 +130,25 @@ export default function DataTable<T>({
     }
   };
 
+  const onDownCtrl = (event: KeyboardEvent) => {
+    if (event.ctrlKey) {
+      setPressedCtrl(true);
+    }
+  };
+  const onUpCtrl = (event: KeyboardEvent) => {
+    setPressedCtrl(false);
+  };
+
+  useEffect(() => {
+    window.document.addEventListener("keydown", onDownCtrl);
+    window.document.addEventListener("keyup", onUpCtrl);
+
+    return () => {
+      window.document.removeEventListener("keydown", onDownCtrl);
+      window.document.removeEventListener("keyup", onUpCtrl);
+    };
+  }, []);
+
   return (
     <div className="group/table relative overflow-x-auto">
       <Table className="table-fixed whitespace-nowrap">
@@ -212,11 +234,16 @@ export default function DataTable<T>({
                     className="min-w-0 truncate hover:bg-black/10 cursor-copy"
                     onClick={handleCopy}
                   >
-                    {column.render
-                      ? column.render(row)
-                      : column.accessorKey
-                        ? String(row[column.accessorKey])
-                        : null}
+                    <CellValue
+                      value={
+                        column.render
+                          ? column.render(row)
+                          : column.accessorKey
+                            ? String(row[column.accessorKey])
+                            : null
+                      }
+                      visible={pressedCtrl}
+                    />
                   </TableCell>
                 ))}
               </TableRow>
