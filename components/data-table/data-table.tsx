@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Table,
   TableBody,
@@ -52,6 +52,10 @@ export default function DataTable<T>({
       }),
     ),
   );
+
+  const tableScrollRef = useRef<HTMLDivElement>(null);
+  const horizontalScrollRef = useRef<HTMLDivElement>(null);
+  const horizontalContentRef = useRef<HTMLDivElement>(null);
 
   const handleResizeStart = (event: React.PointerEvent, columnId: string) => {
     const startX = event.clientX;
@@ -140,6 +144,29 @@ export default function DataTable<T>({
   };
 
   useEffect(() => {
+    const tableScroll = tableScrollRef.current;
+    const horizontalScroll = horizontalScrollRef.current;
+
+    if (!tableScroll || !horizontalScroll) return;
+
+    const handleTableScroll = () => {
+      horizontalScroll.scrollLeft = tableScroll.scrollLeft;
+    };
+
+    const handleHorizontalScroll = () => {
+      tableScroll.scrollLeft = horizontalScroll.scrollLeft;
+    };
+
+    tableScroll.addEventListener("scroll", handleTableScroll);
+    horizontalScroll.addEventListener("scroll", handleHorizontalScroll);
+
+    return () => {
+      tableScroll.removeEventListener("scroll", handleTableScroll);
+      horizontalScroll.removeEventListener("scroll", handleHorizontalScroll);
+    };
+  }, []);
+
+  useEffect(() => {
     window.document.addEventListener("keydown", onDownCtrl);
     window.document.addEventListener("keyup", onUpCtrl);
 
@@ -150,107 +177,125 @@ export default function DataTable<T>({
   }, []);
 
   return (
-    <div className="group/table relative overflow-x-auto">
-      <Table className="table-fixed whitespace-nowrap">
-        <colgroup>
-          <col style={{ width: "40px" }} />
-          <col style={{ width: "80px" }} />
-
-          {columns.map((column) => (
-            <col
-              key={column.id}
-              style={{
-                width: `${columnWidths[column.id]}px`,
-              }}
-            />
-          ))}
-        </colgroup>
-
-        <TableHeader>
-          <TableRow>
-            <CheckboxHead
-              checked={allSelected}
-              indeterminate={someSelected}
-              onSelect={() => toggleAll(rowIds)}
-            />
-            <LinkHead label="page" />
+    <div className="flex flex-col min-w-0 h-full min-h-0">
+      <div
+        className="flex-1 min-h-0 min-w-0 overflow-auto"
+        ref={tableScrollRef}
+      >
+        <Table className="table-fixed whitespace-nowrap">
+          <colgroup>
+            <col style={{ width: "40px" }} />
+            <col style={{ width: "80px" }} />
 
             {columns.map((column) => (
-              <TableHead
+              <col
                 key={column.id}
-                className="relative min-w-0 hover:bg-black/10"
-              >
-                <div className="flex items-center justify-between gap-3 w-full">
-                  <span className="min-w-0 truncate text-black/75">
-                    {column.header}
-                  </span>
-                  <ColumnActions
-                    column={column}
-                    selectedFilters={columnFilters[column.id] ?? []}
-                    onFilterChange={(value, checked) => {
-                      setColumnFilters((prev) => {
-                        const current = prev[column.id] ?? [];
-
-                        return {
-                          ...prev,
-                          [column.id]: checked
-                            ? [...current, value]
-                            : current.filter((item) => item !== value),
-                        };
-                      });
-                    }}
-                    sortDirection={
-                      sort?.columnId === column.id ? sort.direction : null
-                    }
-                    onSort={(direction) => {
-                      setSort({ columnId: column.id, direction });
-                    }}
-                  />
-                </div>
-
-                <DataTableResizer
-                  onPointerDown={(event) => handleResizeStart(event, column.id)}
-                />
-              </TableHead>
+                style={{
+                  width: `${columnWidths[column.id]}px`,
+                }}
+              />
             ))}
-          </TableRow>
-        </TableHeader>
+          </colgroup>
 
-        <TableBody>
-          {sortedData.map((row) => {
-            const rowId = getRowId(row);
+          <TableHeader className="sticky top-0 z-1000 bg-[#F8F9FA]">
+            <TableRow>
+              <CheckboxHead
+                checked={allSelected}
+                indeterminate={someSelected}
+                onSelect={() => toggleAll(rowIds)}
+              />
+              <LinkHead label="page" />
 
-            return (
-              <TableRow key={rowId}>
-                <CheckboxCell
-                  checked={selectedIds[rowId] === true}
-                  onSelect={() => onToggleRow(rowId)}
-                />
-                <LinkCell label="View" />
+              {columns.map((column) => (
+                <TableHead
+                  key={column.id}
+                  className="relative min-w-0 bg-gray hover:bg-black/10"
+                >
+                  <div className="flex items-center justify-between gap-3 w-full">
+                    <span className="min-w-0 truncate text-black/75">
+                      {column.header}
+                    </span>
+                    <ColumnActions
+                      column={column}
+                      selectedFilters={columnFilters[column.id] ?? []}
+                      onFilterChange={(value, checked) => {
+                        setColumnFilters((prev) => {
+                          const current = prev[column.id] ?? [];
 
-                {columns.map((column) => (
-                  <TableCell
-                    key={column.id}
-                    className="min-w-0 truncate hover:bg-black/10 cursor-copy"
-                    onClick={handleCopy}
-                  >
-                    <CellValue
-                      value={
-                        column.render
-                          ? column.render(row)
-                          : column.accessorKey
-                            ? String(row[column.accessorKey])
-                            : null
+                          return {
+                            ...prev,
+                            [column.id]: checked
+                              ? [...current, value]
+                              : current.filter((item) => item !== value),
+                          };
+                        });
+                      }}
+                      sortDirection={
+                        sort?.columnId === column.id ? sort.direction : null
                       }
-                      visible={pressedCtrl}
+                      onSort={(direction) => {
+                        setSort({ columnId: column.id, direction });
+                      }}
                     />
-                  </TableCell>
-                ))}
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
+                  </div>
+
+                  <DataTableResizer
+                    onPointerDown={(event) =>
+                      handleResizeStart(event, column.id)
+                    }
+                  />
+                </TableHead>
+              ))}
+            </TableRow>
+          </TableHeader>
+
+          <TableBody>
+            {sortedData.map((row) => {
+              const rowId = getRowId(row);
+
+              return (
+                <TableRow key={rowId}>
+                  <CheckboxCell
+                    checked={selectedIds[rowId] === true}
+                    onSelect={() => onToggleRow(rowId)}
+                  />
+                  <LinkCell label="View" />
+
+                  {columns.map((column) => (
+                    <TableCell
+                      key={column.id}
+                      className="min-w-0 truncate hover:bg-black/10 cursor-copy"
+                      onClick={handleCopy}
+                    >
+                      <CellValue
+                        value={
+                          column.render
+                            ? column.render(row)
+                            : column.accessorKey
+                              ? String(row[column.accessorKey])
+                              : null
+                        }
+                        visible={pressedCtrl}
+                      />
+                    </TableCell>
+                  ))}
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </div>
+
+      <div
+        className="h-4 shrink-0 overflow-x-auto overflow-y-hidden"
+        ref={horizontalScrollRef}
+      >
+        <div
+          className="h-full"
+          style={{ width: "max-content", minWidth: "100%" }}
+          ref={horizontalContentRef}
+        ></div>
+      </div>
     </div>
   );
 }
