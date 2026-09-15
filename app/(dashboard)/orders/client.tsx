@@ -1,6 +1,5 @@
 "use client";
 
-import Dashboard from "@/components/dashboard/dashboard";
 import DashboardTable from "@/components/dashboard/dashboard-table";
 import TopBar from "@/components/dashboard/topbar";
 import OrdersTable from "@/features/orders/components/table";
@@ -8,13 +7,14 @@ import OrdersToolbar from "@/features/orders/components/toolbar";
 
 export default function OrdersClient() {
   return (
-    <Dashboard>
+    <>
       <TopBar>
         <OrdersToolbar />
       </TopBar>
-      <DashboardTable>
+
+      <DashboardTable className="h-[calc(100dvh-30px-16px-12px-12px)]">
         <OrdersTable />
       </DashboardTable>
-    </Dashboard>
+    </>
   );
 }
