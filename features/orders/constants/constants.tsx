@@ -120,7 +120,8 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     initialWidth: 100,
     minWidth: 80,
     maxWidth: 300,
-    render: (order) => order.payment.isPaid === true ? 'Оплачен' : 'Не оплачен',
+    render: (order) =>
+      order.payment.isPaid === true ? "Оплачен" : "Не оплачен",
     filter: {
       type: "checkbox",
       options: [
@@ -426,7 +427,7 @@ export const ORDERS_DATA: IOrder[] = [
   },
 ];
 
-export const OrderProductColumns: DataTableColumn<IOrderItem>[] = [
+export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
   {
     id: "image",
     header: "image",
@@ -509,9 +510,9 @@ export const OrderProductColumns: DataTableColumn<IOrderItem>[] = [
   },
 ];
 
-export const OrderItems: IOrderItem[] = [
+export const ORDER_ITEMS: IOrderItem[] = [
   {
-    id: "cms0ifi5c0007m4ua5fuim1hz",
+    id: "cms0ifi5c0007m4ua5fuim1hz1",
     orderId: "cms0ifi2r0006m4ualesgoszd",
     productId: "cms0hvxjm006h3wuakimzot9p",
     variantId: "cms0hvybj006w3wuaz8vrp21a",
@@ -524,7 +525,7 @@ export const OrderItems: IOrderItem[] = [
     image: "/products/hoodies/under-armour-white/image-1-480.png",
   },
   {
-    id: "cms0ifi5c0008m4ua8nmdviak",
+    id: "cms0ifi5c0008m4ua8nmdviak2",
     orderId: "cms0ifi2r0006m4ualesgoszd",
     productId: "cms0hw77900e33wuarj5bay17",
     variantId: "cms0hw8lz00fa3wuazscwlcip",
@@ -537,7 +538,7 @@ export const OrderItems: IOrderItem[] = [
     image: "/products/sneakers/adidas-sports-blue/image-1-480.png",
   },
   {
-    id: "cms0ifi5c0008m4ua8nmdviak",
+    id: "cms0ifi5c0008m4ua8nmdviak3",
     orderId: "cms0ifi2r0006m4ualesgoszd",
     productId: "cms0hw77900e33wuarj5bay17",
     variantId: "cms0hw8lz00fa3wuazscwlcip",
@@ -550,7 +551,7 @@ export const OrderItems: IOrderItem[] = [
     image: "/products/sneakers/adidas-sports-blue/image-1-480.png",
   },
   {
-    id: "cms0ifi5c0008m4ua8nmdviak",
+    id: "cms0ifi5c0008m4ua8nmdviak4",
     orderId: "cms0ifi2r0006m4ualesgoszd",
     productId: "cms0hw77900e33wuarj5bay17",
     variantId: "cms0hw8lz00fa3wuazscwlcip",
@@ -563,7 +564,7 @@ export const OrderItems: IOrderItem[] = [
     image: "/products/sneakers/adidas-sports-blue/image-1-480.png",
   },
   {
-    id: "cms0ifi5c0008m4ua8nmdviak",
+    id: "cms0ifi5c0008m4ua8nmdviak5",
     orderId: "cms0ifi2r0006m4ualesgoszd",
     productId: "cms0hw77900e33wuarj5bay17",
     variantId: "cms0hw8lz00fa3wuazscwlcip",
@@ -576,7 +577,7 @@ export const OrderItems: IOrderItem[] = [
     image: "/products/sneakers/adidas-sports-blue/image-1-480.png",
   },
   {
-    id: "cms0ifi5c0008m4ua8nmdviak",
+    id: "cms0ifi5c0008m4ua8nmdviak6",
     orderId: "cms0ifi2r0006m4ualesgoszd",
     productId: "cms0hw77900e33wuarj5bay17",
     variantId: "cms0hw8lz00fa3wuazscwlcip",
@@ -589,7 +590,7 @@ export const OrderItems: IOrderItem[] = [
     image: "/products/sneakers/adidas-sports-blue/image-1-480.png",
   },
   {
-    id: "cms0ifi5c0008m4ua8nmdviak",
+    id: "cms0ifi5c0008m4ua8nmdviak7",
     orderId: "cms0ifi2r0006m4ualesgoszd",
     productId: "cms0hw77900e33wuarj5bay17",
     variantId: "cms0hw8lz00fa3wuazscwlcip",
@@ -602,7 +603,7 @@ export const OrderItems: IOrderItem[] = [
     image: "/products/sneakers/adidas-sports-blue/image-1-480.png",
   },
   {
-    id: "cms0ifi5c0008m4ua8nmdviak",
+    id: "cms0ifi5c0008m4ua8nmdviak8",
     orderId: "cms0ifi2r0006m4ualesgoszd",
     productId: "cms0hw77900e33wuarj5bay17",
     variantId: "cms0hw8lz00fa3wuazscwlcip",
@@ -615,7 +616,7 @@ export const OrderItems: IOrderItem[] = [
     image: "/products/sneakers/adidas-sports-blue/image-1-480.png",
   },
   {
-    id: "cms0ifi5c0008m4ua8nmdviak",
+    id: "cms0ifi5c0008m4ua8nmdviak9",
     orderId: "cms0ifi2r0006m4ualesgoszd",
     productId: "cms0hw77900e33wuarj5bay17",
     variantId: "cms0hw8lz00fa3wuazscwlcip",
@@ -628,7 +629,7 @@ export const OrderItems: IOrderItem[] = [
     image: "/products/sneakers/adidas-sports-blue/image-1-480.png",
   },
   {
-    id: "cms0ifi5c0008m4ua8nmdviak",
+    id: "cms0ifi5c0008m4ua8nmdviak10",
     orderId: "cms0ifi2r0006m4ualesgoszd",
     productId: "cms0hw77900e33wuarj5bay17",
     variantId: "cms0hw8lz00fa3wuazscwlcip",
@@ -641,7 +642,7 @@ export const OrderItems: IOrderItem[] = [
     image: "/products/sneakers/adidas-sports-blue/image-1-480.png",
   },
   {
-    id: "cms0ifi5c0008m4ua8nmdviak",
+    id: "cms0ifi5c0008m4ua8nmdviak11",
     orderId: "cms0ifi2r0006m4ualesgoszd",
     productId: "cms0hw77900e33wuarj5bay17",
     variantId: "cms0hw8lz00fa3wuazscwlcip",
@@ -654,7 +655,7 @@ export const OrderItems: IOrderItem[] = [
     image: "/products/sneakers/adidas-sports-blue/image-1-480.png",
   },
   {
-    id: "cms0ifi5c0008m4ua8nmdviak",
+    id: "cms0ifi5c0008m4ua8nmdviak12",
     orderId: "cms0ifi2r0006m4ualesgoszd",
     productId: "cms0hw77900e33wuarj5bay17",
     variantId: "cms0hw8lz00fa3wuazscwlcip",
@@ -667,7 +668,7 @@ export const OrderItems: IOrderItem[] = [
     image: "/products/sneakers/adidas-sports-blue/image-1-480.png",
   },
   {
-    id: "cms0ifi5c0008m4ua8nmdviak",
+    id: "cms0ifi5c0008m4ua8nmdviak13",
     orderId: "cms0ifi2r0006m4ualesgoszd",
     productId: "cms0hw77900e33wuarj5bay17",
     variantId: "cms0hw8lz00fa3wuazscwlcip",
@@ -680,7 +681,7 @@ export const OrderItems: IOrderItem[] = [
     image: "/products/sneakers/adidas-sports-blue/image-1-480.png",
   },
   {
-    id: "cms0ifi5c0008m4ua8nmdviak",
+    id: "cms0ifi5c0008m4ua8nmdviak14",
     orderId: "cms0ifi2r0006m4ualesgoszd",
     productId: "cms0hw77900e33wuarj5bay17",
     variantId: "cms0hw8lz00fa3wuazscwlcip",
@@ -693,7 +694,7 @@ export const OrderItems: IOrderItem[] = [
     image: "/products/sneakers/adidas-sports-blue/image-1-480.png",
   },
   {
-    id: "cms0ifi5c0008m4ua8nmdviak",
+    id: "cms0ifi5c0008m4ua8nmdviak15",
     orderId: "cms0ifi2r0006m4ualesgoszd",
     productId: "cms0hw77900e33wuarj5bay17",
     variantId: "cms0hw8lz00fa3wuazscwlcip",
@@ -706,7 +707,7 @@ export const OrderItems: IOrderItem[] = [
     image: "/products/sneakers/adidas-sports-blue/image-1-480.png",
   },
   {
-    id: "cms0ifi5c0008m4ua8nmdviak",
+    id: "cms0ifi5c0008m4ua8nmdviak16",
     orderId: "cms0ifi2r0006m4ualesgoszd",
     productId: "cms0hw77900e33wuarj5bay17",
     variantId: "cms0hw8lz00fa3wuazscwlcip",

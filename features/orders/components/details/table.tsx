@@ -1,25 +1,23 @@
 "use client";
 
 import DataTable from "@/components/data-table/data-table";
-import { useOrdersTableStore } from "../store/orders";
-import { ORDER_COLUMNS, ORDERS_DATA } from "../constants/constants";
+import { ORDER_ITEM_COLUMNS, ORDER_ITEMS } from "../../constants/constants";
+import { useOrdersTableStore } from "../../store/orders";
 
-export default function OrdersTable() {
+export default function OrderItemsTable() {
   const selectedIds = useOrdersTableStore((s) => s.selectedIds);
 
   const toggleRow = useOrdersTableStore((s) => s.toggleRow);
   const toggleAll = useOrdersTableStore((s) => s.toggleAll);
 
   return (
-    <div className="min-w-0 h-full">
       <DataTable
-        data={ORDERS_DATA}
-        columns={ORDER_COLUMNS}
-        getRowId={(order) => order.id}
+        data={ORDER_ITEMS}
+        columns={ORDER_ITEM_COLUMNS}
+        getRowId={(item) => item.id}
         selectedIds={selectedIds}
         onToggleRow={toggleRow}
         toggleAll={toggleAll}
       />
-    </div>
   );
 }
