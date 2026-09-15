@@ -1,7 +1,8 @@
 interface IProps {
-    children: React.ReactNode;
+  children: React.ReactNode;
+  className?: string;
 }
 
-export default function Section({ children }: IProps) {
-    return <section>{children}</section>;
+export default function Section({ children, className }: IProps) {
+  return <section className={`${className ?? ""}`}>{children}</section>;
 }
