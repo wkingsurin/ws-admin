@@ -11,7 +11,7 @@ export default function ToolButton({ icon, label, style }: ToolButtonProps) {
   const Icon = icon;
 
   return (
-    <Button className={`rounded-md px-3 ${style}`}>
+    <Button className={`h-8 rounded-md px-3 ${style}`}>
       <Icon className={`size-4 stroke-[1.5px]`} />
       <span>{label}</span>
     </Button>

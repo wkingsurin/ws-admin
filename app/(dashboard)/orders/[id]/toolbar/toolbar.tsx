@@ -6,19 +6,19 @@ export default function Toolbar() {
     [
       {
         icon: SquarePen,
-        label: "Редактировать",
+        label: "Edit",
         style:
           "bg-black/10 border-[0.5px] border-black/5 text-black hover:bg-black/15",
       },
       {
         icon: EyeOff,
-        label: "Скрыть заказ",
+        label: "Hide",
         style:
           "bg-black/10 border-[0.5px] border-black/5 text-black hover:bg-black/15",
       },
       {
         icon: Trash2,
-        label: "Удалить",
+        label: "Delete",
         style:
           "bg-[#FE414A]/10 border-[0.5px] border-[#FE414A]/5 text-[#FE414A]/75 hover:bg-[#FE414A]/15 hover:text-[#FE414A]",
       },
