@@ -197,7 +197,7 @@ export default function DataTable<T>({
             ))}
           </colgroup>
 
-          <TableHeader className="sticky top-0 z-1000 bg-[#F8F9FA]">
+          <TableHeader className="sticky top-0 z-10 bg-[#F8F9FA]">
             <TableRow>
               <CheckboxHead
                 checked={allSelected}

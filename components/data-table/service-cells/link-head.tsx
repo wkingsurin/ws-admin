@@ -9,7 +9,7 @@ export default function LinkHead({
 }) {
   return (
     <TableHead className={`min-w-0 hover:bg-black/10 ${className ?? ""}`}>
-      <span>{label}</span>
+      <span className="text-black/75">{label}</span>
     </TableHead>
   );
 }
