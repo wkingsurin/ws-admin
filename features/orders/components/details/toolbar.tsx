@@ -2,16 +2,32 @@
 
 import Toolbar from "@/components/toolbar/toolbar";
 import { Tool } from "@/components/toolbar/types";
-import { Plus } from "lucide-react";
+import { Plus, Trash2 } from "lucide-react";
+import AddProductDialog from "./add-product-dialog";
+import { useOrdersTableStore } from "../../store/orders";
+import DeleteProductDialog from "./delete-product-dialog";
 
 export default function OrderDetailsToolbar() {
+  const isSelected = useOrdersTableStore(
+    (s) => Object.keys(s.selectedIds).length > 0,
+  );
+
+  const services: Tool[] = [
+    {
+      label: "Create order",
+      icon: Plus,
+      dialog: <AddProductDialog />,
+      onClick: () => console.log("Order created"),
+    },
+  ];
   const tools: Tool[] = [
     {
-      label: "Add product",
-      icon: Plus,
-      onClick: () => console.log("Order added"),
+      label: "Delete product",
+      icon: Trash2,
+      dialog: <DeleteProductDialog />,
+      onClick: () => console.log("Product deleted"),
     },
   ];
 
-  return <Toolbar tools={tools} />;
+  return <Toolbar serviceTools={services} tools={isSelected ? tools : []} />;
 }
