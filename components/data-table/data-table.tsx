@@ -31,6 +31,7 @@ export default function DataTable<T>({
   toggleAll,
   onToggleRow,
 }: DataTableProps<T>) {
+  const [selectedCell, setSelectedCell] = useState<string | null>(null);
   const [pressedCtrl, setPressedCtrl] = useState<boolean>(false);
 
   const [sort, setSort] = useState<SortState>({
@@ -123,6 +124,12 @@ export default function DataTable<T>({
   const someSelected =
     selectedCount > 0 && rowIds.some((id) => selectedIds[id]) && !allSelected;
 
+  const isCellActive = (rowId: string, columnName: string) =>
+    selectedCell === `${rowId}-${columnName}`;
+  const handleCellClick = (rowId: string, columnName: string) => {
+    setSelectedCell(`${rowId}-${columnName}`);
+  };
+
   const handleCopy = async (event: React.MouseEvent): Promise<void> => {
     const value = event.currentTarget.textContent;
 
@@ -179,7 +186,7 @@ export default function DataTable<T>({
   return (
     <div className="flex flex-col min-w-0 h-full min-h-0">
       <div
-        className="flex-1 min-h-0 min-w-0 overflow-auto"
+        className="flex-1 min-h-0 min-w-0 border-[0.5px] border-black/10 overflow-auto"
         ref={tableScrollRef}
       >
         <Table className="table-fixed whitespace-nowrap">
@@ -264,8 +271,11 @@ export default function DataTable<T>({
                   {columns.map((column) => (
                     <TableCell
                       key={column.id}
-                      className="min-w-0 truncate hover:bg-black/10 cursor-copy"
-                      onClick={handleCopy}
+                      data-active="true"
+                      className={`min-w-0 truncate ${isCellActive(rowId, column.id) ? "bg-green-200" : "hover:bg-black/10"}`}
+                      onClick={() => {
+                        handleCellClick(rowId, column.id);
+                      }}
                     >
                       <CellValue
                         value={
@@ -287,7 +297,7 @@ export default function DataTable<T>({
       </div>
 
       <div
-        className="h-4 shrink-0 overflow-x-auto overflow-y-hidden"
+        className="absolute h-4 shrink-0 overflow-x-auto overflow-y-hidden"
         ref={horizontalScrollRef}
       >
         <div
