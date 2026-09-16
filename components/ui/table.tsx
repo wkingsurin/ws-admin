@@ -26,7 +26,7 @@ function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
       className={cn(
         "[&_tr]:border-b",
         className,
-        "border-l-[0.5px] border-black/10",
+        "border-black/10",
       )}
       {...props}
     />
@@ -40,7 +40,7 @@ function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
       className={cn(
         "[&_tr:last-child]:border-0",
         className,
-        "border-l-[0.5px] border-b-[0.5px] rounded-[0_0_8px_8px]",
+        "border-b-[0.5px] border-black/10 rounded-[0_0_8px_8px]",
       )}
       {...props}
     />
