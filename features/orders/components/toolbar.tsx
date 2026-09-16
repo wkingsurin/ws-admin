@@ -3,9 +3,9 @@
 import Toolbar from "@/components/toolbar/toolbar";
 import { Tool } from "@/components/toolbar/types";
 import { PackageMinus, PackagePlus } from "lucide-react";
-import RemoveOrderDialog from "./remove-order-dialog";
 import { useOrdersTableStore } from "../store/orders";
 import CreateOrderDialog from "./create-order-dialog";
+import DeleteOrderDialog from "./delete-order-dialog";
 
 export default function OrdersToolbar() {
   const isSelected = useOrdersTableStore(
@@ -24,7 +24,7 @@ export default function OrdersToolbar() {
     {
       label: "Delete order",
       icon: PackageMinus,
-      dialog: <RemoveOrderDialog />,
+      dialog: <DeleteOrderDialog />,
       onClick: () => console.log("Order removed"),
     },
   ];
