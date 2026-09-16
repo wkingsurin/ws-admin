@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 export default function Aside() {
   const path = usePathname();
-  const page = path.slice(1);
+  const page = path.slice(1).split("/")[0];
 
   return (
     <aside className="group/aside absolute z-10000 flex flex-col justify-between w-10  hover:w-45 h-[100dvh] bg-black/10 backdrop-blur-[12px] px-[5px] py-4 transiton duration-100 border-[0.5px] border-r-black/5">
