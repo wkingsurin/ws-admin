@@ -1,12 +1,14 @@
 "use client";
 
 import { DetailRow } from "../types";
+import { Input } from "@/components/ui/input";
 
 interface DetailsDataProps {
   data: DetailRow[];
+  isEditing: boolean;
 }
 
-export default function DetailsData({ data }: DetailsDataProps) {
+export default function DetailsData({ data, isEditing }: DetailsDataProps) {
   const handleCopy = async (event: React.MouseEvent): Promise<void> => {
     const value = event.currentTarget.textContent;
 
@@ -26,9 +28,15 @@ export default function DetailsData({ data }: DetailsDataProps) {
           className="flex items-center justify-between gap-3 rounded-md px-1 -mx-1 hover:bg-black/5"
         >
           <span className="min-w-40 text-sm select-none">{row.label}:</span>
-          <p className="truncate cursor-copy" onClick={handleCopy}>
-            {row.value}
-          </p>
+          <div className="overflow-hidden h-7">
+            {isEditing ? (
+              <Input value={row.value} className="h-6 py-0 border-[0.5px] border-black/10 px-2" />
+            ) : (
+              <p className="truncate cursor-copy" onClick={handleCopy}>
+                {row.value}
+              </p>
+            )}
+          </div>
         </div>
       ))}
     </div>

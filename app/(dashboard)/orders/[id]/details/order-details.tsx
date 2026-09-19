@@ -29,8 +29,8 @@ export default function OrderDetails() {
   return (
     <div className="grid grid-cols-4 gap-3">
       <DetailsCard title="Order" data={order} status="Paid" />
-      <DetailsCard title="Customer" data={customer} />
-      <DetailsCard title="Shipping" data={shipping} />
+      <DetailsCard title="Customer" data={customer} editable={true} />
+      <DetailsCard title="Shipping" data={shipping} editable={true} />
       <DetailsCard title="Totals" data={totals} />
     </div>
   );
