@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import {
   Table,
   TableBody,
-  TableCell,
   TableHead,
   TableHeader,
   TableRow,
@@ -21,7 +20,7 @@ import CheckboxCell from "./service-cells/checkbox-cell";
 import LinkHead from "./service-cells/link-head";
 import CheckboxHead from "./service-cells/checkbox-head";
 import ColumnActions from "./column-actions";
-import CellValue from "./cell-value";
+import Cell from "./cell";
 
 export default function DataTable<T>({
   data,
@@ -269,25 +268,20 @@ export default function DataTable<T>({
                   <LinkCell label="View" />
 
                   {columns.map((column) => (
-                    <TableCell
+                    <Cell
                       key={column.id}
-                      data-active="true"
-                      className={`min-w-0 truncate ${isCellActive(rowId, column.id) ? "bg-green-200" : "hover:bg-black/10"}`}
-                      onClick={() => {
-                        handleCellClick(rowId, column.id);
-                      }}
-                    >
-                      <CellValue
-                        value={
-                          column.render
-                            ? column.render(row)
-                            : column.accessorKey
-                              ? String(row[column.accessorKey])
-                              : null
-                        }
-                        visible={pressedCtrl}
-                      />
-                    </TableCell>
+                      value={
+                        column.render
+                          ? column.render(row)
+                          : column.accessorKey
+                            ? String(row[column.accessorKey])
+                            : null
+                      }
+                      isCellActive={isCellActive(rowId, column.id)}
+                      handleCellClick={() => handleCellClick(rowId, column.id)}
+                      hovered={pressedCtrl}
+                      editable={column.editable ?? false}
+                    />
                   ))}
                 </TableRow>
               );
