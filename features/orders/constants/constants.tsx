@@ -26,6 +26,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     minWidth: 120,
     maxWidth: 300,
     render: (order) => order.customer.name,
+    editable: true,
   },
   {
     id: "customerEmail",
@@ -35,6 +36,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     minWidth: 160,
     maxWidth: 300,
     render: (order) => order.customer.email,
+    editable: true,
   },
   {
     id: "address",
@@ -44,6 +46,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     minWidth: 180,
     maxWidth: 300,
     render: (order) => order.shipping.address,
+    editable: true,
   },
   {
     id: "city",
@@ -52,6 +55,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     initialWidth: 150,
     minWidth: 100,
     render: (order) => order.shipping.city,
+    editable: true,
   },
   {
     id: "country",
@@ -61,6 +65,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     minWidth: 100,
     maxWidth: 300,
     render: (order) => order.shipping.country,
+    editable: true,
   },
   {
     id: "postalCode",
@@ -70,6 +75,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     minWidth: 100,
     maxWidth: 300,
     render: (order) => order.shipping.postalCode,
+    editable: true,
   },
   {
     id: "paymentMethod",
@@ -491,6 +497,7 @@ export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
     initialWidth: 120,
     minWidth: 80,
     maxWidth: 300,
+    editable: true,
   },
   {
     id: "selectedColor",
@@ -499,6 +506,7 @@ export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
     initialWidth: 160,
     minWidth: 140,
     maxWidth: 300,
+    editable: true,
   },
   {
     id: "selectedSize",
@@ -507,6 +515,7 @@ export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
     initialWidth: 160,
     minWidth: 140,
     maxWidth: 300,
+    editable: true,
   },
 ];
 
