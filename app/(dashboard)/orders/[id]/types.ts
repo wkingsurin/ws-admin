@@ -1,1 +1,1 @@
-export type DetailRow = { label: string; value: string };
+export type DetailRow = { label: string; value: string; src?: string };
