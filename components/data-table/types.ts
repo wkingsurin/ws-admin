@@ -30,6 +30,8 @@ export interface DataTableColumn<T> {
   editable?: boolean;
 
   filter?: DataTableFilter;
+
+  className?: string;
 }
 
 export interface DataTableProps<T> {

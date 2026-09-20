@@ -101,7 +101,6 @@ export default function DataTable<T>({
     const aValue = a[column.accessorKey];
     const bValue = b[column.accessorKey];
 
-    if (aValue == null || bValue == null) return 0;
     if (aValue == null) return 1;
     if (bValue == null) return -1;
 
@@ -270,18 +269,23 @@ export default function DataTable<T>({
                   {columns.map((column) => (
                     <Cell
                       key={column.id}
-                      value={
-                        column.render
-                          ? column.render(row)
-                          : column.accessorKey
-                            ? String(row[column.accessorKey])
-                            : null
+                      editValue={
+                        column.accessorKey
+                          ? String(row[column.accessorKey])
+                          : null
                       }
+                      className={column.className}
                       isCellActive={isCellActive(rowId, column.id)}
                       handleCellClick={() => handleCellClick(rowId, column.id)}
                       hovered={pressedCtrl}
                       editable={column.editable ?? false}
-                    />
+                    >
+                      {column.render
+                        ? column.render(row)
+                        : column.accessorKey
+                          ? String(row[column.accessorKey] ?? "")
+                          : null}
+                    </Cell>
                   ))}
                 </TableRow>
               );
