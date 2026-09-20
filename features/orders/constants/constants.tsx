@@ -1,5 +1,8 @@
 import { DataTableColumn } from "@/components/data-table/types";
 import { IOrder, IOrderItem } from "../types";
+import PaymentMethod from "../components/payment-method";
+import DeliveryMethod from "../components/delivery-method";
+import PaymentStatus from "../components/payment-status";
 
 export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   {
@@ -83,7 +86,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     accessorKey: "id",
     initialWidth: 160,
     minWidth: 120,
-    render: (order) => order.payment.method,
+    render: (order) => <PaymentMethod method={order.payment.method} />,
     filter: {
       type: "checkbox",
       options: [
@@ -92,6 +95,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
         { label: "PayPal", value: "PAYPAl" },
       ],
     },
+    className: "px-0",
   },
   {
     id: "deliveryMethod",
@@ -100,7 +104,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     initialWidth: 160,
     minWidth: 120,
     maxWidth: 300,
-    render: (order) => order.delivery.method,
+    render: (order) => <DeliveryMethod method={order.delivery.method} />,
     filter: {
       type: "checkbox",
       options: [
@@ -109,6 +113,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
         { label: "Post", value: "POST" },
       ],
     },
+    className: "px-0",
   },
   {
     id: "price",
@@ -117,17 +122,17 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     initialWidth: 120,
     minWidth: 90,
     maxWidth: 300,
+    editable: true,
     render: (order) => order.totals.total,
   },
   {
     id: "isPaid",
     header: "isPaid",
     accessorKey: "id",
-    initialWidth: 100,
-    minWidth: 80,
+    initialWidth: 120,
+    minWidth: 120,
     maxWidth: 300,
-    render: (order) =>
-      order.payment.isPaid === true ? "Оплачен" : "Не оплачен",
+    render: (order) => <PaymentStatus isPaid={order.payment.isPaid} />,
     filter: {
       type: "checkbox",
       options: [
@@ -135,6 +140,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
         { label: "Не оплачен", value: "" },
       ],
     },
+    className: 'px-0'
   },
   {
     id: "createdAt",
