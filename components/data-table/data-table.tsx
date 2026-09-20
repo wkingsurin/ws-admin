@@ -265,7 +265,7 @@ export default function DataTable<T>({
                     checked={selectedIds[rowId] === true}
                     onSelect={() => onToggleRow(rowId)}
                   />
-                  <LinkCell label="View" />
+                  <LinkCell label="View" href={`/${rowId}`} />
 
                   {columns.map((column) => (
                     <Cell
