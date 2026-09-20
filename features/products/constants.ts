@@ -1,5 +1,5 @@
 import { DataTableColumn } from "@/components/data-table/types";
-import { IProduct } from "./types";
+import { IProduct, IVariant } from "./types";
 
 export const ProductColumns: DataTableColumn<IProduct>[] = [
   {
@@ -19,15 +19,6 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     maxWidth: 300,
   },
   {
-    id: "slug",
-    header: "slug",
-    accessorKey: "id",
-    initialWidth: 180,
-    minWidth: 120,
-    maxWidth: 300,
-    render: (product) => product.slug,
-  },
-  {
     id: "description",
     header: "description",
     accessorKey: "id",
@@ -35,15 +26,6 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     minWidth: 160,
     maxWidth: 300,
     render: (product) => product.description,
-  },
-  {
-    id: "currency",
-    header: "currency",
-    accessorKey: "id",
-    initialWidth: 250,
-    minWidth: 180,
-    maxWidth: 300,
-    render: (product) => product.currency,
   },
   {
     id: "brand",
@@ -80,13 +62,13 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     render: (product) => product.isNew,
   },
   {
-    id: "color",
-    header: "color",
+    id: "currency",
+    header: "currency",
     accessorKey: "id",
-    initialWidth: 160,
+    initialWidth: 120,
     minWidth: 120,
-    maxWidth: 300,
-    // render: (product) => product.options.color,
+    maxWidth: 120,
+    render: (product) => product.currency,
   },
   {
     id: "price",
@@ -97,50 +79,27 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     maxWidth: 300,
     render: (product) => product.variants[0].price,
   },
-  {
-    id: "isPaid",
-    header: "isPaid",
-    accessorKey: "id",
-    initialWidth: 100,
-    minWidth: 80,
-    maxWidth: 300,
-    render: (product) => String(product),
-  },
-  {
-    id: "createdAt",
-    header: "createdAt",
-    accessorKey: "id",
-    initialWidth: 180,
-    minWidth: 140,
-    maxWidth: 300,
-  },
-  {
-    id: "updatedAt",
-    header: "updatedAt",
-    accessorKey: "id",
-    initialWidth: 180,
-    minWidth: 140,
-    maxWidth: 300,
-  },
 ];
 
 export const Products: IProduct[] = [
   {
-    id: "cms0ifi2r0006m4ualesgoszd",
-    title: "ORD-1784992471870",
-    slug: "2026-07-25 15:14:31.875",
-    description: "2026-07-25 15:14:58.496",
-    currency: "",
+    id: "cms0ifi5c0007m4ua5fuim1hz",
+    title: "Under Armour Hoodie",
+    slug: "under-armour-hoodie",
+    description: "Under Armour Hoodie",
+    currency: "USD",
 
-    brand: { name: "", slug: "" },
+    brand: { name: "Under Armour", slug: "unuder-armour" },
 
-    category: { name: "", slug: "" },
+    category: { name: "Hoodie", slug: "hoodie" },
 
     isAvailable: true,
     isNew: false,
 
     options: {
-      color: [{ id: "", name: "", slug: "", images: [{ id: "", src: "" }] }],
+      color: [
+        { id: "", name: "White", slug: "", images: [{ id: "", src: "" }] },
+      ],
       size: [{ value: "" }],
     },
 
@@ -154,5 +113,83 @@ export const Products: IProduct[] = [
         attributes: { colorId: "", size: "" },
       },
     ],
+  },
+];
+
+export const VARIANT_COLUMNS: DataTableColumn<IVariant>[] = [
+  {
+    id: "id",
+    header: "id",
+    accessorKey: "id",
+    initialWidth: 220,
+    minWidth: 150,
+    maxWidth: 300,
+  },
+  {
+    id: "sku",
+    header: "sku",
+    accessorKey: "sku",
+    initialWidth: 150,
+    minWidth: 100,
+    maxWidth: 300,
+  },
+  {
+    id: "colorId",
+    header: "colorId",
+    accessorKey: "attributes",
+    initialWidth: 130,
+    minWidth: 100,
+    maxWidth: 300,
+    render: (variant) => variant.attributes.colorId,
+  },
+  {
+    id: "size",
+    header: "size",
+    accessorKey: "id",
+    initialWidth: 160,
+    minWidth: 160,
+    maxWidth: 160,
+    editable: true,
+    render: (variant) => variant.attributes.size,
+  },
+  {
+    id: "stock",
+    header: "stock",
+    accessorKey: "stock",
+    initialWidth: 160,
+    minWidth: 100,
+    maxWidth: 300,
+    editable: true,
+    render: (variant) => variant.stock,
+  },
+  {
+    id: "price",
+    header: "price",
+    accessorKey: "price",
+    initialWidth: 220,
+    minWidth: 160,
+    maxWidth: 300,
+    editable: true,
+    render: (variant) => variant.price,
+  },
+  {
+    id: "oldPrice",
+    header: "oldPrice",
+    accessorKey: "oldPrice",
+    initialWidth: 150,
+    minWidth: 100,
+    editable: true,
+    render: (variant) => variant.oldPrice,
+  },
+];
+
+export const VAIRANTS_DATA: IVariant[] = [
+  {
+    id: "cms0hvp9e001i3wuai8r976pj",
+    sku: "CAP-BS-BLK-One-size",
+    price: 7790,
+    oldPrice: 9790,
+    stock: 1,
+    attributes: { colorId: "cms0hvnn4000m3wua4ry2omfg", size: "One-size" },
   },
 ];
