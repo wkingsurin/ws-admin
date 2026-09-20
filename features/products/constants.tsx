@@ -1,5 +1,8 @@
 import { DataTableColumn } from "@/components/data-table/types";
 import { IProduct, IVariant } from "./types";
+import ProductAvailability from "./components/product-availability";
+import ProductCondition from "./components/product-condition";
+import SelectSize from "./components/select-size";
 
 export const ProductColumns: DataTableColumn<IProduct>[] = [
   {
@@ -17,6 +20,7 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     initialWidth: 150,
     minWidth: 100,
     maxWidth: 300,
+    editable: true,
   },
   {
     id: "description",
@@ -26,6 +30,7 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     minWidth: 160,
     maxWidth: 300,
     render: (product) => product.description,
+    editable: true,
   },
   {
     id: "brand",
@@ -34,6 +39,7 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     initialWidth: 150,
     minWidth: 100,
     render: (product) => product.brand.name,
+    editable: true,
   },
   {
     id: "category",
@@ -43,6 +49,7 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     minWidth: 100,
     maxWidth: 300,
     render: (product) => product.category.name,
+    editable: true,
   },
   {
     id: "isAvailable",
@@ -51,7 +58,10 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     initialWidth: 130,
     minWidth: 100,
     maxWidth: 300,
-    render: (product) => product.isAvailable,
+    render: (product) => (
+      <ProductAvailability isAvailable={product.isAvailable} />
+    ),
+    className: "px-0",
   },
   {
     id: "isNew",
@@ -59,7 +69,8 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     accessorKey: "id",
     initialWidth: 160,
     minWidth: 120,
-    render: (product) => product.isNew,
+    render: (product) => <ProductCondition isNew={product.isNew ?? false} />,
+    className: "px-0",
   },
   {
     id: "currency",
@@ -149,8 +160,15 @@ export const VARIANT_COLUMNS: DataTableColumn<IVariant>[] = [
     initialWidth: 160,
     minWidth: 160,
     maxWidth: 160,
-    editable: true,
-    render: (variant) => variant.attributes.size,
+    render: (variant) => (
+      <SelectSize
+        defaultSize={{
+          label: variant.attributes.size,
+          value: variant.attributes.size,
+        }}
+      />
+    ),
+    className: 'px-0'
   },
   {
     id: "stock",
