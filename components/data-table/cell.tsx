@@ -65,7 +65,7 @@ export default function Cell({
       }}
     >
       {isEditing ? (
-        <div className="absolute top-0 left-0 flex items-center w-60 min-h-[37px] bg-black/10">
+        <div className="absolute top-0 left-0 flex items-center w-60 min-h-[37px] h-full bg-black/10">
           <form className="w-full h-full" onSubmit={onSubmit}>
             <Input
               value={inputValue}

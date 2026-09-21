@@ -215,7 +215,7 @@ export default function DataTable<T>({
             ))}
           </colgroup>
 
-          <TableHeader className="sticky top-0 z-10 bg-[#F8F9FA]">
+          <TableHeader className="sticky top-0 z-10 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.05)]">
             <TableRow>
               <CheckboxHead
                 checked={allSelected}
@@ -272,7 +272,7 @@ export default function DataTable<T>({
               const rowId = getRowId(row);
 
               return (
-                <TableRow key={rowId}>
+                <TableRow key={rowId} className="hover:bg-white">
                   <CheckboxCell
                     checked={selectedIds[rowId] === true}
                     onSelect={() => onToggleRow(rowId)}
