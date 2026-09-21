@@ -2,7 +2,7 @@ import DashboardTable from "@/components/dashboard/dashboard-table";
 import VariantToolbar from "@/features/orders/components/details/toolbar";
 import ProductDetails from "./details/product-details";
 import Toolbar from "./toolbar/toolbar";
-import VariantsTable from "@/features/orders/components/details/table";
+import VariantsTable from "@/features/products/components/variants/table";
 
 export default function ProductPage() {
   return (

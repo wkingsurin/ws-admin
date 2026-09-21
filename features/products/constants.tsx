@@ -168,7 +168,7 @@ export const VARIANT_COLUMNS: DataTableColumn<IVariant>[] = [
         }}
       />
     ),
-    className: 'px-0'
+    className: "px-0",
   },
   {
     id: "stock",
