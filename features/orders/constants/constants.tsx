@@ -3,6 +3,7 @@ import { IOrder, IOrderItem } from "../types";
 import PaymentMethod from "../components/payment-method";
 import DeliveryMethod from "../components/delivery-method";
 import PaymentStatus from "../components/payment-status";
+import CellImage from "@/components/data-table/cell-image";
 
 export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   {
@@ -444,9 +445,10 @@ export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
     id: "image",
     header: "image",
     accessorKey: "image",
-    initialWidth: 220,
-    minWidth: 150,
-    maxWidth: 300,
+    initialWidth: 100,
+    minWidth: 100,
+    maxWidth: 100,
+    render: (item) => <CellImage src={item.image} alt={item.title} />,
   },
   {
     id: "orderId",
@@ -479,6 +481,7 @@ export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
     initialWidth: 220,
     minWidth: 150,
     maxWidth: 300,
+    editable: true,
   },
   {
     id: "sku",
@@ -495,6 +498,7 @@ export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
     initialWidth: 100,
     minWidth: 80,
     maxWidth: 300,
+    editable: true,
   },
   {
     id: "quantity",

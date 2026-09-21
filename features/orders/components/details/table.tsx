@@ -2,9 +2,9 @@
 
 import DataTable from "@/components/data-table/data-table";
 import { useOrdersTableStore } from "../../store/orders";
-import { VAIRANTS_DATA, VARIANT_COLUMNS } from "@/features/products/constants";
+import { ORDER_ITEM_COLUMNS, ORDER_ITEMS } from "../../constants/constants";
 
-export default function VariantsTable() {
+export default function OrderTable() {
   const selectedIds = useOrdersTableStore((s) => s.selectedIds);
 
   const toggleRow = useOrdersTableStore((s) => s.toggleRow);
@@ -12,8 +12,8 @@ export default function VariantsTable() {
 
   return (
     <DataTable
-      data={VAIRANTS_DATA}
-      columns={VARIANT_COLUMNS}
+      data={ORDER_ITEMS}
+      columns={ORDER_ITEM_COLUMNS}
       getRowId={(item) => item.id}
       selectedIds={selectedIds}
       onToggleRow={toggleRow}
