@@ -24,7 +24,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   {
     id: "customerName",
     header: "customerName",
-    accessorKey: "id",
+    accessor: (order) => order.customer.name,
     initialWidth: 180,
     minWidth: 120,
     maxWidth: 300,
@@ -34,7 +34,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   {
     id: "customerEmail",
     header: "customerEmail",
-    accessorKey: "id",
+    accessor: (order) => order.customer.email,
     initialWidth: 220,
     minWidth: 160,
     maxWidth: 300,
@@ -44,7 +44,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   {
     id: "address",
     header: "address",
-    accessorKey: "id",
+    accessor: (order) => order.shipping.address,
     initialWidth: 250,
     minWidth: 180,
     maxWidth: 300,
@@ -54,7 +54,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   {
     id: "city",
     header: "city",
-    accessorKey: "id",
+    accessor: (order) => order.shipping.city,
     initialWidth: 150,
     minWidth: 100,
     render: (order) => order.shipping.city,
@@ -63,7 +63,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   {
     id: "country",
     header: "country",
-    accessorKey: "id",
+    accessor: (order) => order.shipping.country,
     initialWidth: 160,
     minWidth: 100,
     maxWidth: 300,
@@ -73,7 +73,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   {
     id: "postalCode",
     header: "postalCode",
-    accessorKey: "id",
+    accessor: (order) => order.shipping.postalCode,
     initialWidth: 130,
     minWidth: 100,
     maxWidth: 300,
@@ -83,7 +83,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   {
     id: "paymentMethod",
     header: "paymentMethod",
-    accessorKey: "id",
+    accessor: (order) => order.payment.method,
     initialWidth: 160,
     minWidth: 120,
     render: (order) => <PaymentMethod method={order.payment.method} />,
@@ -100,7 +100,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   {
     id: "deliveryMethod",
     header: "deliveryMethod",
-    accessorKey: "id",
+    accessor: (order) => order.delivery.method,
     initialWidth: 160,
     minWidth: 120,
     maxWidth: 300,
@@ -118,7 +118,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   {
     id: "price",
     header: "price",
-    accessorKey: "id",
+    accessor: (order) => order.totals.total,
     initialWidth: 120,
     minWidth: 90,
     maxWidth: 300,
@@ -128,7 +128,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   {
     id: "isPaid",
     header: "isPaid",
-    accessorKey: "id",
+    accessor: (order) => order.payment.isPaid,
     initialWidth: 120,
     minWidth: 120,
     maxWidth: 300,
@@ -140,7 +140,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
         { label: "Не оплачен", value: "" },
       ],
     },
-    className: 'px-0'
+    className: "px-0",
   },
   {
     id: "createdAt",

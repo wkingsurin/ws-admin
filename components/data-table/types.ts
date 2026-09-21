@@ -19,6 +19,7 @@ export interface DataTableColumn<T> {
   header: ReactNode;
 
   accessorKey?: keyof T;
+  accessor?: (row: T) => unknown;
 
   initialWidth?: number;
   minWidth?: number;

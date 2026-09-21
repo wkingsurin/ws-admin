@@ -7,13 +7,14 @@ import { Input } from "../ui/input";
 
 interface CellProps {
   children: ReactNode;
-  editValue?: ReactNode;
+  editValue?: string;
   className?: string;
 
   isCellActive: boolean;
   hovered: boolean;
   editable: boolean;
   handleCellClick: () => void;
+  onSave?: (value: string) => void;
 }
 
 export default function Cell({
@@ -24,19 +25,32 @@ export default function Cell({
   hovered,
   editable,
   handleCellClick,
+  onSave,
 }: CellProps) {
-  const [inputValue, setInputValue] = useState<string>(() => String(editValue));
+  const [inputValue, setInputValue] = useState<string>(() =>
+    String(editValue ?? ""),
+  );
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
+  const startEditing = () => {
+    setInputValue(String(editValue ?? ""));
+    setIsEditing(true);
   };
-
-  const onSubmit = (event: FormEvent) => {
-    event.preventDefault();
-
+  const cancelEditing = () => {
+    setInputValue(String(editValue ?? ""));
     setIsEditing(false);
   };
+  const saveEditing = () => {
+    console.log("Changes saved:", inputValue);
+    onSave?.(inputValue);
+    setIsEditing(false);
+  };
+  const onSubmit = (event: FormEvent) => {
+    event.preventDefault();
+    saveEditing();
+  };
+
+  console.log(`inputValue:`, inputValue);
 
   return (
     <TableCell
@@ -44,33 +58,35 @@ export default function Cell({
       onClick={() => {
         handleCellClick();
       }}
-      onDoubleClick={() => setIsEditing(true)}
+      onDoubleClick={() => {
+        if (editable) {
+          startEditing();
+        }
+      }}
     >
-      {!hovered && editable && isEditing && (
+      {isEditing ? (
         <div className="absolute top-0 left-0 flex items-center w-60 min-h-[37px] bg-black/10">
           <form className="w-full h-full" onSubmit={onSubmit}>
             <Input
               value={inputValue}
               className="h-full py-0 px-2 rounded-none"
-              onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                handleChange(event)
-              }
+              onChange={(event) => setInputValue(event.target.value)}
+              onBlur={cancelEditing}
               onKeyDown={(event) => {
                 if (event.key === "Escape") {
-                  setIsEditing(false);
-                }
-
-                if (event.key === "Enter") {
-                  console.log("Changes saved:", inputValue);
-                  setIsEditing(true);
+                  cancelEditing();
+                  return;
                 }
               }}
               autoFocus
             />
           </form>
         </div>
+      ) : hovered && editable ? (
+        <CellValue value={children} visible={hovered} />
+      ) : (
+        children
       )}
-      {hovered ? <CellValue value={children} visible={hovered} /> : children}
     </TableCell>
   );
 }

@@ -11,6 +11,7 @@ import {
 import {
   ColumnFilters,
   ColumnWidths,
+  DataTableColumn,
   DataTableProps,
   SortState,
 } from "./types";
@@ -96,10 +97,10 @@ export default function DataTable<T>({
 
     const column = columns.find((column) => column.id === sort.columnId);
 
-    if (!column?.accessorKey) return 0;
+    if (!column) return 0;
 
-    const aValue = a[column.accessorKey];
-    const bValue = b[column.accessorKey];
+    const aValue = getColumnValue(column, a);
+    const bValue = getColumnValue(column, b);
 
     if (aValue == null) return 1;
     if (bValue == null) return -1;
@@ -146,6 +147,18 @@ export default function DataTable<T>({
   };
   const onUpCtrl = (event: KeyboardEvent) => {
     setPressedCtrl(false);
+  };
+
+  const getColumnValue = (column: DataTableColumn<T>, row: T) => {
+    if (column.accessor) {
+      return column.accessor(row);
+    }
+
+    if (column.accessorKey) {
+      return row[column.accessorKey];
+    }
+
+    return undefined;
   };
 
   useEffect(() => {
@@ -266,27 +279,29 @@ export default function DataTable<T>({
                   />
                   <LinkCell label="View" href={`/${rowId}`} />
 
-                  {columns.map((column) => (
-                    <Cell
-                      key={column.id}
-                      editValue={
-                        column.accessorKey
-                          ? String(row[column.accessorKey])
-                          : null
-                      }
-                      className={column.className}
-                      isCellActive={isCellActive(rowId, column.id)}
-                      handleCellClick={() => handleCellClick(rowId, column.id)}
-                      hovered={pressedCtrl}
-                      editable={column.editable ?? false}
-                    >
-                      {column.render
-                        ? column.render(row)
-                        : column.accessorKey
-                          ? String(row[column.accessorKey] ?? "")
-                          : null}
-                    </Cell>
-                  ))}
+                  {columns.map((column) => {
+                    const value = getColumnValue(column, row);
+
+                    return (
+                      <Cell
+                        key={column.id}
+                        editValue={value == null ? "" : String(value)}
+                        className={column.className}
+                        isCellActive={isCellActive(rowId, column.id)}
+                        handleCellClick={() =>
+                          handleCellClick(rowId, column.id)
+                        }
+                        hovered={pressedCtrl}
+                        editable={column.editable ?? false}
+                      >
+                        {column.render
+                          ? column.render(row)
+                          : value == null
+                            ? ""
+                            : String(value)}
+                      </Cell>
+                    );
+                  })}
                 </TableRow>
               );
             })}
