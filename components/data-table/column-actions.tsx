@@ -28,7 +28,7 @@ export default function ColumnActions<T>({
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="group/filters flex items-center justify-center w-5 h-7 rounded-sm bg-black/10 hover:bg-card transition duration-100">
+      <DropdownMenuTrigger className="group/filters flex items-center justify-center min-w-5 max-w-5 w-full h-7 rounded-sm bg-black/10 hover:bg-card transition duration-100">
         <ChevronDown className="size-4 stroke-black" />
         {hasActiveFilters && (
           <span className="absolute top-1 right-1 size-1 rounded-full bg-black" />
