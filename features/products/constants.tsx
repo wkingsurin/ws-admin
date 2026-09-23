@@ -2,7 +2,7 @@ import { DataTableColumn } from "@/components/data-table/types";
 import { IProduct, IVariant } from "./types";
 import ProductAvailability from "./components/product-availability";
 import ProductCondition from "./components/product-condition";
-import CellSelector from "./components/cell-selector";
+import CellSelector from "@/components/data-table/cell-selector";
 
 export const ProductColumns: DataTableColumn<IProduct>[] = [
   {

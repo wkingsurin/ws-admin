@@ -7,12 +7,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-interface SelectSizeProps {
-  defaultSize: { label: string; value: string };
+interface CellSelectorProps {
+  initialValue: { label: string; value: unknown };
 }
 
-export default function SelectSize({ defaultSize }: SelectSizeProps) {
-  const sizes = [defaultSize, { label: "41", value: "M" }];
+export default function CellSelector({ initialValue }: CellSelectorProps) {
+  const sizes = [initialValue];
 
   return (
     <Select items={sizes} defaultValue={sizes[0].value}>

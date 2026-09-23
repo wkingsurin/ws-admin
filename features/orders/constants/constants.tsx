@@ -4,7 +4,7 @@ import PaymentMethod from "../components/payment-method";
 import DeliveryMethod from "../components/delivery-method";
 import PaymentStatus from "../components/payment-status";
 import CellImage from "@/components/data-table/cell-image";
-import CellSelector from "@/features/products/components/cell-selector";
+import CellSelector from "@/components/data-table/cell-selector";
 
 export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   {
