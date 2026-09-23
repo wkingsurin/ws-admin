@@ -4,6 +4,7 @@ import PaymentMethod from "../components/payment-method";
 import DeliveryMethod from "../components/delivery-method";
 import PaymentStatus from "../components/payment-status";
 import CellImage from "@/components/data-table/cell-image";
+import SelectSize from "@/features/products/components/select-size";
 
 export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   {
@@ -58,6 +59,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     accessor: (order) => order.shipping.city,
     initialWidth: 150,
     minWidth: 100,
+    maxWidth: 300,
     render: (order) => order.shipping.city,
     editable: true,
   },
@@ -87,6 +89,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     accessor: (order) => order.payment.method,
     initialWidth: 160,
     minWidth: 120,
+    maxWidth: 300,
     render: (order) => <PaymentMethod method={order.payment.method} />,
     filter: {
       type: "checkbox",
@@ -123,7 +126,6 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     initialWidth: 120,
     minWidth: 90,
     maxWidth: 300,
-    editable: true,
     render: (order) => order.totals.total,
   },
   {
@@ -451,14 +453,6 @@ export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
     render: (item) => <CellImage src={item.image} alt={item.title} />,
   },
   {
-    id: "orderId",
-    header: "orderId",
-    accessorKey: "orderId",
-    initialWidth: 220,
-    minWidth: 150,
-    maxWidth: 300,
-  },
-  {
     id: "productId",
     header: "productId",
     accessorKey: "productId",
@@ -475,15 +469,6 @@ export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
     maxWidth: 300,
   },
   {
-    id: "title",
-    header: "title",
-    accessorKey: "title",
-    initialWidth: 220,
-    minWidth: 150,
-    maxWidth: 300,
-    editable: true,
-  },
-  {
     id: "sku",
     header: "sku",
     accessorKey: "sku",
@@ -492,22 +477,12 @@ export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
     maxWidth: 300,
   },
   {
-    id: "price",
-    header: "price",
-    accessorKey: "price",
-    initialWidth: 100,
-    minWidth: 80,
+    id: "title",
+    header: "title",
+    accessorKey: "title",
+    initialWidth: 220,
+    minWidth: 150,
     maxWidth: 300,
-    editable: true,
-  },
-  {
-    id: "quantity",
-    header: "quantity",
-    accessorKey: "quantity",
-    initialWidth: 120,
-    minWidth: 80,
-    maxWidth: 300,
-    editable: true,
   },
   {
     id: "selectedColor",
@@ -524,6 +499,27 @@ export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
     accessorKey: "selectedSize",
     initialWidth: 160,
     minWidth: 140,
+    maxWidth: 300,
+    render: (item) => (
+      <SelectSize
+        defaultSize={{ label: item.selectedSize, value: item.selectedSize }}
+      />
+    ),
+  },
+  {
+    id: "price",
+    header: "price",
+    accessorKey: "price",
+    initialWidth: 100,
+    minWidth: 80,
+    maxWidth: 300,
+  },
+  {
+    id: "quantity",
+    header: "quantity",
+    accessorKey: "quantity",
+    initialWidth: 120,
+    minWidth: 80,
     maxWidth: 300,
     editable: true,
   },
