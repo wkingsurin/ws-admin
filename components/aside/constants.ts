@@ -14,7 +14,7 @@ export const DASHBOARD_NAVIGATION: {
 }[] = [
   { label: "Orders", icon: Boxes, href: "/orders" },
   { label: "Catalog", icon: Warehouse, href: "/catalog" },
-  { label: "Clients", icon: UsersRound, href: "/clients" },
+  { label: "Customers", icon: UsersRound, href: "/customers" },
 ];
 export const ACCOUNT: {
   label: string;
