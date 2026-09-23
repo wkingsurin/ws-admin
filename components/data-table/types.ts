@@ -25,6 +25,9 @@ export interface DataTableColumn<T> {
   minWidth?: number;
   maxWidth?: number;
 
+  maxSymbols?: number;
+  multiline?: boolean;
+
   render?: (row: T) => ReactNode;
 
   copyable?: boolean;

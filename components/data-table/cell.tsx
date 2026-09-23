@@ -1,9 +1,10 @@
 "use client";
 
-import { ChangeEvent, FormEvent, ReactNode, useState } from "react";
+import { FormEvent, ReactNode, useState } from "react";
 import { TableCell } from "../ui/table";
 import CellValue from "./cell-value";
 import { Input } from "../ui/input";
+import { Textarea } from "../ui/textarea";
 
 interface CellProps {
   children: ReactNode;
@@ -13,19 +14,21 @@ interface CellProps {
   isCellActive: boolean;
   hovered: boolean;
   editable: boolean;
+  maxSymbols?: number;
   handleCellClick: () => void;
   onSave?: (value: string) => void;
 }
 
 export default function Cell({
   children,
-  className = "px-2",
+  className = "p-2",
   editValue,
   isCellActive,
   hovered,
   editable,
   handleCellClick,
   onSave,
+  maxSymbols,
 }: CellProps) {
   const [inputValue, setInputValue] = useState<string>(() =>
     String(editValue ?? ""),
@@ -50,11 +53,9 @@ export default function Cell({
     saveEditing();
   };
 
-  console.log(`inputValue:`, inputValue);
-
   return (
     <TableCell
-      className={`relative min-w-0 ${isCellActive ? "bg-green-200" : "hover:bg-black/10"} ${className}`}
+      className={`whitespace-normal ${isCellActive ? "bg-green-200" : "hover:bg-black/10"} ${isEditing && "bg-green-300"}`}
       onClick={() => {
         handleCellClick();
       }}
@@ -64,12 +65,12 @@ export default function Cell({
         }
       }}
     >
-      {isEditing ? (
-        <div className="absolute top-0 left-0 flex items-center w-60 min-h-[37px] h-full bg-black/10">
-          <form className="w-full h-full" onSubmit={onSubmit}>
-            <Input
+      <div className={`w-full whitespace-normal break-words ${className}`}>
+        {isEditing ? (
+          <form className="flex items-center w-full" onSubmit={onSubmit}>
+            <Textarea
               value={inputValue}
-              className="h-full py-0 px-2 rounded-none"
+              className="w-full min-h-8 p-0 rounded-none resize-none"
               onChange={(event) => setInputValue(event.target.value)}
               onBlur={cancelEditing}
               onKeyDown={(event) => {
@@ -78,15 +79,16 @@ export default function Cell({
                   return;
                 }
               }}
+              maxLength={maxSymbols}
               autoFocus
             />
           </form>
-        </div>
-      ) : hovered && editable ? (
-        <CellValue value={children} visible={hovered} />
-      ) : (
-        children
-      )}
+        ) : hovered ? (
+          <CellValue value={children} visible={hovered} />
+        ) : (
+          children
+        )}
+      </div>
     </TableCell>
   );
 }

@@ -12,15 +12,13 @@ export default function LinkCell({
   const path = usePathname();
 
   return (
-    <TableCell className="min-w-0 p-0 hover:bg-black/10">
-      <div className="flex items-center justify-center w-full h-9">
-        <Link
-          href={`${path}/${href}`}
-          className="flex items-center w-full h-full px-2"
-        >
-          {label}
-        </Link>
-      </div>
+    <TableCell className="relative min-w-0 p-0 hover:bg-black/10">
+      <Link
+        href={`${path}/${href}`}
+        className="absolute inset-0 flex items-start w-full h-full p-2"
+      >
+        {label}
+      </Link>
     </TableCell>
   );
 }

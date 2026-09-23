@@ -54,6 +54,11 @@ export default function DataTable<T>({
     ),
   );
 
+  const tableWidth =
+    40 +
+    80 +
+    Object.values(columnWidths).reduce((sum, width) => sum + width, 0);
+
   const tableScrollRef = useRef<HTMLDivElement>(null);
   const horizontalScrollRef = useRef<HTMLDivElement>(null);
   const horizontalContentRef = useRef<HTMLDivElement>(null);
@@ -129,17 +134,6 @@ export default function DataTable<T>({
     setSelectedCell(`${rowId}-${columnName}`);
   };
 
-  const handleCopy = async (event: React.MouseEvent): Promise<void> => {
-    const value = event.currentTarget.textContent;
-
-    try {
-      await navigator.clipboard.writeText(value);
-      console.log(`Text is copied!`);
-    } catch (err) {
-      console.error(`Failed to copy text:`, value);
-    }
-  };
-
   const onDownCtrl = (event: KeyboardEvent) => {
     if (event.ctrlKey) {
       setPressedCtrl(true);
@@ -200,7 +194,10 @@ export default function DataTable<T>({
         className="flex-1 min-h-0 min-w-0 border-[0.5px] border-black/10 overflow-auto"
         ref={tableScrollRef}
       >
-        <Table className="table-fixed whitespace-nowrap">
+        <Table
+          className="table-fixed w-max"
+          style={{ width: `${tableWidth}px` }}
+        >
           <colgroup>
             <col style={{ width: "40px" }} />
             <col style={{ width: "80px" }} />
@@ -293,6 +290,7 @@ export default function DataTable<T>({
                         }
                         hovered={pressedCtrl}
                         editable={column.editable ?? false}
+                        maxSymbols={column.maxSymbols}
                       >
                         {column.render
                           ? column.render(row)

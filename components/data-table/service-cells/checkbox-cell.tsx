@@ -8,7 +8,7 @@ interface CheckboxCellProps {
 
 export default function CheckboxCell({ checked, onSelect }: CheckboxCellProps) {
   return (
-    <TableCell className="min-w-0 p-0">
+    <TableCell className="min-w-0 py-2 align-middle">
       <TableCheckbox checked={checked} onSelect={onSelect} />
     </TableCell>
   );
