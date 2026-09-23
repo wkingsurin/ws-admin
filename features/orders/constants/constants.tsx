@@ -4,7 +4,7 @@ import PaymentMethod from "../components/payment-method";
 import DeliveryMethod from "../components/delivery-method";
 import PaymentStatus from "../components/payment-status";
 import CellImage from "@/components/data-table/cell-image";
-import SelectSize from "@/features/products/components/select-size";
+import CellSelector from "@/features/products/components/cell-selector";
 
 export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   {
@@ -492,6 +492,16 @@ export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
     minWidth: 140,
     maxWidth: 300,
     editable: true,
+    render: (item) => (
+      <CellSelector
+        initialValue={{ label: item.selectedColor, value: item.selectedColor }}
+      />
+    ),
+    filter: {
+      type: "checkbox",
+      options: [{ label: "White", value: "White" }],
+    },
+    className: "p-0",
   },
   {
     id: "selectedSize",
@@ -501,10 +511,18 @@ export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
     minWidth: 140,
     maxWidth: 300,
     render: (item) => (
-      <SelectSize
-        defaultSize={{ label: item.selectedSize, value: item.selectedSize }}
+      <CellSelector
+        initialValue={{ label: item.selectedSize, value: item.selectedSize }}
       />
     ),
+    filter: {
+      type: "checkbox",
+      options: [
+        { label: "50", value: "50" },
+        { label: "41", value: "41" },
+      ],
+    },
+    className: "p-0",
   },
   {
     id: "price",

@@ -2,7 +2,7 @@ import { DataTableColumn } from "@/components/data-table/types";
 import { IProduct, IVariant } from "./types";
 import ProductAvailability from "./components/product-availability";
 import ProductCondition from "./components/product-condition";
-import SelectSize from "./components/select-size";
+import CellSelector from "./components/cell-selector";
 
 export const ProductColumns: DataTableColumn<IProduct>[] = [
   {
@@ -71,6 +71,13 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     render: (product) => (
       <ProductAvailability isAvailable={product.isAvailable} />
     ),
+    filter: {
+      type: "checkbox",
+      options: [
+        { label: "true", value: "true" },
+        { label: "false", value: "false" },
+      ],
+    },
     className: "p-0",
   },
   {
@@ -81,6 +88,13 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     minWidth: 120,
     maxWidth: 300,
     render: (product) => <ProductCondition isNew={product.isNew ?? false} />,
+    filter: {
+      type: "checkbox",
+      options: [
+        { label: "true", value: "true" },
+        { label: "false", value: "false" },
+      ],
+    },
     className: "p-0",
   },
 ];
@@ -154,13 +168,17 @@ export const VARIANT_COLUMNS: DataTableColumn<IVariant>[] = [
     minWidth: 160,
     maxWidth: 160,
     render: (variant) => (
-      <SelectSize
-        defaultSize={{
+      <CellSelector
+        initialValue={{
           label: variant.attributes.size,
           value: variant.attributes.size,
         }}
       />
     ),
+    filter: {
+      type: "checkbox",
+      options: [{ label: "One-size", value: "One-size" }],
+    },
     className: "px-0",
   },
   {

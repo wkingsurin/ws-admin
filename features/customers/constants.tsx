@@ -1,7 +1,7 @@
 import { DataTableColumn } from "@/components/data-table/types";
 import { ICartItem, IFavorite, IUser } from "./types";
 import CellImage from "@/components/data-table/cell-image";
-import SelectSize from "../products/components/select-size";
+import CellSelector from "../products/components/cell-selector";
 
 export const CUSTOMER_COLUMNS: DataTableColumn<IUser>[] = [
   {
@@ -233,7 +233,19 @@ export const CART_COLUMNS: DataTableColumn<ICartItem>[] = [
     initialWidth: 150,
     minWidth: 150,
     maxWidth: 300,
-    editable: true,
+    render: (item) => (
+      <CellSelector
+        initialValue={{
+          label: item.selectedColor.value,
+          value: item.selectedColor.value,
+        }}
+      />
+    ),
+    filter: {
+      type: "checkbox",
+      options: [{ label: "White", value: "White" }],
+    },
+    className: "p-0",
   },
   {
     id: "selectedSize",
@@ -243,10 +255,15 @@ export const CART_COLUMNS: DataTableColumn<ICartItem>[] = [
     minWidth: 150,
     maxWidth: 300,
     render: (item) => (
-      <SelectSize
-        defaultSize={{ label: item.selectedSize, value: item.selectedSize }}
+      <CellSelector
+        initialValue={{ label: item.selectedSize, value: item.selectedSize }}
       />
     ),
+    filter: {
+      type: "checkbox",
+      options: [{ label: "42", value: "42" }],
+    },
+    className: "p-0",
   },
   {
     id: "price",
