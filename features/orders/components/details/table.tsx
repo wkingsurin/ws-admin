@@ -1,14 +1,14 @@
 "use client";
 
 import DataTable from "@/components/data-table/data-table";
-import { useOrdersTableStore } from "../../store/orders";
 import { ORDER_ITEM_COLUMNS, ORDER_ITEMS } from "../../constants/constants";
+import { useTableStore } from "@/lib/store/table.store";
 
 export default function OrderTable() {
-  const selectedIds = useOrdersTableStore((s) => s.selectedIds);
+  const selectedIds = useTableStore((s) => s.selectedIds);
 
-  const toggleRow = useOrdersTableStore((s) => s.toggleRow);
-  const toggleAll = useOrdersTableStore((s) => s.toggleAll);
+  const toggleRow = useTableStore((s) => s.toggleRow);
+  const toggleAll = useTableStore((s) => s.toggleAll);
 
   return (
     <DataTable

@@ -3,12 +3,12 @@
 import { Plus, Trash2 } from "lucide-react";
 import AddCustomerDialog from "../add-customers-dialog";
 import DeleteCustomersDialog from "../delete-customers-dialog";
-import { useOrdersTableStore } from "@/features/orders/store/orders";
+import { useTableStore } from "@/lib/store/table.store";
 import { Tool } from "@/components/toolbar/types";
 import Toolbar from "@/components/toolbar/toolbar";
 
 export default function CartToolbar() {
-  const isSelected = useOrdersTableStore(
+  const isSelected = useTableStore(
     (s) => Object.keys(s.selectedIds).length > 0,
   );
 

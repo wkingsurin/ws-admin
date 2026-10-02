@@ -1,17 +1,18 @@
 import { create } from "zustand";
 
-type OrdersState = {
+type TableState = {
   selectedIds: Record<string, true>;
 
   toggleRow: (id: string) => void;
   toggleAll: (ids: string[]) => void;
-  clearSelection: () => void;
 
   removeRows: (ids: string[]) => void;
   archiveRows: (ids: string[]) => void;
+
+  clearSelection: () => void;
 };
 
-export const useOrdersTableStore = create<OrdersState>((set) => ({
+export const useTableStore = create<TableState>((set) => ({
   selectedIds: {},
 
   toggleRow: (id) =>
@@ -43,8 +44,6 @@ export const useOrdersTableStore = create<OrdersState>((set) => ({
       return { selectedIds: nextIds };
     }),
 
-  clearSelection: () => set({ selectedIds: {} }),
-
   removeRows: (ids) =>
     set((state) => {
       const nextIds = { ...state.selectedIds };
@@ -64,4 +63,6 @@ export const useOrdersTableStore = create<OrdersState>((set) => ({
 
       return { selectedIds: nextIds };
     }),
+
+  clearSelection: () => set({ selectedIds: {} }),
 }));

@@ -3,12 +3,12 @@
 import Toolbar from "@/components/toolbar/toolbar";
 import { Tool } from "@/components/toolbar/types";
 import { Plus, Trash2 } from "lucide-react";
-import { useOrdersTableStore } from "../../store/orders";
 import AddVariantDialog from "./add-product-dialog";
 import DeleteVariantDialog from "./delete-product-dialog";
+import { useTableStore } from "@/lib/store/table.store";
 
 export default function OrderToolbar() {
-  const isSelected = useOrdersTableStore(
+  const isSelected = useTableStore(
     (s) => Object.keys(s.selectedIds).length > 0,
   );
 
