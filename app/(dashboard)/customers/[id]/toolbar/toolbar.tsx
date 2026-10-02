@@ -1,6 +1,6 @@
 "use client";
 
-import { EyeOff, LucideIcon, Trash2 } from "lucide-react";
+import { Archive, LucideIcon, Trash2 } from "lucide-react";
 import ToolButton from "./tool-button";
 
 export default function Toolbar() {
@@ -12,7 +12,7 @@ export default function Toolbar() {
     onClick: () => void;
   }[] = [
     {
-      icon: EyeOff,
+      icon: Archive,
       label: "Hide",
       style:
         "bg-black/10 border-[0.5px] border-black/5 text-black hover:bg-black/15",

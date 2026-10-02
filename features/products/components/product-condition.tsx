@@ -22,7 +22,7 @@ export default function ProductCondition({ isNew }: ProductConditionProps) {
       items={items}
       defaultValue={isNew ? items[0].value : items[1].value}
     >
-      <SelectTrigger className="w-full items-center justify-between rounded-none border-none focus-visible:border-none shadow-none px-2">
+      <SelectTrigger className="w-full items-center justify-between rounded-sm border-[0.5px] bg-white focus-visible:border-none shadow-none px-2">
         <SelectValue />
       </SelectTrigger>
       <SelectContent alignItemWithTrigger={false}>

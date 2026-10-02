@@ -107,7 +107,7 @@ export const CUSTOMERS: IUser[] = [
     id: "cms0hunvx001c2wua6bidro7m",
     name: "Jane Doe",
     email: "janedoe@example.com",
-    createdAt: new Date(),
+    createdAt: new Date(2026, 6, 25, 14, 59, 19),
     address: {
       recipient: "null",
       country: "null",
@@ -115,8 +115,8 @@ export const CUSTOMERS: IUser[] = [
       street: "null",
       postalCode: "null",
       phone: "null",
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      createdAt: new Date(2026, 6, 25, 14, 59, 19),
+      updatedAt: new Date(2026, 6, 25, 14, 59, 19),
     },
   },
 ];
@@ -245,7 +245,6 @@ export const CART_COLUMNS: DataTableColumn<ICartItem>[] = [
       type: "checkbox",
       options: [{ label: "White", value: "White" }],
     },
-    className: "p-0",
   },
   {
     id: "selectedSize",
@@ -263,7 +262,6 @@ export const CART_COLUMNS: DataTableColumn<ICartItem>[] = [
       type: "checkbox",
       options: [{ label: "42", value: "42" }],
     },
-    className: "p-0",
   },
   {
     id: "price",
@@ -329,6 +327,6 @@ export const CART: ICartItem[] = [
     brandName: "Adidas",
     categoryName: "T-Shirt",
     currency: "",
-    createdAt: new Date(),
+    createdAt: new Date(2026, 6, 25, 14, 59, 19),
   },
 ];

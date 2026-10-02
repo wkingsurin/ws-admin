@@ -16,7 +16,7 @@ export default function CellSelector({ initialValue }: CellSelectorProps) {
 
   return (
     <Select items={sizes} defaultValue={sizes[0].value}>
-      <SelectTrigger className="w-full items-center justify-between rounded-none border-none focus-visible:border-none shadow-none px-2">
+      <SelectTrigger className="w-full items-center justify-between rounded-sm border-[0.5px] border-[#E5E7EB] bg-white focus-visible:border-none shadow-none px-2">
         <SelectValue />
       </SelectTrigger>
       <SelectContent alignItemWithTrigger={false}>

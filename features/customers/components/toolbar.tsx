@@ -2,7 +2,7 @@
 
 import Toolbar from "@/components/toolbar/toolbar";
 import { Tool } from "@/components/toolbar/types";
-import { Minus, Plus } from "lucide-react";
+import { Plus, Trash2 } from "lucide-react";
 import { useOrdersTableStore } from "@/features/orders/store/orders";
 import DeleteCustomersDialog from "./delete-customers-dialog";
 import AddCustomersDialog from "./add-customers-dialog";
@@ -14,7 +14,7 @@ export default function CustomersToolbar() {
 
   const services: Tool[] = [
     {
-      label: "Add customer",
+      label: "Add row",
       icon: Plus,
       dialog: <AddCustomersDialog />,
       onClick: () => console.log("Customer created"),
@@ -22,8 +22,8 @@ export default function CustomersToolbar() {
   ];
   const tools: Tool[] = [
     {
-      label: "Delete",
-      icon: Minus,
+      label: "Delete row",
+      icon: Trash2,
       dialog: <DeleteCustomersDialog />,
       onClick: () => console.log("Customer removed"),
     },

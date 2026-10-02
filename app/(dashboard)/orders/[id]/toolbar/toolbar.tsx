@@ -1,12 +1,12 @@
 "use client";
 
-import { EyeOff, LucideIcon, Trash2, Undo2 } from "lucide-react";
+import { Archive, LucideIcon, Trash2, Undo2 } from "lucide-react";
 import ToolButton from "./tool-button";
 
 export default function Toolbar() {
   const TOOLBAR_BUTTONS: {
-    icon: LucideIcon;
-    label: string;
+    icon?: LucideIcon;
+    label?: string;
     style: string;
     dialog: { title: string; notice: string };
     onClick: () => void;
@@ -15,7 +15,7 @@ export default function Toolbar() {
       icon: Undo2,
       label: "Cancel",
       style:
-        "bg-black/10 border-[0.5px] border-black/5 text-black hover:bg-black/15",
+        "bg-white border-[0.5px] border-black/10 text-black hover:bg-black/15",
       dialog: {
         title: "Cancel order?",
         notice: "You`re sure? This action cannot be undo!",
@@ -23,10 +23,10 @@ export default function Toolbar() {
       onClick: () => console.log("Order cancelled!"),
     },
     {
-      icon: EyeOff,
+      icon: Archive,
       label: "Hide",
       style:
-        "bg-black/10 border-[0.5px] border-black/5 text-black hover:bg-black/15",
+        "bg-white border-[0.5px] border-black/10 text-black hover:bg-black/15",
       dialog: {
         title: "Hide order?",
         notice: "You`re sure? This action cannot be undo!",
@@ -37,7 +37,7 @@ export default function Toolbar() {
       icon: Trash2,
       label: "Delete",
       style:
-        "bg-[#FE414A]/10 border-[0.5px] border-[#FE414A]/5 text-[#FE414A]/75 hover:bg-[#FE414A]/15 hover:text-[#FE414A]",
+        "bg-[#FEF2F2] border-[0.5px] border-[#FFE2E2] text-[#E7000B] hover:bg-[#FE414A]/15 hover:text-[#FE414A]",
       dialog: {
         title: "Delete order?",
         notice: "You`re sure? This action cannot be undo!",

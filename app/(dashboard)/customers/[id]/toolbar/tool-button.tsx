@@ -12,8 +12,8 @@ import {
 import { LucideIcon } from "lucide-react";
 
 interface ToolButtonProps {
-  icon: LucideIcon;
-  label: string;
+  icon?: LucideIcon;
+  label?: string;
   style: string;
   dialog: { title: string; notice: string };
   onClick: () => void;
@@ -31,10 +31,10 @@ export default function ToolButton({
   return (
     <Dialog>
       <DialogTrigger
-        className={`flex items-center gap-2 h-8 rounded-md px-3 ${style}`}
+        className={`flex items-center gap-2 h-7 rounded-md px-2 text-xs ${style}`}
       >
-        <Icon className={`size-4 stroke-[1.5px]`} />
-        <span>{label}</span>
+        {Icon && <Icon className={`size-4 stroke-[1.5px]`} />}
+        {label && <span>{label}</span>}
       </DialogTrigger>
       <DialogContent className="w-full">
         <DialogHeader>

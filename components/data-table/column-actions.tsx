@@ -28,8 +28,8 @@ export default function ColumnActions<T>({
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="group/filters flex items-center justify-center min-w-5 max-w-5 w-full h-7 rounded-sm bg-black/10 hover:bg-card transition duration-100">
-        <ChevronDown className="size-4 stroke-black" />
+      <DropdownMenuTrigger className="group/filters flex items-center justify-center min-w-5 max-w-5 w-full h-7 rounded-sm bg-transparent hover:bg-[#E5E7EB] transition duration-200">
+        <ChevronDown className="size-4 stroke-[#99A1AF] group-hover/filters:stroke-black transition duration-200" />
         {hasActiveFilters && (
           <span className="absolute top-1 right-1 size-1 rounded-full bg-black" />
         )}

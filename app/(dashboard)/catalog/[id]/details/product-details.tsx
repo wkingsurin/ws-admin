@@ -21,8 +21,8 @@ export default function ProductDetails() {
   };
 
   return (
-    <div className="flex gap-10">
-      <ImageCard src={image.src} />
+    <div className="flex gap-6 w-full">
+      <ImageCard src={image.src} alt={image.alt} />
       <DetailsCard title="Product" data={product} />
     </div>
   );

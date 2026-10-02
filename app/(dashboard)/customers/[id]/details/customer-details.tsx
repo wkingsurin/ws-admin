@@ -23,7 +23,7 @@ export default function CustomerDetails() {
 
   return (
     <div className="flex gap-10">
-      <ImageCard src={image.src} />
+      <ImageCard src={image.src} alt={image.alt} />
       <DetailsCard title="Customer" data={product} />
     </div>
   );

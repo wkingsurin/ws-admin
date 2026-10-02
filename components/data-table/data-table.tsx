@@ -200,7 +200,7 @@ export default function DataTable<T>({
         >
           <colgroup>
             <col style={{ width: "40px" }} />
-            <col style={{ width: "80px" }} />
+            <col style={{ width: "60px" }} />
 
             {columns.map((column) => (
               <col
@@ -212,22 +212,25 @@ export default function DataTable<T>({
             ))}
           </colgroup>
 
-          <TableHeader className="sticky top-0 z-10 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.05)]">
+          <TableHeader className="sticky top-0 z-10 bg-[#FCFDFE] shadow-[0_2px_12px_rgba(0,0,0,0.05)]">
             <TableRow>
               <CheckboxHead
                 checked={allSelected}
                 indeterminate={someSelected}
                 onSelect={() => toggleAll(rowIds)}
               />
-              <LinkHead label="page" />
+              <LinkHead
+                label="page"
+                className="uppercase bold font-mono text-[12px] text-[#99A1AF] leading-[100%] text-center"
+              />
 
               {columns.map((column) => (
                 <TableHead
                   key={column.id}
-                  className="relative min-w-0 bg-gray hover:bg-black/10"
+                  className="relative min-w-0 bg-gray uppercase bold font-mono text-[12px] text-[#99A1AF]"
                 >
                   <div className="flex items-center justify-between gap-3 w-full">
-                    <span className="min-w-0 truncate text-black/75">
+                    <span className="min-w-0 truncate leading-[100%]">
                       {column.header}
                     </span>
                     <ColumnActions
@@ -269,12 +272,15 @@ export default function DataTable<T>({
               const rowId = getRowId(row);
 
               return (
-                <TableRow key={rowId} className="hover:bg-white">
+                <TableRow
+                  key={rowId}
+                  className="bg-white hover:bg-[#F9FAFB]/80 text-xs"
+                >
                   <CheckboxCell
                     checked={selectedIds[rowId] === true}
                     onSelect={() => onToggleRow(rowId)}
                   />
-                  <LinkCell label="View" href={`/${rowId}`} />
+                  <LinkCell href={`/${rowId}`} />
 
                   {columns.map((column) => {
                     const value = getColumnValue(column, row);

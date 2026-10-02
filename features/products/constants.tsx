@@ -78,7 +78,6 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
         { label: "false", value: "false" },
       ],
     },
-    className: "p-0",
   },
   {
     id: "isNew",
@@ -95,7 +94,6 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
         { label: "false", value: "false" },
       ],
     },
-    className: "p-0",
   },
 ];
 
@@ -179,7 +177,6 @@ export const VARIANT_COLUMNS: DataTableColumn<IVariant>[] = [
       type: "checkbox",
       options: [{ label: "One-size", value: "One-size" }],
     },
-    className: "px-0",
   },
   {
     id: "price",

@@ -25,15 +25,13 @@ export default function ToolButton({
   return (
     <Dialog>
       <DialogTrigger
-        className={`group/add-ord flex items-center justify-center gap-2 w-8 h-8 rounded-md hover:bg-black/50 border-[0.5px] border-black/10 transition duration-100 ${className}`}
+        className={`group/add-ord flex items-center justify-center gap-2 w-8 h-8 rounded-md bg-black/10 hover:bg-black/15 border-[0.5px] border-black/10 transition duration-100 ${className}`}
         onClick={onClick}
       >
+        <Icon className="size-4 stroke-[1.5px] transition duration-100" />
         {label && (
-          <span className="text-sm group-hover/add-ord:text-white transition duration-100">
-            {label}
-          </span>
+          <span className="text-sm transition duration-100">{label}</span>
         )}
-        <Icon className="size-4 stroke-[1.5px] stroke-black group-hover/add-ord:stroke-white transition duration-100" />
       </DialogTrigger>
       <DialogContent className={`${sizes[size]}`}>{children}</DialogContent>
     </Dialog>

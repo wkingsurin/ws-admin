@@ -14,7 +14,7 @@ export default function FavoritesToolbar() {
 
   const services: Tool[] = [
     {
-      label: "Add favorite",
+      label: "Add row",
       icon: Plus,
       dialog: <AddCustomerDialog />,
       onClick: () => console.log("Favorite created"),
@@ -22,7 +22,7 @@ export default function FavoritesToolbar() {
   ];
   const tools: Tool[] = [
     {
-      label: "Delete favorite",
+      label: "Delete row",
       icon: Trash2,
       dialog: <DeleteCustomersDialog />,
       onClick: () => console.log("Favorite deleted"),

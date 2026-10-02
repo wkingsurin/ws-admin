@@ -2,7 +2,7 @@
 
 import Toolbar from "@/components/toolbar/toolbar";
 import { Tool } from "@/components/toolbar/types";
-import { PackageMinus, PackagePlus } from "lucide-react";
+import { Plus, Trash2 } from "lucide-react";
 import { useOrdersTableStore } from "../store/orders";
 import CreateOrderDialog from "./create-order-dialog";
 import DeleteOrderDialog from "./delete-order-dialog";
@@ -14,16 +14,16 @@ export default function OrdersToolbar() {
 
   const services: Tool[] = [
     {
-      label: "Create order",
-      icon: PackagePlus,
+      label: "Add row",
+      icon: Plus,
       dialog: <CreateOrderDialog />,
       onClick: () => console.log("Order created"),
     },
   ];
   const tools: Tool[] = [
     {
-      label: "Delete order",
-      icon: PackageMinus,
+      label: "Delete row",
+      icon: Trash2,
       dialog: <DeleteOrderDialog />,
       onClick: () => console.log("Order removed"),
     },

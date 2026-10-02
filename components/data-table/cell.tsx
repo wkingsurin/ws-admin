@@ -3,7 +3,6 @@
 import { FormEvent, ReactNode, useState } from "react";
 import { TableCell } from "../ui/table";
 import CellValue from "./cell-value";
-import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 
 interface CellProps {
@@ -55,7 +54,7 @@ export default function Cell({
 
   return (
     <TableCell
-      className={`whitespace-normal ${isCellActive ? "bg-green-200" : "hover:bg-black/10"} ${isEditing && "bg-green-300"}`}
+      className={`whitespace-normal ${isEditing && "bg-purple-200 text-black/80"}`}
       onClick={() => {
         handleCellClick();
       }}

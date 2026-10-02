@@ -99,7 +99,6 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
         { label: "PayPal", value: "PAYPAl" },
       ],
     },
-    className: "px-0",
   },
   {
     id: "deliveryMethod",
@@ -117,7 +116,6 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
         { label: "Post", value: "POST" },
       ],
     },
-    className: "px-0",
   },
   {
     id: "price",
@@ -143,7 +141,6 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
         { label: "Не оплачен", value: "" },
       ],
     },
-    className: "px-0",
   },
   {
     id: "createdAt",
@@ -501,7 +498,6 @@ export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
       type: "checkbox",
       options: [{ label: "White", value: "White" }],
     },
-    className: "p-0",
   },
   {
     id: "selectedSize",
@@ -522,7 +518,6 @@ export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
         { label: "41", value: "41" },
       ],
     },
-    className: "p-0",
   },
   {
     id: "price",

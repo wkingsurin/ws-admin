@@ -8,8 +8,8 @@ export default function LinkHead({
   className?: string;
 }) {
   return (
-    <TableHead className={`min-w-0 hover:bg-black/10 ${className ?? ""}`}>
-      <span className="text-black/75">{label}</span>
+    <TableHead className={`min-w-0 ${className ?? ""}`}>
+      {label}
     </TableHead>
   );
 }

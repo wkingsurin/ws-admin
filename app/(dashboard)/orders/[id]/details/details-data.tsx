@@ -1,14 +1,16 @@
 "use client";
 
 import { DetailRow } from "../types";
-import { Input } from "@/components/ui/input";
 
 interface DetailsDataProps {
   data: DetailRow[];
-  isEditing: boolean;
+  mode?: "light" | "dark";
 }
 
-export default function DetailsData({ data, isEditing }: DetailsDataProps) {
+export default function DetailsData({
+  data,
+  mode = "light",
+}: DetailsDataProps) {
   const handleCopy = async (event: React.MouseEvent): Promise<void> => {
     const value = event.currentTarget.textContent;
 
@@ -21,21 +23,24 @@ export default function DetailsData({ data, isEditing }: DetailsDataProps) {
   };
 
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-1 text-xs leading-[1rem]">
       {data.map((row) => (
         <div
           key={row.label}
-          className="flex items-center justify-between gap-3 rounded-md px-1 -mx-1 hover:bg-black/5"
+          className="flex items-center justify-between gap-3"
         >
-          <span className="min-w-40 text-sm select-none">{row.label}:</span>
-          <div className="overflow-hidden h-7">
-            {isEditing ? (
-              <Input value={row.value} className="h-6 py-0 border-[0.5px] border-black/10 px-2" />
-            ) : (
-              <p className="truncate cursor-copy" onClick={handleCopy}>
-                {row.value}
-              </p>
-            )}
+          <span
+            className={`w-1/3 ${mode === "light" ? "text-[#99A1AF]" : "text-[#99A1AF]"} select-none`}
+          >
+            {row.label}:
+          </span>
+          <div className="flex items-center">
+            <p
+              className={`truncate cursor-copy rounded-md px-1 -mx-1 ${mode === 'light' ? 'text-black' : 'text-[#99A1AF]'} hover:bg-black/5`}
+              onClick={handleCopy}
+            >
+              {row.value}
+            </p>
           </div>
         </div>
       ))}

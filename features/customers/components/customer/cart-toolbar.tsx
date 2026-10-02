@@ -14,7 +14,7 @@ export default function CartToolbar() {
 
   const services: Tool[] = [
     {
-      label: "Add item",
+      label: "Add row",
       icon: Plus,
       dialog: <AddCustomerDialog />,
       onClick: () => console.log("Item added"),
@@ -22,7 +22,7 @@ export default function CartToolbar() {
   ];
   const tools: Tool[] = [
     {
-      label: "Delete item",
+      label: "Delete row",
       icon: Trash2,
       dialog: <DeleteCustomersDialog />,
       onClick: () => console.log("Item deleted"),

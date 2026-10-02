@@ -22,7 +22,7 @@ export default function PaymentStatus({ isPaid }: PaymentStatusProps) {
       items={items}
       defaultValue={isPaid ? items[0].label : items[1].label}
     >
-      <SelectTrigger className="w-full items-center justify-between rounded-none border-none focus-visible:border-none shadow-none px-2">
+      <SelectTrigger className="w-full items-center justify-between rounded-sm border-[0.5px] bg-white focus-visible:border-none shadow-none px-2">
         <SelectValue />
       </SelectTrigger>
       <SelectContent alignItemWithTrigger={false}>

@@ -6,13 +6,10 @@ import { cn } from "@/lib/utils";
 
 function Table({ className, ...props }: React.ComponentProps<"table">) {
   return (
-    <div
-      data-slot="table-container"
-      className="relative w-full"
-    >
+    <div data-slot="table-container" className="relative w-full">
       <table
         data-slot="table"
-        className={cn("caption-bottom text-sm", className)}
+        className={cn("caption-bottom text-sm text-[#6A7282]", className)}
         {...props}
       />
     </div>
@@ -23,11 +20,7 @@ function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
   return (
     <thead
       data-slot="table-header"
-      className={cn(
-        "[&_tr]:border-b",
-        className,
-        "border-black/10",
-      )}
+      className={cn("[&_tr]:border-b", className, "border-black/10")}
       {...props}
     />
   );
@@ -66,7 +59,8 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
       data-slot="table-row"
       className={cn(
         "transition-colors has-aria-expanded:bg-muted/50 data-[state=selected]:bg-muted",
-        className, 'border-b-[0.5px] border-black/10'
+        className,
+        "border-b-[0.5px] border-black/10",
       )}
       {...props}
     />
@@ -78,9 +72,8 @@ function TableHead({ className, ...props }: React.ComponentProps<"th">) {
     <th
       data-slot="table-head"
       className={cn(
-        "h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&:has([role=checkbox])]:pr-0",
+        "h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0",
         className,
-        "border-r-[0.5px] border-black/10",
       )}
       {...props}
     />
@@ -91,11 +84,7 @@ function TableCell({ className, ...props }: React.ComponentProps<"td">) {
   return (
     <td
       data-slot="table-cell"
-      className={cn(
-        "align-top [&:has([role=checkbox])]:pr-0",
-        className,
-        "border-r-[0.5px] border-black/10",
-      )}
+      className={cn("align-middle [&:has([role=checkbox])]:pr-0 h-10", className)}
       {...props}
     />
   );
