@@ -1,7 +1,6 @@
 "use client";
 
 import DetailsData from "./details-data";
-import Status from "./status";
 import { DetailRow } from "../types";
 import { ReactNode } from "react";
 import Card from "@/components/card";
