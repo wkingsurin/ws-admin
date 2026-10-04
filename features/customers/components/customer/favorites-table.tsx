@@ -2,9 +2,10 @@
 
 import DataTable from "@/components/data-table/data-table";
 import { useTableStore } from "@/lib/store/table.store";
-import { FAVORITE_COLUMNS, FAVORITES } from "../../constants";
+import { FAVORITE_COLUMNS } from "../../constants";
+import { IFavorite } from "../../types";
 
-export default function FavoritesTable() {
+export default function FavoritesTable({ data }: { data: IFavorite[] }) {
   const selectedIds = useTableStore((s) => s.selectedIds);
 
   const toggleRow = useTableStore((s) => s.toggleRow);
@@ -12,7 +13,7 @@ export default function FavoritesTable() {
 
   return (
     <DataTable
-      data={FAVORITES}
+      data={data}
       columns={FAVORITE_COLUMNS}
       getRowId={(item) => item.id}
       selectedIds={selectedIds}

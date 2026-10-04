@@ -2,9 +2,10 @@
 
 import DataTable from "@/components/data-table/data-table";
 import { useTableStore } from "@/lib/store/table.store";
-import { CART, CART_COLUMNS } from "../../constants";
+import { CART_COLUMNS } from "../../constants";
+import { ICartItem } from "../../types";
 
-export default function CartItemsTable() {
+export default function CartItemsTable({ data }: { data: ICartItem[] }) {
   const selectedIds = useTableStore((s) => s.selectedIds);
 
   const toggleRow = useTableStore((s) => s.toggleRow);
@@ -12,12 +13,13 @@ export default function CartItemsTable() {
 
   return (
     <DataTable
-      data={CART}
+      data={data}
       columns={CART_COLUMNS}
       getRowId={(item) => item.id}
       selectedIds={selectedIds}
       onToggleRow={toggleRow}
       toggleAll={toggleAll}
+      pageCell={false}
     />
   );
 }
