@@ -4,34 +4,59 @@ import VariantsTable from "@/features/products/components/variants/table";
 import { DetailRow } from "../../orders/[id]/types";
 import ImageCard from "./details/image-card";
 import ProductToolbar from "@/features/products/components/variants/toolbar";
+import { getProductById } from "./get-product";
+import { notFound } from "next/navigation";
+import { mapProduct } from "./map-product";
 
-export default function ProductPage() {
-  const product: DetailRow[] = [
-    { label: "Id", value: "cms0hvxjm006h3wuakimzot9p" },
-    { label: "title", value: "Under Armour Hoodie" },
-    { label: "Brand", value: "Unuder Armour" },
-    { label: "Category", value: "hoodie" },
-    { label: "Stock", value: "7" },
+type ProductDetails = DetailRow[];
+
+export default async function ProductPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+
+  const product = await getProductById(id);
+
+  if (!product) {
+    notFound();
+  }
+
+  const mappedProduct = mapProduct(product);
+  console.log(`[mappedProduct]:`, mappedProduct);
+
+  const stock = mappedProduct.variants.reduce(
+    (acc, current) => (acc += current.stock),
+    0,
+  );
+
+  const productDetails: ProductDetails = [
+    { label: "Id", value: mappedProduct.id },
+    { label: "title", value: mappedProduct.title },
+    { label: "Brand", value: mappedProduct.brand.name },
+    { label: "Category", value: mappedProduct.category.name },
+    { label: "Stock", value: String(stock) },
     { label: "Price", value: "7790" },
     { label: "Old price", value: "9790" },
     { label: "Created at", value: "2026-07-25 14:59:19" },
     { label: "Updated at", value: "2026-07-25 14:59:19" },
   ];
-  const productRows = product.filter(
+  const productRows = productDetails.filter(
     (row) =>
       row.label.toLowerCase() !== "title" &&
       row.label.toLowerCase() !== "created at" &&
       row.label.toLowerCase() !== "updated at",
   );
-  const productDate = product.filter(
+  const productDate = productDetails.filter(
     (row) =>
       row.label.toLowerCase() === "created at" ||
       row.label.toLowerCase() === "updated at",
   );
 
   const image: { alt: string; src: string } = {
-    alt: "Under Armour Hoodie",
-    src: "/products/hoodies/under-armour-white/image-1-480.png",
+    alt: mappedProduct.title,
+    src: mappedProduct.options.color[0].images[0].src,
   };
 
   return (
@@ -51,7 +76,7 @@ export default function ProductPage() {
             </span>
             <div className="flex flex-col gap-4 w-full">
               <h3 className="font-bold text-base leading-[150%]">
-                Under Armour Hoodie
+                {mappedProduct.title}
               </h3>
               <div className="grid grid-cols-2 gap-2">
                 {productRows.map((row) => (
@@ -77,7 +102,7 @@ export default function ProductPage() {
         </div>
 
         <DashboardTable className="flex-1 min-h-0" toolbar={<ProductToolbar />}>
-          <VariantsTable />
+          <VariantsTable data={mappedProduct.variants} />
         </DashboardTable>
       </div>
     </div>

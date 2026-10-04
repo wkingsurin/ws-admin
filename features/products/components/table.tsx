@@ -1,10 +1,11 @@
 "use client";
 
 import DataTable from "@/components/data-table/data-table";
-import { ProductColumns, Products } from "../constants";
+import { ProductColumns } from "../constants";
 import { useTableStore } from "@/lib/store/table.store";
+import { IProduct } from "../types";
 
-export default function ProductsTable() {
+export default function ProductsTable({ data }: { data: IProduct[] }) {
   const selectedIds = useTableStore((s) => s.selectedIds);
 
   const toggleRow = useTableStore((s) => s.toggleRow);
@@ -13,7 +14,7 @@ export default function ProductsTable() {
   return (
     <div className="min-w-0 h-full">
       <DataTable
-        data={Products}
+        data={data}
         columns={ProductColumns}
         getRowId={(order) => order.id}
         selectedIds={selectedIds}
