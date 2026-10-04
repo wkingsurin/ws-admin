@@ -222,7 +222,7 @@ export type UserAddressWhereInput = {
   phone?: Prisma.StringNullableFilter<"UserAddress"> | string | null
   createdAt?: Prisma.DateTimeFilter<"UserAddress"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"UserAddress"> | Date | string
-  User?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type UserAddressOrderByWithRelationInput = {
@@ -236,7 +236,7 @@ export type UserAddressOrderByWithRelationInput = {
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  User?: Prisma.UserOrderByWithRelationInput
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type UserAddressWhereUniqueInput = Prisma.AtLeast<{
@@ -253,7 +253,7 @@ export type UserAddressWhereUniqueInput = Prisma.AtLeast<{
   phone?: Prisma.StringNullableFilter<"UserAddress"> | string | null
   createdAt?: Prisma.DateTimeFilter<"UserAddress"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"UserAddress"> | Date | string
-  User?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "userId">
 
 export type UserAddressOrderByWithAggregationInput = {
@@ -298,7 +298,7 @@ export type UserAddressCreateInput = {
   phone?: string | null
   createdAt?: Date | string
   updatedAt: Date | string
-  User: Prisma.UserCreateNestedOneWithoutUserAddressInput
+  user: Prisma.UserCreateNestedOneWithoutAddressInput
 }
 
 export type UserAddressUncheckedCreateInput = {
@@ -324,7 +324,7 @@ export type UserAddressUpdateInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  User?: Prisma.UserUpdateOneRequiredWithoutUserAddressNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutAddressNestedInput
 }
 
 export type UserAddressUncheckedUpdateInput = {
@@ -531,7 +531,7 @@ export type UserAddressSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   phone?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["userAddress"]>
 
 export type UserAddressSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -545,7 +545,7 @@ export type UserAddressSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   phone?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["userAddress"]>
 
 export type UserAddressSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -559,7 +559,7 @@ export type UserAddressSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   phone?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["userAddress"]>
 
 export type UserAddressSelectScalar = {
@@ -577,19 +577,19 @@ export type UserAddressSelectScalar = {
 
 export type UserAddressOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "recipient" | "country" | "city" | "street" | "postalCode" | "phone" | "createdAt" | "updatedAt", ExtArgs["result"]["userAddress"]>
 export type UserAddressInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type UserAddressIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type UserAddressIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $UserAddressPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "UserAddress"
   objects: {
-    User: Prisma.$UserPayload<ExtArgs>
+    user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -996,7 +996,7 @@ readonly fields: UserAddressFieldRefs;
  */
 export interface Prisma__UserAddressClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  User<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

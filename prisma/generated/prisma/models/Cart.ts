@@ -174,8 +174,8 @@ export type CartWhereInput = {
   userId?: Prisma.StringFilter<"Cart"> | string
   createdAt?: Prisma.DateTimeFilter<"Cart"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Cart"> | Date | string
-  User?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  CartItem?: Prisma.CartItemListRelationFilter
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  items?: Prisma.CartItemListRelationFilter
 }
 
 export type CartOrderByWithRelationInput = {
@@ -183,8 +183,8 @@ export type CartOrderByWithRelationInput = {
   userId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  User?: Prisma.UserOrderByWithRelationInput
-  CartItem?: Prisma.CartItemOrderByRelationAggregateInput
+  user?: Prisma.UserOrderByWithRelationInput
+  items?: Prisma.CartItemOrderByRelationAggregateInput
 }
 
 export type CartWhereUniqueInput = Prisma.AtLeast<{
@@ -195,8 +195,8 @@ export type CartWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.CartWhereInput | Prisma.CartWhereInput[]
   createdAt?: Prisma.DateTimeFilter<"Cart"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Cart"> | Date | string
-  User?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  CartItem?: Prisma.CartItemListRelationFilter
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  items?: Prisma.CartItemListRelationFilter
 }, "id" | "userId">
 
 export type CartOrderByWithAggregationInput = {
@@ -223,8 +223,8 @@ export type CartCreateInput = {
   id: string
   createdAt?: Date | string
   updatedAt: Date | string
-  User: Prisma.UserCreateNestedOneWithoutCartInput
-  CartItem?: Prisma.CartItemCreateNestedManyWithoutCartInput
+  user: Prisma.UserCreateNestedOneWithoutCartInput
+  items?: Prisma.CartItemCreateNestedManyWithoutCartInput
 }
 
 export type CartUncheckedCreateInput = {
@@ -232,15 +232,15 @@ export type CartUncheckedCreateInput = {
   userId: string
   createdAt?: Date | string
   updatedAt: Date | string
-  CartItem?: Prisma.CartItemUncheckedCreateNestedManyWithoutCartInput
+  items?: Prisma.CartItemUncheckedCreateNestedManyWithoutCartInput
 }
 
 export type CartUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  User?: Prisma.UserUpdateOneRequiredWithoutCartNestedInput
-  CartItem?: Prisma.CartItemUpdateManyWithoutCartNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutCartNestedInput
+  items?: Prisma.CartItemUpdateManyWithoutCartNestedInput
 }
 
 export type CartUncheckedUpdateInput = {
@@ -248,7 +248,7 @@ export type CartUncheckedUpdateInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  CartItem?: Prisma.CartItemUncheckedUpdateManyWithoutCartNestedInput
+  items?: Prisma.CartItemUncheckedUpdateManyWithoutCartNestedInput
 }
 
 export type CartCreateManyInput = {
@@ -306,18 +306,18 @@ export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
-export type CartCreateNestedOneWithoutCartItemInput = {
-  create?: Prisma.XOR<Prisma.CartCreateWithoutCartItemInput, Prisma.CartUncheckedCreateWithoutCartItemInput>
-  connectOrCreate?: Prisma.CartCreateOrConnectWithoutCartItemInput
+export type CartCreateNestedOneWithoutItemsInput = {
+  create?: Prisma.XOR<Prisma.CartCreateWithoutItemsInput, Prisma.CartUncheckedCreateWithoutItemsInput>
+  connectOrCreate?: Prisma.CartCreateOrConnectWithoutItemsInput
   connect?: Prisma.CartWhereUniqueInput
 }
 
-export type CartUpdateOneRequiredWithoutCartItemNestedInput = {
-  create?: Prisma.XOR<Prisma.CartCreateWithoutCartItemInput, Prisma.CartUncheckedCreateWithoutCartItemInput>
-  connectOrCreate?: Prisma.CartCreateOrConnectWithoutCartItemInput
-  upsert?: Prisma.CartUpsertWithoutCartItemInput
+export type CartUpdateOneRequiredWithoutItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.CartCreateWithoutItemsInput, Prisma.CartUncheckedCreateWithoutItemsInput>
+  connectOrCreate?: Prisma.CartCreateOrConnectWithoutItemsInput
+  upsert?: Prisma.CartUpsertWithoutItemsInput
   connect?: Prisma.CartWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CartUpdateToOneWithWhereWithoutCartItemInput, Prisma.CartUpdateWithoutCartItemInput>, Prisma.CartUncheckedUpdateWithoutCartItemInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CartUpdateToOneWithWhereWithoutItemsInput, Prisma.CartUpdateWithoutItemsInput>, Prisma.CartUncheckedUpdateWithoutItemsInput>
 }
 
 export type CartCreateNestedOneWithoutUserInput = {
@@ -352,44 +352,44 @@ export type CartUncheckedUpdateOneWithoutUserNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CartUpdateToOneWithWhereWithoutUserInput, Prisma.CartUpdateWithoutUserInput>, Prisma.CartUncheckedUpdateWithoutUserInput>
 }
 
-export type CartCreateWithoutCartItemInput = {
+export type CartCreateWithoutItemsInput = {
   id: string
   createdAt?: Date | string
   updatedAt: Date | string
-  User: Prisma.UserCreateNestedOneWithoutCartInput
+  user: Prisma.UserCreateNestedOneWithoutCartInput
 }
 
-export type CartUncheckedCreateWithoutCartItemInput = {
+export type CartUncheckedCreateWithoutItemsInput = {
   id: string
   userId: string
   createdAt?: Date | string
   updatedAt: Date | string
 }
 
-export type CartCreateOrConnectWithoutCartItemInput = {
+export type CartCreateOrConnectWithoutItemsInput = {
   where: Prisma.CartWhereUniqueInput
-  create: Prisma.XOR<Prisma.CartCreateWithoutCartItemInput, Prisma.CartUncheckedCreateWithoutCartItemInput>
+  create: Prisma.XOR<Prisma.CartCreateWithoutItemsInput, Prisma.CartUncheckedCreateWithoutItemsInput>
 }
 
-export type CartUpsertWithoutCartItemInput = {
-  update: Prisma.XOR<Prisma.CartUpdateWithoutCartItemInput, Prisma.CartUncheckedUpdateWithoutCartItemInput>
-  create: Prisma.XOR<Prisma.CartCreateWithoutCartItemInput, Prisma.CartUncheckedCreateWithoutCartItemInput>
+export type CartUpsertWithoutItemsInput = {
+  update: Prisma.XOR<Prisma.CartUpdateWithoutItemsInput, Prisma.CartUncheckedUpdateWithoutItemsInput>
+  create: Prisma.XOR<Prisma.CartCreateWithoutItemsInput, Prisma.CartUncheckedCreateWithoutItemsInput>
   where?: Prisma.CartWhereInput
 }
 
-export type CartUpdateToOneWithWhereWithoutCartItemInput = {
+export type CartUpdateToOneWithWhereWithoutItemsInput = {
   where?: Prisma.CartWhereInput
-  data: Prisma.XOR<Prisma.CartUpdateWithoutCartItemInput, Prisma.CartUncheckedUpdateWithoutCartItemInput>
+  data: Prisma.XOR<Prisma.CartUpdateWithoutItemsInput, Prisma.CartUncheckedUpdateWithoutItemsInput>
 }
 
-export type CartUpdateWithoutCartItemInput = {
+export type CartUpdateWithoutItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  User?: Prisma.UserUpdateOneRequiredWithoutCartNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutCartNestedInput
 }
 
-export type CartUncheckedUpdateWithoutCartItemInput = {
+export type CartUncheckedUpdateWithoutItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -400,14 +400,14 @@ export type CartCreateWithoutUserInput = {
   id: string
   createdAt?: Date | string
   updatedAt: Date | string
-  CartItem?: Prisma.CartItemCreateNestedManyWithoutCartInput
+  items?: Prisma.CartItemCreateNestedManyWithoutCartInput
 }
 
 export type CartUncheckedCreateWithoutUserInput = {
   id: string
   createdAt?: Date | string
   updatedAt: Date | string
-  CartItem?: Prisma.CartItemUncheckedCreateNestedManyWithoutCartInput
+  items?: Prisma.CartItemUncheckedCreateNestedManyWithoutCartInput
 }
 
 export type CartCreateOrConnectWithoutUserInput = {
@@ -430,14 +430,14 @@ export type CartUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  CartItem?: Prisma.CartItemUpdateManyWithoutCartNestedInput
+  items?: Prisma.CartItemUpdateManyWithoutCartNestedInput
 }
 
 export type CartUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  CartItem?: Prisma.CartItemUncheckedUpdateManyWithoutCartNestedInput
+  items?: Prisma.CartItemUncheckedUpdateManyWithoutCartNestedInput
 }
 
 
@@ -446,11 +446,11 @@ export type CartUncheckedUpdateWithoutUserInput = {
  */
 
 export type CartCountOutputType = {
-  CartItem: number
+  items: number
 }
 
 export type CartCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  CartItem?: boolean | CartCountOutputTypeCountCartItemArgs
+  items?: boolean | CartCountOutputTypeCountItemsArgs
 }
 
 /**
@@ -466,7 +466,7 @@ export type CartCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * CartCountOutputType without action
  */
-export type CartCountOutputTypeCountCartItemArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type CartCountOutputTypeCountItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.CartItemWhereInput
 }
 
@@ -476,8 +476,8 @@ export type CartSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   userId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  CartItem?: boolean | Prisma.Cart$CartItemArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  items?: boolean | Prisma.Cart$itemsArgs<ExtArgs>
   _count?: boolean | Prisma.CartCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["cart"]>
 
@@ -486,7 +486,7 @@ export type CartSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   userId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["cart"]>
 
 export type CartSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -494,7 +494,7 @@ export type CartSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   userId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["cart"]>
 
 export type CartSelectScalar = {
@@ -506,22 +506,22 @@ export type CartSelectScalar = {
 
 export type CartOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["cart"]>
 export type CartInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  CartItem?: boolean | Prisma.Cart$CartItemArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  items?: boolean | Prisma.Cart$itemsArgs<ExtArgs>
   _count?: boolean | Prisma.CartCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CartIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type CartIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $CartPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Cart"
   objects: {
-    User: Prisma.$UserPayload<ExtArgs>
-    CartItem: Prisma.$CartItemPayload<ExtArgs>[]
+    user: Prisma.$UserPayload<ExtArgs>
+    items: Prisma.$CartItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -922,8 +922,8 @@ readonly fields: CartFieldRefs;
  */
 export interface Prisma__CartClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  User<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  CartItem<T extends Prisma.Cart$CartItemArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Cart$CartItemArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CartItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  items<T extends Prisma.Cart$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Cart$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CartItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1358,9 +1358,9 @@ export type CartDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Cart.CartItem
+ * Cart.items
  */
-export type Cart$CartItemArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Cart$itemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the CartItem
    */

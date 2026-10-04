@@ -222,7 +222,7 @@ export type CheckoutWhereInput = {
   deliveryMethod?: Prisma.EnumDeliveryMethodNullableFilter<"Checkout"> | $Enums.DeliveryMethod | null
   createdAt?: Prisma.DateTimeFilter<"Checkout"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Checkout"> | Date | string
-  User?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type CheckoutOrderByWithRelationInput = {
@@ -236,7 +236,7 @@ export type CheckoutOrderByWithRelationInput = {
   deliveryMethod?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  User?: Prisma.UserOrderByWithRelationInput
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type CheckoutWhereUniqueInput = Prisma.AtLeast<{
@@ -253,7 +253,7 @@ export type CheckoutWhereUniqueInput = Prisma.AtLeast<{
   deliveryMethod?: Prisma.EnumDeliveryMethodNullableFilter<"Checkout"> | $Enums.DeliveryMethod | null
   createdAt?: Prisma.DateTimeFilter<"Checkout"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Checkout"> | Date | string
-  User?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "userId">
 
 export type CheckoutOrderByWithAggregationInput = {
@@ -298,7 +298,7 @@ export type CheckoutCreateInput = {
   deliveryMethod?: $Enums.DeliveryMethod | null
   createdAt?: Date | string
   updatedAt: Date | string
-  User: Prisma.UserCreateNestedOneWithoutCheckoutInput
+  user: Prisma.UserCreateNestedOneWithoutCheckoutInput
 }
 
 export type CheckoutUncheckedCreateInput = {
@@ -324,7 +324,7 @@ export type CheckoutUpdateInput = {
   deliveryMethod?: Prisma.NullableEnumDeliveryMethodFieldUpdateOperationsInput | $Enums.DeliveryMethod | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  User?: Prisma.UserUpdateOneRequiredWithoutCheckoutNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutCheckoutNestedInput
 }
 
 export type CheckoutUncheckedUpdateInput = {
@@ -543,7 +543,7 @@ export type CheckoutSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   deliveryMethod?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["checkout"]>
 
 export type CheckoutSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -557,7 +557,7 @@ export type CheckoutSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   deliveryMethod?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["checkout"]>
 
 export type CheckoutSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -571,7 +571,7 @@ export type CheckoutSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   deliveryMethod?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["checkout"]>
 
 export type CheckoutSelectScalar = {
@@ -589,19 +589,19 @@ export type CheckoutSelectScalar = {
 
 export type CheckoutOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "address" | "city" | "country" | "postalCode" | "paymentMethod" | "deliveryMethod" | "createdAt" | "updatedAt", ExtArgs["result"]["checkout"]>
 export type CheckoutInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type CheckoutIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type CheckoutIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $CheckoutPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Checkout"
   objects: {
-    User: Prisma.$UserPayload<ExtArgs>
+    user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1008,7 +1008,7 @@ readonly fields: CheckoutFieldRefs;
  */
 export interface Prisma__CheckoutClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  User<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

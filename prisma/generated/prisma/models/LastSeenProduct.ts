@@ -174,8 +174,8 @@ export type LastSeenProductWhereInput = {
   userId?: Prisma.StringFilter<"LastSeenProduct"> | string
   productId?: Prisma.StringFilter<"LastSeenProduct"> | string
   viewedAt?: Prisma.DateTimeFilter<"LastSeenProduct"> | Date | string
-  Product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
-  User?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type LastSeenProductOrderByWithRelationInput = {
@@ -183,8 +183,8 @@ export type LastSeenProductOrderByWithRelationInput = {
   userId?: Prisma.SortOrder
   productId?: Prisma.SortOrder
   viewedAt?: Prisma.SortOrder
-  Product?: Prisma.ProductOrderByWithRelationInput
-  User?: Prisma.UserOrderByWithRelationInput
+  product?: Prisma.ProductOrderByWithRelationInput
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type LastSeenProductWhereUniqueInput = Prisma.AtLeast<{
@@ -196,8 +196,8 @@ export type LastSeenProductWhereUniqueInput = Prisma.AtLeast<{
   userId?: Prisma.StringFilter<"LastSeenProduct"> | string
   productId?: Prisma.StringFilter<"LastSeenProduct"> | string
   viewedAt?: Prisma.DateTimeFilter<"LastSeenProduct"> | Date | string
-  Product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
-  User?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "userId_productId">
 
 export type LastSeenProductOrderByWithAggregationInput = {
@@ -223,8 +223,8 @@ export type LastSeenProductScalarWhereWithAggregatesInput = {
 export type LastSeenProductCreateInput = {
   id: string
   viewedAt?: Date | string
-  Product: Prisma.ProductCreateNestedOneWithoutLastSeenProductInput
-  User: Prisma.UserCreateNestedOneWithoutLastSeenProductInput
+  product: Prisma.ProductCreateNestedOneWithoutLastSeenProductsInput
+  user: Prisma.UserCreateNestedOneWithoutLastSeenProductsInput
 }
 
 export type LastSeenProductUncheckedCreateInput = {
@@ -237,8 +237,8 @@ export type LastSeenProductUncheckedCreateInput = {
 export type LastSeenProductUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   viewedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Product?: Prisma.ProductUpdateOneRequiredWithoutLastSeenProductNestedInput
-  User?: Prisma.UserUpdateOneRequiredWithoutLastSeenProductNestedInput
+  product?: Prisma.ProductUpdateOneRequiredWithoutLastSeenProductsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutLastSeenProductsNestedInput
 }
 
 export type LastSeenProductUncheckedUpdateInput = {
@@ -390,7 +390,7 @@ export type LastSeenProductUncheckedUpdateManyWithoutUserNestedInput = {
 export type LastSeenProductCreateWithoutProductInput = {
   id: string
   viewedAt?: Date | string
-  User: Prisma.UserCreateNestedOneWithoutLastSeenProductInput
+  user: Prisma.UserCreateNestedOneWithoutLastSeenProductsInput
 }
 
 export type LastSeenProductUncheckedCreateWithoutProductInput = {
@@ -438,7 +438,7 @@ export type LastSeenProductScalarWhereInput = {
 export type LastSeenProductCreateWithoutUserInput = {
   id: string
   viewedAt?: Date | string
-  Product: Prisma.ProductCreateNestedOneWithoutLastSeenProductInput
+  product: Prisma.ProductCreateNestedOneWithoutLastSeenProductsInput
 }
 
 export type LastSeenProductUncheckedCreateWithoutUserInput = {
@@ -482,7 +482,7 @@ export type LastSeenProductCreateManyProductInput = {
 export type LastSeenProductUpdateWithoutProductInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   viewedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  User?: Prisma.UserUpdateOneRequiredWithoutLastSeenProductNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutLastSeenProductsNestedInput
 }
 
 export type LastSeenProductUncheckedUpdateWithoutProductInput = {
@@ -506,7 +506,7 @@ export type LastSeenProductCreateManyUserInput = {
 export type LastSeenProductUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   viewedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Product?: Prisma.ProductUpdateOneRequiredWithoutLastSeenProductNestedInput
+  product?: Prisma.ProductUpdateOneRequiredWithoutLastSeenProductsNestedInput
 }
 
 export type LastSeenProductUncheckedUpdateWithoutUserInput = {
@@ -528,8 +528,8 @@ export type LastSeenProductSelect<ExtArgs extends runtime.Types.Extensions.Inter
   userId?: boolean
   productId?: boolean
   viewedAt?: boolean
-  Product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
-  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["lastSeenProduct"]>
 
 export type LastSeenProductSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -537,8 +537,8 @@ export type LastSeenProductSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   userId?: boolean
   productId?: boolean
   viewedAt?: boolean
-  Product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
-  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["lastSeenProduct"]>
 
 export type LastSeenProductSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -546,8 +546,8 @@ export type LastSeenProductSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   userId?: boolean
   productId?: boolean
   viewedAt?: boolean
-  Product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
-  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["lastSeenProduct"]>
 
 export type LastSeenProductSelectScalar = {
@@ -559,23 +559,23 @@ export type LastSeenProductSelectScalar = {
 
 export type LastSeenProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "productId" | "viewedAt", ExtArgs["result"]["lastSeenProduct"]>
 export type LastSeenProductInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
-  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type LastSeenProductIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
-  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type LastSeenProductIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
-  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $LastSeenProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "LastSeenProduct"
   objects: {
-    Product: Prisma.$ProductPayload<ExtArgs>
-    User: Prisma.$UserPayload<ExtArgs>
+    product: Prisma.$ProductPayload<ExtArgs>
+    user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -976,8 +976,8 @@ readonly fields: LastSeenProductFieldRefs;
  */
 export interface Prisma__LastSeenProductClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  Product<T extends Prisma.ProductDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductDefaultArgs<ExtArgs>>): Prisma.Prisma__ProductClient<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  User<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  product<T extends Prisma.ProductDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductDefaultArgs<ExtArgs>>): Prisma.Prisma__ProductClient<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

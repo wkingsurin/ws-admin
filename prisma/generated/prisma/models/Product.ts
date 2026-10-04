@@ -230,12 +230,12 @@ export type ProductWhereInput = {
   categoryId?: Prisma.StringFilter<"Product"> | string
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
-  Favorite?: Prisma.FavoriteListRelationFilter
-  LastSeenProduct?: Prisma.LastSeenProductListRelationFilter
-  Brand?: Prisma.XOR<Prisma.BrandScalarRelationFilter, Prisma.BrandWhereInput>
-  Category?: Prisma.XOR<Prisma.CategoryScalarRelationFilter, Prisma.CategoryWhereInput>
-  ProductColor?: Prisma.ProductColorListRelationFilter
-  Variant?: Prisma.VariantListRelationFilter
+  favorites?: Prisma.FavoriteListRelationFilter
+  lastSeenProducts?: Prisma.LastSeenProductListRelationFilter
+  brand?: Prisma.XOR<Prisma.BrandScalarRelationFilter, Prisma.BrandWhereInput>
+  category?: Prisma.XOR<Prisma.CategoryScalarRelationFilter, Prisma.CategoryWhereInput>
+  productColors?: Prisma.ProductColorListRelationFilter
+  variants?: Prisma.VariantListRelationFilter
 }
 
 export type ProductOrderByWithRelationInput = {
@@ -250,12 +250,12 @@ export type ProductOrderByWithRelationInput = {
   categoryId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  Favorite?: Prisma.FavoriteOrderByRelationAggregateInput
-  LastSeenProduct?: Prisma.LastSeenProductOrderByRelationAggregateInput
-  Brand?: Prisma.BrandOrderByWithRelationInput
-  Category?: Prisma.CategoryOrderByWithRelationInput
-  ProductColor?: Prisma.ProductColorOrderByRelationAggregateInput
-  Variant?: Prisma.VariantOrderByRelationAggregateInput
+  favorites?: Prisma.FavoriteOrderByRelationAggregateInput
+  lastSeenProducts?: Prisma.LastSeenProductOrderByRelationAggregateInput
+  brand?: Prisma.BrandOrderByWithRelationInput
+  category?: Prisma.CategoryOrderByWithRelationInput
+  productColors?: Prisma.ProductColorOrderByRelationAggregateInput
+  variants?: Prisma.VariantOrderByRelationAggregateInput
 }
 
 export type ProductWhereUniqueInput = Prisma.AtLeast<{
@@ -273,12 +273,12 @@ export type ProductWhereUniqueInput = Prisma.AtLeast<{
   categoryId?: Prisma.StringFilter<"Product"> | string
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
-  Favorite?: Prisma.FavoriteListRelationFilter
-  LastSeenProduct?: Prisma.LastSeenProductListRelationFilter
-  Brand?: Prisma.XOR<Prisma.BrandScalarRelationFilter, Prisma.BrandWhereInput>
-  Category?: Prisma.XOR<Prisma.CategoryScalarRelationFilter, Prisma.CategoryWhereInput>
-  ProductColor?: Prisma.ProductColorListRelationFilter
-  Variant?: Prisma.VariantListRelationFilter
+  favorites?: Prisma.FavoriteListRelationFilter
+  lastSeenProducts?: Prisma.LastSeenProductListRelationFilter
+  brand?: Prisma.XOR<Prisma.BrandScalarRelationFilter, Prisma.BrandWhereInput>
+  category?: Prisma.XOR<Prisma.CategoryScalarRelationFilter, Prisma.CategoryWhereInput>
+  productColors?: Prisma.ProductColorListRelationFilter
+  variants?: Prisma.VariantListRelationFilter
 }, "id" | "slug">
 
 export type ProductOrderByWithAggregationInput = {
@@ -325,12 +325,12 @@ export type ProductCreateInput = {
   isNew?: boolean
   createdAt?: Date | string
   updatedAt: Date | string
-  Favorite?: Prisma.FavoriteCreateNestedManyWithoutProductInput
-  LastSeenProduct?: Prisma.LastSeenProductCreateNestedManyWithoutProductInput
-  Brand: Prisma.BrandCreateNestedOneWithoutProductInput
-  Category: Prisma.CategoryCreateNestedOneWithoutProductInput
-  ProductColor?: Prisma.ProductColorCreateNestedManyWithoutProductInput
-  Variant?: Prisma.VariantCreateNestedManyWithoutProductInput
+  favorites?: Prisma.FavoriteCreateNestedManyWithoutProductInput
+  lastSeenProducts?: Prisma.LastSeenProductCreateNestedManyWithoutProductInput
+  brand: Prisma.BrandCreateNestedOneWithoutProductsInput
+  category: Prisma.CategoryCreateNestedOneWithoutProductsInput
+  productColors?: Prisma.ProductColorCreateNestedManyWithoutProductInput
+  variants?: Prisma.VariantCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateInput = {
@@ -345,10 +345,10 @@ export type ProductUncheckedCreateInput = {
   categoryId: string
   createdAt?: Date | string
   updatedAt: Date | string
-  Favorite?: Prisma.FavoriteUncheckedCreateNestedManyWithoutProductInput
-  LastSeenProduct?: Prisma.LastSeenProductUncheckedCreateNestedManyWithoutProductInput
-  ProductColor?: Prisma.ProductColorUncheckedCreateNestedManyWithoutProductInput
-  Variant?: Prisma.VariantUncheckedCreateNestedManyWithoutProductInput
+  favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutProductInput
+  lastSeenProducts?: Prisma.LastSeenProductUncheckedCreateNestedManyWithoutProductInput
+  productColors?: Prisma.ProductColorUncheckedCreateNestedManyWithoutProductInput
+  variants?: Prisma.VariantUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductUpdateInput = {
@@ -361,12 +361,12 @@ export type ProductUpdateInput = {
   isNew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Favorite?: Prisma.FavoriteUpdateManyWithoutProductNestedInput
-  LastSeenProduct?: Prisma.LastSeenProductUpdateManyWithoutProductNestedInput
-  Brand?: Prisma.BrandUpdateOneRequiredWithoutProductNestedInput
-  Category?: Prisma.CategoryUpdateOneRequiredWithoutProductNestedInput
-  ProductColor?: Prisma.ProductColorUpdateManyWithoutProductNestedInput
-  Variant?: Prisma.VariantUpdateManyWithoutProductNestedInput
+  favorites?: Prisma.FavoriteUpdateManyWithoutProductNestedInput
+  lastSeenProducts?: Prisma.LastSeenProductUpdateManyWithoutProductNestedInput
+  brand?: Prisma.BrandUpdateOneRequiredWithoutProductsNestedInput
+  category?: Prisma.CategoryUpdateOneRequiredWithoutProductsNestedInput
+  productColors?: Prisma.ProductColorUpdateManyWithoutProductNestedInput
+  variants?: Prisma.VariantUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateInput = {
@@ -381,10 +381,10 @@ export type ProductUncheckedUpdateInput = {
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Favorite?: Prisma.FavoriteUncheckedUpdateManyWithoutProductNestedInput
-  LastSeenProduct?: Prisma.LastSeenProductUncheckedUpdateManyWithoutProductNestedInput
-  ProductColor?: Prisma.ProductColorUncheckedUpdateManyWithoutProductNestedInput
-  Variant?: Prisma.VariantUncheckedUpdateManyWithoutProductNestedInput
+  favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutProductNestedInput
+  lastSeenProducts?: Prisma.LastSeenProductUncheckedUpdateManyWithoutProductNestedInput
+  productColors?: Prisma.ProductColorUncheckedUpdateManyWithoutProductNestedInput
+  variants?: Prisma.VariantUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductCreateManyInput = {
@@ -568,60 +568,60 @@ export type ProductUncheckedUpdateManyWithoutCategoryNestedInput = {
   deleteMany?: Prisma.ProductScalarWhereInput | Prisma.ProductScalarWhereInput[]
 }
 
-export type ProductCreateNestedOneWithoutFavoriteInput = {
-  create?: Prisma.XOR<Prisma.ProductCreateWithoutFavoriteInput, Prisma.ProductUncheckedCreateWithoutFavoriteInput>
-  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutFavoriteInput
+export type ProductCreateNestedOneWithoutFavoritesInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutFavoritesInput, Prisma.ProductUncheckedCreateWithoutFavoritesInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutFavoritesInput
   connect?: Prisma.ProductWhereUniqueInput
 }
 
-export type ProductUpdateOneRequiredWithoutFavoriteNestedInput = {
-  create?: Prisma.XOR<Prisma.ProductCreateWithoutFavoriteInput, Prisma.ProductUncheckedCreateWithoutFavoriteInput>
-  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutFavoriteInput
-  upsert?: Prisma.ProductUpsertWithoutFavoriteInput
+export type ProductUpdateOneRequiredWithoutFavoritesNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutFavoritesInput, Prisma.ProductUncheckedCreateWithoutFavoritesInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutFavoritesInput
+  upsert?: Prisma.ProductUpsertWithoutFavoritesInput
   connect?: Prisma.ProductWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutFavoriteInput, Prisma.ProductUpdateWithoutFavoriteInput>, Prisma.ProductUncheckedUpdateWithoutFavoriteInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutFavoritesInput, Prisma.ProductUpdateWithoutFavoritesInput>, Prisma.ProductUncheckedUpdateWithoutFavoritesInput>
 }
 
-export type ProductCreateNestedOneWithoutLastSeenProductInput = {
-  create?: Prisma.XOR<Prisma.ProductCreateWithoutLastSeenProductInput, Prisma.ProductUncheckedCreateWithoutLastSeenProductInput>
-  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutLastSeenProductInput
-  connect?: Prisma.ProductWhereUniqueInput
-}
-
-export type ProductUpdateOneRequiredWithoutLastSeenProductNestedInput = {
-  create?: Prisma.XOR<Prisma.ProductCreateWithoutLastSeenProductInput, Prisma.ProductUncheckedCreateWithoutLastSeenProductInput>
-  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutLastSeenProductInput
-  upsert?: Prisma.ProductUpsertWithoutLastSeenProductInput
-  connect?: Prisma.ProductWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutLastSeenProductInput, Prisma.ProductUpdateWithoutLastSeenProductInput>, Prisma.ProductUncheckedUpdateWithoutLastSeenProductInput>
-}
-
-export type ProductCreateNestedOneWithoutProductColorInput = {
-  create?: Prisma.XOR<Prisma.ProductCreateWithoutProductColorInput, Prisma.ProductUncheckedCreateWithoutProductColorInput>
-  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutProductColorInput
+export type ProductCreateNestedOneWithoutLastSeenProductsInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutLastSeenProductsInput, Prisma.ProductUncheckedCreateWithoutLastSeenProductsInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutLastSeenProductsInput
   connect?: Prisma.ProductWhereUniqueInput
 }
 
-export type ProductUpdateOneRequiredWithoutProductColorNestedInput = {
-  create?: Prisma.XOR<Prisma.ProductCreateWithoutProductColorInput, Prisma.ProductUncheckedCreateWithoutProductColorInput>
-  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutProductColorInput
-  upsert?: Prisma.ProductUpsertWithoutProductColorInput
+export type ProductUpdateOneRequiredWithoutLastSeenProductsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutLastSeenProductsInput, Prisma.ProductUncheckedCreateWithoutLastSeenProductsInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutLastSeenProductsInput
+  upsert?: Prisma.ProductUpsertWithoutLastSeenProductsInput
   connect?: Prisma.ProductWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutProductColorInput, Prisma.ProductUpdateWithoutProductColorInput>, Prisma.ProductUncheckedUpdateWithoutProductColorInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutLastSeenProductsInput, Prisma.ProductUpdateWithoutLastSeenProductsInput>, Prisma.ProductUncheckedUpdateWithoutLastSeenProductsInput>
 }
 
-export type ProductCreateNestedOneWithoutVariantInput = {
-  create?: Prisma.XOR<Prisma.ProductCreateWithoutVariantInput, Prisma.ProductUncheckedCreateWithoutVariantInput>
-  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutVariantInput
+export type ProductCreateNestedOneWithoutProductColorsInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutProductColorsInput, Prisma.ProductUncheckedCreateWithoutProductColorsInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutProductColorsInput
   connect?: Prisma.ProductWhereUniqueInput
 }
 
-export type ProductUpdateOneRequiredWithoutVariantNestedInput = {
-  create?: Prisma.XOR<Prisma.ProductCreateWithoutVariantInput, Prisma.ProductUncheckedCreateWithoutVariantInput>
-  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutVariantInput
-  upsert?: Prisma.ProductUpsertWithoutVariantInput
+export type ProductUpdateOneRequiredWithoutProductColorsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutProductColorsInput, Prisma.ProductUncheckedCreateWithoutProductColorsInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutProductColorsInput
+  upsert?: Prisma.ProductUpsertWithoutProductColorsInput
   connect?: Prisma.ProductWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutVariantInput, Prisma.ProductUpdateWithoutVariantInput>, Prisma.ProductUncheckedUpdateWithoutVariantInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutProductColorsInput, Prisma.ProductUpdateWithoutProductColorsInput>, Prisma.ProductUncheckedUpdateWithoutProductColorsInput>
+}
+
+export type ProductCreateNestedOneWithoutVariantsInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutVariantsInput, Prisma.ProductUncheckedCreateWithoutVariantsInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutVariantsInput
+  connect?: Prisma.ProductWhereUniqueInput
+}
+
+export type ProductUpdateOneRequiredWithoutVariantsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutVariantsInput, Prisma.ProductUncheckedCreateWithoutVariantsInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutVariantsInput
+  upsert?: Prisma.ProductUpsertWithoutVariantsInput
+  connect?: Prisma.ProductWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutVariantsInput, Prisma.ProductUpdateWithoutVariantsInput>, Prisma.ProductUncheckedUpdateWithoutVariantsInput>
 }
 
 export type ProductCreateWithoutBrandInput = {
@@ -634,11 +634,11 @@ export type ProductCreateWithoutBrandInput = {
   isNew?: boolean
   createdAt?: Date | string
   updatedAt: Date | string
-  Favorite?: Prisma.FavoriteCreateNestedManyWithoutProductInput
-  LastSeenProduct?: Prisma.LastSeenProductCreateNestedManyWithoutProductInput
-  Category: Prisma.CategoryCreateNestedOneWithoutProductInput
-  ProductColor?: Prisma.ProductColorCreateNestedManyWithoutProductInput
-  Variant?: Prisma.VariantCreateNestedManyWithoutProductInput
+  favorites?: Prisma.FavoriteCreateNestedManyWithoutProductInput
+  lastSeenProducts?: Prisma.LastSeenProductCreateNestedManyWithoutProductInput
+  category: Prisma.CategoryCreateNestedOneWithoutProductsInput
+  productColors?: Prisma.ProductColorCreateNestedManyWithoutProductInput
+  variants?: Prisma.VariantCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutBrandInput = {
@@ -652,10 +652,10 @@ export type ProductUncheckedCreateWithoutBrandInput = {
   categoryId: string
   createdAt?: Date | string
   updatedAt: Date | string
-  Favorite?: Prisma.FavoriteUncheckedCreateNestedManyWithoutProductInput
-  LastSeenProduct?: Prisma.LastSeenProductUncheckedCreateNestedManyWithoutProductInput
-  ProductColor?: Prisma.ProductColorUncheckedCreateNestedManyWithoutProductInput
-  Variant?: Prisma.VariantUncheckedCreateNestedManyWithoutProductInput
+  favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutProductInput
+  lastSeenProducts?: Prisma.LastSeenProductUncheckedCreateNestedManyWithoutProductInput
+  productColors?: Prisma.ProductColorUncheckedCreateNestedManyWithoutProductInput
+  variants?: Prisma.VariantUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutBrandInput = {
@@ -711,11 +711,11 @@ export type ProductCreateWithoutCategoryInput = {
   isNew?: boolean
   createdAt?: Date | string
   updatedAt: Date | string
-  Favorite?: Prisma.FavoriteCreateNestedManyWithoutProductInput
-  LastSeenProduct?: Prisma.LastSeenProductCreateNestedManyWithoutProductInput
-  Brand: Prisma.BrandCreateNestedOneWithoutProductInput
-  ProductColor?: Prisma.ProductColorCreateNestedManyWithoutProductInput
-  Variant?: Prisma.VariantCreateNestedManyWithoutProductInput
+  favorites?: Prisma.FavoriteCreateNestedManyWithoutProductInput
+  lastSeenProducts?: Prisma.LastSeenProductCreateNestedManyWithoutProductInput
+  brand: Prisma.BrandCreateNestedOneWithoutProductsInput
+  productColors?: Prisma.ProductColorCreateNestedManyWithoutProductInput
+  variants?: Prisma.VariantCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutCategoryInput = {
@@ -729,10 +729,10 @@ export type ProductUncheckedCreateWithoutCategoryInput = {
   brandId: string
   createdAt?: Date | string
   updatedAt: Date | string
-  Favorite?: Prisma.FavoriteUncheckedCreateNestedManyWithoutProductInput
-  LastSeenProduct?: Prisma.LastSeenProductUncheckedCreateNestedManyWithoutProductInput
-  ProductColor?: Prisma.ProductColorUncheckedCreateNestedManyWithoutProductInput
-  Variant?: Prisma.VariantUncheckedCreateNestedManyWithoutProductInput
+  favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutProductInput
+  lastSeenProducts?: Prisma.LastSeenProductUncheckedCreateNestedManyWithoutProductInput
+  productColors?: Prisma.ProductColorUncheckedCreateNestedManyWithoutProductInput
+  variants?: Prisma.VariantUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutCategoryInput = {
@@ -761,7 +761,7 @@ export type ProductUpdateManyWithWhereWithoutCategoryInput = {
   data: Prisma.XOR<Prisma.ProductUpdateManyMutationInput, Prisma.ProductUncheckedUpdateManyWithoutCategoryInput>
 }
 
-export type ProductCreateWithoutFavoriteInput = {
+export type ProductCreateWithoutFavoritesInput = {
   id: string
   title: string
   slug: string
@@ -771,98 +771,14 @@ export type ProductCreateWithoutFavoriteInput = {
   isNew?: boolean
   createdAt?: Date | string
   updatedAt: Date | string
-  LastSeenProduct?: Prisma.LastSeenProductCreateNestedManyWithoutProductInput
-  Brand: Prisma.BrandCreateNestedOneWithoutProductInput
-  Category: Prisma.CategoryCreateNestedOneWithoutProductInput
-  ProductColor?: Prisma.ProductColorCreateNestedManyWithoutProductInput
-  Variant?: Prisma.VariantCreateNestedManyWithoutProductInput
+  lastSeenProducts?: Prisma.LastSeenProductCreateNestedManyWithoutProductInput
+  brand: Prisma.BrandCreateNestedOneWithoutProductsInput
+  category: Prisma.CategoryCreateNestedOneWithoutProductsInput
+  productColors?: Prisma.ProductColorCreateNestedManyWithoutProductInput
+  variants?: Prisma.VariantCreateNestedManyWithoutProductInput
 }
 
-export type ProductUncheckedCreateWithoutFavoriteInput = {
-  id: string
-  title: string
-  slug: string
-  description: string
-  currency: string
-  isAvailable?: boolean
-  isNew?: boolean
-  brandId: string
-  categoryId: string
-  createdAt?: Date | string
-  updatedAt: Date | string
-  LastSeenProduct?: Prisma.LastSeenProductUncheckedCreateNestedManyWithoutProductInput
-  ProductColor?: Prisma.ProductColorUncheckedCreateNestedManyWithoutProductInput
-  Variant?: Prisma.VariantUncheckedCreateNestedManyWithoutProductInput
-}
-
-export type ProductCreateOrConnectWithoutFavoriteInput = {
-  where: Prisma.ProductWhereUniqueInput
-  create: Prisma.XOR<Prisma.ProductCreateWithoutFavoriteInput, Prisma.ProductUncheckedCreateWithoutFavoriteInput>
-}
-
-export type ProductUpsertWithoutFavoriteInput = {
-  update: Prisma.XOR<Prisma.ProductUpdateWithoutFavoriteInput, Prisma.ProductUncheckedUpdateWithoutFavoriteInput>
-  create: Prisma.XOR<Prisma.ProductCreateWithoutFavoriteInput, Prisma.ProductUncheckedCreateWithoutFavoriteInput>
-  where?: Prisma.ProductWhereInput
-}
-
-export type ProductUpdateToOneWithWhereWithoutFavoriteInput = {
-  where?: Prisma.ProductWhereInput
-  data: Prisma.XOR<Prisma.ProductUpdateWithoutFavoriteInput, Prisma.ProductUncheckedUpdateWithoutFavoriteInput>
-}
-
-export type ProductUpdateWithoutFavoriteInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
-  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isNew?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  LastSeenProduct?: Prisma.LastSeenProductUpdateManyWithoutProductNestedInput
-  Brand?: Prisma.BrandUpdateOneRequiredWithoutProductNestedInput
-  Category?: Prisma.CategoryUpdateOneRequiredWithoutProductNestedInput
-  ProductColor?: Prisma.ProductColorUpdateManyWithoutProductNestedInput
-  Variant?: Prisma.VariantUpdateManyWithoutProductNestedInput
-}
-
-export type ProductUncheckedUpdateWithoutFavoriteInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
-  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isNew?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  brandId?: Prisma.StringFieldUpdateOperationsInput | string
-  categoryId?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  LastSeenProduct?: Prisma.LastSeenProductUncheckedUpdateManyWithoutProductNestedInput
-  ProductColor?: Prisma.ProductColorUncheckedUpdateManyWithoutProductNestedInput
-  Variant?: Prisma.VariantUncheckedUpdateManyWithoutProductNestedInput
-}
-
-export type ProductCreateWithoutLastSeenProductInput = {
-  id: string
-  title: string
-  slug: string
-  description: string
-  currency: string
-  isAvailable?: boolean
-  isNew?: boolean
-  createdAt?: Date | string
-  updatedAt: Date | string
-  Favorite?: Prisma.FavoriteCreateNestedManyWithoutProductInput
-  Brand: Prisma.BrandCreateNestedOneWithoutProductInput
-  Category: Prisma.CategoryCreateNestedOneWithoutProductInput
-  ProductColor?: Prisma.ProductColorCreateNestedManyWithoutProductInput
-  Variant?: Prisma.VariantCreateNestedManyWithoutProductInput
-}
-
-export type ProductUncheckedCreateWithoutLastSeenProductInput = {
+export type ProductUncheckedCreateWithoutFavoritesInput = {
   id: string
   title: string
   slug: string
@@ -874,28 +790,28 @@ export type ProductUncheckedCreateWithoutLastSeenProductInput = {
   categoryId: string
   createdAt?: Date | string
   updatedAt: Date | string
-  Favorite?: Prisma.FavoriteUncheckedCreateNestedManyWithoutProductInput
-  ProductColor?: Prisma.ProductColorUncheckedCreateNestedManyWithoutProductInput
-  Variant?: Prisma.VariantUncheckedCreateNestedManyWithoutProductInput
+  lastSeenProducts?: Prisma.LastSeenProductUncheckedCreateNestedManyWithoutProductInput
+  productColors?: Prisma.ProductColorUncheckedCreateNestedManyWithoutProductInput
+  variants?: Prisma.VariantUncheckedCreateNestedManyWithoutProductInput
 }
 
-export type ProductCreateOrConnectWithoutLastSeenProductInput = {
+export type ProductCreateOrConnectWithoutFavoritesInput = {
   where: Prisma.ProductWhereUniqueInput
-  create: Prisma.XOR<Prisma.ProductCreateWithoutLastSeenProductInput, Prisma.ProductUncheckedCreateWithoutLastSeenProductInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutFavoritesInput, Prisma.ProductUncheckedCreateWithoutFavoritesInput>
 }
 
-export type ProductUpsertWithoutLastSeenProductInput = {
-  update: Prisma.XOR<Prisma.ProductUpdateWithoutLastSeenProductInput, Prisma.ProductUncheckedUpdateWithoutLastSeenProductInput>
-  create: Prisma.XOR<Prisma.ProductCreateWithoutLastSeenProductInput, Prisma.ProductUncheckedCreateWithoutLastSeenProductInput>
+export type ProductUpsertWithoutFavoritesInput = {
+  update: Prisma.XOR<Prisma.ProductUpdateWithoutFavoritesInput, Prisma.ProductUncheckedUpdateWithoutFavoritesInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutFavoritesInput, Prisma.ProductUncheckedCreateWithoutFavoritesInput>
   where?: Prisma.ProductWhereInput
 }
 
-export type ProductUpdateToOneWithWhereWithoutLastSeenProductInput = {
+export type ProductUpdateToOneWithWhereWithoutFavoritesInput = {
   where?: Prisma.ProductWhereInput
-  data: Prisma.XOR<Prisma.ProductUpdateWithoutLastSeenProductInput, Prisma.ProductUncheckedUpdateWithoutLastSeenProductInput>
+  data: Prisma.XOR<Prisma.ProductUpdateWithoutFavoritesInput, Prisma.ProductUncheckedUpdateWithoutFavoritesInput>
 }
 
-export type ProductUpdateWithoutLastSeenProductInput = {
+export type ProductUpdateWithoutFavoritesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -905,14 +821,14 @@ export type ProductUpdateWithoutLastSeenProductInput = {
   isNew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Favorite?: Prisma.FavoriteUpdateManyWithoutProductNestedInput
-  Brand?: Prisma.BrandUpdateOneRequiredWithoutProductNestedInput
-  Category?: Prisma.CategoryUpdateOneRequiredWithoutProductNestedInput
-  ProductColor?: Prisma.ProductColorUpdateManyWithoutProductNestedInput
-  Variant?: Prisma.VariantUpdateManyWithoutProductNestedInput
+  lastSeenProducts?: Prisma.LastSeenProductUpdateManyWithoutProductNestedInput
+  brand?: Prisma.BrandUpdateOneRequiredWithoutProductsNestedInput
+  category?: Prisma.CategoryUpdateOneRequiredWithoutProductsNestedInput
+  productColors?: Prisma.ProductColorUpdateManyWithoutProductNestedInput
+  variants?: Prisma.VariantUpdateManyWithoutProductNestedInput
 }
 
-export type ProductUncheckedUpdateWithoutLastSeenProductInput = {
+export type ProductUncheckedUpdateWithoutFavoritesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -924,12 +840,12 @@ export type ProductUncheckedUpdateWithoutLastSeenProductInput = {
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Favorite?: Prisma.FavoriteUncheckedUpdateManyWithoutProductNestedInput
-  ProductColor?: Prisma.ProductColorUncheckedUpdateManyWithoutProductNestedInput
-  Variant?: Prisma.VariantUncheckedUpdateManyWithoutProductNestedInput
+  lastSeenProducts?: Prisma.LastSeenProductUncheckedUpdateManyWithoutProductNestedInput
+  productColors?: Prisma.ProductColorUncheckedUpdateManyWithoutProductNestedInput
+  variants?: Prisma.VariantUncheckedUpdateManyWithoutProductNestedInput
 }
 
-export type ProductCreateWithoutProductColorInput = {
+export type ProductCreateWithoutLastSeenProductsInput = {
   id: string
   title: string
   slug: string
@@ -939,14 +855,14 @@ export type ProductCreateWithoutProductColorInput = {
   isNew?: boolean
   createdAt?: Date | string
   updatedAt: Date | string
-  Favorite?: Prisma.FavoriteCreateNestedManyWithoutProductInput
-  LastSeenProduct?: Prisma.LastSeenProductCreateNestedManyWithoutProductInput
-  Brand: Prisma.BrandCreateNestedOneWithoutProductInput
-  Category: Prisma.CategoryCreateNestedOneWithoutProductInput
-  Variant?: Prisma.VariantCreateNestedManyWithoutProductInput
+  favorites?: Prisma.FavoriteCreateNestedManyWithoutProductInput
+  brand: Prisma.BrandCreateNestedOneWithoutProductsInput
+  category: Prisma.CategoryCreateNestedOneWithoutProductsInput
+  productColors?: Prisma.ProductColorCreateNestedManyWithoutProductInput
+  variants?: Prisma.VariantCreateNestedManyWithoutProductInput
 }
 
-export type ProductUncheckedCreateWithoutProductColorInput = {
+export type ProductUncheckedCreateWithoutLastSeenProductsInput = {
   id: string
   title: string
   slug: string
@@ -958,28 +874,28 @@ export type ProductUncheckedCreateWithoutProductColorInput = {
   categoryId: string
   createdAt?: Date | string
   updatedAt: Date | string
-  Favorite?: Prisma.FavoriteUncheckedCreateNestedManyWithoutProductInput
-  LastSeenProduct?: Prisma.LastSeenProductUncheckedCreateNestedManyWithoutProductInput
-  Variant?: Prisma.VariantUncheckedCreateNestedManyWithoutProductInput
+  favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutProductInput
+  productColors?: Prisma.ProductColorUncheckedCreateNestedManyWithoutProductInput
+  variants?: Prisma.VariantUncheckedCreateNestedManyWithoutProductInput
 }
 
-export type ProductCreateOrConnectWithoutProductColorInput = {
+export type ProductCreateOrConnectWithoutLastSeenProductsInput = {
   where: Prisma.ProductWhereUniqueInput
-  create: Prisma.XOR<Prisma.ProductCreateWithoutProductColorInput, Prisma.ProductUncheckedCreateWithoutProductColorInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutLastSeenProductsInput, Prisma.ProductUncheckedCreateWithoutLastSeenProductsInput>
 }
 
-export type ProductUpsertWithoutProductColorInput = {
-  update: Prisma.XOR<Prisma.ProductUpdateWithoutProductColorInput, Prisma.ProductUncheckedUpdateWithoutProductColorInput>
-  create: Prisma.XOR<Prisma.ProductCreateWithoutProductColorInput, Prisma.ProductUncheckedCreateWithoutProductColorInput>
+export type ProductUpsertWithoutLastSeenProductsInput = {
+  update: Prisma.XOR<Prisma.ProductUpdateWithoutLastSeenProductsInput, Prisma.ProductUncheckedUpdateWithoutLastSeenProductsInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutLastSeenProductsInput, Prisma.ProductUncheckedCreateWithoutLastSeenProductsInput>
   where?: Prisma.ProductWhereInput
 }
 
-export type ProductUpdateToOneWithWhereWithoutProductColorInput = {
+export type ProductUpdateToOneWithWhereWithoutLastSeenProductsInput = {
   where?: Prisma.ProductWhereInput
-  data: Prisma.XOR<Prisma.ProductUpdateWithoutProductColorInput, Prisma.ProductUncheckedUpdateWithoutProductColorInput>
+  data: Prisma.XOR<Prisma.ProductUpdateWithoutLastSeenProductsInput, Prisma.ProductUncheckedUpdateWithoutLastSeenProductsInput>
 }
 
-export type ProductUpdateWithoutProductColorInput = {
+export type ProductUpdateWithoutLastSeenProductsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -989,14 +905,14 @@ export type ProductUpdateWithoutProductColorInput = {
   isNew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Favorite?: Prisma.FavoriteUpdateManyWithoutProductNestedInput
-  LastSeenProduct?: Prisma.LastSeenProductUpdateManyWithoutProductNestedInput
-  Brand?: Prisma.BrandUpdateOneRequiredWithoutProductNestedInput
-  Category?: Prisma.CategoryUpdateOneRequiredWithoutProductNestedInput
-  Variant?: Prisma.VariantUpdateManyWithoutProductNestedInput
+  favorites?: Prisma.FavoriteUpdateManyWithoutProductNestedInput
+  brand?: Prisma.BrandUpdateOneRequiredWithoutProductsNestedInput
+  category?: Prisma.CategoryUpdateOneRequiredWithoutProductsNestedInput
+  productColors?: Prisma.ProductColorUpdateManyWithoutProductNestedInput
+  variants?: Prisma.VariantUpdateManyWithoutProductNestedInput
 }
 
-export type ProductUncheckedUpdateWithoutProductColorInput = {
+export type ProductUncheckedUpdateWithoutLastSeenProductsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1008,12 +924,12 @@ export type ProductUncheckedUpdateWithoutProductColorInput = {
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Favorite?: Prisma.FavoriteUncheckedUpdateManyWithoutProductNestedInput
-  LastSeenProduct?: Prisma.LastSeenProductUncheckedUpdateManyWithoutProductNestedInput
-  Variant?: Prisma.VariantUncheckedUpdateManyWithoutProductNestedInput
+  favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutProductNestedInput
+  productColors?: Prisma.ProductColorUncheckedUpdateManyWithoutProductNestedInput
+  variants?: Prisma.VariantUncheckedUpdateManyWithoutProductNestedInput
 }
 
-export type ProductCreateWithoutVariantInput = {
+export type ProductCreateWithoutProductColorsInput = {
   id: string
   title: string
   slug: string
@@ -1023,14 +939,14 @@ export type ProductCreateWithoutVariantInput = {
   isNew?: boolean
   createdAt?: Date | string
   updatedAt: Date | string
-  Favorite?: Prisma.FavoriteCreateNestedManyWithoutProductInput
-  LastSeenProduct?: Prisma.LastSeenProductCreateNestedManyWithoutProductInput
-  Brand: Prisma.BrandCreateNestedOneWithoutProductInput
-  Category: Prisma.CategoryCreateNestedOneWithoutProductInput
-  ProductColor?: Prisma.ProductColorCreateNestedManyWithoutProductInput
+  favorites?: Prisma.FavoriteCreateNestedManyWithoutProductInput
+  lastSeenProducts?: Prisma.LastSeenProductCreateNestedManyWithoutProductInput
+  brand: Prisma.BrandCreateNestedOneWithoutProductsInput
+  category: Prisma.CategoryCreateNestedOneWithoutProductsInput
+  variants?: Prisma.VariantCreateNestedManyWithoutProductInput
 }
 
-export type ProductUncheckedCreateWithoutVariantInput = {
+export type ProductUncheckedCreateWithoutProductColorsInput = {
   id: string
   title: string
   slug: string
@@ -1042,28 +958,28 @@ export type ProductUncheckedCreateWithoutVariantInput = {
   categoryId: string
   createdAt?: Date | string
   updatedAt: Date | string
-  Favorite?: Prisma.FavoriteUncheckedCreateNestedManyWithoutProductInput
-  LastSeenProduct?: Prisma.LastSeenProductUncheckedCreateNestedManyWithoutProductInput
-  ProductColor?: Prisma.ProductColorUncheckedCreateNestedManyWithoutProductInput
+  favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutProductInput
+  lastSeenProducts?: Prisma.LastSeenProductUncheckedCreateNestedManyWithoutProductInput
+  variants?: Prisma.VariantUncheckedCreateNestedManyWithoutProductInput
 }
 
-export type ProductCreateOrConnectWithoutVariantInput = {
+export type ProductCreateOrConnectWithoutProductColorsInput = {
   where: Prisma.ProductWhereUniqueInput
-  create: Prisma.XOR<Prisma.ProductCreateWithoutVariantInput, Prisma.ProductUncheckedCreateWithoutVariantInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutProductColorsInput, Prisma.ProductUncheckedCreateWithoutProductColorsInput>
 }
 
-export type ProductUpsertWithoutVariantInput = {
-  update: Prisma.XOR<Prisma.ProductUpdateWithoutVariantInput, Prisma.ProductUncheckedUpdateWithoutVariantInput>
-  create: Prisma.XOR<Prisma.ProductCreateWithoutVariantInput, Prisma.ProductUncheckedCreateWithoutVariantInput>
+export type ProductUpsertWithoutProductColorsInput = {
+  update: Prisma.XOR<Prisma.ProductUpdateWithoutProductColorsInput, Prisma.ProductUncheckedUpdateWithoutProductColorsInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutProductColorsInput, Prisma.ProductUncheckedCreateWithoutProductColorsInput>
   where?: Prisma.ProductWhereInput
 }
 
-export type ProductUpdateToOneWithWhereWithoutVariantInput = {
+export type ProductUpdateToOneWithWhereWithoutProductColorsInput = {
   where?: Prisma.ProductWhereInput
-  data: Prisma.XOR<Prisma.ProductUpdateWithoutVariantInput, Prisma.ProductUncheckedUpdateWithoutVariantInput>
+  data: Prisma.XOR<Prisma.ProductUpdateWithoutProductColorsInput, Prisma.ProductUncheckedUpdateWithoutProductColorsInput>
 }
 
-export type ProductUpdateWithoutVariantInput = {
+export type ProductUpdateWithoutProductColorsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1073,14 +989,14 @@ export type ProductUpdateWithoutVariantInput = {
   isNew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Favorite?: Prisma.FavoriteUpdateManyWithoutProductNestedInput
-  LastSeenProduct?: Prisma.LastSeenProductUpdateManyWithoutProductNestedInput
-  Brand?: Prisma.BrandUpdateOneRequiredWithoutProductNestedInput
-  Category?: Prisma.CategoryUpdateOneRequiredWithoutProductNestedInput
-  ProductColor?: Prisma.ProductColorUpdateManyWithoutProductNestedInput
+  favorites?: Prisma.FavoriteUpdateManyWithoutProductNestedInput
+  lastSeenProducts?: Prisma.LastSeenProductUpdateManyWithoutProductNestedInput
+  brand?: Prisma.BrandUpdateOneRequiredWithoutProductsNestedInput
+  category?: Prisma.CategoryUpdateOneRequiredWithoutProductsNestedInput
+  variants?: Prisma.VariantUpdateManyWithoutProductNestedInput
 }
 
-export type ProductUncheckedUpdateWithoutVariantInput = {
+export type ProductUncheckedUpdateWithoutProductColorsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1092,9 +1008,93 @@ export type ProductUncheckedUpdateWithoutVariantInput = {
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Favorite?: Prisma.FavoriteUncheckedUpdateManyWithoutProductNestedInput
-  LastSeenProduct?: Prisma.LastSeenProductUncheckedUpdateManyWithoutProductNestedInput
-  ProductColor?: Prisma.ProductColorUncheckedUpdateManyWithoutProductNestedInput
+  favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutProductNestedInput
+  lastSeenProducts?: Prisma.LastSeenProductUncheckedUpdateManyWithoutProductNestedInput
+  variants?: Prisma.VariantUncheckedUpdateManyWithoutProductNestedInput
+}
+
+export type ProductCreateWithoutVariantsInput = {
+  id: string
+  title: string
+  slug: string
+  description: string
+  currency: string
+  isAvailable?: boolean
+  isNew?: boolean
+  createdAt?: Date | string
+  updatedAt: Date | string
+  favorites?: Prisma.FavoriteCreateNestedManyWithoutProductInput
+  lastSeenProducts?: Prisma.LastSeenProductCreateNestedManyWithoutProductInput
+  brand: Prisma.BrandCreateNestedOneWithoutProductsInput
+  category: Prisma.CategoryCreateNestedOneWithoutProductsInput
+  productColors?: Prisma.ProductColorCreateNestedManyWithoutProductInput
+}
+
+export type ProductUncheckedCreateWithoutVariantsInput = {
+  id: string
+  title: string
+  slug: string
+  description: string
+  currency: string
+  isAvailable?: boolean
+  isNew?: boolean
+  brandId: string
+  categoryId: string
+  createdAt?: Date | string
+  updatedAt: Date | string
+  favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutProductInput
+  lastSeenProducts?: Prisma.LastSeenProductUncheckedCreateNestedManyWithoutProductInput
+  productColors?: Prisma.ProductColorUncheckedCreateNestedManyWithoutProductInput
+}
+
+export type ProductCreateOrConnectWithoutVariantsInput = {
+  where: Prisma.ProductWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductCreateWithoutVariantsInput, Prisma.ProductUncheckedCreateWithoutVariantsInput>
+}
+
+export type ProductUpsertWithoutVariantsInput = {
+  update: Prisma.XOR<Prisma.ProductUpdateWithoutVariantsInput, Prisma.ProductUncheckedUpdateWithoutVariantsInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutVariantsInput, Prisma.ProductUncheckedCreateWithoutVariantsInput>
+  where?: Prisma.ProductWhereInput
+}
+
+export type ProductUpdateToOneWithWhereWithoutVariantsInput = {
+  where?: Prisma.ProductWhereInput
+  data: Prisma.XOR<Prisma.ProductUpdateWithoutVariantsInput, Prisma.ProductUncheckedUpdateWithoutVariantsInput>
+}
+
+export type ProductUpdateWithoutVariantsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isNew?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  favorites?: Prisma.FavoriteUpdateManyWithoutProductNestedInput
+  lastSeenProducts?: Prisma.LastSeenProductUpdateManyWithoutProductNestedInput
+  brand?: Prisma.BrandUpdateOneRequiredWithoutProductsNestedInput
+  category?: Prisma.CategoryUpdateOneRequiredWithoutProductsNestedInput
+  productColors?: Prisma.ProductColorUpdateManyWithoutProductNestedInput
+}
+
+export type ProductUncheckedUpdateWithoutVariantsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isNew?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  brandId?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutProductNestedInput
+  lastSeenProducts?: Prisma.LastSeenProductUncheckedUpdateManyWithoutProductNestedInput
+  productColors?: Prisma.ProductColorUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductCreateManyBrandInput = {
@@ -1120,11 +1120,11 @@ export type ProductUpdateWithoutBrandInput = {
   isNew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Favorite?: Prisma.FavoriteUpdateManyWithoutProductNestedInput
-  LastSeenProduct?: Prisma.LastSeenProductUpdateManyWithoutProductNestedInput
-  Category?: Prisma.CategoryUpdateOneRequiredWithoutProductNestedInput
-  ProductColor?: Prisma.ProductColorUpdateManyWithoutProductNestedInput
-  Variant?: Prisma.VariantUpdateManyWithoutProductNestedInput
+  favorites?: Prisma.FavoriteUpdateManyWithoutProductNestedInput
+  lastSeenProducts?: Prisma.LastSeenProductUpdateManyWithoutProductNestedInput
+  category?: Prisma.CategoryUpdateOneRequiredWithoutProductsNestedInput
+  productColors?: Prisma.ProductColorUpdateManyWithoutProductNestedInput
+  variants?: Prisma.VariantUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutBrandInput = {
@@ -1138,10 +1138,10 @@ export type ProductUncheckedUpdateWithoutBrandInput = {
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Favorite?: Prisma.FavoriteUncheckedUpdateManyWithoutProductNestedInput
-  LastSeenProduct?: Prisma.LastSeenProductUncheckedUpdateManyWithoutProductNestedInput
-  ProductColor?: Prisma.ProductColorUncheckedUpdateManyWithoutProductNestedInput
-  Variant?: Prisma.VariantUncheckedUpdateManyWithoutProductNestedInput
+  favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutProductNestedInput
+  lastSeenProducts?: Prisma.LastSeenProductUncheckedUpdateManyWithoutProductNestedInput
+  productColors?: Prisma.ProductColorUncheckedUpdateManyWithoutProductNestedInput
+  variants?: Prisma.VariantUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateManyWithoutBrandInput = {
@@ -1180,11 +1180,11 @@ export type ProductUpdateWithoutCategoryInput = {
   isNew?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Favorite?: Prisma.FavoriteUpdateManyWithoutProductNestedInput
-  LastSeenProduct?: Prisma.LastSeenProductUpdateManyWithoutProductNestedInput
-  Brand?: Prisma.BrandUpdateOneRequiredWithoutProductNestedInput
-  ProductColor?: Prisma.ProductColorUpdateManyWithoutProductNestedInput
-  Variant?: Prisma.VariantUpdateManyWithoutProductNestedInput
+  favorites?: Prisma.FavoriteUpdateManyWithoutProductNestedInput
+  lastSeenProducts?: Prisma.LastSeenProductUpdateManyWithoutProductNestedInput
+  brand?: Prisma.BrandUpdateOneRequiredWithoutProductsNestedInput
+  productColors?: Prisma.ProductColorUpdateManyWithoutProductNestedInput
+  variants?: Prisma.VariantUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutCategoryInput = {
@@ -1198,10 +1198,10 @@ export type ProductUncheckedUpdateWithoutCategoryInput = {
   brandId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Favorite?: Prisma.FavoriteUncheckedUpdateManyWithoutProductNestedInput
-  LastSeenProduct?: Prisma.LastSeenProductUncheckedUpdateManyWithoutProductNestedInput
-  ProductColor?: Prisma.ProductColorUncheckedUpdateManyWithoutProductNestedInput
-  Variant?: Prisma.VariantUncheckedUpdateManyWithoutProductNestedInput
+  favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutProductNestedInput
+  lastSeenProducts?: Prisma.LastSeenProductUncheckedUpdateManyWithoutProductNestedInput
+  productColors?: Prisma.ProductColorUncheckedUpdateManyWithoutProductNestedInput
+  variants?: Prisma.VariantUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateManyWithoutCategoryInput = {
@@ -1223,17 +1223,17 @@ export type ProductUncheckedUpdateManyWithoutCategoryInput = {
  */
 
 export type ProductCountOutputType = {
-  Favorite: number
-  LastSeenProduct: number
-  ProductColor: number
-  Variant: number
+  favorites: number
+  lastSeenProducts: number
+  productColors: number
+  variants: number
 }
 
 export type ProductCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Favorite?: boolean | ProductCountOutputTypeCountFavoriteArgs
-  LastSeenProduct?: boolean | ProductCountOutputTypeCountLastSeenProductArgs
-  ProductColor?: boolean | ProductCountOutputTypeCountProductColorArgs
-  Variant?: boolean | ProductCountOutputTypeCountVariantArgs
+  favorites?: boolean | ProductCountOutputTypeCountFavoritesArgs
+  lastSeenProducts?: boolean | ProductCountOutputTypeCountLastSeenProductsArgs
+  productColors?: boolean | ProductCountOutputTypeCountProductColorsArgs
+  variants?: boolean | ProductCountOutputTypeCountVariantsArgs
 }
 
 /**
@@ -1249,28 +1249,28 @@ export type ProductCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
 /**
  * ProductCountOutputType without action
  */
-export type ProductCountOutputTypeCountFavoriteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ProductCountOutputTypeCountFavoritesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.FavoriteWhereInput
 }
 
 /**
  * ProductCountOutputType without action
  */
-export type ProductCountOutputTypeCountLastSeenProductArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ProductCountOutputTypeCountLastSeenProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.LastSeenProductWhereInput
 }
 
 /**
  * ProductCountOutputType without action
  */
-export type ProductCountOutputTypeCountProductColorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ProductCountOutputTypeCountProductColorsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ProductColorWhereInput
 }
 
 /**
  * ProductCountOutputType without action
  */
-export type ProductCountOutputTypeCountVariantArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ProductCountOutputTypeCountVariantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.VariantWhereInput
 }
 
@@ -1287,12 +1287,12 @@ export type ProductSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   categoryId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  Favorite?: boolean | Prisma.Product$FavoriteArgs<ExtArgs>
-  LastSeenProduct?: boolean | Prisma.Product$LastSeenProductArgs<ExtArgs>
-  Brand?: boolean | Prisma.BrandDefaultArgs<ExtArgs>
-  Category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
-  ProductColor?: boolean | Prisma.Product$ProductColorArgs<ExtArgs>
-  Variant?: boolean | Prisma.Product$VariantArgs<ExtArgs>
+  favorites?: boolean | Prisma.Product$favoritesArgs<ExtArgs>
+  lastSeenProducts?: boolean | Prisma.Product$lastSeenProductsArgs<ExtArgs>
+  brand?: boolean | Prisma.BrandDefaultArgs<ExtArgs>
+  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
+  productColors?: boolean | Prisma.Product$productColorsArgs<ExtArgs>
+  variants?: boolean | Prisma.Product$variantsArgs<ExtArgs>
   _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["product"]>
 
@@ -1308,8 +1308,8 @@ export type ProductSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   categoryId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  Brand?: boolean | Prisma.BrandDefaultArgs<ExtArgs>
-  Category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
+  brand?: boolean | Prisma.BrandDefaultArgs<ExtArgs>
+  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["product"]>
 
 export type ProductSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1324,8 +1324,8 @@ export type ProductSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   categoryId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  Brand?: boolean | Prisma.BrandDefaultArgs<ExtArgs>
-  Category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
+  brand?: boolean | Prisma.BrandDefaultArgs<ExtArgs>
+  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["product"]>
 
 export type ProductSelectScalar = {
@@ -1344,32 +1344,32 @@ export type ProductSelectScalar = {
 
 export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "slug" | "description" | "currency" | "isAvailable" | "isNew" | "brandId" | "categoryId" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
 export type ProductInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Favorite?: boolean | Prisma.Product$FavoriteArgs<ExtArgs>
-  LastSeenProduct?: boolean | Prisma.Product$LastSeenProductArgs<ExtArgs>
-  Brand?: boolean | Prisma.BrandDefaultArgs<ExtArgs>
-  Category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
-  ProductColor?: boolean | Prisma.Product$ProductColorArgs<ExtArgs>
-  Variant?: boolean | Prisma.Product$VariantArgs<ExtArgs>
+  favorites?: boolean | Prisma.Product$favoritesArgs<ExtArgs>
+  lastSeenProducts?: boolean | Prisma.Product$lastSeenProductsArgs<ExtArgs>
+  brand?: boolean | Prisma.BrandDefaultArgs<ExtArgs>
+  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
+  productColors?: boolean | Prisma.Product$productColorsArgs<ExtArgs>
+  variants?: boolean | Prisma.Product$variantsArgs<ExtArgs>
   _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProductIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Brand?: boolean | Prisma.BrandDefaultArgs<ExtArgs>
-  Category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
+  brand?: boolean | Prisma.BrandDefaultArgs<ExtArgs>
+  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
 }
 export type ProductIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Brand?: boolean | Prisma.BrandDefaultArgs<ExtArgs>
-  Category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
+  brand?: boolean | Prisma.BrandDefaultArgs<ExtArgs>
+  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
 }
 
 export type $ProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Product"
   objects: {
-    Favorite: Prisma.$FavoritePayload<ExtArgs>[]
-    LastSeenProduct: Prisma.$LastSeenProductPayload<ExtArgs>[]
-    Brand: Prisma.$BrandPayload<ExtArgs>
-    Category: Prisma.$CategoryPayload<ExtArgs>
-    ProductColor: Prisma.$ProductColorPayload<ExtArgs>[]
-    Variant: Prisma.$VariantPayload<ExtArgs>[]
+    favorites: Prisma.$FavoritePayload<ExtArgs>[]
+    lastSeenProducts: Prisma.$LastSeenProductPayload<ExtArgs>[]
+    brand: Prisma.$BrandPayload<ExtArgs>
+    category: Prisma.$CategoryPayload<ExtArgs>
+    productColors: Prisma.$ProductColorPayload<ExtArgs>[]
+    variants: Prisma.$VariantPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1777,12 +1777,12 @@ readonly fields: ProductFieldRefs;
  */
 export interface Prisma__ProductClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  Favorite<T extends Prisma.Product$FavoriteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$FavoriteArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  LastSeenProduct<T extends Prisma.Product$LastSeenProductArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$LastSeenProductArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LastSeenProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  Brand<T extends Prisma.BrandDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BrandDefaultArgs<ExtArgs>>): Prisma.Prisma__BrandClient<runtime.Types.Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  Category<T extends Prisma.CategoryDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CategoryDefaultArgs<ExtArgs>>): Prisma.Prisma__CategoryClient<runtime.Types.Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  ProductColor<T extends Prisma.Product$ProductColorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$ProductColorArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductColorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  Variant<T extends Prisma.Product$VariantArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$VariantArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VariantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  favorites<T extends Prisma.Product$favoritesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$favoritesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  lastSeenProducts<T extends Prisma.Product$lastSeenProductsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$lastSeenProductsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LastSeenProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  brand<T extends Prisma.BrandDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BrandDefaultArgs<ExtArgs>>): Prisma.Prisma__BrandClient<runtime.Types.Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  category<T extends Prisma.CategoryDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CategoryDefaultArgs<ExtArgs>>): Prisma.Prisma__CategoryClient<runtime.Types.Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  productColors<T extends Prisma.Product$productColorsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$productColorsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductColorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  variants<T extends Prisma.Product$variantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$variantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VariantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2224,9 +2224,9 @@ export type ProductDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Product.Favorite
+ * Product.favorites
  */
-export type Product$FavoriteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Product$favoritesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Favorite
    */
@@ -2248,9 +2248,9 @@ export type Product$FavoriteArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
- * Product.LastSeenProduct
+ * Product.lastSeenProducts
  */
-export type Product$LastSeenProductArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Product$lastSeenProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the LastSeenProduct
    */
@@ -2272,9 +2272,9 @@ export type Product$LastSeenProductArgs<ExtArgs extends runtime.Types.Extensions
 }
 
 /**
- * Product.ProductColor
+ * Product.productColors
  */
-export type Product$ProductColorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Product$productColorsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the ProductColor
    */
@@ -2296,9 +2296,9 @@ export type Product$ProductColorArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
- * Product.Variant
+ * Product.variants
  */
-export type Product$VariantArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Product$variantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Variant
    */
