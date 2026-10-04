@@ -46,4 +46,6 @@ export interface DataTableProps<T> {
   selectedIds: Record<string, true>;
   onToggleRow: (id: string) => void;
   toggleAll: (rowIds: string[]) => void;
+
+  pageCell?: boolean;
 }

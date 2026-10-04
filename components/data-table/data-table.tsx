@@ -30,6 +30,7 @@ export default function DataTable<T>({
   selectedIds,
   toggleAll,
   onToggleRow,
+  pageCell = true,
 }: DataTableProps<T>) {
   const [selectedCell, setSelectedCell] = useState<string | null>(null);
   const [pressedCtrl, setPressedCtrl] = useState<boolean>(false);
@@ -54,10 +55,13 @@ export default function DataTable<T>({
     ),
   );
 
-  const tableWidth =
-    40 +
-    80 +
-    Object.values(columnWidths).reduce((sum, width) => sum + width, 0);
+  const defaultTableWidth = Object.values(columnWidths).reduce(
+    (sum, width) => sum + width,
+    0,
+  );
+  let tableWidth = pageCell
+    ? 40 + 80 + defaultTableWidth
+    : 40 + defaultTableWidth;
 
   const tableScrollRef = useRef<HTMLDivElement>(null);
   const horizontalScrollRef = useRef<HTMLDivElement>(null);
@@ -200,7 +204,7 @@ export default function DataTable<T>({
         >
           <colgroup>
             <col style={{ width: "40px" }} />
-            <col style={{ width: "60px" }} />
+            {pageCell && <col style={{ width: "60px" }} />}
 
             {columns.map((column) => (
               <col
@@ -219,10 +223,12 @@ export default function DataTable<T>({
                 indeterminate={someSelected}
                 onSelect={() => toggleAll(rowIds)}
               />
-              <LinkHead
-                label="page"
-                className="uppercase bold font-mono text-[12px] text-[#99A1AF] leading-[100%] text-center"
-              />
+              {pageCell && (
+                <LinkHead
+                  label="page"
+                  className="uppercase bold font-mono text-[12px] text-[#99A1AF] leading-[100%] text-center"
+                />
+              )}
 
               {columns.map((column) => (
                 <TableHead
@@ -280,7 +286,7 @@ export default function DataTable<T>({
                     checked={selectedIds[rowId] === true}
                     onSelect={() => onToggleRow(rowId)}
                   />
-                  <LinkCell href={`/${rowId}`} />
+                  {pageCell && <LinkCell href={`/${rowId}`} />}
 
                   {columns.map((column) => {
                     const value = getColumnValue(column, row);
