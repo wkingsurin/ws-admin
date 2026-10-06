@@ -3,7 +3,7 @@
 import DashboardTable from "@/components/dashboard/dashboard-table";
 import OrdersTable from "@/features/orders/components/table";
 import OrdersToolbar from "@/features/orders/components/toolbar";
-import { IOrder } from "@/features/orders/types";
+import { IOrder } from "@/features/orders/types/types";
 
 export default function OrdersClient({ data }: { data: IOrder[] }) {
   return (

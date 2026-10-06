@@ -1,6 +1,6 @@
+import { getOrders } from "@/features/orders/get-orders";
 import OrdersClient from "./client";
-import { mapOrder } from "./map-order";
-import { getOrders } from "./get-orders";
+import { mapOrder } from "@/features/orders/map-order";
 
 export default async function OrdersPage() {
   const orders = await getOrders();

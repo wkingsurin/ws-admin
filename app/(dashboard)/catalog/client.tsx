@@ -1,7 +1,7 @@
 import DashboardTable from "@/components/dashboard/dashboard-table";
 import ProductsTable from "@/features/products/components/table";
 import ProductsToolbar from "@/features/products/components/toolbar";
-import { IProduct } from "@/features/products/types";
+import { IProduct } from "@/features/products/types/types";
 
 export default function CatalogClient({ data }: { data: IProduct[] }) {
   return (

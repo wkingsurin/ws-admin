@@ -1,5 +1,5 @@
-import { IProduct } from "@/features/products/types";
-import { ProductWithRelations } from "./types";
+import { IProduct } from "@/features/products/types/types";
+import { ProductWithRelations } from "./types/prisma-types";
 
 export const mapProduct = (product: ProductWithRelations): IProduct => {
   const colors = product.productColors.map((color) => ({

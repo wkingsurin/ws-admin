@@ -3,7 +3,7 @@
 import DataTable from "@/components/data-table/data-table";
 import { useTableStore } from "@/lib/store/table.store";
 import { CART_COLUMNS } from "../../constants";
-import { ICartItem } from "../../types";
+import { ICartItem } from "../../types/types";
 
 export default function CartItemsTable({ data }: { data: ICartItem[] }) {
   const selectedIds = useTableStore((s) => s.selectedIds);

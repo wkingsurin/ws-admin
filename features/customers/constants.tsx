@@ -1,5 +1,5 @@
 import { DataTableColumn } from "@/components/data-table/types";
-import { ICartItem, IFavorite, IUser } from "./types";
+import { ICartItem, IFavorite, IUser } from "./types/types";
 import CellImage from "@/components/data-table/cell-image";
 import CellSelector from "@/components/data-table/cell-selector";
 

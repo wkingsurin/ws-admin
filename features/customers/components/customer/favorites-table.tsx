@@ -3,7 +3,7 @@
 import DataTable from "@/components/data-table/data-table";
 import { useTableStore } from "@/lib/store/table.store";
 import { FAVORITE_COLUMNS } from "../../constants";
-import { IFavorite } from "../../types";
+import { IFavorite } from "../../types/types";
 
 export default function FavoritesTable({ data }: { data: IFavorite[] }) {
   const selectedIds = useTableStore((s) => s.selectedIds);

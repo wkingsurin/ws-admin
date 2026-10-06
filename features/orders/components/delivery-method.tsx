@@ -6,7 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { DeliveryMethod as Method } from "../types";
+import { DeliveryMethod as Method } from "../types/types";
 
 interface PaymentMethodProps {
   method: Method;

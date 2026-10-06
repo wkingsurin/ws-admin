@@ -1,12 +1,12 @@
 import DashboardTable from "@/components/dashboard/dashboard-table";
 import Toolbar from "./toolbar/toolbar";
 import VariantsTable from "@/features/products/components/variants/table";
-import { DetailRow } from "../../orders/[id]/types";
 import ImageCard from "./details/image-card";
 import ProductToolbar from "@/features/products/components/variants/toolbar";
-import { getProductById } from "./get-product";
 import { notFound } from "next/navigation";
-import { mapProduct } from "./map-product";
+import { DetailRow } from "../../orders/[id]/types";
+import { getProductById } from "@/features/products/get-product";
+import { mapProduct } from "@/features/products/map-product";
 
 type ProductDetails = DetailRow[];
 

@@ -3,10 +3,10 @@ import Toolbar from "./toolbar/toolbar";
 import OrderItemsTable from "@/features/orders/components/details/table";
 import DashboardTable from "@/components/dashboard/dashboard-table";
 import OrderToolbar from "@/features/orders/components/details/toolbar";
-import { getOrderById } from "./get-order";
 import { notFound } from "next/navigation";
-import mapOrder from "./map-order";
 import { DetailRow } from "./types";
+import { mapOrder } from "@/features/orders/map-order";
+import { getOrderById } from "@/features/orders/get-order";
 
 type OrderDetails = {
   order: DetailRow[];

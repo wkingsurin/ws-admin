@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { ProductWithRelations } from "./types";
+import { ProductWithRelations } from "./types/prisma-types";
 
 export async function getProducts(): Promise<ProductWithRelations[]> {
   return prisma.product.findMany({

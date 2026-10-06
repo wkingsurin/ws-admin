@@ -1,4 +1,4 @@
-import { CartItemWithRelations } from "./types";
+import { CartItemWithRelations } from "./types/prisma-types";
 
 export default function mapCartItem(cartItem: CartItemWithRelations) {
   return {

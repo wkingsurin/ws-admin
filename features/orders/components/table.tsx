@@ -3,7 +3,7 @@
 import DataTable from "@/components/data-table/data-table";
 import { ORDER_COLUMNS } from "../constants/constants";
 import { useTableStore } from "@/lib/store/table.store";
-import { IOrder } from "../types";
+import { IOrder } from "../types/types";
 
 export default function OrdersTable({ data }: { data: IOrder[] }) {
   const selectedIds = useTableStore((s) => s.selectedIds);

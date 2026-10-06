@@ -1,6 +1,6 @@
+import { getProducts } from "@/features/products/get-products";
 import CatalogClient from "./client";
-import { getProducts } from "./get-products";
-import { mapProduct } from "./map-product";
+import { mapProduct } from "@/features/products/map-product";
 
 export default async function CatalogPage() {
   const products = await getProducts();

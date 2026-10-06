@@ -1,4 +1,4 @@
-import { DeliveryMethod } from "../types";
+import { DeliveryMethod } from "../types/types";
 
 export const DELIVERY_METHODS: Record<
   DeliveryMethod,

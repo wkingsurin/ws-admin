@@ -1,4 +1,4 @@
-import { PaymentMethod } from "../types";
+import { PaymentMethod } from "../types/types";
 
 export const PAYMENT_METHODS: Record<
   PaymentMethod,

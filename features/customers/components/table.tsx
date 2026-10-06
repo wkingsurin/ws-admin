@@ -3,7 +3,7 @@
 import DataTable from "@/components/data-table/data-table";
 import { useTableStore } from "@/lib/store/table.store";
 import { CUSTOMER_COLUMNS } from "../constants";
-import { IUser } from "../types";
+import { IUser } from "../types/types";
 
 export default function CustomersTable({ data }: { data: IUser[] }) {
   const selectedIds = useTableStore((s) => s.selectedIds);

@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation";
-import { DetailRow } from "../../orders/[id]/types";
-import { getCustomerById } from "./get-customer";
-import { mapCustomer } from "./map-customer";
 import CustomerClientPage from "./client";
-import { getCartByUserId } from "./get-cart";
-import { getFavoritesByUserId } from "./get-favorites";
-import mapCartItem from "./map-cartItem";
+import { getCustomerById } from "@/features/customers/get-customer";
+import { getCartByUserId } from "@/features/customers/get-cart";
+import { getFavoritesByUserId } from "@/features/customers/get-favorites";
+import { mapCustomer } from "@/features/customers/map-customer";
+import mapCartItem from "@/features/customers/map-cartItem";
+import { DetailRow } from "../../orders/[id]/types";
 
 type CustomerDetails = {
   order: DetailRow[];
@@ -33,12 +33,8 @@ export default async function CustomerPage({
   }
 
   const mappedCustomer = mapCustomer(customer);
-  console.log(`[mappedCustomer]:`, mappedCustomer);
 
   const mappedCartItems = customerCart?.items.map(mapCartItem);
-  console.log(`[cart]:`, customerCart);
-  console.log(`[customerCart.items]:`, mappedCartItems);
-  console.log(`[customerFavorites]:`, customerFavorites);
 
   // const mappedCart = mapCart(cart);
 

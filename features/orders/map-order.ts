@@ -1,7 +1,7 @@
-import { IOrder } from "@/features/orders/types";
-import { OrderWithRelations } from "../types";
+import { IOrder } from "@/features/orders/types/types";
+import { OrderWithRelations } from "./types/prisma-types";
 
-export default function mapOrder(order: OrderWithRelations): IOrder {
+export function mapOrder(order: OrderWithRelations): IOrder {
   return {
     id: order.id,
     orderNumber: order.orderNumber,

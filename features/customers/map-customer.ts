@@ -1,5 +1,5 @@
-import { UserWithRelations } from "../types";
-import { IUser } from "@/features/customers/types";
+import { IUser } from "@/features/customers/types/types";
+import { UserWithRelations } from "./types/prisma-types";
 
 export const mapCustomer = (user: UserWithRelations): IUser => {
   return {

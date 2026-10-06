@@ -1,5 +1,5 @@
 import { DataTableColumn } from "@/components/data-table/types";
-import { IOrder, IOrderItem } from "../types";
+import { IOrder, IOrderItem } from "../types/types";
 import PaymentMethod from "../components/payment-method";
 import DeliveryMethod from "../components/delivery-method";
 import PaymentStatus from "../components/payment-status";

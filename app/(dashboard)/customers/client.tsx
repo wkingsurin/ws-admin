@@ -1,7 +1,7 @@
 import DashboardTable from "@/components/dashboard/dashboard-table";
 import CustomersTable from "@/features/customers/components/table";
 import CustomersToolbar from "@/features/customers/components/toolbar";
-import { IUser } from "@/features/customers/types";
+import { IUser } from "@/features/customers/types/types";
 
 export default function CustomersClient({ data }: { data: IUser[] }) {
   return (
