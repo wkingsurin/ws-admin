@@ -75,6 +75,15 @@ export default function Cell({
                   cancelEditing();
                   return;
                 }
+
+                if (event.key !== "Enter") return;
+
+                if (event.shiftKey || event.metaKey) {
+                  return;
+                }
+
+                event.preventDefault();
+                saveEditing();
               }}
               maxLength={maxSymbols}
               autoFocus
