@@ -296,7 +296,6 @@ export default function DataTable<T>({
                         key={column.id}
                         editValue={value == null ? "" : String(value)}
                         className={column.className}
-                        isCellActive={isCellActive(rowId, column.id)}
                         handleCellClick={() =>
                           handleCellClick(rowId, column.id)
                         }

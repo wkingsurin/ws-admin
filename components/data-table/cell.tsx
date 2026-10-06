@@ -10,7 +10,6 @@ interface CellProps {
   editValue?: string;
   className?: string;
 
-  isCellActive: boolean;
   hovered: boolean;
   editable: boolean;
   maxSymbols?: number;
@@ -22,7 +21,6 @@ export default function Cell({
   children,
   className = "p-2",
   editValue,
-  isCellActive,
   hovered,
   editable,
   handleCellClick,
