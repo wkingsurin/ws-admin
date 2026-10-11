@@ -21,7 +21,6 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     minWidth: 100,
     maxWidth: 300,
     render: (product) => product.brand.name,
-    editable: true,
   },
   {
     id: "category",
@@ -31,7 +30,6 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     minWidth: 100,
     maxWidth: 300,
     render: (product) => product.category.name,
-    editable: true,
   },
   {
     id: "title",

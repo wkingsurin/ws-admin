@@ -4,6 +4,7 @@ import DataTable from "@/components/data-table/data-table";
 import { ProductColumns } from "../constants";
 import { useTableStore } from "@/lib/store/table.store";
 import { IProduct } from "../types/types";
+import { updateData } from "@/features/customers/update-data";
 
 export default function ProductsTable({ data }: { data: IProduct[] }) {
   const selectedIds = useTableStore((s) => s.selectedIds);
@@ -11,11 +12,41 @@ export default function ProductsTable({ data }: { data: IProduct[] }) {
   const toggleRow = useTableStore((s) => s.toggleRow);
   const toggleAll = useTableStore((s) => s.toggleAll);
 
+  const columns = ProductColumns.map((column) => {
+    if (column.id === "title") {
+      return {
+        ...column,
+        onSave: async (product: IProduct, value: string) => {
+          await updateData({
+            entity: "PRODUCT",
+            id: product.id,
+            data: { title: value },
+          });
+        },
+      };
+    }
+
+    if (column.id === "description") {
+      return {
+        ...column,
+        onSave: async (product: IProduct, value: string) => {
+          await updateData({
+            entity: "PRODUCT",
+            id: product.id,
+            data: { description: value },
+          });
+        },
+      };
+    }
+
+    return column;
+  });
+
   return (
     <div className="min-w-0 h-full">
       <DataTable
         data={data}
-        columns={ProductColumns}
+        columns={columns}
         getRowId={(order) => order.id}
         selectedIds={selectedIds}
         onToggleRow={toggleRow}

@@ -36,6 +36,8 @@ export interface DataTableColumn<T> {
   filter?: DataTableFilter;
 
   className?: string;
+
+  onSave?: (row: T, value: string) => void;
 }
 
 export interface DataTableProps<T> {

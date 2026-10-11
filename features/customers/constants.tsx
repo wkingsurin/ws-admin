@@ -206,7 +206,6 @@ export const CART_COLUMNS: DataTableColumn<ICartItem>[] = [
     initialWidth: 100,
     minWidth: 100,
     maxWidth: 300,
-    editable: true,
   },
   {
     id: "categoryName",
@@ -215,7 +214,6 @@ export const CART_COLUMNS: DataTableColumn<ICartItem>[] = [
     initialWidth: 120,
     minWidth: 120,
     maxWidth: 300,
-    editable: true,
   },
   {
     id: "title",
@@ -224,7 +222,6 @@ export const CART_COLUMNS: DataTableColumn<ICartItem>[] = [
     initialWidth: 220,
     minWidth: 150,
     maxWidth: 300,
-    editable: true,
   },
   {
     id: "selectedColor",
@@ -270,7 +267,6 @@ export const CART_COLUMNS: DataTableColumn<ICartItem>[] = [
     initialWidth: 100,
     minWidth: 100,
     maxWidth: 300,
-    editable: true,
   },
   {
     id: "oldPrice",
@@ -279,7 +275,6 @@ export const CART_COLUMNS: DataTableColumn<ICartItem>[] = [
     initialWidth: 100,
     minWidth: 100,
     maxWidth: 300,
-    editable: true,
   },
   {
     id: "quantity",
@@ -297,7 +292,6 @@ export const CART_COLUMNS: DataTableColumn<ICartItem>[] = [
     initialWidth: 100,
     minWidth: 100,
     maxWidth: 300,
-    editable: true,
   },
   {
     id: "createdAt",

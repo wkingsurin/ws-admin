@@ -31,7 +31,6 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     minWidth: 120,
     maxWidth: 300,
     render: (order) => order.customer.name,
-    editable: true,
   },
   {
     id: "customerEmail",

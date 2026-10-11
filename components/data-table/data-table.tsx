@@ -300,6 +300,7 @@ export default function DataTable<T>({
                           handleCellClick(rowId, column.id)
                         }
                         hovered={pressedCtrl}
+                        onSave={(value) => column.onSave?.(row, value)}
                         editable={column.editable ?? false}
                         maxSymbols={column.maxSymbols}
                       >
