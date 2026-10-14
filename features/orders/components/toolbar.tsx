@@ -2,8 +2,7 @@
 
 import Toolbar from "@/components/toolbar/toolbar";
 import { Tool } from "@/components/toolbar/types";
-import { Plus, Trash2 } from "lucide-react";
-import CreateOrderDialog from "./create-order-dialog";
+import { Trash2 } from "lucide-react";
 import DeleteOrderDialog from "./delete-order-dialog";
 import { useTableStore } from "@/lib/store/table.store";
 
@@ -12,14 +11,7 @@ export default function OrdersToolbar() {
     (s) => Object.keys(s.selectedIds).length > 0,
   );
 
-  const services: Tool[] = [
-    {
-      label: "Add row",
-      icon: Plus,
-      dialog: <CreateOrderDialog />,
-      onClick: () => console.log("Order created"),
-    },
-  ];
+  const services: Tool[] = [];
   const tools: Tool[] = [
     {
       label: "Delete row",

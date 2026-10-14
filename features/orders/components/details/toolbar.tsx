@@ -2,8 +2,7 @@
 
 import Toolbar from "@/components/toolbar/toolbar";
 import { Tool } from "@/components/toolbar/types";
-import { Plus, Trash2 } from "lucide-react";
-import AddVariantDialog from "./add-product-dialog";
+import { Trash2 } from "lucide-react";
 import DeleteVariantDialog from "./delete-product-dialog";
 import { useTableStore } from "@/lib/store/table.store";
 
@@ -12,14 +11,7 @@ export default function OrderToolbar() {
     (s) => Object.keys(s.selectedIds).length > 0,
   );
 
-  const services: Tool[] = [
-    {
-      label: "Add row",
-      icon: Plus,
-      dialog: <AddVariantDialog />,
-      onClick: () => console.log("Variant added"),
-    },
-  ];
+  const services: Tool[] = [];
   const tools: Tool[] = [
     {
       label: "Delete row",
