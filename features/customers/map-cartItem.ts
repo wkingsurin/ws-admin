@@ -1,6 +1,6 @@
-import { CartItemWithRelations } from "./types/prisma-types";
+import { CartItemWithAvailableOptions } from "./types/prisma-types";
 
-export default function mapCartItem(cartItem: CartItemWithRelations) {
+export default function mapCartItem(cartItem: CartItemWithAvailableOptions) {
   return {
     id: cartItem.id,
     cartItemId: cartItem.id,
@@ -24,5 +24,17 @@ export default function mapCartItem(cartItem: CartItemWithRelations) {
     currency: cartItem.variant.product.currency,
 
     createdAt: cartItem.createdAt,
+
+    availableColors: cartItem.variant.product.productColors.map((color) => ({
+      label: color.name,
+      value: color.name,
+    })),
+    availableSizes: [
+      ...new Set(
+        cartItem.variant.product.variants.map((variant) => variant.size),
+      ),
+    ]
+      .sort()
+      .map((size) => ({ label: size, value: size })),
   };
 }

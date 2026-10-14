@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   Table,
   TableBody,
+  TableCell,
   TableHead,
   TableHeader,
   TableRow,
@@ -241,6 +242,7 @@ export default function DataTable<T>({
                     </span>
                     <ColumnActions
                       column={column}
+                      data={data}
                       selectedFilters={columnFilters[column.id] ?? []}
                       onFilterChange={(value, checked) => {
                         setColumnFilters((prev) => {
@@ -290,6 +292,21 @@ export default function DataTable<T>({
 
                   {columns.map((column) => {
                     const value = getColumnValue(column, row);
+
+                    if (column.editor === "custom") {
+                      return (
+                        <TableCell
+                          key={column.id}
+                          className={column.className}
+                          onClick={() => handleCellClick(rowId, column.id)}
+                        >
+                          {column.render?.(row, {
+                            onSave: (value: string) =>
+                              column.onSave?.(row, value),
+                          })}
+                        </TableCell>
+                      );
+                    }
 
                     return (
                       <Cell

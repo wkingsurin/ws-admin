@@ -9,18 +9,23 @@ import {
 
 interface ProductConditionProps {
   isNew: boolean;
+  onChange?: (value: boolean) => void;
 }
 
-export default function ProductCondition({ isNew }: ProductConditionProps) {
+export default function ProductCondition({
+  isNew,
+  onChange,
+}: ProductConditionProps) {
   const items = [
-    { label: "true", value: "New" },
-    { label: "false", value: "Not new" },
+    { label: "New", value: "true" },
+    { label: "Not new", value: "false" },
   ];
 
   return (
     <Select
       items={items}
-      defaultValue={isNew ? items[0].value : items[1].value}
+      value={String(isNew)}
+      onValueChange={(value) => onChange?.(value === "true")}
     >
       <SelectTrigger className="w-full items-center justify-between rounded-sm border-[0.5px] bg-white focus-visible:border-none shadow-none px-2">
         <SelectValue />

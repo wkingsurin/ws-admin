@@ -9,18 +9,23 @@ import {
 
 interface PaymentStatusProps {
   isPaid: boolean;
+  onChange?: (value: boolean) => void;
 }
 
-export default function PaymentStatus({ isPaid }: PaymentStatusProps) {
+export default function PaymentStatus({
+  isPaid,
+  onChange,
+}: PaymentStatusProps) {
   const items = [
-    { label: "Paid", value: "Paid" },
-    { label: "Unpaid", value: "Unpaid" },
+    { label: "PAID", value: "true" },
+    { label: "UNPAID", value: "false" },
   ];
 
   return (
     <Select
       items={items}
-      defaultValue={isPaid ? items[0].label : items[1].label}
+      value={String(isPaid)}
+      onValueChange={(value) => onChange?.(value === "true")}
     >
       <SelectTrigger className="w-full items-center justify-between rounded-sm border-[0.5px] bg-white focus-visible:border-none shadow-none px-2">
         <SelectValue />

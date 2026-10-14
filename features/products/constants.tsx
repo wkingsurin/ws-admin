@@ -1,8 +1,9 @@
 import { DataTableColumn } from "@/components/data-table/types";
-import { IProduct, IVariant } from "./types/types";
+import { IProduct } from "./types/types";
 import ProductAvailability from "./components/product-availability";
 import ProductCondition from "./components/product-condition";
 import CellSelector from "@/components/data-table/cell-selector";
+import { IVariantRow } from "./components/variants/types";
 
 export const ProductColumns: DataTableColumn<IProduct>[] = [
   {
@@ -66,16 +67,21 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     initialWidth: 130,
     minWidth: 100,
     maxWidth: 300,
-    render: (product) => (
-      <ProductAvailability isAvailable={product.isAvailable} />
+    render: (product, { onSave } = { onSave: () => {} }) => (
+      <ProductAvailability
+        isAvailable={product.isAvailable}
+        onChange={(value) => onSave(String(value))}
+      />
     ),
     filter: {
       type: "checkbox",
       options: [
-        { label: "true", value: "true" },
-        { label: "false", value: "false" },
+        { label: "Available", value: "true" },
+        { label: "Not availbl", value: "false" },
       ],
     },
+    editor: "custom",
+    className: "px-2",
   },
   {
     id: "isNew",
@@ -84,53 +90,25 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     initialWidth: 160,
     minWidth: 120,
     maxWidth: 300,
-    render: (product) => <ProductCondition isNew={product.isNew ?? false} />,
+    render: (product, { onSave } = { onSave: () => {} }) => (
+      <ProductCondition
+        isNew={product.isNew ?? false}
+        onChange={(value) => onSave(String(value))}
+      />
+    ),
     filter: {
       type: "checkbox",
       options: [
-        { label: "true", value: "true" },
-        { label: "false", value: "false" },
+        { label: "New", value: "true" },
+        { label: "Not new", value: "false" },
       ],
     },
+    editor: "custom",
+    className: "px-2",
   },
 ];
 
-export const Products: IProduct[] = [
-  {
-    id: "cms0ifi5c0007m4ua5fuim1hz",
-    title: "Under Armour Hoodie",
-    slug: "under-armour-hoodie",
-    description: "Under Armour Hoodie",
-    currency: "USD",
-
-    brand: { name: "Under Armour", slug: "under-armour" },
-
-    category: { name: "Hoodie", slug: "hoodie" },
-
-    isAvailable: true,
-    isNew: false,
-
-    options: {
-      color: [
-        { id: "", name: "White", slug: "", images: [{ id: "", src: "" }] },
-      ],
-      size: [{ value: "" }],
-    },
-
-    variants: [
-      {
-        id: "",
-        sku: "",
-        price: 7790,
-        oldPrice: null,
-        stock: 7,
-        attributes: { colorId: "", size: "" },
-      },
-    ],
-  },
-];
-
-export const VARIANT_COLUMNS: DataTableColumn<IVariant>[] = [
+export const VARIANT_COLUMNS: DataTableColumn<IVariantRow>[] = [
   {
     id: "id",
     header: "id",
@@ -159,22 +137,35 @@ export const VARIANT_COLUMNS: DataTableColumn<IVariant>[] = [
   {
     id: "size",
     header: "size",
-    accessorKey: "id",
+    accessor: (variant) => variant.attributes.size,
     initialWidth: 160,
     minWidth: 160,
     maxWidth: 160,
-    render: (variant) => (
+    render: (variant, { onSave } = { onSave: () => {} }) => (
       <CellSelector
-        initialValue={{
-          label: variant.attributes.size,
-          value: variant.attributes.size,
-        }}
+        value={variant.attributes.size}
+        options={variant.availableSizes.map((size) => ({
+          label: size,
+          value: size,
+        }))}
+        onChange={onSave}
       />
     ),
     filter: {
       type: "checkbox",
-      options: [{ label: "One-size", value: "One-size" }],
+      options: (data: IVariantRow[]) => {
+        const sizes = [
+          ...new Set(data.flatMap((variant) => variant.availableSizes)),
+        ].sort();
+
+        return sizes.map((size) => ({
+          label: size,
+          value: size,
+        }));
+      },
     },
+    editor: "custom",
+    className: "px-2",
   },
   {
     id: "price",
@@ -205,16 +196,5 @@ export const VARIANT_COLUMNS: DataTableColumn<IVariant>[] = [
     maxWidth: 300,
     editable: true,
     render: (variant) => variant.stock,
-  },
-];
-
-export const VAIRANTS_DATA: IVariant[] = [
-  {
-    id: "cms0hvp9e001i3wuai8r976pj",
-    sku: "CAP-BS-BLK-One-size",
-    price: 7790,
-    oldPrice: 9790,
-    stock: 1,
-    attributes: { colorId: "cms0hvnn4000m3wua4ry2omfg", size: "One-size" },
   },
 ];

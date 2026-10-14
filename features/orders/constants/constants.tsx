@@ -1,10 +1,9 @@
 import { DataTableColumn } from "@/components/data-table/types";
 import { IOrder, IOrderItem } from "../types/types";
-import PaymentMethod from "../components/payment-method";
 import DeliveryMethod from "../components/delivery-method";
 import PaymentStatus from "../components/payment-status";
 import CellImage from "@/components/data-table/cell-image";
-import CellSelector from "@/components/data-table/cell-selector";
+import { IOrderItemRow } from "../components/details/types";
 
 export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   {
@@ -89,7 +88,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     initialWidth: 160,
     minWidth: 120,
     maxWidth: 300,
-    render: (order) => <PaymentMethod method={order.payment.method} />,
+    render: (order) => order.payment.method,
     filter: {
       type: "checkbox",
       options: [
@@ -106,7 +105,12 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     initialWidth: 160,
     minWidth: 120,
     maxWidth: 300,
-    render: (order) => <DeliveryMethod method={order.delivery.method} />,
+    render: (order, { onSave } = { onSave: () => {} }) => (
+      <DeliveryMethod
+        method={order.delivery.method}
+        onChange={(value) => onSave(value)}
+      />
+    ),
     filter: {
       type: "checkbox",
       options: [
@@ -115,6 +119,8 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
         { label: "Post", value: "POST" },
       ],
     },
+    editor: "custom",
+    className: "px-2",
   },
   {
     id: "price",
@@ -132,14 +138,21 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     initialWidth: 120,
     minWidth: 120,
     maxWidth: 300,
-    render: (order) => <PaymentStatus isPaid={order.payment.isPaid} />,
+    render: (order, { onSave } = { onSave: () => {} }) => (
+      <PaymentStatus
+        isPaid={order.payment.isPaid}
+        onChange={(value) => onSave(String(value))}
+      />
+    ),
     filter: {
       type: "checkbox",
       options: [
         { label: "Оплачен", value: "PAID" },
-        { label: "Не оплачен", value: "" },
+        { label: "Не оплачен", value: "UNPAID" },
       ],
     },
+    editor: "custom",
+    className: "px-2",
   },
   {
     id: "createdAt",
@@ -438,7 +451,7 @@ export const ORDERS_DATA: IOrder[] = [
   },
 ];
 
-export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
+export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItemRow>[] = [
   {
     id: "image",
     header: "image",
@@ -483,40 +496,20 @@ export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
   {
     id: "selectedColor",
     header: "selectedColor",
-    accessorKey: "selectedColor",
+    accessor: (orderItem) => orderItem.selectedColor,
     initialWidth: 160,
     minWidth: 140,
     maxWidth: 300,
-    editable: true,
-    render: (item) => (
-      <CellSelector
-        initialValue={{ label: item.selectedColor, value: item.selectedColor }}
-      />
-    ),
-    filter: {
-      type: "checkbox",
-      options: [{ label: "White", value: "White" }],
-    },
+    render: (orderItem) => orderItem.selectedColor,
   },
   {
     id: "selectedSize",
     header: "selectedSize",
-    accessorKey: "selectedSize",
+    accessor: (orderItem) => orderItem.selectedSize,
     initialWidth: 160,
     minWidth: 140,
     maxWidth: 300,
-    render: (item) => (
-      <CellSelector
-        initialValue={{ label: item.selectedSize, value: item.selectedSize }}
-      />
-    ),
-    filter: {
-      type: "checkbox",
-      options: [
-        { label: "50", value: "50" },
-        { label: "41", value: "41" },
-      ],
-    },
+    render: (orderItem) => orderItem.selectedSize,
   },
   {
     id: "price",
@@ -533,7 +526,6 @@ export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
     initialWidth: 120,
     minWidth: 80,
     maxWidth: 300,
-    editable: true,
   },
 ];
 

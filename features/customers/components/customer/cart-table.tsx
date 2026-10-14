@@ -5,8 +5,9 @@ import { useTableStore } from "@/lib/store/table.store";
 import { CART_COLUMNS } from "../../constants";
 import { ICartItem } from "../../types/types";
 import { updateData } from "../../update-data";
+import { ICartItemRow } from "./types";
 
-export default function CartItemsTable({ data }: { data: ICartItem[] }) {
+export default function CartItemsTable({ data }: { data: ICartItemRow[] }) {
   const selectedIds = useTableStore((s) => s.selectedIds);
 
   const toggleRow = useTableStore((s) => s.toggleRow);
@@ -21,6 +22,32 @@ export default function CartItemsTable({ data }: { data: ICartItem[] }) {
             entity: "CART_ITEM",
             id: cartItem.id,
             data: { quantity: Number(value) },
+          });
+        },
+      };
+    }
+
+    if (column.id === "selectedColor") {
+      return {
+        ...column,
+        onSave: async (cartItem: ICartItem, value: string) => {
+          await updateData({
+            entity: "CART_ITEM",
+            id: cartItem.id,
+            data: { selectedColor: value },
+          });
+        },
+      };
+    }
+
+    if (column.id === "selectedSize") {
+      return {
+        ...column,
+        onSave: async (cartItem: ICartItem, value: string) => {
+          await updateData({
+            entity: "CART_ITEM",
+            id: cartItem.id,
+            data: { selectedSize: value },
           });
         },
       };

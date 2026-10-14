@@ -1,22 +1,22 @@
 "use client";
 
-import { DataTableFilter } from "./types";
+import { DataTableFilterOption } from "./types";
 import { DropdownMenuCheckboxItem } from "../ui/dropdown-menu";
 
 interface CheckboxFilterProps {
-  filter: Extract<DataTableFilter, { type: "checkbox" }>;
+  options: DataTableFilterOption[];
   selectedFilters: string[];
   onCheckedChange: (value: string, checked: boolean) => void;
 }
 
 export default function CheckboxFilter({
-  filter,
+  options,
   selectedFilters,
   onCheckedChange,
 }: CheckboxFilterProps) {
   return (
     <>
-      {filter.options.map((option) => {
+      {options.map((option) => {
         const checked = selectedFilters.includes(option.value);
 
         return (

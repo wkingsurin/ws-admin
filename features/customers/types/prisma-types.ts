@@ -22,3 +22,29 @@ export type CartItemWithRelations = Prisma.CartItemGetPayload<{
     };
   };
 }>;
+
+export type CartItemWithAvailableOptions = Prisma.CartItemGetPayload<{
+  include: {
+    variant: {
+      include: {
+        product: {
+          include: {
+            brand: true;
+            category: true;
+            productColors: {
+              include: {
+                images: true;
+              };
+            };
+            variants: {
+              select: {
+                size: true;
+              };
+            };
+          };
+        };
+        color: true;
+      };
+    };
+  };
+}>;

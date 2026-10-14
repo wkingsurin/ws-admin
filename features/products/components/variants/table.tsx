@@ -5,8 +5,9 @@ import { VARIANT_COLUMNS } from "../../constants";
 import { useTableStore } from "@/lib/store/table.store";
 import { IVariant } from "../../types/types";
 import { updateData } from "@/features/customers/update-data";
+import { IVariantRow } from "./types";
 
-export default function VariantsTable({ data }: { data: IVariant[] }) {
+export default function VariantsTable({ data }: { data: IVariantRow[] }) {
   const selectedIds = useTableStore((s) => s.selectedIds);
 
   const toggleRow = useTableStore((s) => s.toggleRow);
@@ -47,6 +48,19 @@ export default function VariantsTable({ data }: { data: IVariant[] }) {
             entity: "VARIANT",
             id: variant.id,
             data: { stock: Number(value) },
+          });
+        },
+      };
+    }
+
+    if (column.id === "size") {
+      return {
+        ...column,
+        onSave: async (variant: IVariant, value: string) => {
+          await updateData({
+            entity: "VARIANT",
+            id: variant.id,
+            data: { size: value },
           });
         },
       };

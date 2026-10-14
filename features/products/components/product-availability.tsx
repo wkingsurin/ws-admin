@@ -9,20 +9,23 @@ import {
 
 interface ProductAvailabilityProps {
   isAvailable: boolean;
+  onChange?: (value: boolean) => void;
 }
 
 export default function ProductAvailability({
   isAvailable,
+  onChange,
 }: ProductAvailabilityProps) {
   const items = [
-    { label: "true", value: "Available" },
-    { label: "false", value: "Not available" },
+    { label: "Available", value: "true" },
+    { label: "Not available", value: "false" },
   ];
 
   return (
     <Select
       items={items}
-      defaultValue={isAvailable ? items[0].value : items[1].value}
+      value={String(isAvailable)}
+      onValueChange={(value) => onChange?.(value === "true")}
     >
       <SelectTrigger className="w-full items-center justify-between rounded-sm border-[0.5px] bg-white focus-visible:border-none shadow-none px-2">
         <SelectValue />

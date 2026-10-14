@@ -2,6 +2,7 @@ import { DataTableColumn } from "@/components/data-table/types";
 import { ICartItem, IFavorite, IUser } from "./types/types";
 import CellImage from "@/components/data-table/cell-image";
 import CellSelector from "@/components/data-table/cell-selector";
+import { ICartItemRow } from "./components/customer/types";
 
 export const CUSTOMER_COLUMNS: DataTableColumn<IUser>[] = [
   {
@@ -157,7 +158,7 @@ export const FAVORITES: IFavorite[] = [
   },
 ];
 
-export const CART_COLUMNS: DataTableColumn<ICartItem>[] = [
+export const CART_COLUMNS: DataTableColumn<ICartItemRow>[] = [
   {
     id: "image",
     header: "image",
@@ -226,39 +227,60 @@ export const CART_COLUMNS: DataTableColumn<ICartItem>[] = [
   {
     id: "selectedColor",
     header: "selectedColor",
-    accessor: (item) => item.selectedColor.value,
+    accessor: (cartItem) => cartItem.selectedColor.value,
     initialWidth: 150,
     minWidth: 150,
     maxWidth: 300,
-    render: (item) => (
+    render: (cartItem, { onSave } = { onSave: () => {} }) => (
       <CellSelector
-        initialValue={{
-          label: item.selectedColor.value,
-          value: item.selectedColor.value,
-        }}
+        value={cartItem.selectedColor.value}
+        options={cartItem.availableColors}
+        onChange={onSave}
       />
     ),
     filter: {
       type: "checkbox",
-      options: [{ label: "White", value: "White" }],
+      options: (data: ICartItem[]) => {
+        const colors = [
+          ...new Set(data.map((row) => row.selectedColor.value)),
+        ].sort();
+
+        return colors.map((color) => ({
+          label: color,
+          value: color,
+        }));
+      },
     },
+    editor: "custom",
+    className: "px-2",
   },
   {
     id: "selectedSize",
     header: "selectedSize",
-    accessor: (item) => item.selectedSize,
+    accessor: (cartItem) => cartItem.selectedSize,
     initialWidth: 150,
     minWidth: 150,
     maxWidth: 300,
-    render: (item) => (
+    render: (cartItem, { onSave } = { onSave: () => {} }) => (
       <CellSelector
-        initialValue={{ label: item.selectedSize, value: item.selectedSize }}
+        value={cartItem.selectedSize}
+        options={cartItem.availableSizes}
+        onChange={onSave}
       />
     ),
     filter: {
       type: "checkbox",
-      options: [{ label: "42", value: "42" }],
+      options: (data: ICartItem[]) => {
+        const sizes = [...new Set(data.map((row) => row.selectedSize))].sort();
+
+        return sizes.map((size) => ({
+          label: size,
+          value: size,
+        }));
+      },
     },
+    editor: "custom",
+    className: "px-2",
   },
   {
     id: "price",

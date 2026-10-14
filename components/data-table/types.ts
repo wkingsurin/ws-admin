@@ -10,9 +10,22 @@ export interface SortState {
 export type ColumnWidths = Record<string, number>;
 export type ColumnFilters = Record<string, string[]>;
 
-export type DataTableFilter =
+export type DataTableFilterOption = {
+  label: string;
+  value: string;
+};
+export type DataTableFilter<TRow = unknown> =
   | { type: "text" }
-  | { type: "checkbox"; options: { label: string; value: string }[] };
+  | {
+      type: "checkbox";
+      options:
+        | DataTableFilterOption[]
+        | ((data: TRow[]) => DataTableFilterOption[]);
+    };
+
+export interface DataTableCellContext {
+  onSave: (value: string) => void | Promise<void>;
+}
 
 export interface DataTableColumn<T> {
   id: string;
@@ -28,16 +41,18 @@ export interface DataTableColumn<T> {
   maxSymbols?: number;
   multiline?: boolean;
 
-  render?: (row: T) => ReactNode;
+  render?: (row: T, context?: DataTableCellContext) => ReactNode;
 
   copyable?: boolean;
   editable?: boolean;
 
-  filter?: DataTableFilter;
+  filter?: DataTableFilter<T>;
 
   className?: string;
 
   onSave?: (row: T, value: string) => void;
+
+  editor?: "text" | "custom";
 }
 
 export interface DataTableProps<T> {

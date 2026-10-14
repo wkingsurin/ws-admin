@@ -11,6 +11,7 @@ import CheckboxFilter from "./checkbox-filter";
 
 interface ColumnActionsProps<T> {
   column: DataTableColumn<T>;
+  data: T[];
   selectedFilters: string[];
   onFilterChange: (value: string, checked: boolean) => void;
   sortDirection: SortDirection | null;
@@ -19,12 +20,22 @@ interface ColumnActionsProps<T> {
 
 export default function ColumnActions<T>({
   column,
+  data,
   selectedFilters,
   onFilterChange,
   sortDirection,
   onSort,
 }: ColumnActionsProps<T>) {
   const hasActiveFilters = selectedFilters.length > 0;
+
+  const filter = column.filter;
+
+  const filterOptions =
+    filter?.type === "checkbox"
+      ? typeof filter.options === "function"
+        ? filter.options(data)
+        : filter.options
+      : [];
 
   return (
     <DropdownMenu>
@@ -74,7 +85,7 @@ export default function ColumnActions<T>({
             <DropdownMenuSeparator />
 
             <CheckboxFilter
-              filter={column.filter}
+              options={filterOptions}
               selectedFilters={selectedFilters}
               onCheckedChange={onFilterChange}
             />

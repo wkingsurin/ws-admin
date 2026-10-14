@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import { DetailRow } from "../../orders/[id]/types";
 import { getProductById } from "@/features/products/get-product";
 import { mapProduct } from "@/features/products/map-product";
+import { IVariantRow } from "@/features/products/components/variants/types";
 
 type ProductDetails = DetailRow[];
 
@@ -24,7 +25,17 @@ export default async function ProductPage({
   }
 
   const mappedProduct = mapProduct(product);
-  console.log(`[mappedProduct]:`, mappedProduct);
+
+  const availableSizes = [
+    ...new Set(
+      mappedProduct.variants.map((varaint) => varaint.attributes.size),
+    ),
+  ].sort();
+
+  const variantRows: IVariantRow[] = mappedProduct.variants.map((variant) => ({
+    ...variant,
+    availableSizes,
+  }));
 
   const stock = mappedProduct.variants.reduce(
     (acc, current) => (acc += current.stock),
@@ -102,7 +113,7 @@ export default async function ProductPage({
         </div>
 
         <DashboardTable className="flex-1 min-h-0" toolbar={<ProductToolbar />}>
-          <VariantsTable data={mappedProduct.variants} />
+          <VariantsTable data={variantRows} />
         </DashboardTable>
       </div>
     </div>

@@ -1,9 +1,9 @@
 import DashboardTable from "@/components/dashboard/dashboard-table";
 import ProductsTable from "@/features/products/components/table";
 import ProductsToolbar from "@/features/products/components/toolbar";
-import { IProduct } from "@/features/products/types/types";
+import { IProductRow } from "@/features/products/components/variants/types";
 
-export default function CatalogClient({ data }: { data: IProduct[] }) {
+export default function CatalogClient({ data }: { data: IProductRow[] }) {
   return (
     <DashboardTable
       toolbar={<ProductsToolbar />}

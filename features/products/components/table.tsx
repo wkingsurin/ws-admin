@@ -5,8 +5,9 @@ import { ProductColumns } from "../constants";
 import { useTableStore } from "@/lib/store/table.store";
 import { IProduct } from "../types/types";
 import { updateData } from "@/features/customers/update-data";
+import { IProductRow } from "./variants/types";
 
-export default function ProductsTable({ data }: { data: IProduct[] }) {
+export default function ProductsTable({ data }: { data: IProductRow[] }) {
   const selectedIds = useTableStore((s) => s.selectedIds);
 
   const toggleRow = useTableStore((s) => s.toggleRow);
@@ -34,6 +35,32 @@ export default function ProductsTable({ data }: { data: IProduct[] }) {
             entity: "PRODUCT",
             id: product.id,
             data: { description: value },
+          });
+        },
+      };
+    }
+
+    if (column.id === "isAvailable") {
+      return {
+        ...column,
+        onSave: async (product: IProduct, value: string) => {
+          await updateData({
+            entity: "PRODUCT",
+            id: product.id,
+            data: { isAvailable: value === "true" },
+          });
+        },
+      };
+    }
+
+    if (column.id === "isNew") {
+      return {
+        ...column,
+        onSave: async (product: IProduct, value: string) => {
+          await updateData({
+            entity: "PRODUCT",
+            id: product.id,
+            data: { isNew: value === "true" },
           });
         },
       };

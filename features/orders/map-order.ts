@@ -1,7 +1,7 @@
-import { IOrder } from "@/features/orders/types/types";
-import { OrderWithRelations } from "./types/prisma-types";
+import { IOrderRow } from "./components/details/types";
+import { OrderWithAvailableOptions } from "./types/prisma-types";
 
-export function mapOrder(order: OrderWithRelations): IOrder {
+export function mapOrder(order: OrderWithAvailableOptions): IOrderRow {
   return {
     id: order.id,
     orderNumber: order.orderNumber,
@@ -61,6 +61,8 @@ export function mapOrder(order: OrderWithRelations): IOrder {
       selectedSize: item.selectedSize,
 
       image: item.image,
+      availableColors: item.availableColors,
+      availableSizes: item.availableSizes,
     })),
   };
 }

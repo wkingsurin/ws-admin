@@ -78,6 +78,51 @@ export default function OrdersTable({ data }: { data: IOrder[] }) {
       };
     }
 
+    if (column.id === "deliveryMethod") {
+      return {
+        ...column,
+        onSave: async (order: IOrder, value: string) => {
+          await updateData({
+            entity: "ORDER",
+            id: order.id,
+            data: {
+              deliveryMethod: value as IOrder["delivery"]["method"],
+            },
+          });
+        },
+      };
+    }
+
+    if (column.id === "paymentMethod") {
+      return {
+        ...column,
+        onSave: async (order: IOrder, value: string) => {
+          await updateData({
+            entity: "ORDER",
+            id: order.id,
+            data: {
+              paymentMethod: value as IOrder["payment"]["method"],
+            },
+          });
+        },
+      };
+    }
+
+    if (column.id === "isPaid") {
+      return {
+        ...column,
+        onSave: async (order: IOrder, value: string) => {
+          await updateData({
+            entity: "ORDER",
+            id: order.id,
+            data: {
+              isPaid: value === "true",
+            },
+          });
+        },
+      };
+    }
+
     return column;
   });
 

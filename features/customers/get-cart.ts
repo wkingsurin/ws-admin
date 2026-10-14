@@ -12,7 +12,16 @@ export async function getCartByUserId(id: string) {
                 include: {
                   brand: true,
                   category: true,
-                  productColors: { include: { images: true } },
+                  productColors: {
+                    include: {
+                      images: true,
+                    },
+                  },
+                  variants: {
+                    select: {
+                      size: true,
+                    },
+                  },
                 },
               },
               color: true,
