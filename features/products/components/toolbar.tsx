@@ -17,6 +17,7 @@ export default function ProductsToolbar() {
       label: "Add row",
       icon: Plus,
       dialog: <AddProductDialog />,
+      dialogSize: "lg",
       onClick: () => console.log("Order created"),
     },
   ];
