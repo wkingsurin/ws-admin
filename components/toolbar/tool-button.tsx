@@ -7,7 +7,7 @@ interface ToolButtonProps {
   label?: string;
   children: ReactNode;
   className?: string;
-  size?: "default" | "auto" | "md";
+  size?: "default" | "auto" | "md" | "lg";
   onClick: () => void;
 }
 
@@ -20,7 +20,12 @@ export default function ToolButton({
   onClick,
 }: ToolButtonProps) {
   const Icon = icon;
-  const sizes = { default: "", auto: "max-w-auto!", md: "max-w-[720px]!" };
+  const sizes = {
+    default: "",
+    auto: "max-w-auto!",
+    md: "max-w-[720px]!",
+    lg: "max-w-[1024px]!",
+  };
 
   return (
     <Dialog>

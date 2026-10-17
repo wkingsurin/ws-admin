@@ -19,7 +19,7 @@ export default function Toolbar({
             icon={tool.icon}
             onClick={tool.onClick}
             className="px-0 bg-[#FE414A]/10! border-[#FE414A]/5! hover:bg-[#FE414A]/15! text-[#FE414A]/75 hover:text-[#FE414A]"
-            size="auto"
+            size={tool.dialogSize ?? "auto"}
           >
             {tool.dialog}
           </ToolButton>
@@ -34,7 +34,7 @@ export default function Toolbar({
               label={tool.label}
               onClick={tool.onClick}
               className="w-auto px-3"
-              size="md"
+              size={tool.dialogSize ?? "md"}
             >
               {tool.dialog}
             </ToolButton>
