@@ -8,6 +8,8 @@ import { DetailRow } from "../../orders/[id]/types";
 import { getProductById } from "@/features/products/get-product";
 import { mapProduct } from "@/features/products/map-product";
 import { IVariantRow } from "@/features/products/components/variants/types";
+import getColors from "@/features/products/components/get-colors";
+import mapColor from "@/features/products/components/variants/mapColor";
 
 type ProductDetails = DetailRow[];
 
@@ -65,10 +67,16 @@ export default async function ProductPage({
       row.label.toLowerCase() === "updated at",
   );
 
+  const firstColor = mappedProduct.options.color[0];
+  const firstImage = firstColor?.images[0];
+
   const image: { alt: string; src: string } = {
     alt: mappedProduct.title,
-    src: mappedProduct.options.color[0].images[0].src,
+    src: firstImage?.src ?? "",
   };
+
+  const colors = await getColors(id);
+  const mappedColors = colors.map(mapColor);
 
   return (
     <div className="flex flex-col gap-3 h-full min-h-0">
@@ -78,8 +86,14 @@ export default async function ProductPage({
         <hr className="bg-black/10" />
 
         <div className="flex gap-8 bg-white border-[0.5] border-black/10 p-5 rounded-2xl">
-          <div className="flex items-center justify-center w-1/4 h-55 p-3 bg-[#F9FAFB]/30 border-[0.5px] border-[#F3F4F6] rounded-lg">
-            <ImageCard src={image.src} alt={image.alt} />
+          <div className="flex items-center justify-center w-1/4 h-55 p-3 bg-[#F9FAFB]/30 border-[0.5px] border-[#F3F4F6] rounded-lg select-none">
+            {image.src ? (
+              <ImageCard src={image.src} alt={image.alt} />
+            ) : (
+              <div className="flex items-center justify-center text-gray-400">
+                *У товара не загружено изображение
+              </div>
+            )}
           </div>
           <div className="flex flex-col gap-2 w-3/4">
             <span className="font-bold text-xs text-[#99A1AF] uppercase">
@@ -112,7 +126,10 @@ export default async function ProductPage({
           </div>
         </div>
 
-        <DashboardTable className="flex-1 min-h-0" toolbar={<ProductToolbar />}>
+        <DashboardTable
+          className="flex-1 min-h-0"
+          toolbar={<ProductToolbar id={id} colors={mappedColors} />}
+        >
           <VariantsTable data={variantRows} />
         </DashboardTable>
       </div>
