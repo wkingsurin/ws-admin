@@ -32,3 +32,19 @@ export const productInclude = {
     },
   },
 } satisfies Prisma.ProductInclude;
+
+export type ColorWithRelations = Prisma.ProductColorGetPayload<{
+  select: {
+    id: true;
+    name: true;
+    variants: {
+      select: {
+        size: true;
+        price: true;
+        oldPrice: true;
+        stock: true;
+        isActive: true;
+      };
+    };
+  };
+}>;
