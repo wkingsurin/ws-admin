@@ -55,7 +55,6 @@ export type UpdateDataParams =
         price?: number;
         oldPrice?: number | null;
         stock?: number;
-        size?: string;
       };
     }
   | {
@@ -124,7 +123,7 @@ export async function updateData({ entity, id, data }: UpdateDataParams) {
     }
 
     case "VARIANT": {
-      const { price, oldPrice, stock, size } = data;
+      const { price, oldPrice, stock } = data;
 
       return runSerializableTransaction(async (tx) => {
         if (price !== undefined && (!Number.isInteger(price) || price < 0)) {
@@ -175,7 +174,6 @@ export async function updateData({ entity, id, data }: UpdateDataParams) {
               ...(price !== undefined && { price }),
               ...(oldPrice !== undefined && { oldPrice }),
               ...(stock !== undefined && { stock }),
-              ...(size !== undefined && { size }),
             },
           });
 

@@ -141,16 +141,7 @@ export const VARIANT_COLUMNS: DataTableColumn<IVariantRow>[] = [
     initialWidth: 160,
     minWidth: 160,
     maxWidth: 160,
-    render: (variant, { onSave } = { onSave: () => {} }) => (
-      <CellSelector
-        value={variant.attributes.size}
-        options={variant.availableSizes.map((size) => ({
-          label: size,
-          value: size,
-        }))}
-        onChange={onSave}
-      />
-    ),
+    render: (variant) => variant.attributes.size,
     filter: {
       type: "checkbox",
       options: (data: IVariantRow[]) => {
