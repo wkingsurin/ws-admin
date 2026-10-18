@@ -53,19 +53,6 @@ export default function VariantsTable({ data }: { data: IVariantRow[] }) {
       };
     }
 
-    if (column.id === "size") {
-      return {
-        ...column,
-        onSave: async (variant: IVariant, value: string) => {
-          await updateData({
-            entity: "VARIANT",
-            id: variant.id,
-            data: { size: value },
-          });
-        },
-      };
-    }
-
     return column;
   });
 

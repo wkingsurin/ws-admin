@@ -3,11 +3,16 @@
 import Toolbar from "@/components/toolbar/toolbar";
 import { Tool } from "@/components/toolbar/types";
 import { Plus, Trash2 } from "lucide-react";
-import AddVariantDialog from "./add-variant-dialog";
+import AddVariantDialog, { InitialColor } from "./add-variant-dialog";
 import DeleteVariantDialog from "./delete-variant-dialog";
 import { useTableStore } from "@/lib/store/table.store";
 
-export default function ProductToolbar() {
+interface ProductToolabarProps {
+  id: string;
+  colors: InitialColor[];
+}
+
+export default function ProductToolbar({ id, colors }: ProductToolabarProps) {
   const isSelected = useTableStore(
     (s) => Object.keys(s.selectedIds).length > 0,
   );
@@ -16,7 +21,7 @@ export default function ProductToolbar() {
     {
       label: "Add row",
       icon: Plus,
-      dialog: <AddVariantDialog />,
+      dialog: <AddVariantDialog id={id} initialColors={colors} />,
       onClick: () => console.log("Order created"),
     },
   ];
