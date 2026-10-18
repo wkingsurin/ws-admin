@@ -18,36 +18,30 @@ import {
 } from "@/components/ui/select";
 import VariantColor from "./variant-color";
 import { ProductColorDraft } from "./create-product/types";
+import { createProduct } from "../create-product";
+import { uploadProductImage } from "../upload-product-image";
 
-export default function AddProductDialog() {
+interface AddProductDialogProps {
+  brands: { id: string; name: string; slug: string }[];
+  categories: { id: string; name: string; slug: string }[];
+}
+
+export default function AddProductDialog({
+  brands,
+  categories,
+}: AddProductDialogProps) {
   const sizes = ["S", "M", "L", "XL", "2XL", "3XL"];
 
-  const brands = [
-    "Tommy Hilfiger",
-    "Neverless",
-    "Ellesse",
-    "Adidas",
-    "Nike",
-    "Guess",
-    "Tom Taylor",
-    "Only & Sons",
-    "Jack & Jones",
-    "Under Armour",
-    "Burocs",
-    "Adidas Originals",
-    "Phillip Plein",
-    "Coastal",
-    "Boss",
-    "Blackskies",
-  ];
-  const [activeBrand, setActiveBrand] = useState<string | null>(null);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
-  const changeBrand = (value: string | null) => setActiveBrand(value);
+  const [isAvailable, setIsAvailable] = useState<boolean>(false);
+  const [isNew, setIsNew] = useState<boolean>(false);
 
-  const categories = ["T-Shirts", "Sneakers", "Jeans", "Hoodies", "Caps"];
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [activeBrandId, setActiveBrandId] = useState<string>("");
+  const [activeCategoryId, setActiveCategoryId] = useState<string>("");
 
-  const changeCategory = (value: string | null) => setActiveCategory(value);
+  const [error, setError] = useState<string | null>(null);
 
   const [colors, setColors] = useState<ProductColorDraft[]>([]);
   const [activeColorId, setActiveColorId] = useState<string | null>(null);
@@ -116,6 +110,50 @@ export default function AddProductDialog() {
           : color,
       ),
     );
+  };
+
+  const handleCreateProduct = async () => {
+    setError(null);
+
+    try {
+      const colorsWithImages = await Promise.all(
+        colors.map(async (color) => {
+          const images = await Promise.all(
+            color.images.map(async (file) => {
+              const formData = new FormData();
+              formData.append("file", file);
+
+              const result = await uploadProductImage(formData);
+
+              if (!result.url) {
+                throw new Error(result.error ?? "Ошибка загрузки изображения");
+              }
+
+              return result.url;
+            }),
+          );
+
+          return { name: color.name, variants: color.variants, images };
+        }),
+      );
+
+      const result = await createProduct({
+        title,
+        description,
+        brandId: activeBrandId,
+        categoryId: activeCategoryId,
+        currency: "USD",
+        isAvailable,
+        isNew,
+        colors: colorsWithImages,
+      });
+
+      console.log(`Product created:`, result.id);
+    } catch (error) {
+      setError(
+        error instanceof Error ? error.message : "Не удалось создать товар",
+      );
+    }
   };
 
   return (
@@ -199,8 +237,8 @@ export default function AddProductDialog() {
               </Label>
               <Select
                 id="brand"
-                value={activeBrand}
-                onValueChange={changeBrand}
+                value={activeBrandId ?? ""}
+                onValueChange={(value) => setActiveBrandId(value ?? "")}
               >
                 <SelectTrigger className="w-full bg-[#F9FAFB] select-none">
                   <SelectValue placeholder="Select brand" />
@@ -211,8 +249,8 @@ export default function AddProductDialog() {
                 >
                   <SelectGroup>
                     {brands.map((brand) => (
-                      <SelectItem key={brand} value={brand}>
-                        {brand}
+                      <SelectItem key={brand.id} value={brand.id}>
+                        {brand.name}
                       </SelectItem>
                     ))}
                   </SelectGroup>
@@ -228,8 +266,8 @@ export default function AddProductDialog() {
               </Label>
               <Select
                 id="category"
-                value={activeCategory}
-                onValueChange={changeCategory}
+                value={activeCategoryId}
+                onValueChange={(value) => setActiveCategoryId(value ?? "")}
               >
                 <SelectTrigger className="w-full bg-[#F9FAFB] select-none">
                   <SelectValue placeholder="Select category" />
@@ -240,8 +278,8 @@ export default function AddProductDialog() {
                 >
                   <SelectGroup>
                     {categories.map((category) => (
-                      <SelectItem key={category} value={category}>
-                        {category}
+                      <SelectItem key={category.id} value={category.id}>
+                        {category.name}
                       </SelectItem>
                     ))}
                   </SelectGroup>
@@ -259,6 +297,8 @@ export default function AddProductDialog() {
                 id="title"
                 placeholder="Enter product title"
                 className="px-3 bg-[#F9FAFB] border-[1px] border-[#E5E7EB] rounded-sm font-mono text-xs placeholder:text-[#4A5565]/50 select-none"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
               />
             </div>
             <div className="col-span-2 flex flex-col items-start gap-1">
@@ -273,17 +313,31 @@ export default function AddProductDialog() {
                 placeholder="Enter product description"
                 className="min-h-20 max-h-20 overflow-hidden px-3 bg-[#F9FAFB] border-[1px] border-[#E5E7EB] rounded-sm resize-none font-mono text-sm placeholder:text-[#4A5565]/50 select-none"
                 maxLength={420}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
               />
             </div>
             <div className="flex gap-6">
               <div className="flex items-center gap-2">
-                <Checkbox id="is-available" className="bg-white" />
+                <Checkbox
+                  id="is-available"
+                  className="bg-white"
+                  checked={isAvailable}
+                  onCheckedChange={(checked) =>
+                    setIsAvailable(checked === true)
+                  }
+                />
                 <Label htmlFor="is-available" className="text-sm">
                   isAvailable
                 </Label>
               </div>
               <div className="flex items-center gap-2">
-                <Checkbox id="is-new" className="bg-white" />
+                <Checkbox
+                  id="is-new"
+                  className="bg-white"
+                  checked={isNew}
+                  onCheckedChange={(checked) => setIsNew(checked === true)}
+                />
                 <Label htmlFor="is-new" className="text-sm">
                   isNew
                 </Label>
@@ -292,10 +346,13 @@ export default function AddProductDialog() {
           </div>
         </div>
         <div className="flex justify-end gap-3 w-full border-t-[1px] border-[#F3F4F6] pt-4">
+          {error && <p className="text-sm text-red-600">{error}</p>}
           <Button className="w-45 px-4 bg-white border-[1px] border-[#E5E7EB] text-black hover:bg-[#F9FAFB]">
             Check data
           </Button>
-          <Button className="w-45 px-4">Create</Button>
+          <Button className="w-45 px-4" onClick={handleCreateProduct}>
+            Create
+          </Button>
         </div>
       </form>
     </div>

@@ -7,7 +7,15 @@ import { useTableStore } from "@/lib/store/table.store";
 import AddProductDialog from "./add-product-dialog";
 import DeleteProductDialog from "./delete-product-dialog";
 
-export default function ProductsToolbar() {
+interface ProductsToolbarProps {
+  brands: { id: string; name: string; slug: string }[];
+  categories: { id: string; name: string; slug: string }[];
+}
+
+export default function ProductsToolbar({
+  brands,
+  categories,
+}: ProductsToolbarProps) {
   const isSelected = useTableStore(
     (s) => Object.keys(s.selectedIds).length > 0,
   );
@@ -16,7 +24,7 @@ export default function ProductsToolbar() {
     {
       label: "Add row",
       icon: Plus,
-      dialog: <AddProductDialog />,
+      dialog: <AddProductDialog brands={brands} categories={categories} />,
       dialogSize: "lg",
       onClick: () => console.log("Order created"),
     },

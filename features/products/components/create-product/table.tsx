@@ -194,6 +194,7 @@ export default function ProductVariantsTable({
       </div>
       {!inProcess ? (
         <Button
+          type="button"
           className="bg-white border-[1px] border-dashed border-[#E5E7EB] hover:border-black hover:bg-white text-black text-xs"
           onClick={() => setInProcess(true)}
         >
@@ -219,6 +220,7 @@ export default function ProductVariantsTable({
             </SelectContent>
           </Select>
           <Button
+            type="button"
             disabled={!selectedSize}
             className="px-3 h-9"
             onClick={handleAddSize}
@@ -226,6 +228,7 @@ export default function ProductVariantsTable({
             Confirm
           </Button>
           <Button
+            type="button"
             className="px-3 h-9"
             variant="destructive"
             onClick={handleClearSize}
