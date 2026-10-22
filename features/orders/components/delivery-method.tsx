@@ -29,7 +29,10 @@ export default function DeliveryMethod({
       value={method}
       onValueChange={(value) => onChange?.(value as Method)}
     >
-      <SelectTrigger className="w-full items-center justify-between rounded-sm border-[0.5px] bg-white focus-visible:border-none shadow-none px-2">
+      <SelectTrigger
+        size="sm"
+        className="w-full items-center justify-between rounded-sm border-[0.5px] bg-white focus-visible:border-none shadow-none px-2 font-mono text-xs text-[#1E2939]"
+      >
         <SelectValue />
       </SelectTrigger>
       <SelectContent alignItemWithTrigger={false}>

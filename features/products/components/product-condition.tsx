@@ -27,7 +27,10 @@ export default function ProductCondition({
       value={String(isNew)}
       onValueChange={(value) => onChange?.(value === "true")}
     >
-      <SelectTrigger className="w-full items-center justify-between rounded-sm border-[0.5px] bg-white focus-visible:border-none shadow-none px-2">
+      <SelectTrigger
+        size="sm"
+        className={`w-full items-center justify-between rounded-sm border-[0.5px] bg-white focus-visible:border-none shadow-none px-2 font-mon text-xs text-[#1E2939] ${isNew ? "bg-green-200 border-green-300" : "bg-gray-100 border-[#E5E7EB]"}`}
+      >
         <SelectValue />
       </SelectTrigger>
       <SelectContent alignItemWithTrigger={false}>

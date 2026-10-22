@@ -102,7 +102,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     id: "deliveryMethod",
     header: "deliveryMethod",
     accessor: (order) => order.delivery.method,
-    initialWidth: 160,
+    initialWidth: 120,
     minWidth: 120,
     maxWidth: 300,
     render: (order, { onSave } = { onSave: () => {} }) => (
