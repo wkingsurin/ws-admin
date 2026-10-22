@@ -1,6 +1,6 @@
 "use client";
 
-import { Archive, LucideIcon, Trash2, Undo2 } from "lucide-react";
+import { LucideIcon, Undo2 } from "lucide-react";
 import ToolButton from "./tool-button";
 
 export default function Toolbar() {
@@ -15,34 +15,12 @@ export default function Toolbar() {
       icon: Undo2,
       label: "Cancel",
       style:
-        "bg-white border-[0.5px] border-black/10 text-black hover:bg-black/15",
+        "bg-white border-[0.5px] border-[#E5E7EB] text-black hover:bg-black/5",
       dialog: {
         title: "Cancel order?",
-        notice: "You`re sure? This action cannot be undo!",
+        notice: "This action cannot be undone! You`re sure?",
       },
       onClick: () => console.log("Order cancelled!"),
-    },
-    {
-      icon: Archive,
-      label: "Hide",
-      style:
-        "bg-white border-[0.5px] border-black/10 text-black hover:bg-black/15",
-      dialog: {
-        title: "Hide order?",
-        notice: "You`re sure? This action cannot be undo!",
-      },
-      onClick: () => console.log("Order hidden!"),
-    },
-    {
-      icon: Trash2,
-      label: "Delete",
-      style:
-        "bg-[#FEF2F2] border-[0.5px] border-[#FFE2E2] text-[#E7000B] hover:bg-[#FE414A]/15 hover:text-[#FE414A]",
-      dialog: {
-        title: "Delete order?",
-        notice: "You`re sure? This action cannot be undo!",
-      },
-      onClick: () => console.log("Order deleted!"),
     },
   ];
 

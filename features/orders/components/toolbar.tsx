@@ -2,9 +2,9 @@
 
 import Toolbar from "@/components/toolbar/toolbar";
 import { Tool } from "@/components/toolbar/types";
-import { Trash2 } from "lucide-react";
-import DeleteOrderDialog from "./delete-order-dialog";
+import { Undo2 } from "lucide-react";
 import { useTableStore } from "@/lib/store/table.store";
+import CancelOrderDialog from "./cancel-order-dialog";
 
 export default function OrdersToolbar() {
   const isSelected = useTableStore(
@@ -14,10 +14,10 @@ export default function OrdersToolbar() {
   const services: Tool[] = [];
   const tools: Tool[] = [
     {
-      label: "Delete row",
-      icon: Trash2,
-      dialog: <DeleteOrderDialog />,
-      onClick: () => console.log("Order removed"),
+      label: "Cancel order",
+      icon: Undo2,
+      dialog: <CancelOrderDialog />,
+      onClick: () => console.log("Order cancelled"),
     },
   ];
 
