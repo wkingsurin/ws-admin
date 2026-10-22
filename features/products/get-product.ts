@@ -28,6 +28,7 @@ export async function getProductById(id: string) {
           stock: true,
           price: true,
           oldPrice: true,
+          color: { include: { images: true } },
         },
       },
     },
