@@ -2,8 +2,8 @@ import { DataTableColumn } from "@/components/data-table/types";
 import { IProduct } from "./types/types";
 import ProductAvailability from "./components/product-availability";
 import ProductCondition from "./components/product-condition";
-import CellSelector from "@/components/data-table/cell-selector";
 import { IVariantRow } from "./components/variants/types";
+import CellImage from "@/components/data-table/cell-image";
 
 export const ProductColumns: DataTableColumn<IProduct>[] = [
   {
@@ -64,8 +64,8 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     id: "isAvailable",
     header: "isAvailable",
     accessorKey: "isAvailable",
-    initialWidth: 130,
-    minWidth: 100,
+    initialWidth: 140,
+    minWidth: 120,
     maxWidth: 300,
     render: (product, { onSave } = { onSave: () => {} }) => (
       <ProductAvailability
@@ -87,7 +87,7 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     id: "isNew",
     header: "isNew",
     accessorKey: "isNew",
-    initialWidth: 160,
+    initialWidth: 130,
     minWidth: 120,
     maxWidth: 300,
     render: (product, { onSave } = { onSave: () => {} }) => (
@@ -110,6 +110,17 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
 
 export const VARIANT_COLUMNS: DataTableColumn<IVariantRow>[] = [
   {
+    id: "image",
+    header: "image",
+    accessor: (variant) => variant.images.length,
+    render: (variant) => (
+      <CellImage src={variant.images[0].src} alt={variant.color?.name ?? ""} />
+    ),
+    initialWidth: 100,
+    minWidth: 100,
+    maxWidth: 100,
+  },
+  {
     id: "id",
     header: "id",
     accessorKey: "id",
@@ -126,13 +137,13 @@ export const VARIANT_COLUMNS: DataTableColumn<IVariantRow>[] = [
     maxWidth: 300,
   },
   {
-    id: "colorId",
-    header: "colorId",
-    accessorKey: "attributes",
+    id: "color",
+    header: "color",
+    accessor: (variant) => variant.color?.id,
     initialWidth: 130,
     minWidth: 100,
     maxWidth: 300,
-    render: (variant) => variant.attributes.colorId,
+    render: (variant) => variant.color?.name,
   },
   {
     id: "size",

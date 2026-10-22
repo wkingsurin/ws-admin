@@ -2,9 +2,8 @@
 
 import Toolbar from "@/components/toolbar/toolbar";
 import { Tool } from "@/components/toolbar/types";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus } from "lucide-react";
 import AddVariantDialog, { InitialColor } from "./add-variant-dialog";
-import DeleteVariantDialog from "./delete-variant-dialog";
 import { useTableStore } from "@/lib/store/table.store";
 
 interface ProductToolabarProps {
@@ -22,17 +21,10 @@ export default function ProductToolbar({ id, colors }: ProductToolabarProps) {
       label: "Add row",
       icon: Plus,
       dialog: <AddVariantDialog id={id} initialColors={colors} />,
-      onClick: () => console.log("Order created"),
+      onClick: () => console.log("Variant added"),
     },
   ];
-  const tools: Tool[] = [
-    {
-      label: "Delete row",
-      icon: Trash2,
-      dialog: <DeleteVariantDialog />,
-      onClick: () => console.log("Product deleted"),
-    },
-  ];
+  const tools: Tool[] = [];
 
   return <Toolbar serviceTools={services} tools={isSelected ? tools : []} />;
 }

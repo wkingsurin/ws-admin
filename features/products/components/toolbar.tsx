@@ -2,10 +2,9 @@
 
 import Toolbar from "@/components/toolbar/toolbar";
 import { Tool } from "@/components/toolbar/types";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus } from "lucide-react";
 import { useTableStore } from "@/lib/store/table.store";
 import AddProductDialog from "./add-product-dialog";
-import DeleteProductDialog from "./delete-product-dialog";
 
 interface ProductsToolbarProps {
   brands: { id: string; name: string; slug: string }[];
@@ -29,14 +28,7 @@ export default function ProductsToolbar({
       onClick: () => console.log("Order created"),
     },
   ];
-  const tools: Tool[] = [
-    {
-      label: "Delete row",
-      icon: Trash2,
-      dialog: <DeleteProductDialog />,
-      onClick: () => console.log("Order removed"),
-    },
-  ];
+  const tools: Tool[] = [];
 
   return <Toolbar serviceTools={services} tools={isSelected ? tools : []} />;
 }
