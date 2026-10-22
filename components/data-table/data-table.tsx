@@ -205,7 +205,7 @@ export default function DataTable<T>({
         >
           <colgroup>
             <col style={{ width: "40px" }} />
-            {pageCell && <col style={{ width: "60px" }} />}
+            {pageCell && <col style={{ width: "40px" }} />}
 
             {columns.map((column) => (
               <col
