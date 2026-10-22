@@ -1,9 +1,14 @@
 "use client";
 
-import { Archive, LucideIcon, Trash2 } from "lucide-react";
+import { EyeOff, LucideIcon } from "lucide-react";
 import ToolButton from "./tool-button";
+import toggleProductAvailability from "@/features/products/components/variants/toggle-product-availability";
 
-export default function Toolbar() {
+interface ToolbarProps {
+  id: string;
+}
+
+export default function Toolbar({ id }: ToolbarProps) {
   const TOOLBAR_BUTTONS: {
     icon: LucideIcon;
     label: string;
@@ -12,26 +17,18 @@ export default function Toolbar() {
     onClick: () => void;
   }[] = [
     {
-      icon: Archive,
-      label: "Hide",
+      icon: EyeOff,
+      label: "Unpublish",
       style:
-        "bg-black/10 border-[0.5px] border-black/5 text-black hover:bg-black/15",
+        "bg-white border-[0.5px] border-[#E5E7EB] text-black hover:bg-black/5! hover:text-black",
       dialog: {
-        title: "Hide order?",
-        notice: "You`re sure? This action cannot be undo!",
+        title: "Upublish product?",
+        notice: "This action will remove the product from sale.",
       },
-      onClick: () => console.log("Order hidden!"),
-    },
-    {
-      icon: Trash2,
-      label: "Delete",
-      style:
-        "bg-[#FE414A]/10! border-[0.5px] border-[#FE414A]/5 text-[#FE414A]/75 hover:bg-[#FE414A]/15! hover:text-[#FE414A]",
-      dialog: {
-        title: "Delete order?",
-        notice: "You`re sure? This action cannot be undo!",
+      onClick: async () => {
+        await toggleProductAvailability(id);
+        console.log("Order unpublished!");
       },
-      onClick: () => console.log("Order deleted!"),
     },
   ];
 

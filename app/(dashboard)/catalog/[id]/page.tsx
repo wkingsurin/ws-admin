@@ -34,9 +34,25 @@ export default async function ProductPage({
     ),
   ].sort();
 
+  const imagesByVariantId = new Map(
+    product.variants.map((variant) => [
+      variant.id,
+      variant.color.images.map(({ id, src }) => ({ id, src })),
+    ]),
+  );
+
+  const colorByVariantId = new Map(
+    product.variants.map((variant) => [
+      variant.id,
+      { id: variant.color.id, name: variant.color.name },
+    ]),
+  );
+
   const variantRows: IVariantRow[] = mappedProduct.variants.map((variant) => ({
     ...variant,
     availableSizes,
+    images: imagesByVariantId.get(variant.id) ?? [],
+    color: colorByVariantId.get(variant.id) ?? null,
   }));
 
   const stock = mappedProduct.variants.reduce(
@@ -81,7 +97,7 @@ export default async function ProductPage({
   return (
     <div className="flex flex-col gap-3 h-full min-h-0">
       <div className="flex flex-col gap-6 flex-1 min-h-0 overflow-hidden">
-        <Toolbar />
+        <Toolbar id={id} />
 
         <hr className="bg-black/10" />
 
