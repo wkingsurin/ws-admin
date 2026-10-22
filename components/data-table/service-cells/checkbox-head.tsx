@@ -15,7 +15,7 @@ export default function CheckboxHead({
   onSelect,
 }: CheckboxHeadProps) {
   return (
-    <TableHead className={`relative min-w-0 px-0 ${className ?? ""}`}>
+    <TableHead className={`sticky left-0 min-w-0 px-0 bg-[#FCFDFE] z-10 ${className ?? ""}`}>
       <TableCheckbox
         checked={checked}
         indeterminate={indeterminate}

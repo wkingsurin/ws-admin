@@ -12,7 +12,7 @@ export default function TableCheckbox({
   onSelect,
 }: TableCheckboxProps) {
   return (
-    <div className="px-3">
+    <div className="relative px-3">
       <Checkbox onCheckedChange={onSelect} checked={checked} />
 
       {indeterminate && !checked && (

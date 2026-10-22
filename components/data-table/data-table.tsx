@@ -218,7 +218,7 @@ export default function DataTable<T>({
           </colgroup>
 
           <TableHeader className="sticky top-0 z-10 bg-[#FCFDFE] shadow-[0_2px_12px_rgba(0,0,0,0.05)]">
-            <TableRow>
+            <TableRow className="relative">
               <CheckboxHead
                 checked={allSelected}
                 indeterminate={someSelected}
@@ -227,7 +227,7 @@ export default function DataTable<T>({
               {pageCell && (
                 <LinkHead
                   label="page"
-                  className="uppercase bold font-mono text-[12px] text-[#99A1AF] leading-[100%] text-center"
+                  className="sticky left-10 bg-[#FCFDFE] z-10 uppercase bold font-mono text-[12px] text-[#99A1AF] leading-[100%] text-center"
                 />
               )}
 
@@ -282,7 +282,7 @@ export default function DataTable<T>({
               return (
                 <TableRow
                   key={rowId}
-                  className="bg-white hover:bg-[#F9FAFB]/80 text-xs"
+                  className="relative bg-white hover:bg-[#F9FAFB]/80 text-xs"
                 >
                   <CheckboxCell
                     checked={selectedIds[rowId] === true}
