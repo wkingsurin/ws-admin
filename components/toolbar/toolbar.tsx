@@ -18,7 +18,7 @@ export default function Toolbar({
             key={tool.label}
             icon={tool.icon}
             onClick={tool.onClick}
-            className="px-0 bg-[#FE414A]/10! border-[#FE414A]/5! hover:bg-[#FE414A]/15! text-[#FE414A]/75 hover:text-[#FE414A]"
+            className="px-0 bg-white border-[#E5E7EB] hover:bg-black/5! text-black hover:text-black"
             size={tool.dialogSize ?? "auto"}
           >
             {tool.dialog}

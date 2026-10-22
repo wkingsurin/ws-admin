@@ -30,7 +30,7 @@ export default function ToolButton({
   return (
     <Dialog>
       <DialogTrigger
-        className={`group/add-ord flex items-center justify-center gap-2 w-8 h-8 rounded-md bg-black/10 hover:bg-black/15 border-[0.5px] border-black/10 transition duration-100 ${className}`}
+        className={`group/add-ord flex items-center justify-center gap-2 w-8 h-8 rounded-md bg-white hover:bg-black/5 border-[0.5px] border-[#E5E7EB] transition duration-100 ${className}`}
         onClick={onClick}
       >
         <Icon className="size-4 stroke-[1.5px] transition duration-100" />
