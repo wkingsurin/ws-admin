@@ -1,3 +1,4 @@
+import normalizeDate from "@/lib/normalize-date";
 import { CartItemWithAvailableOptions } from "./types/prisma-types";
 
 export default function mapCartItem(cartItem: CartItemWithAvailableOptions) {
@@ -23,7 +24,7 @@ export default function mapCartItem(cartItem: CartItemWithAvailableOptions) {
 
     currency: cartItem.variant.product.currency,
 
-    createdAt: cartItem.createdAt,
+    createdAt: normalizeDate(cartItem.createdAt.toISOString()),
 
     availableColors: cartItem.variant.product.productColors.map((color) => ({
       label: color.name,

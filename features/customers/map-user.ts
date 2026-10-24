@@ -1,5 +1,6 @@
 import { IUser } from "@/features/customers/types/types";
 import { UserWithRelations } from "./types/prisma-types";
+import normalizeDate from "@/lib/normalize-date";
 
 export function mapUser(user: UserWithRelations): IUser {
   const { address } = user;
@@ -12,7 +13,7 @@ export function mapUser(user: UserWithRelations): IUser {
     id: user.id,
     name: user.name ?? "",
     email: user.email,
-    createdAt: user.createdAt,
+    createdAt: normalizeDate(user.createdAt.toISOString()),
     address: {
       recipient: address.recipient ?? "",
       country: address.country ?? "",
@@ -20,8 +21,8 @@ export function mapUser(user: UserWithRelations): IUser {
       street: address.street ?? "",
       postalCode: address.postalCode ?? "",
       phone: address.phone ?? "",
-      createdAt: address.createdAt,
-      updatedAt: address.updatedAt,
+      createdAt: normalizeDate(address.createdAt.toISOString()),
+      updatedAt: normalizeDate(address.updatedAt.toISOString()),
     },
   };
 }

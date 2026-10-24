@@ -1,3 +1,4 @@
+import normalizeDate from "@/lib/normalize-date";
 import { FavoriteWithRelations } from "./types/prisma-types";
 import { IFavorite } from "./types/types";
 
@@ -8,6 +9,6 @@ export default function mapFavorite(
     id: favorite.id,
     userId: favorite.userId,
     productId: favorite.productId,
-    createdAt: String(favorite.createdAt),
+    createdAt: normalizeDate(favorite.createdAt.toISOString()),
   };
 }

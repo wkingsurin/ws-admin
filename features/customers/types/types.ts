@@ -2,7 +2,7 @@ export interface IUser {
   id: string;
   name: string;
   email: string;
-  createdAt: Date;
+  createdAt: string;
   address: {
     recipient: string;
     country: string;
@@ -10,8 +10,8 @@ export interface IUser {
     street: string;
     postalCode: string;
     phone?: string;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
   };
 }
 

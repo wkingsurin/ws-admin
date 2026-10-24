@@ -103,25 +103,6 @@ export const CUSTOMER_COLUMNS: DataTableColumn<IUser>[] = [
   },
 ];
 
-export const CUSTOMERS: IUser[] = [
-  {
-    id: "cms0hunvx001c2wua6bidro7m",
-    name: "Jane Doe",
-    email: "janedoe@example.com",
-    createdAt: new Date(2026, 6, 25, 14, 59, 19),
-    address: {
-      recipient: "null",
-      country: "null",
-      city: "null",
-      street: "null",
-      postalCode: "null",
-      phone: "null",
-      createdAt: new Date(2026, 6, 25, 14, 59, 19),
-      updatedAt: new Date(2026, 6, 25, 14, 59, 19),
-    },
-  },
-];
-
 export const FAVORITE_COLUMNS: DataTableColumn<IFavorite>[] = [
   {
     id: "id",
@@ -143,18 +124,9 @@ export const FAVORITE_COLUMNS: DataTableColumn<IFavorite>[] = [
     id: "createdAt",
     header: "createdAt",
     accessorKey: "createdAt",
-    initialWidth: 220,
-    minWidth: 150,
+    initialWidth: 120,
+    minWidth: 120,
     maxWidth: 300,
-  },
-];
-
-export const FAVORITES: IFavorite[] = [
-  {
-    id: "cms1vo4z5000c9kuavbgjzm3h",
-    userId: "cms1tl1kv0009douag84wt28i",
-    productId: "cms0hwc3o00i53wuar55ws1s8",
-    createdAt: "2026-07-26 14:12:55.985",
   },
 ];
 
@@ -319,30 +291,8 @@ export const CART_COLUMNS: DataTableColumn<ICartItemRow>[] = [
     id: "createdAt",
     header: "createdAt",
     accessorKey: "createdAt",
-    initialWidth: 220,
-    minWidth: 150,
+    initialWidth: 120,
+    minWidth: 120,
     maxWidth: 300,
-  },
-];
-
-export const CART: ICartItem[] = [
-  {
-    id: "cms2vrt5p00011guavwgdok6m",
-    cartItemId: "",
-    title: "Adidas Originals FB T-Shirt",
-    slug: "adidas-originals-fb-t-shirt",
-    variantId: "cms0hwaqw00h33wua21vx6vk2",
-    sku: "TSHT-ADFB-WHT-42",
-    price: 7790,
-    oldPrice: 9790,
-    image: "/products/tshirts/adidas-originals-fb-white/image-1-480.png",
-    selectedColor: { id: "cms0hwaf700gt3wuadfmkcz7a", value: "White" },
-    selectedSize: "42",
-    quantity: 1,
-    maxStock: 5,
-    brandName: "Adidas",
-    categoryName: "T-Shirt",
-    currency: "",
-    createdAt: new Date(2026, 6, 25, 14, 59, 19),
   },
 ];

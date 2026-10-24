@@ -1,11 +1,11 @@
 "use client";
 
 import DashboardTable from "@/components/dashboard/dashboard-table";
+import { IOrderRow } from "@/features/orders/components/details/types";
 import OrdersTable from "@/features/orders/components/table";
 import OrdersToolbar from "@/features/orders/components/toolbar";
-import { IOrder } from "@/features/orders/types/types";
 
-export default function OrdersClient({ data }: { data: IOrder[] }) {
+export default function OrdersClient({ data }: { data: IOrderRow[] }) {
   return (
     <DashboardTable
       toolbar={<OrdersToolbar />}
