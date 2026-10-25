@@ -4,7 +4,6 @@ import {
   PaymentMethod,
   Prisma,
 } from "@/prisma/generated/prisma/client";
-import { IOrderItemRow } from "../components/details/types";
 
 export type ValidCheckout = Checkout & {
   address: string;
@@ -18,10 +17,3 @@ export type ValidCheckout = Checkout & {
 export type OrderWithRelations = Prisma.OrderGetPayload<{
   include: { items: true };
 }>;
-
-export type OrderWithAvailableOptions = Omit<OrderWithRelations, "items"> & {
-  items: (OrderWithRelations["items"][number] & {
-    availableColors: IOrderItemRow["availableColors"];
-    availableSizes: IOrderItemRow["availableSizes"];
-  })[];
-};

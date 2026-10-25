@@ -8,10 +8,11 @@ import { Pen } from "lucide-react";
 import { ReactNode } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import Card from "@/components/card";
+import { OrderStatus } from "@/prisma/generated/prisma/enums";
 
 interface DetailsCardProps {
   title: string;
-  status?: string;
+  status?: OrderStatus;
   editable?: boolean;
   data: DetailRow[];
   editDialog?: ReactNode;
@@ -34,11 +35,13 @@ export default function DetailsCard({
     >
       <div className="flex flex-col gap-3">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className={`font-bold text-sm ${mode === "light" ? "text-[#101828]" : "text-[#99A1AF]"}`}>
+          <div className="flex items-center gap-4">
+            <span
+              className={`font-bold text-sm ${mode === "light" ? "text-[#101828]" : "text-[#99A1AF]"}`}
+            >
               {title}
             </span>
-            {status && <Status label={status} />}
+            {status && <Status value={status} />}
           </div>
           {editable && (
             <Dialog>

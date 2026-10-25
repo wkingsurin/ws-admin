@@ -3,9 +3,9 @@
 import DataTable from "@/components/data-table/data-table";
 import { ORDER_ITEM_COLUMNS } from "../../constants/constants";
 import { useTableStore } from "@/lib/store/table.store";
-import { IOrderItemRow } from "./types";
+import { IOrderItem } from "../../types/types";
 
-export default function OrderTable({ data }: { data: IOrderItemRow[] }) {
+export default function OrderTable({ data }: { data: IOrderItem[] }) {
   const selectedIds = useTableStore((s) => s.selectedIds);
 
   const toggleRow = useTableStore((s) => s.toggleRow);

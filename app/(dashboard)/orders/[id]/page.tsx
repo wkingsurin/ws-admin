@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import { DetailRow } from "./types";
 import { mapOrder } from "@/features/orders/map-order";
 import { getOrderById } from "@/features/orders/get-order";
+import { OrderStatus } from "@/prisma/generated/prisma/enums";
 
 type OrderDetails = {
   order: DetailRow[];
@@ -15,7 +16,7 @@ type OrderDetails = {
   shipping: DetailRow[];
   shippingMethods: DetailRow[];
   totals: DetailRow[];
-  status: string;
+  status: OrderStatus;
 };
 
 export default async function OrderPage({

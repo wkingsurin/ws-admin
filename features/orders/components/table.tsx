@@ -132,9 +132,11 @@ export default function OrdersTable({ data }: { data: IOrder[] }) {
         data={data}
         columns={columns}
         getRowId={(order) => order.id}
+        getRowStatus={(order) => order.status}
         selectedIds={selectedIds}
         onToggleRow={toggleRow}
         toggleAll={toggleAll}
+        statusCell
       />
     </div>
   );

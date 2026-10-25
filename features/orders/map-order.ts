@@ -1,8 +1,8 @@
 import normalizeDate from "@/lib/normalize-date";
 import { IOrderRow } from "./components/details/types";
-import { OrderWithAvailableOptions } from "./types/prisma-types";
+import { OrderWithRelations } from "./types/prisma-types";
 
-export function mapOrder(order: OrderWithAvailableOptions): IOrderRow {
+export function mapOrder(order: OrderWithRelations): IOrderRow {
   return {
     id: order.id,
     orderNumber: order.orderNumber,
@@ -62,8 +62,15 @@ export function mapOrder(order: OrderWithAvailableOptions): IOrderRow {
       selectedSize: item.selectedSize,
 
       image: item.image,
-      availableColors: item.availableColors,
-      availableSizes: item.availableSizes,
     })),
+
+    className:
+      order.status === "CANCELLED"
+        ? "bg-red-200 hover:bg-red-500"
+        : order.status === "PAID"
+          ? "bg-green-200 hover:bg-green-500"
+          : order.status === "PENDING"
+            ? "bg-orange-200 hover:bg-orange-500"
+            : "",
   };
 }

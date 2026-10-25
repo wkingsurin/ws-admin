@@ -3,15 +3,16 @@ import { DetailRow } from "../types";
 import EditCustomerDialog from "./edit-customer-dialog";
 import EditShippingDialog from "./edit-shipping-dialog";
 import PriceCard from "./price-card";
+import { OrderStatus } from "@/prisma/generated/prisma/enums";
 
-type OrderDetails = {
+export type OrderDetails = {
   order: DetailRow[];
   orderDate: DetailRow[];
   customer: DetailRow[];
   shipping: DetailRow[];
   shippingMethods: DetailRow[];
   totals: DetailRow[];
-  status: string;
+  status: OrderStatus;
 };
 
 export default function OrderDetails({ data }: { data: OrderDetails }) {
