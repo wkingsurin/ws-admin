@@ -23,15 +23,19 @@ import LinkHead from "./service-cells/link-head";
 import CheckboxHead from "./service-cells/checkbox-head";
 import ColumnActions from "./column-actions";
 import Cell from "./cell";
+import CellStatus from "./service-cells/cell-status";
+import CellStatusHead from "./service-cells/cell-status-head";
 
 export default function DataTable<T>({
   data,
   columns,
   getRowId,
+  getRowStatus,
   selectedIds,
   toggleAll,
   onToggleRow,
   pageCell = true,
+  statusCell = false,
 }: DataTableProps<T>) {
   const [selectedCell, setSelectedCell] = useState<string | null>(null);
   const [pressedCtrl, setPressedCtrl] = useState<boolean>(false);
@@ -60,9 +64,12 @@ export default function DataTable<T>({
     (sum, width) => sum + width,
     0,
   );
-  let tableWidth = pageCell
-    ? 40 + 80 + defaultTableWidth
-    : 40 + defaultTableWidth;
+  let tableWidth =
+    pageCell && statusCell
+      ? 40 + 50 + 60 + defaultTableWidth
+      : pageCell || statusCell
+        ? 40 + 50 + defaultTableWidth
+        : 40 + defaultTableWidth;
 
   const tableScrollRef = useRef<HTMLDivElement>(null);
   const horizontalScrollRef = useRef<HTMLDivElement>(null);
@@ -205,8 +212,6 @@ export default function DataTable<T>({
         >
           <colgroup>
             <col style={{ width: "40px" }} />
-            {pageCell && <col style={{ width: "40px" }} />}
-
             {columns.map((column) => (
               <col
                 key={column.id}
@@ -215,6 +220,9 @@ export default function DataTable<T>({
                 }}
               />
             ))}
+
+            {statusCell && <col style={{ width: "60px" }} />}
+            {pageCell && <col style={{ width: "50px" }} />}
           </colgroup>
 
           <TableHeader className="sticky top-0 z-10 bg-[#FCFDFE] shadow-[0_2px_12px_rgba(0,0,0,0.05)]">
@@ -224,12 +232,6 @@ export default function DataTable<T>({
                 indeterminate={someSelected}
                 onSelect={() => toggleAll(rowIds)}
               />
-              {pageCell && (
-                <LinkHead
-                  label="page"
-                  className="sticky left-10 bg-[#FCFDFE] z-10 uppercase bold font-mono text-[12px] text-[#99A1AF] leading-[100%] text-center"
-                />
-              )}
 
               {columns.map((column) => (
                 <TableHead
@@ -272,12 +274,23 @@ export default function DataTable<T>({
                   />
                 </TableHead>
               ))}
+
+              {statusCell && (
+                <CellStatusHead className="bg-[#FCFDFE] uppercase bold font-mono text-[12px] text-[#99A1AF] leading-[100%] text-center" />
+              )}
+              {pageCell && (
+                <LinkHead
+                  label="page"
+                  className="sticky right-0 bg-[#FCFDFE] z-10 uppercase bold font-mono text-[12px] text-[#99A1AF] leading-[100%] text-center"
+                />
+              )}
             </TableRow>
           </TableHeader>
 
           <TableBody>
             {sortedData.map((row) => {
               const rowId = getRowId(row);
+              const status = getRowStatus ? getRowStatus(row) : null;
 
               return (
                 <TableRow
@@ -288,7 +301,6 @@ export default function DataTable<T>({
                     checked={selectedIds[rowId] === true}
                     onSelect={() => onToggleRow(rowId)}
                   />
-                  {pageCell && <LinkCell href={`/${rowId}`} />}
 
                   {columns.map((column) => {
                     const value = getColumnValue(column, row);
@@ -329,6 +341,9 @@ export default function DataTable<T>({
                       </Cell>
                     );
                   })}
+
+                  {statusCell && status && <CellStatus status={status} />}
+                  {pageCell && <LinkCell href={`/${rowId}`} />}
                 </TableRow>
               );
             })}

@@ -8,8 +8,8 @@ export default function LinkHead({
   className?: string;
 }) {
   return (
-    <TableHead className={`min-w-0 ${className ?? ""}`}>
-      {label}
+    <TableHead className={`min-w-0 px-0 ${className ?? ""}`}>
+      <div className="flex items-center justify-center w-full h-full border-l-[0.5px] border-black/10">{label}</div>
     </TableHead>
   );
 }

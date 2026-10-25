@@ -1,3 +1,4 @@
+import { OrderStatus } from "@/prisma/generated/prisma/enums";
 import { ReactNode } from "react";
 
 export type SortDirection = "asc" | "desc";
@@ -60,9 +61,11 @@ export interface DataTableProps<T> {
   columns: DataTableColumn<T>[];
 
   getRowId: (row: T) => string;
+  getRowStatus?: (row: T) => OrderStatus;
   selectedIds: Record<string, true>;
   onToggleRow: (id: string) => void;
   toggleAll: (rowIds: string[]) => void;
 
   pageCell?: boolean;
+  statusCell?: boolean;
 }
