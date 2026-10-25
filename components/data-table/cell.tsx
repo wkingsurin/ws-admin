@@ -67,7 +67,7 @@ export default function Cell({
           <form className="flex items-center w-full" onSubmit={onSubmit}>
             <Textarea
               value={inputValue}
-              className="w-full min-h-8 p-0 rounded-none resize-none"
+              className="w-full min-h-5 h-full p-0 rounded-none resize-none"
               onChange={(event) => setInputValue(event.target.value)}
               onBlur={cancelEditing}
               onKeyDown={(event) => {
