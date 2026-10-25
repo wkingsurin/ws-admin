@@ -22,6 +22,11 @@ export interface IFavorite {
   createdAt: string;
 }
 
+export interface IFavoriteRow extends IFavorite {
+  title: string;
+  image: { id: string; src: string };
+}
+
 export interface ICartItem {
   id: string;
   cartItemId: string;

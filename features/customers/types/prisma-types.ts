@@ -4,7 +4,18 @@ export type UserWithRelations = Prisma.UserGetPayload<{
   include: { address: true };
 }>;
 
-export type FavoriteWithRelations = Prisma.FavoriteGetPayload<{}>;
+export type FavoriteWithRelations = Prisma.FavoriteGetPayload<{
+  include: {
+    product: {
+      select: {
+        title: true;
+        productColors: {
+          select: { images: true };
+        };
+      };
+    };
+  };
+}>;
 
 export type CartItemWithRelations = Prisma.CartItemGetPayload<{
   include: {

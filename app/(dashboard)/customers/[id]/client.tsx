@@ -10,10 +10,10 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { DetailRow } from "../../orders/[id]/types";
 import ImageCard from "./details/image-card";
-import { ICartItem, IFavorite, IUser } from "@/features/customers/types/types";
+import { ICartItem, IFavoriteRow, IUser } from "@/features/customers/types/types";
 
 interface CustomerProps {
-  data: { customer: IUser; cartItems?: ICartItem[]; favorites?: IFavorite[] };
+  data: { customer: IUser; cartItems?: ICartItem[]; favorites?: IFavoriteRow[] };
 }
 
 export default function CustomerClientPage({ data }: CustomerProps) {

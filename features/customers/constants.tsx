@@ -1,5 +1,5 @@
 import { DataTableColumn } from "@/components/data-table/types";
-import { ICartItem, IFavorite, IUser } from "./types/types";
+import { ICartItem, IFavoriteRow, IUser } from "./types/types";
 import CellImage from "@/components/data-table/cell-image";
 import CellSelector from "@/components/data-table/cell-selector";
 import { ICartItemRow } from "./components/customer/types";
@@ -103,7 +103,18 @@ export const CUSTOMER_COLUMNS: DataTableColumn<IUser>[] = [
   },
 ];
 
-export const FAVORITE_COLUMNS: DataTableColumn<IFavorite>[] = [
+export const FAVORITE_COLUMNS: DataTableColumn<IFavoriteRow>[] = [
+  {
+    id: "image",
+    header: "image",
+    accessorKey: "image",
+    initialWidth: 100,
+    minWidth: 100,
+    maxWidth: 100,
+    render: (item) => {
+      return <CellImage alt={item.title} src={item.image?.src ?? ''} />;
+    },
+  },
   {
     id: "id",
     header: "id",
