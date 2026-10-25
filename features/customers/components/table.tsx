@@ -5,6 +5,8 @@ import { useTableStore } from "@/lib/store/table.store";
 import { CUSTOMER_COLUMNS } from "../constants";
 import { IUser } from "../types/types";
 import { updateData } from "../update-data";
+import { updateUserEmail } from "../actions/update-user-email";
+import { updateUserPhone } from "../actions/update-user-phone";
 
 export default function CustomersTable({ data }: { data: IUser[] }) {
   const selectedIds = useTableStore((s) => s.selectedIds);
@@ -30,11 +32,15 @@ export default function CustomersTable({ data }: { data: IUser[] }) {
       return {
         ...column,
         onSave: async (user: IUser, value: string) => {
-          await updateData({
-            entity: "USER",
-            id: user.id,
-            data: { email: value },
-          });
+          const result = await updateUserEmail(user.id, { email: value });
+
+          if (!result.success) {
+            throw new Error(
+              result.errors.email?.[0] ??
+                result.errors._form?.[0] ??
+                "Не удалось изменить email",
+            );
+          }
         },
       };
     }
@@ -108,11 +114,15 @@ export default function CustomersTable({ data }: { data: IUser[] }) {
       return {
         ...column,
         onSave: async (user: IUser, value: string) => {
-          await updateData({
-            entity: "USER",
-            id: user.id,
-            data: { address: { phone: value } },
-          });
+          const result = await updateUserPhone(user.id, { phone: value });
+
+          if (!result.success) {
+            throw new Error(
+              result.errors.phone?.[0] ??
+                result.errors._form?.[0] ??
+                "Не удалось изменить номер телефона",
+            );
+          }
         },
       };
     }
