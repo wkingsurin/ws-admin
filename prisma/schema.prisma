@@ -8,9 +8,9 @@ datasource db {
 }
 
 model Brand {
-  id      String    @id
-  name    String    @unique
-  slug    String    @unique
+  id       String    @id
+  name     String    @unique
+  slug     String    @unique
   products Product[]
 }
 
@@ -20,7 +20,7 @@ model Cart {
   createdAt DateTime   @default(now())
   updatedAt DateTime
   user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  items  CartItem[]
+  items     CartItem[]
 }
 
 model CartItem {
@@ -36,9 +36,9 @@ model CartItem {
 }
 
 model Category {
-  id      String    @id
-  name    String
-  slug    String    @unique
+  id       String    @id
+  name     String
+  slug     String    @unique
   products Product[]
 }
 
@@ -101,7 +101,7 @@ model Order {
   createdAt          DateTime       @default(now())
   updatedAt          DateTime
   user               User?          @relation(fields: [userId], references: [id])
-  items          OrderItem[]
+  items              OrderItem[]
 }
 
 model OrderItem {
@@ -122,61 +122,61 @@ model OrderItem {
 }
 
 model Product {
-  id              String            @id
-  title           String
-  slug            String            @unique
-  description     String
-  currency        String
-  isAvailable     Boolean           @default(true)
-  isNew           Boolean           @default(false)
-  brandId         String
-  categoryId      String
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime
+  id               String            @id
+  title            String
+  slug             String            @unique
+  description      String
+  currency         String
+  isAvailable      Boolean           @default(true)
+  isNew            Boolean           @default(false)
+  brandId          String
+  categoryId       String
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime
   favorites        Favorite[]
   lastSeenProducts LastSeenProduct[]
-  brand           Brand             @relation(fields: [brandId], references: [id])
-  category        Category          @relation(fields: [categoryId], references: [id])
+  brand            Brand             @relation(fields: [brandId], references: [id])
+  category         Category          @relation(fields: [categoryId], references: [id])
   productColors    ProductColor[]
   variants         Variant[]
 }
 
 model ProductColor {
-  id           String         @id
-  productId    String
-  name         String
-  slug         String
-  product      Product        @relation(fields: [productId], references: [id])
-  images ProductImage[]
-  variants      Variant[]
+  id        String         @id
+  productId String
+  name      String
+  slug      String
+  product   Product        @relation(fields: [productId], references: [id])
+  images    ProductImage[]
+  variants  Variant[]
 
   @@unique([productId, name])
   @@index([productId])
 }
 
 model ProductImage {
-  id           String       @id
-  colorId      String
-  src          String
-  userId       String?
-  color ProductColor @relation(fields: [colorId], references: [id])
-  user         User?        @relation(fields: [userId], references: [id])
+  id      String       @id
+  colorId String
+  src     String
+  userId  String?
+  color   ProductColor @relation(fields: [colorId], references: [id])
+  user    User?        @relation(fields: [userId], references: [id])
 }
 
 model User {
-  id              String            @id
-  telegramId      BigInt?           @unique
-  name            String?
-  email           String            @unique
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime
-  cart            Cart?
-  checkout        Checkout?
+  id               String            @id
+  telegramId       BigInt?           @unique
+  name             String?
+  email            String            @unique
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime
+  cart             Cart?
+  checkout         Checkout?
   favorites        Favorite[]
   lastSeenProducts LastSeenProduct[]
   orders           Order[]
-  image    ProductImage[]
-  address     UserAddress?
+  image            ProductImage[]
+  address          UserAddress?
 }
 
 model UserAddress {
@@ -194,20 +194,20 @@ model UserAddress {
 }
 
 model Variant {
-  id           String       @id
-  productId    String
-  colorId      String
-  sku          String       @unique
-  price        Int
-  oldPrice     Int?
-  stock        Int          @default(0)
-  size         String
-  isActive     Boolean      @default(true)
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime
-  cartItems     CartItem[]
-  color ProductColor @relation(fields: [colorId], references: [id])
-  product      Product      @relation(fields: [productId], references: [id])
+  id        String       @id
+  productId String
+  colorId   String
+  sku       String       @unique
+  price     Int
+  oldPrice  Int?
+  stock     Int          @default(0)
+  size      String
+  isActive  Boolean      @default(true)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime
+  cartItems CartItem[]
+  color     ProductColor @relation(fields: [colorId], references: [id])
+  product   Product      @relation(fields: [productId], references: [id])
 
   @@index([productId])
   @@index([size])
