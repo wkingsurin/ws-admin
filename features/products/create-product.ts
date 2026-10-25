@@ -1,6 +1,8 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
+import generateSKU from "./actions/generate-sku";
+import { revalidatePath } from "next/cache";
 
 interface CreateProductVariantInput {
   size: string;
@@ -171,12 +173,33 @@ export async function createProduct(input: CreateProductInput) {
       }
 
       for (const variant of color.variants) {
+        const baseSKU = generateSKU({
+          brand,
+          category,
+          productName: title,
+          color: { name: color.name },
+          size: variant.size,
+        });
+
+        let sku = baseSKU;
+        let suffix = 2;
+
+        while (
+          await tx.variant.findUnique({
+            where: { sku },
+            select: { id: true },
+          })
+        ) {
+          sku = `${baseSKU}-${suffix}`;
+          suffix += 1;
+        }
+
         await tx.variant.create({
           data: {
             id: crypto.randomUUID(),
             productId,
             colorId,
-            sku: `${productSlug}-${color.slug}-${variant.size.toLowerCase()}-${crypto.randomUUID().slice(0, 8)}`,
+            sku,
             size: variant.size,
             price: variant.price,
             oldPrice: variant.oldPrice,
@@ -188,6 +211,8 @@ export async function createProduct(input: CreateProductInput) {
         });
       }
     }
+
+    revalidatePath("/catalog");
 
     return { id: productId, slug: productSlug };
   });

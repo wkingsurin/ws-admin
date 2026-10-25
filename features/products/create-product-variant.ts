@@ -3,6 +3,8 @@
 import { prisma } from "@/lib/prisma";
 import { supabaseStorage } from "@/lib/supabase-storage";
 import { revalidatePath } from "next/cache";
+import generateSKU from "./actions/generate-sku";
+import { ProductColor } from "@/prisma/generated/prisma/client";
 
 interface CreateVariantInput {
   size: string;
@@ -218,7 +220,13 @@ export async function createProductColorVariants(formData: FormData) {
     const result = await prisma.$transaction(async (tx) => {
       const product = await tx.product.findUnique({
         where: { id: productId },
-        select: { id: true },
+        include: {
+          brand: true,
+          category: true,
+          productColors: {
+            select: { id: true, name: true },
+          },
+        },
       });
 
       if (!product) {
@@ -306,6 +314,27 @@ export async function createProductColorVariants(formData: FormData) {
           const { size, price, oldPrice, stock } =
             validateVariant(vairantInput);
 
+          const baseSKU = generateSKU({
+            brand: product.brand,
+            category: product.category,
+            productName: product.title,
+            color: { name: normalizedName },
+            size,
+          });
+
+          let sku = baseSKU;
+          let suffix = 2;
+
+          while (
+            await tx.variant.findUnique({
+              where: { sku },
+              select: { id: true },
+            })
+          ) {
+            sku = `${baseSKU}-${suffix}`;
+            suffix += 1;
+          }
+
           const now = new Date();
 
           const variant = await tx.variant.create({
@@ -313,7 +342,7 @@ export async function createProductColorVariants(formData: FormData) {
               id: crypto.randomUUID(),
               productId,
               colorId: color.id,
-              sku: `${productId}-${color.slug}-${slugify(size)}-${crypto.randomUUID().slice(0, 8)}`,
+              sku,
               size,
               price,
               oldPrice,
