@@ -2,32 +2,15 @@
 
 import Toolbar from "@/components/toolbar/toolbar";
 import { Tool } from "@/components/toolbar/types";
-import { Plus, Trash2 } from "lucide-react";
 import { useTableStore } from "@/lib/store/table.store";
-import AddCustomerDialog from "../add-customers-dialog";
-import DeleteCustomersDialog from "../delete-customers-dialog";
 
 export default function FavoritesToolbar() {
   const isSelected = useTableStore(
     (s) => Object.keys(s.selectedIds).length > 0,
   );
 
-  const services: Tool[] = [
-    {
-      label: "Add row",
-      icon: Plus,
-      dialog: <AddCustomerDialog />,
-      onClick: () => console.log("Favorite created"),
-    },
-  ];
-  const tools: Tool[] = [
-    {
-      label: "Delete row",
-      icon: Trash2,
-      dialog: <DeleteCustomersDialog />,
-      onClick: () => console.log("Favorite deleted"),
-    },
-  ];
+  const services: Tool[] = [];
+  const tools: Tool[] = [];
 
   return <Toolbar serviceTools={services} tools={isSelected ? tools : []} />;
 }
