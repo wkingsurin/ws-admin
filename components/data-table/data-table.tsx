@@ -25,6 +25,7 @@ import ColumnActions from "./column-actions";
 import Cell from "./cell";
 import CellStatus from "./service-cells/cell-status";
 import CellStatusHead from "./service-cells/cell-status-head";
+import normalizeFilterValue from "@/features/shared/normalizeFilterValue";
 
 export default function DataTable<T>({
   data,
@@ -37,7 +38,6 @@ export default function DataTable<T>({
   pageCell = true,
   statusCell = false,
 }: DataTableProps<T>) {
-  const [selectedCell, setSelectedCell] = useState<string | null>(null);
   const [pressedCtrl, setPressedCtrl] = useState<boolean>(false);
 
   const [sort, setSort] = useState<SortState>({
@@ -109,8 +109,20 @@ export default function DataTable<T>({
     window.addEventListener("pointerup", handlePointerUp);
   };
 
-  const sortedData = [...data].sort((a, b) => {
-    if (!sort) return 0;
+  const filteredData = [...data].filter((row) => {
+    return columns.every((column) => {
+      const selectedFilters = columnFilters[column.id] ?? [];
+
+      if (selectedFilters.length === 0) return true;
+
+      const value = normalizeFilterValue(getColumnValue(column, row));
+
+      return selectedFilters.includes(String(value ?? ""));
+    });
+  });
+
+  const sortedData = [...filteredData].sort((a, b) => {
+    if (!sort.columnId || !sort.direction) return 0;
 
     const column = columns.find((column) => column.id === sort.columnId);
 
@@ -140,22 +152,16 @@ export default function DataTable<T>({
   const someSelected =
     selectedCount > 0 && rowIds.some((id) => selectedIds[id]) && !allSelected;
 
-  const isCellActive = (rowId: string, columnName: string) =>
-    selectedCell === `${rowId}-${columnName}`;
-  const handleCellClick = (rowId: string, columnName: string) => {
-    setSelectedCell(`${rowId}-${columnName}`);
-  };
-
   const onDownCtrl = (event: KeyboardEvent) => {
     if (event.ctrlKey) {
       setPressedCtrl(true);
     }
   };
-  const onUpCtrl = (event: KeyboardEvent) => {
+  const onUpCtrl = () => {
     setPressedCtrl(false);
   };
 
-  const getColumnValue = (column: DataTableColumn<T>, row: T) => {
+  function getColumnValue(column: DataTableColumn<T>, row: T) {
     if (column.accessor) {
       return column.accessor(row);
     }
@@ -165,7 +171,7 @@ export default function DataTable<T>({
     }
 
     return undefined;
-  };
+  }
 
   useEffect(() => {
     const tableScroll = tableScrollRef.current;
@@ -247,14 +253,20 @@ export default function DataTable<T>({
                       data={data}
                       selectedFilters={columnFilters[column.id] ?? []}
                       onFilterChange={(value, checked) => {
+                        const normalizedValue = normalizeFilterValue(value);
+
                         setColumnFilters((prev) => {
                           const current = prev[column.id] ?? [];
 
                           return {
                             ...prev,
                             [column.id]: checked
-                              ? [...current, value]
-                              : current.filter((item) => item !== value),
+                              ? current.includes(normalizedValue)
+                                ? current
+                                : [...current, normalizedValue]
+                              : current.filter(
+                                  (item) => item !== normalizedValue,
+                                ),
                           };
                         });
                       }}
@@ -307,11 +319,7 @@ export default function DataTable<T>({
 
                     if (column.editor === "custom") {
                       return (
-                        <TableCell
-                          key={column.id}
-                          className={column.className}
-                          onClick={() => handleCellClick(rowId, column.id)}
-                        >
+                        <TableCell key={column.id} className={column.className}>
                           {column.render?.(row, {
                             onSave: (value: string) =>
                               column.onSave?.(row, value),
@@ -325,9 +333,6 @@ export default function DataTable<T>({
                         key={column.id}
                         editValue={value == null ? "" : String(value)}
                         className={column.className}
-                        handleCellClick={() =>
-                          handleCellClick(rowId, column.id)
-                        }
                         hovered={pressedCtrl}
                         onSave={(value) => column.onSave?.(row, value)}
                         editable={column.editable ?? false}

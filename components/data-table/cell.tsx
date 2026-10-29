@@ -13,7 +13,6 @@ interface CellProps {
   hovered: boolean;
   editable: boolean;
   maxSymbols?: number;
-  handleCellClick: () => void;
   onSave?: (value: string) => void;
 }
 
@@ -23,7 +22,6 @@ export default function Cell({
   editValue,
   hovered,
   editable,
-  handleCellClick,
   onSave,
   maxSymbols,
 }: CellProps) {
@@ -41,7 +39,6 @@ export default function Cell({
     setIsEditing(false);
   };
   const saveEditing = () => {
-    console.log("Changes saved:", inputValue);
     onSave?.(inputValue);
     setIsEditing(false);
   };
@@ -53,9 +50,6 @@ export default function Cell({
   return (
     <TableCell
       className={`whitespace-normal ${isEditing && "bg-purple-200 text-black/80"}`}
-      onClick={() => {
-        handleCellClick();
-      }}
       onDoubleClick={() => {
         if (editable) {
           startEditing();
