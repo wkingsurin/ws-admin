@@ -18,9 +18,9 @@ export default function DeliveryMethod({
   onChange,
 }: PaymentMethodProps) {
   const items = [
-    { label: "PICKUP", value: "PICKUP" },
-    { label: "COURIER", value: "COURIER" },
-    { label: "POST", value: "POST" },
+    { label: "Pick up", value: "PICKUP" },
+    { label: "Courier", value: "COURIER" },
+    { label: "Post", value: "POST" },
   ];
 
   return (

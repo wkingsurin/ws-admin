@@ -17,8 +17,8 @@ export default function PaymentStatus({
   onChange,
 }: PaymentStatusProps) {
   const items = [
-    { label: "PAID", value: "true" },
-    { label: "UNPAID", value: "false" },
+    { label: "Paid", value: true },
+    { label: "Unpaid", value: false },
   ];
 
   return (
@@ -29,7 +29,7 @@ export default function PaymentStatus({
     >
       <SelectTrigger
         size="sm"
-        className={`w-full items-center justify-between rounded-sm border-[0.5px] bg-white focus-visible:border-none shadow-none px-2 font-mono text-xs text-[#1E2939] ${isPaid ? "bg-green-200 border-green-300" : "bg-gray-100 border-[#E5E7EB]"}`}
+        className={`w-full items-center justify-between rounded-sm border-[0.5px] bg-white focus-visible:border-none shadow-none px-2 font-mono text-xs text-[#1E2939] ${isPaid ? "bg-green-200 border-green-300" : "border-[#E5E7EB]"}`}
       >
         <SelectValue />
       </SelectTrigger>

@@ -3,6 +3,7 @@ import { IOrder, IOrderItem } from "../types/types";
 import DeliveryMethod from "../components/delivery-method";
 import PaymentStatus from "../components/payment-status";
 import CellImage from "@/components/data-table/cell-image";
+import CellStatus from "@/components/data-table/service-cells/cell-status";
 
 export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   {
@@ -86,13 +87,17 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     initialWidth: 160,
     minWidth: 120,
     maxWidth: 300,
-    render: (order) => order.payment.method,
+    render: (order) => {
+      return (
+        order.payment.method[0] + order.payment.method.slice(1).toLowerCase()
+      );
+    },
     filter: {
       type: "checkbox",
       options: [
         { label: "Card", value: "CARD" },
         { label: "Cash", value: "CASH" },
-        { label: "PayPal", value: "PAYPAl" },
+        { label: "PayPal", value: "PAYPAL" },
       ],
     },
   },
@@ -145,8 +150,8 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     filter: {
       type: "checkbox",
       options: [
-        { label: "Оплачен", value: "PAID" },
-        { label: "Не оплачен", value: "UNPAID" },
+        { label: "Paid", value: "true" },
+        { label: "Unpaid", value: "false" },
       ],
     },
     editor: "custom",

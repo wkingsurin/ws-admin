@@ -139,11 +139,23 @@ export const VARIANT_COLUMNS: DataTableColumn<IVariantRow>[] = [
   {
     id: "color",
     header: "color",
-    accessor: (variant) => variant.color?.id,
+    accessor: (variant: IVariantRow) => variant.color?.name,
     initialWidth: 130,
     minWidth: 100,
     maxWidth: 300,
     render: (variant) => variant.color?.name,
+    filter: {
+      type: "checkbox",
+      options: (data: IVariantRow[]) => {
+        return [
+          ...new Set(
+            data
+              .map((variant) => variant.color?.name)
+              .filter((name): name is string => Boolean(name)),
+          ),
+        ].map((name) => ({ label: name, value: name }));
+      },
+    },
   },
   {
     id: "size",

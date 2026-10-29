@@ -18,9 +18,9 @@ export default function PaymentMethod({
   onChange,
 }: PaymentMethodProps) {
   const items = [
-    { label: "CARD", value: "CARD" },
-    { label: "CASH", value: "CASH" },
-    { label: "PAYPAL", value: "PAYPAL" },
+    { label: "Card", value: "CARD" },
+    { label: "Cash", value: "CASH" },
+    { label: "Paypal", value: "PAYPAL" },
   ];
 
   return (
