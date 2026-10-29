@@ -4,7 +4,6 @@ import { prisma } from "@/lib/prisma";
 import { supabaseStorage } from "@/lib/supabase-storage";
 import { revalidatePath } from "next/cache";
 import generateSKU from "./actions/generate-sku";
-import { ProductColor } from "@/prisma/generated/prisma/client";
 
 interface CreateVariantInput {
   size: string;
@@ -281,7 +280,6 @@ export async function createProductColorVariants(formData: FormData) {
 
           color = await tx.productColor.create({
             data: {
-              id: crypto.randomUUID(),
               productId,
               name: normalizedName,
               slug,
@@ -335,11 +333,8 @@ export async function createProductColorVariants(formData: FormData) {
             suffix += 1;
           }
 
-          const now = new Date();
-
           const variant = await tx.variant.create({
             data: {
-              id: crypto.randomUUID(),
               productId,
               colorId: color.id,
               sku,
@@ -348,8 +343,6 @@ export async function createProductColorVariants(formData: FormData) {
               oldPrice,
               stock,
               isActive: vairantInput.isActive,
-              createdAt: now,
-              updatedAt: now,
             },
           });
 
@@ -363,7 +356,6 @@ export async function createProductColorVariants(formData: FormData) {
         for (const image of colorImages) {
           await tx.productImage.create({
             data: {
-              id: crypto.randomUUID(),
               colorId: color.id,
               src: image.url,
             },

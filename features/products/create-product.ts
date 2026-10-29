@@ -115,9 +115,6 @@ export async function createProduct(input: CreateProductInput) {
     throw new Error("Не удалось сформировать slug из названия товара");
   }
 
-  const productId = crypto.randomUUID();
-  const now = new Date();
-
   const productSlug = `${baseSlug}-${crypto.randomUUID().slice(0, 8)}`;
 
   return prisma.$transaction(async (tx) => {
@@ -134,9 +131,8 @@ export async function createProduct(input: CreateProductInput) {
       throw new Error("Выбранная категория не найдена");
     }
 
-    await tx.product.create({
+    const { id: productId } = await tx.product.create({
       data: {
-        id: productId,
         title,
         slug: productSlug,
         description,
@@ -145,17 +141,12 @@ export async function createProduct(input: CreateProductInput) {
         isNew: input.isNew,
         brandId: brand.id,
         categoryId: category.id,
-        createdAt: now,
-        updatedAt: now,
       },
     });
 
     for (const color of colors) {
-      const colorId = crypto.randomUUID();
-
-      await tx.productColor.create({
+      const { id: colorId } = await tx.productColor.create({
         data: {
-          id: colorId,
           productId,
           name: color.name,
           slug: color.slug,
@@ -165,7 +156,6 @@ export async function createProduct(input: CreateProductInput) {
       if (color.images.length > 0) {
         await tx.productImage.createMany({
           data: color.images.map((src) => ({
-            id: crypto.randomUUID(),
             colorId,
             src,
           })),
@@ -196,7 +186,6 @@ export async function createProduct(input: CreateProductInput) {
 
         await tx.variant.create({
           data: {
-            id: crypto.randomUUID(),
             productId,
             colorId,
             sku,
@@ -205,8 +194,6 @@ export async function createProduct(input: CreateProductInput) {
             oldPrice: variant.oldPrice,
             stock: variant.stock,
             isActive: variant.isActive,
-            createdAt: now,
-            updatedAt: now,
           },
         });
       }
