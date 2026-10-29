@@ -1,9 +1,8 @@
 import { DataTableColumn } from "@/components/data-table/types";
-import { IOrder } from "../types/types";
+import { IOrder, IOrderItem } from "../types/types";
 import DeliveryMethod from "../components/delivery-method";
 import PaymentStatus from "../components/payment-status";
 import CellImage from "@/components/data-table/cell-image";
-import { IOrderItemRow } from "../components/details/types";
 
 export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   {
@@ -39,7 +38,6 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     minWidth: 160,
     maxWidth: 300,
     render: (order) => order.customer.email,
-    editable: true,
   },
   {
     id: "address",
@@ -172,7 +170,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   },
 ];
 
-export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItemRow>[] = [
+export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
   {
     id: "image",
     header: "image",

@@ -6,6 +6,7 @@ import { useTableStore } from "@/lib/store/table.store";
 import { IProduct } from "../types/types";
 import { updateData } from "@/features/customers/update-data";
 import { IProductRow } from "./variants/types";
+import { toast } from "@/components/ui/toast";
 
 export default function ProductsTable({ data }: { data: IProductRow[] }) {
   const selectedIds = useTableStore((s) => s.selectedIds);
@@ -18,10 +19,15 @@ export default function ProductsTable({ data }: { data: IProductRow[] }) {
       return {
         ...column,
         onSave: async (product: IProduct, value: string) => {
-          await updateData({
+          const result = await updateData({
             entity: "PRODUCT",
             id: product.id,
             data: { title: value },
+          });
+
+          toast.add({
+            title: result.message,
+            type: result.success ? "success" : "error",
           });
         },
       };
@@ -31,10 +37,15 @@ export default function ProductsTable({ data }: { data: IProductRow[] }) {
       return {
         ...column,
         onSave: async (product: IProduct, value: string) => {
-          await updateData({
+          const result = await updateData({
             entity: "PRODUCT",
             id: product.id,
             data: { description: value },
+          });
+
+          toast.add({
+            title: result.message,
+            type: result.success ? "success" : "error",
           });
         },
       };
@@ -44,10 +55,15 @@ export default function ProductsTable({ data }: { data: IProductRow[] }) {
       return {
         ...column,
         onSave: async (product: IProduct, value: string) => {
-          await updateData({
+          const result = await updateData({
             entity: "PRODUCT",
             id: product.id,
             data: { isAvailable: value === "true" },
+          });
+
+          toast.add({
+            title: result.message,
+            type: result.success ? "success" : "error",
           });
         },
       };
@@ -57,10 +73,15 @@ export default function ProductsTable({ data }: { data: IProductRow[] }) {
       return {
         ...column,
         onSave: async (product: IProduct, value: string) => {
-          await updateData({
+          const result = await updateData({
             entity: "PRODUCT",
             id: product.id,
             data: { isNew: value === "true" },
+          });
+
+          toast.add({
+            title: result.message,
+            type: result.success ? "success" : "error",
           });
         },
       };

@@ -5,6 +5,7 @@ import { ORDER_COLUMNS } from "../constants/constants";
 import { useTableStore } from "@/lib/store/table.store";
 import { IOrder } from "../types/types";
 import { updateData } from "@/features/customers/update-data";
+import { toast } from "@/components/ui/toast";
 
 export default function OrdersTable({ data }: { data: IOrder[] }) {
   const selectedIds = useTableStore((s) => s.selectedIds);
@@ -13,27 +14,19 @@ export default function OrdersTable({ data }: { data: IOrder[] }) {
   const toggleAll = useTableStore((s) => s.toggleAll);
 
   const columns = ORDER_COLUMNS.map((column) => {
-    if (column.id === "customerEmail") {
-      return {
-        ...column,
-        onSave: async (order: IOrder, value: string) => {
-          await updateData({
-            entity: "ORDER",
-            id: order.id,
-            data: { customerEmail: value },
-          });
-        },
-      };
-    }
-
     if (column.id === "address") {
       return {
         ...column,
         onSave: async (order: IOrder, value: string) => {
-          await updateData({
+          const result = await updateData({
             entity: "ORDER",
             id: order.id,
             data: { shippingAddress: value },
+          });
+
+          toast.add({
+            title: result.message,
+            type: result.success ? "success" : "error",
           });
         },
       };
@@ -43,10 +36,15 @@ export default function OrdersTable({ data }: { data: IOrder[] }) {
       return {
         ...column,
         onSave: async (order: IOrder, value: string) => {
-          await updateData({
+          const result = await updateData({
             entity: "ORDER",
             id: order.id,
             data: { shippingCity: value },
+          });
+
+          toast.add({
+            title: result.message,
+            type: result.success ? "success" : "error",
           });
         },
       };
@@ -56,23 +54,33 @@ export default function OrdersTable({ data }: { data: IOrder[] }) {
       return {
         ...column,
         onSave: async (order: IOrder, value: string) => {
-          await updateData({
+          const result = await updateData({
             entity: "ORDER",
             id: order.id,
             data: { shippingCountry: value },
+          });
+
+          toast.add({
+            title: result.message,
+            type: result.success ? "success" : "error",
           });
         },
       };
     }
 
-    if (column.id === "shippingPostalCode") {
+    if (column.id === "postalCode") {
       return {
         ...column,
         onSave: async (order: IOrder, value: string) => {
-          await updateData({
+          const result = await updateData({
             entity: "ORDER",
             id: order.id,
             data: { shippingPostalCode: value },
+          });
+
+          toast.add({
+            title: result.message,
+            type: result.success ? "success" : "error",
           });
         },
       };
@@ -82,27 +90,17 @@ export default function OrdersTable({ data }: { data: IOrder[] }) {
       return {
         ...column,
         onSave: async (order: IOrder, value: string) => {
-          await updateData({
+          const result = await updateData({
             entity: "ORDER",
             id: order.id,
             data: {
               deliveryMethod: value as IOrder["delivery"]["method"],
             },
           });
-        },
-      };
-    }
 
-    if (column.id === "paymentMethod") {
-      return {
-        ...column,
-        onSave: async (order: IOrder, value: string) => {
-          await updateData({
-            entity: "ORDER",
-            id: order.id,
-            data: {
-              paymentMethod: value as IOrder["payment"]["method"],
-            },
+          toast.add({
+            title: result.message,
+            type: result.success ? "success" : "error",
           });
         },
       };
@@ -112,12 +110,17 @@ export default function OrdersTable({ data }: { data: IOrder[] }) {
       return {
         ...column,
         onSave: async (order: IOrder, value: string) => {
-          await updateData({
+          const result = await updateData({
             entity: "ORDER",
             id: order.id,
             data: {
               isPaid: value === "true",
             },
+          });
+          
+          toast.add({
+            title: result.message,
+            type: result.success ? "success" : "error",
           });
         },
       };

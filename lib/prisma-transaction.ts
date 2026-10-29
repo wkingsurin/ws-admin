@@ -1,9 +1,10 @@
 import { Prisma } from "@/prisma/generated/prisma/client";
 import { prisma } from "./prisma";
+import { ActionResult } from "@/features/shared/action-result";
 
 export async function runSerializableTransaction<T>(
   callback: (tx: Prisma.TransactionClient) => Promise<T>,
-): Promise<T> {
+): Promise<T | ActionResult> {
   const maxAttempts = 3;
 
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
@@ -22,5 +23,8 @@ export async function runSerializableTransaction<T>(
     }
   }
 
-  throw new Error("Транзакция не выполнена");
+  return {
+    success: false,
+    message: "Транзакция не выполнена",
+  };
 }

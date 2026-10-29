@@ -1,4 +1,5 @@
 import { Prisma } from "@/prisma/generated/prisma/client";
+import { ActionResult } from "../shared/action-result";
 
 interface ValidateProductAvailabilityParams {
   tx: Prisma.TransactionClient;
@@ -11,7 +12,8 @@ export async function ValidateProductAvailability({
   productId,
   isAvailable,
 }: ValidateProductAvailabilityParams) {
-  if (!isAvailable) return;
+  if (!isAvailable)
+    return { success: false, message: "Этот товар недоступен для изменения" };
 
   const availableVariant = await tx.variant.findFirst({
     where: {
@@ -25,8 +27,10 @@ export async function ValidateProductAvailability({
   });
 
   if (!availableVariant) {
-    throw new Error(
-      "Нельзя сделать товар доступным для продажи: нет активных вариантов в наличии",
-    );
+    return {
+      success: false,
+      message:
+        "Нельзя сделать товар доступным для продажи: нет активных вариантов в наличии",
+    };
   }
 }

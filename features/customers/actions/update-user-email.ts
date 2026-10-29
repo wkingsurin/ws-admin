@@ -4,17 +4,18 @@ import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { updateEmailSchema } from "../schemas/update-user.schema";
 import { Prisma } from "@/prisma/generated/prisma/client";
+import { ActionResult } from "@/features/shared/action-result";
 
-export async function updateUserEmail(userId: string, input: unknown) {
+export async function updateUserEmail(
+  userId: string,
+  input: unknown,
+): Promise<ActionResult> {
   const parsed = updateEmailSchema.safeParse(input);
 
   if (!parsed.success) {
     return {
-      success: false as const,
-      errors: {
-        email: parsed.error.issues.map((issue) => issue.message),
-        _form: [] as string[],
-      },
+      success: false,
+      message: parsed.error.issues[0]?.message ?? "Некорректный email",
     };
   }
 
@@ -28,11 +29,8 @@ export async function updateUserEmail(userId: string, input: unknown) {
 
     if (existingUser && existingUser.id !== userId) {
       return {
-        success: false as const,
-        errors: {
-          email: ["Этот email уже используется"],
-          _form: [] as string[],
-        },
+        success: false,
+        message: "Этот email уже используется",
       };
     }
 
@@ -44,29 +42,23 @@ export async function updateUserEmail(userId: string, input: unknown) {
     revalidatePath(`/customers/`);
     revalidatePath(`/customers/${userId}`);
 
-    return { success: true as const };
+    return { success: true, message: "Email успешно обновлён" };
   } catch (error) {
     if (
       error instanceof Prisma.PrismaClientKnownRequestError &&
       error.code === "P2002"
     ) {
       return {
-        success: false as const,
-        errors: {
-          email: [] as string[],
-          _form: ["Этот email уже используется"],
-        },
+        success: false,
+        message: "Этот email уже используется",
       };
     }
 
     console.error(`Failed to update user email:`, error);
 
     return {
-      success: false as const,
-      errors: {
-        email: [] as string[],
-        _form: ["Не удалось изменить email"],
-      },
+      success: false,
+      message: "Не удалось изменить email",
     };
   }
 }

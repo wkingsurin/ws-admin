@@ -4,17 +4,18 @@ import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { updatePhoneSchema } from "../schemas/update-user.schema";
 import { Prisma } from "@/prisma/generated/prisma/client";
+import { ActionResult } from "@/features/shared/action-result";
 
-export async function updateUserPhone(userId: string, input: unknown) {
+export async function updateUserPhone(
+  userId: string,
+  input: unknown,
+): Promise<ActionResult> {
   const parsed = updatePhoneSchema.safeParse(input);
 
   if (!parsed.success) {
     return {
-      success: false as const,
-      errors: {
-        phone: parsed.error.issues.map((issue) => issue.message),
-        _form: [] as string[],
-      },
+      success: false,
+      message: parsed.error.issues[0]?.message ?? "Некорректный номер телефона",
     };
   }
 
@@ -28,11 +29,8 @@ export async function updateUserPhone(userId: string, input: unknown) {
 
     if (!existingAddress) {
       return {
-        success: false as const,
-        errors: {
-          phone: ["У пользователя нет адреса для изменения телефон"],
-          _form: [] as string[],
-        },
+        success: false,
+        message: "У пользователя нет адреса для изменения телефон",
       };
     }
 
@@ -51,11 +49,8 @@ export async function updateUserPhone(userId: string, input: unknown) {
 
       if (duplicatePhone) {
         return {
-          success: false as const,
-          errors: {
-            phone: ["Этот номер телефона уже используется"],
-            _form: [] as string[],
-          },
+          success: false,
+          message: "Этот номер телефона уже используется",
         };
       }
     }
@@ -68,29 +63,23 @@ export async function updateUserPhone(userId: string, input: unknown) {
     revalidatePath(`/customers/`);
     revalidatePath(`/customers/${userId}`);
 
-    return { success: true as const };
+    return { success: true, message: "Номер телефона успешно обновлён" };
   } catch (error) {
     if (
       error instanceof Prisma.PrismaClientKnownRequestError &&
       error.code === "P2002"
     ) {
       return {
-        success: false as const,
-        errors: {
-          phone: [] as string[],
-          _form: ["Этот номер телефона уже используется"],
-        },
+        success: false,
+        message: "Этот номер телефона уже используется",
       };
     }
 
     console.error(`Failed to update user phone:`, error);
 
     return {
-      success: false as const,
-      errors: {
-        phone: [] as string[],
-        _form: ["Не удалось изменить номер телефона"],
-      },
+      success: false,
+      message: "Не удалось изменить номер телефона",
     };
   }
 }

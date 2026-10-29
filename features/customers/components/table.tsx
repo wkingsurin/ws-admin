@@ -7,6 +7,7 @@ import { IUser } from "../types/types";
 import { updateData } from "../update-data";
 import { updateUserEmail } from "../actions/update-user-email";
 import { updateUserPhone } from "../actions/update-user-phone";
+import { toast } from "@/components/ui/toast";
 
 export default function CustomersTable({ data }: { data: IUser[] }) {
   const selectedIds = useTableStore((s) => s.selectedIds);
@@ -19,10 +20,15 @@ export default function CustomersTable({ data }: { data: IUser[] }) {
       return {
         ...column,
         onSave: async (user: IUser, value: string) => {
-          await updateData({
+          const result = await updateData({
             entity: "USER",
             id: user.id,
             data: { name: value },
+          });
+
+          toast.add({
+            title: result.message,
+            type: result.success ? "success" : "error",
           });
         },
       };
@@ -34,13 +40,10 @@ export default function CustomersTable({ data }: { data: IUser[] }) {
         onSave: async (user: IUser, value: string) => {
           const result = await updateUserEmail(user.id, { email: value });
 
-          if (!result.success) {
-            throw new Error(
-              result.errors.email?.[0] ??
-                result.errors._form?.[0] ??
-                "Не удалось изменить email",
-            );
-          }
+          toast.add({
+            title: result.message,
+            type: result.success ? "success" : "error",
+          });
         },
       };
     }
@@ -49,10 +52,15 @@ export default function CustomersTable({ data }: { data: IUser[] }) {
       return {
         ...column,
         onSave: async (user: IUser, value: string) => {
-          await updateData({
+          const result = await updateData({
             entity: "USER",
             id: user.id,
             data: { address: { recipient: value } },
+          });
+
+          toast.add({
+            title: result.message,
+            type: result.success ? "success" : "error",
           });
         },
       };
@@ -62,10 +70,15 @@ export default function CustomersTable({ data }: { data: IUser[] }) {
       return {
         ...column,
         onSave: async (user: IUser, value: string) => {
-          await updateData({
+          const result = await updateData({
             entity: "USER",
             id: user.id,
             data: { address: { country: value } },
+          });
+
+          toast.add({
+            title: result.message,
+            type: result.success ? "success" : "error",
           });
         },
       };
@@ -75,10 +88,15 @@ export default function CustomersTable({ data }: { data: IUser[] }) {
       return {
         ...column,
         onSave: async (user: IUser, value: string) => {
-          await updateData({
+          const result = await updateData({
             entity: "USER",
             id: user.id,
             data: { address: { city: value } },
+          });
+
+          toast.add({
+            title: result.message,
+            type: result.success ? "success" : "error",
           });
         },
       };
@@ -88,10 +106,15 @@ export default function CustomersTable({ data }: { data: IUser[] }) {
       return {
         ...column,
         onSave: async (user: IUser, value: string) => {
-          await updateData({
+          const result = await updateData({
             entity: "USER",
             id: user.id,
             data: { address: { street: value } },
+          });
+
+          toast.add({
+            title: result.message,
+            type: result.success ? "success" : "error",
           });
         },
       };
@@ -101,10 +124,15 @@ export default function CustomersTable({ data }: { data: IUser[] }) {
       return {
         ...column,
         onSave: async (user: IUser, value: string) => {
-          await updateData({
+          const result = await updateData({
             entity: "USER",
             id: user.id,
             data: { address: { postalCode: value } },
+          });
+
+          toast.add({
+            title: result.message,
+            type: result.success ? "success" : "error",
           });
         },
       };
@@ -116,13 +144,10 @@ export default function CustomersTable({ data }: { data: IUser[] }) {
         onSave: async (user: IUser, value: string) => {
           const result = await updateUserPhone(user.id, { phone: value });
 
-          if (!result.success) {
-            throw new Error(
-              result.errors.phone?.[0] ??
-                result.errors._form?.[0] ??
-                "Не удалось изменить номер телефона",
-            );
-          }
+          toast.add({
+            title: result.message,
+            type: result.success ? "success" : "error",
+          });
         },
       };
     }

@@ -6,6 +6,7 @@ import { useTableStore } from "@/lib/store/table.store";
 import { IVariant } from "../../types/types";
 import { updateData } from "@/features/customers/update-data";
 import { IVariantRow } from "./types";
+import { toast } from "@/components/ui/toast";
 
 export default function VariantsTable({ data }: { data: IVariantRow[] }) {
   const selectedIds = useTableStore((s) => s.selectedIds);
@@ -18,10 +19,15 @@ export default function VariantsTable({ data }: { data: IVariantRow[] }) {
       return {
         ...column,
         onSave: async (variant: IVariant, value: string) => {
-          await updateData({
+          const result = await updateData({
             entity: "VARIANT",
             id: variant.id,
             data: { price: Number(value) },
+          });
+
+          toast.add({
+            title: result.message,
+            type: result.success ? "success" : "error",
           });
         },
       };
@@ -31,10 +37,15 @@ export default function VariantsTable({ data }: { data: IVariantRow[] }) {
       return {
         ...column,
         onSave: async (variant: IVariant, value: string) => {
-          await updateData({
+          const result = await updateData({
             entity: "VARIANT",
             id: variant.id,
             data: { oldPrice: value === "" ? null : Number(value) },
+          });
+
+          toast.add({
+            title: result.message,
+            type: result.success ? "success" : "error",
           });
         },
       };
@@ -44,10 +55,15 @@ export default function VariantsTable({ data }: { data: IVariantRow[] }) {
       return {
         ...column,
         onSave: async (variant: IVariant, value: string) => {
-          await updateData({
+          const result = await updateData({
             entity: "VARIANT",
             id: variant.id,
             data: { stock: Number(value) },
+          });
+
+          toast.add({
+            title: result.message,
+            type: result.success ? "success" : "error",
           });
         },
       };
