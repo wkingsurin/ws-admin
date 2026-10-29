@@ -224,7 +224,7 @@ export type ProductColorScalarWhereWithAggregatesInput = {
 }
 
 export type ProductColorCreateInput = {
-  id: string
+  id?: string
   name: string
   slug: string
   product: Prisma.ProductCreateNestedOneWithoutProductColorsInput
@@ -233,7 +233,7 @@ export type ProductColorCreateInput = {
 }
 
 export type ProductColorUncheckedCreateInput = {
-  id: string
+  id?: string
   productId: string
   name: string
   slug: string
@@ -260,7 +260,7 @@ export type ProductColorUncheckedUpdateInput = {
 }
 
 export type ProductColorCreateManyInput = {
-  id: string
+  id?: string
   productId: string
   name: string
   slug: string
@@ -391,7 +391,7 @@ export type ProductColorUpdateOneRequiredWithoutVariantsNestedInput = {
 }
 
 export type ProductColorCreateWithoutProductInput = {
-  id: string
+  id?: string
   name: string
   slug: string
   images?: Prisma.ProductImageCreateNestedManyWithoutColorInput
@@ -399,7 +399,7 @@ export type ProductColorCreateWithoutProductInput = {
 }
 
 export type ProductColorUncheckedCreateWithoutProductInput = {
-  id: string
+  id?: string
   name: string
   slug: string
   images?: Prisma.ProductImageUncheckedCreateNestedManyWithoutColorInput
@@ -443,7 +443,7 @@ export type ProductColorScalarWhereInput = {
 }
 
 export type ProductColorCreateWithoutImagesInput = {
-  id: string
+  id?: string
   name: string
   slug: string
   product: Prisma.ProductCreateNestedOneWithoutProductColorsInput
@@ -451,7 +451,7 @@ export type ProductColorCreateWithoutImagesInput = {
 }
 
 export type ProductColorUncheckedCreateWithoutImagesInput = {
-  id: string
+  id?: string
   productId: string
   name: string
   slug: string
@@ -491,7 +491,7 @@ export type ProductColorUncheckedUpdateWithoutImagesInput = {
 }
 
 export type ProductColorCreateWithoutVariantsInput = {
-  id: string
+  id?: string
   name: string
   slug: string
   product: Prisma.ProductCreateNestedOneWithoutProductColorsInput
@@ -499,7 +499,7 @@ export type ProductColorCreateWithoutVariantsInput = {
 }
 
 export type ProductColorUncheckedCreateWithoutVariantsInput = {
-  id: string
+  id?: string
   productId: string
   name: string
   slug: string
@@ -539,7 +539,7 @@ export type ProductColorUncheckedUpdateWithoutVariantsInput = {
 }
 
 export type ProductColorCreateManyProductInput = {
-  id: string
+  id?: string
   name: string
   slug: string
 }

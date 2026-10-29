@@ -220,14 +220,14 @@ export type ProductImageScalarWhereWithAggregatesInput = {
 }
 
 export type ProductImageCreateInput = {
-  id: string
+  id?: string
   src: string
   color: Prisma.ProductColorCreateNestedOneWithoutImagesInput
   user?: Prisma.UserCreateNestedOneWithoutImageInput
 }
 
 export type ProductImageUncheckedCreateInput = {
-  id: string
+  id?: string
   colorId: string
   src: string
   userId?: string | null
@@ -248,7 +248,7 @@ export type ProductImageUncheckedUpdateInput = {
 }
 
 export type ProductImageCreateManyInput = {
-  id: string
+  id?: string
   colorId: string
   src: string
   userId?: string | null
@@ -382,13 +382,13 @@ export type ProductImageUncheckedUpdateManyWithoutUserNestedInput = {
 }
 
 export type ProductImageCreateWithoutColorInput = {
-  id: string
+  id?: string
   src: string
   user?: Prisma.UserCreateNestedOneWithoutImageInput
 }
 
 export type ProductImageUncheckedCreateWithoutColorInput = {
-  id: string
+  id?: string
   src: string
   userId?: string | null
 }
@@ -430,13 +430,13 @@ export type ProductImageScalarWhereInput = {
 }
 
 export type ProductImageCreateWithoutUserInput = {
-  id: string
+  id?: string
   src: string
   color: Prisma.ProductColorCreateNestedOneWithoutImagesInput
 }
 
 export type ProductImageUncheckedCreateWithoutUserInput = {
-  id: string
+  id?: string
   colorId: string
   src: string
 }
@@ -468,7 +468,7 @@ export type ProductImageUpdateManyWithWhereWithoutUserInput = {
 }
 
 export type ProductImageCreateManyColorInput = {
-  id: string
+  id?: string
   src: string
   userId?: string | null
 }
@@ -492,7 +492,7 @@ export type ProductImageUncheckedUpdateManyWithoutColorInput = {
 }
 
 export type ProductImageCreateManyUserInput = {
-  id: string
+  id?: string
   colorId: string
   src: string
 }

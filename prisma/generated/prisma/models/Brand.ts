@@ -205,14 +205,14 @@ export type BrandScalarWhereWithAggregatesInput = {
 }
 
 export type BrandCreateInput = {
-  id: string
+  id?: string
   name: string
   slug: string
   products?: Prisma.ProductCreateNestedManyWithoutBrandInput
 }
 
 export type BrandUncheckedCreateInput = {
-  id: string
+  id?: string
   name: string
   slug: string
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutBrandInput
@@ -233,7 +233,7 @@ export type BrandUncheckedUpdateInput = {
 }
 
 export type BrandCreateManyInput = {
-  id: string
+  id?: string
   name: string
   slug: string
 }
@@ -292,13 +292,13 @@ export type BrandUpdateOneRequiredWithoutProductsNestedInput = {
 }
 
 export type BrandCreateWithoutProductsInput = {
-  id: string
+  id?: string
   name: string
   slug: string
 }
 
 export type BrandUncheckedCreateWithoutProductsInput = {
-  id: string
+  id?: string
   name: string
   slug: string
 }

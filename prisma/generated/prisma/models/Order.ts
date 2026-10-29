@@ -460,7 +460,7 @@ export type OrderScalarWhereWithAggregatesInput = {
 }
 
 export type OrderCreateInput = {
-  id: string
+  id?: string
   orderNumber: string
   status?: $Enums.OrderStatus
   customerName: string
@@ -478,13 +478,13 @@ export type OrderCreateInput = {
   totalPrice: number
   isPaid?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutOrdersInput
   items?: Prisma.OrderItemCreateNestedManyWithoutOrderInput
 }
 
 export type OrderUncheckedCreateInput = {
-  id: string
+  id?: string
   orderNumber: string
   userId?: string | null
   status?: $Enums.OrderStatus
@@ -503,7 +503,7 @@ export type OrderUncheckedCreateInput = {
   totalPrice: number
   isPaid?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   items?: Prisma.OrderItemUncheckedCreateNestedManyWithoutOrderInput
 }
 
@@ -556,7 +556,7 @@ export type OrderUncheckedUpdateInput = {
 }
 
 export type OrderCreateManyInput = {
-  id: string
+  id?: string
   orderNumber: string
   userId?: string | null
   status?: $Enums.OrderStatus
@@ -575,7 +575,7 @@ export type OrderCreateManyInput = {
   totalPrice: number
   isPaid?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type OrderUpdateManyMutationInput = {
@@ -794,7 +794,7 @@ export type OrderUncheckedUpdateManyWithoutUserNestedInput = {
 }
 
 export type OrderCreateWithoutItemsInput = {
-  id: string
+  id?: string
   orderNumber: string
   status?: $Enums.OrderStatus
   customerName: string
@@ -812,12 +812,12 @@ export type OrderCreateWithoutItemsInput = {
   totalPrice: number
   isPaid?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutOrdersInput
 }
 
 export type OrderUncheckedCreateWithoutItemsInput = {
-  id: string
+  id?: string
   orderNumber: string
   userId?: string | null
   status?: $Enums.OrderStatus
@@ -836,7 +836,7 @@ export type OrderUncheckedCreateWithoutItemsInput = {
   totalPrice: number
   isPaid?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type OrderCreateOrConnectWithoutItemsInput = {
@@ -902,7 +902,7 @@ export type OrderUncheckedUpdateWithoutItemsInput = {
 }
 
 export type OrderCreateWithoutUserInput = {
-  id: string
+  id?: string
   orderNumber: string
   status?: $Enums.OrderStatus
   customerName: string
@@ -920,12 +920,12 @@ export type OrderCreateWithoutUserInput = {
   totalPrice: number
   isPaid?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   items?: Prisma.OrderItemCreateNestedManyWithoutOrderInput
 }
 
 export type OrderUncheckedCreateWithoutUserInput = {
-  id: string
+  id?: string
   orderNumber: string
   status?: $Enums.OrderStatus
   customerName: string
@@ -943,7 +943,7 @@ export type OrderUncheckedCreateWithoutUserInput = {
   totalPrice: number
   isPaid?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   items?: Prisma.OrderItemUncheckedCreateNestedManyWithoutOrderInput
 }
 
@@ -1000,7 +1000,7 @@ export type OrderScalarWhereInput = {
 }
 
 export type OrderCreateManyUserInput = {
-  id: string
+  id?: string
   orderNumber: string
   status?: $Enums.OrderStatus
   customerName: string
@@ -1018,7 +1018,7 @@ export type OrderCreateManyUserInput = {
   totalPrice: number
   isPaid?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type OrderUpdateWithoutUserInput = {

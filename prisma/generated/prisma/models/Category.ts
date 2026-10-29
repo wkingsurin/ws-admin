@@ -205,14 +205,14 @@ export type CategoryScalarWhereWithAggregatesInput = {
 }
 
 export type CategoryCreateInput = {
-  id: string
+  id?: string
   name: string
   slug: string
   products?: Prisma.ProductCreateNestedManyWithoutCategoryInput
 }
 
 export type CategoryUncheckedCreateInput = {
-  id: string
+  id?: string
   name: string
   slug: string
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutCategoryInput
@@ -233,7 +233,7 @@ export type CategoryUncheckedUpdateInput = {
 }
 
 export type CategoryCreateManyInput = {
-  id: string
+  id?: string
   name: string
   slug: string
 }
@@ -288,13 +288,13 @@ export type CategoryUpdateOneRequiredWithoutProductsNestedInput = {
 }
 
 export type CategoryCreateWithoutProductsInput = {
-  id: string
+  id?: string
   name: string
   slug: string
 }
 
 export type CategoryUncheckedCreateWithoutProductsInput = {
-  id: string
+  id?: string
   name: string
   slug: string
 }

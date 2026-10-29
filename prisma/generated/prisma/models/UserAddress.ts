@@ -289,7 +289,7 @@ export type UserAddressScalarWhereWithAggregatesInput = {
 }
 
 export type UserAddressCreateInput = {
-  id: string
+  id?: string
   recipient?: string | null
   country?: string | null
   city?: string | null
@@ -297,12 +297,12 @@ export type UserAddressCreateInput = {
   postalCode?: string | null
   phone?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutAddressInput
 }
 
 export type UserAddressUncheckedCreateInput = {
-  id: string
+  id?: string
   userId: string
   recipient?: string | null
   country?: string | null
@@ -311,7 +311,7 @@ export type UserAddressUncheckedCreateInput = {
   postalCode?: string | null
   phone?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type UserAddressUpdateInput = {
@@ -341,7 +341,7 @@ export type UserAddressUncheckedUpdateInput = {
 }
 
 export type UserAddressCreateManyInput = {
-  id: string
+  id?: string
   userId: string
   recipient?: string | null
   country?: string | null
@@ -350,7 +350,7 @@ export type UserAddressCreateManyInput = {
   postalCode?: string | null
   phone?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type UserAddressUpdateManyMutationInput = {
@@ -455,7 +455,7 @@ export type UserAddressUncheckedUpdateOneWithoutUserNestedInput = {
 }
 
 export type UserAddressCreateWithoutUserInput = {
-  id: string
+  id?: string
   recipient?: string | null
   country?: string | null
   city?: string | null
@@ -463,11 +463,11 @@ export type UserAddressCreateWithoutUserInput = {
   postalCode?: string | null
   phone?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type UserAddressUncheckedCreateWithoutUserInput = {
-  id: string
+  id?: string
   recipient?: string | null
   country?: string | null
   city?: string | null
@@ -475,7 +475,7 @@ export type UserAddressUncheckedCreateWithoutUserInput = {
   postalCode?: string | null
   phone?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type UserAddressCreateOrConnectWithoutUserInput = {

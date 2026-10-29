@@ -221,14 +221,14 @@ export type FavoriteScalarWhereWithAggregatesInput = {
 }
 
 export type FavoriteCreateInput = {
-  id: string
+  id?: string
   createdAt?: Date | string
   product: Prisma.ProductCreateNestedOneWithoutFavoritesInput
   user: Prisma.UserCreateNestedOneWithoutFavoritesInput
 }
 
 export type FavoriteUncheckedCreateInput = {
-  id: string
+  id?: string
   userId: string
   productId: string
   createdAt?: Date | string
@@ -249,7 +249,7 @@ export type FavoriteUncheckedUpdateInput = {
 }
 
 export type FavoriteCreateManyInput = {
-  id: string
+  id?: string
   userId: string
   productId: string
   createdAt?: Date | string
@@ -388,13 +388,13 @@ export type FavoriteUncheckedUpdateManyWithoutUserNestedInput = {
 }
 
 export type FavoriteCreateWithoutProductInput = {
-  id: string
+  id?: string
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutFavoritesInput
 }
 
 export type FavoriteUncheckedCreateWithoutProductInput = {
-  id: string
+  id?: string
   userId: string
   createdAt?: Date | string
 }
@@ -436,13 +436,13 @@ export type FavoriteScalarWhereInput = {
 }
 
 export type FavoriteCreateWithoutUserInput = {
-  id: string
+  id?: string
   createdAt?: Date | string
   product: Prisma.ProductCreateNestedOneWithoutFavoritesInput
 }
 
 export type FavoriteUncheckedCreateWithoutUserInput = {
-  id: string
+  id?: string
   productId: string
   createdAt?: Date | string
 }
@@ -474,7 +474,7 @@ export type FavoriteUpdateManyWithWhereWithoutUserInput = {
 }
 
 export type FavoriteCreateManyProductInput = {
-  id: string
+  id?: string
   userId: string
   createdAt?: Date | string
 }
@@ -498,7 +498,7 @@ export type FavoriteUncheckedUpdateManyWithoutProductInput = {
 }
 
 export type FavoriteCreateManyUserInput = {
-  id: string
+  id?: string
   productId: string
   createdAt?: Date | string
 }

@@ -295,12 +295,12 @@ export type UserScalarWhereWithAggregatesInput = {
 }
 
 export type UserCreateInput = {
-  id: string
+  id?: string
   telegramId?: bigint | number | null
   name?: string | null
   email: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   checkout?: Prisma.CheckoutCreateNestedOneWithoutUserInput
   favorites?: Prisma.FavoriteCreateNestedManyWithoutUserInput
@@ -311,12 +311,12 @@ export type UserCreateInput = {
 }
 
 export type UserUncheckedCreateInput = {
-  id: string
+  id?: string
   telegramId?: bigint | number | null
   name?: string | null
   email: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   checkout?: Prisma.CheckoutUncheckedCreateNestedOneWithoutUserInput
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutUserInput
@@ -359,12 +359,12 @@ export type UserUncheckedUpdateInput = {
 }
 
 export type UserCreateManyInput = {
-  id: string
+  id?: string
   telegramId?: bigint | number | null
   name?: string | null
   email: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type UserUpdateManyMutationInput = {
@@ -541,12 +541,12 @@ export type UserUpdateOneRequiredWithoutAddressNestedInput = {
 }
 
 export type UserCreateWithoutCartInput = {
-  id: string
+  id?: string
   telegramId?: bigint | number | null
   name?: string | null
   email: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   checkout?: Prisma.CheckoutCreateNestedOneWithoutUserInput
   favorites?: Prisma.FavoriteCreateNestedManyWithoutUserInput
   lastSeenProducts?: Prisma.LastSeenProductCreateNestedManyWithoutUserInput
@@ -556,12 +556,12 @@ export type UserCreateWithoutCartInput = {
 }
 
 export type UserUncheckedCreateWithoutCartInput = {
-  id: string
+  id?: string
   telegramId?: bigint | number | null
   name?: string | null
   email: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   checkout?: Prisma.CheckoutUncheckedCreateNestedOneWithoutUserInput
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutUserInput
   lastSeenProducts?: Prisma.LastSeenProductUncheckedCreateNestedManyWithoutUserInput
@@ -617,12 +617,12 @@ export type UserUncheckedUpdateWithoutCartInput = {
 }
 
 export type UserCreateWithoutCheckoutInput = {
-  id: string
+  id?: string
   telegramId?: bigint | number | null
   name?: string | null
   email: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   favorites?: Prisma.FavoriteCreateNestedManyWithoutUserInput
   lastSeenProducts?: Prisma.LastSeenProductCreateNestedManyWithoutUserInput
@@ -632,12 +632,12 @@ export type UserCreateWithoutCheckoutInput = {
 }
 
 export type UserUncheckedCreateWithoutCheckoutInput = {
-  id: string
+  id?: string
   telegramId?: bigint | number | null
   name?: string | null
   email: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutUserInput
   lastSeenProducts?: Prisma.LastSeenProductUncheckedCreateNestedManyWithoutUserInput
@@ -693,12 +693,12 @@ export type UserUncheckedUpdateWithoutCheckoutInput = {
 }
 
 export type UserCreateWithoutFavoritesInput = {
-  id: string
+  id?: string
   telegramId?: bigint | number | null
   name?: string | null
   email: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   checkout?: Prisma.CheckoutCreateNestedOneWithoutUserInput
   lastSeenProducts?: Prisma.LastSeenProductCreateNestedManyWithoutUserInput
@@ -708,12 +708,12 @@ export type UserCreateWithoutFavoritesInput = {
 }
 
 export type UserUncheckedCreateWithoutFavoritesInput = {
-  id: string
+  id?: string
   telegramId?: bigint | number | null
   name?: string | null
   email: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   checkout?: Prisma.CheckoutUncheckedCreateNestedOneWithoutUserInput
   lastSeenProducts?: Prisma.LastSeenProductUncheckedCreateNestedManyWithoutUserInput
@@ -769,12 +769,12 @@ export type UserUncheckedUpdateWithoutFavoritesInput = {
 }
 
 export type UserCreateWithoutLastSeenProductsInput = {
-  id: string
+  id?: string
   telegramId?: bigint | number | null
   name?: string | null
   email: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   checkout?: Prisma.CheckoutCreateNestedOneWithoutUserInput
   favorites?: Prisma.FavoriteCreateNestedManyWithoutUserInput
@@ -784,12 +784,12 @@ export type UserCreateWithoutLastSeenProductsInput = {
 }
 
 export type UserUncheckedCreateWithoutLastSeenProductsInput = {
-  id: string
+  id?: string
   telegramId?: bigint | number | null
   name?: string | null
   email: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   checkout?: Prisma.CheckoutUncheckedCreateNestedOneWithoutUserInput
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutUserInput
@@ -845,12 +845,12 @@ export type UserUncheckedUpdateWithoutLastSeenProductsInput = {
 }
 
 export type UserCreateWithoutOrdersInput = {
-  id: string
+  id?: string
   telegramId?: bigint | number | null
   name?: string | null
   email: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   checkout?: Prisma.CheckoutCreateNestedOneWithoutUserInput
   favorites?: Prisma.FavoriteCreateNestedManyWithoutUserInput
@@ -860,12 +860,12 @@ export type UserCreateWithoutOrdersInput = {
 }
 
 export type UserUncheckedCreateWithoutOrdersInput = {
-  id: string
+  id?: string
   telegramId?: bigint | number | null
   name?: string | null
   email: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   checkout?: Prisma.CheckoutUncheckedCreateNestedOneWithoutUserInput
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutUserInput
@@ -921,12 +921,12 @@ export type UserUncheckedUpdateWithoutOrdersInput = {
 }
 
 export type UserCreateWithoutImageInput = {
-  id: string
+  id?: string
   telegramId?: bigint | number | null
   name?: string | null
   email: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   checkout?: Prisma.CheckoutCreateNestedOneWithoutUserInput
   favorites?: Prisma.FavoriteCreateNestedManyWithoutUserInput
@@ -936,12 +936,12 @@ export type UserCreateWithoutImageInput = {
 }
 
 export type UserUncheckedCreateWithoutImageInput = {
-  id: string
+  id?: string
   telegramId?: bigint | number | null
   name?: string | null
   email: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   checkout?: Prisma.CheckoutUncheckedCreateNestedOneWithoutUserInput
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutUserInput
@@ -997,12 +997,12 @@ export type UserUncheckedUpdateWithoutImageInput = {
 }
 
 export type UserCreateWithoutAddressInput = {
-  id: string
+  id?: string
   telegramId?: bigint | number | null
   name?: string | null
   email: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   cart?: Prisma.CartCreateNestedOneWithoutUserInput
   checkout?: Prisma.CheckoutCreateNestedOneWithoutUserInput
   favorites?: Prisma.FavoriteCreateNestedManyWithoutUserInput
@@ -1012,12 +1012,12 @@ export type UserCreateWithoutAddressInput = {
 }
 
 export type UserUncheckedCreateWithoutAddressInput = {
-  id: string
+  id?: string
   telegramId?: bigint | number | null
   name?: string | null
   email: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   cart?: Prisma.CartUncheckedCreateNestedOneWithoutUserInput
   checkout?: Prisma.CheckoutUncheckedCreateNestedOneWithoutUserInput
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutUserInput

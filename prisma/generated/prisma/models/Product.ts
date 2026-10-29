@@ -316,7 +316,7 @@ export type ProductScalarWhereWithAggregatesInput = {
 }
 
 export type ProductCreateInput = {
-  id: string
+  id?: string
   title: string
   slug: string
   description: string
@@ -324,7 +324,7 @@ export type ProductCreateInput = {
   isAvailable?: boolean
   isNew?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   favorites?: Prisma.FavoriteCreateNestedManyWithoutProductInput
   lastSeenProducts?: Prisma.LastSeenProductCreateNestedManyWithoutProductInput
   brand: Prisma.BrandCreateNestedOneWithoutProductsInput
@@ -334,7 +334,7 @@ export type ProductCreateInput = {
 }
 
 export type ProductUncheckedCreateInput = {
-  id: string
+  id?: string
   title: string
   slug: string
   description: string
@@ -344,7 +344,7 @@ export type ProductUncheckedCreateInput = {
   brandId: string
   categoryId: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutProductInput
   lastSeenProducts?: Prisma.LastSeenProductUncheckedCreateNestedManyWithoutProductInput
   productColors?: Prisma.ProductColorUncheckedCreateNestedManyWithoutProductInput
@@ -388,7 +388,7 @@ export type ProductUncheckedUpdateInput = {
 }
 
 export type ProductCreateManyInput = {
-  id: string
+  id?: string
   title: string
   slug: string
   description: string
@@ -398,7 +398,7 @@ export type ProductCreateManyInput = {
   brandId: string
   categoryId: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type ProductUpdateManyMutationInput = {
@@ -625,7 +625,7 @@ export type ProductUpdateOneRequiredWithoutVariantsNestedInput = {
 }
 
 export type ProductCreateWithoutBrandInput = {
-  id: string
+  id?: string
   title: string
   slug: string
   description: string
@@ -633,7 +633,7 @@ export type ProductCreateWithoutBrandInput = {
   isAvailable?: boolean
   isNew?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   favorites?: Prisma.FavoriteCreateNestedManyWithoutProductInput
   lastSeenProducts?: Prisma.LastSeenProductCreateNestedManyWithoutProductInput
   category: Prisma.CategoryCreateNestedOneWithoutProductsInput
@@ -642,7 +642,7 @@ export type ProductCreateWithoutBrandInput = {
 }
 
 export type ProductUncheckedCreateWithoutBrandInput = {
-  id: string
+  id?: string
   title: string
   slug: string
   description: string
@@ -651,7 +651,7 @@ export type ProductUncheckedCreateWithoutBrandInput = {
   isNew?: boolean
   categoryId: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutProductInput
   lastSeenProducts?: Prisma.LastSeenProductUncheckedCreateNestedManyWithoutProductInput
   productColors?: Prisma.ProductColorUncheckedCreateNestedManyWithoutProductInput
@@ -702,7 +702,7 @@ export type ProductScalarWhereInput = {
 }
 
 export type ProductCreateWithoutCategoryInput = {
-  id: string
+  id?: string
   title: string
   slug: string
   description: string
@@ -710,7 +710,7 @@ export type ProductCreateWithoutCategoryInput = {
   isAvailable?: boolean
   isNew?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   favorites?: Prisma.FavoriteCreateNestedManyWithoutProductInput
   lastSeenProducts?: Prisma.LastSeenProductCreateNestedManyWithoutProductInput
   brand: Prisma.BrandCreateNestedOneWithoutProductsInput
@@ -719,7 +719,7 @@ export type ProductCreateWithoutCategoryInput = {
 }
 
 export type ProductUncheckedCreateWithoutCategoryInput = {
-  id: string
+  id?: string
   title: string
   slug: string
   description: string
@@ -728,7 +728,7 @@ export type ProductUncheckedCreateWithoutCategoryInput = {
   isNew?: boolean
   brandId: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutProductInput
   lastSeenProducts?: Prisma.LastSeenProductUncheckedCreateNestedManyWithoutProductInput
   productColors?: Prisma.ProductColorUncheckedCreateNestedManyWithoutProductInput
@@ -762,7 +762,7 @@ export type ProductUpdateManyWithWhereWithoutCategoryInput = {
 }
 
 export type ProductCreateWithoutFavoritesInput = {
-  id: string
+  id?: string
   title: string
   slug: string
   description: string
@@ -770,7 +770,7 @@ export type ProductCreateWithoutFavoritesInput = {
   isAvailable?: boolean
   isNew?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   lastSeenProducts?: Prisma.LastSeenProductCreateNestedManyWithoutProductInput
   brand: Prisma.BrandCreateNestedOneWithoutProductsInput
   category: Prisma.CategoryCreateNestedOneWithoutProductsInput
@@ -779,7 +779,7 @@ export type ProductCreateWithoutFavoritesInput = {
 }
 
 export type ProductUncheckedCreateWithoutFavoritesInput = {
-  id: string
+  id?: string
   title: string
   slug: string
   description: string
@@ -789,7 +789,7 @@ export type ProductUncheckedCreateWithoutFavoritesInput = {
   brandId: string
   categoryId: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   lastSeenProducts?: Prisma.LastSeenProductUncheckedCreateNestedManyWithoutProductInput
   productColors?: Prisma.ProductColorUncheckedCreateNestedManyWithoutProductInput
   variants?: Prisma.VariantUncheckedCreateNestedManyWithoutProductInput
@@ -846,7 +846,7 @@ export type ProductUncheckedUpdateWithoutFavoritesInput = {
 }
 
 export type ProductCreateWithoutLastSeenProductsInput = {
-  id: string
+  id?: string
   title: string
   slug: string
   description: string
@@ -854,7 +854,7 @@ export type ProductCreateWithoutLastSeenProductsInput = {
   isAvailable?: boolean
   isNew?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   favorites?: Prisma.FavoriteCreateNestedManyWithoutProductInput
   brand: Prisma.BrandCreateNestedOneWithoutProductsInput
   category: Prisma.CategoryCreateNestedOneWithoutProductsInput
@@ -863,7 +863,7 @@ export type ProductCreateWithoutLastSeenProductsInput = {
 }
 
 export type ProductUncheckedCreateWithoutLastSeenProductsInput = {
-  id: string
+  id?: string
   title: string
   slug: string
   description: string
@@ -873,7 +873,7 @@ export type ProductUncheckedCreateWithoutLastSeenProductsInput = {
   brandId: string
   categoryId: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutProductInput
   productColors?: Prisma.ProductColorUncheckedCreateNestedManyWithoutProductInput
   variants?: Prisma.VariantUncheckedCreateNestedManyWithoutProductInput
@@ -930,7 +930,7 @@ export type ProductUncheckedUpdateWithoutLastSeenProductsInput = {
 }
 
 export type ProductCreateWithoutProductColorsInput = {
-  id: string
+  id?: string
   title: string
   slug: string
   description: string
@@ -938,7 +938,7 @@ export type ProductCreateWithoutProductColorsInput = {
   isAvailable?: boolean
   isNew?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   favorites?: Prisma.FavoriteCreateNestedManyWithoutProductInput
   lastSeenProducts?: Prisma.LastSeenProductCreateNestedManyWithoutProductInput
   brand: Prisma.BrandCreateNestedOneWithoutProductsInput
@@ -947,7 +947,7 @@ export type ProductCreateWithoutProductColorsInput = {
 }
 
 export type ProductUncheckedCreateWithoutProductColorsInput = {
-  id: string
+  id?: string
   title: string
   slug: string
   description: string
@@ -957,7 +957,7 @@ export type ProductUncheckedCreateWithoutProductColorsInput = {
   brandId: string
   categoryId: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutProductInput
   lastSeenProducts?: Prisma.LastSeenProductUncheckedCreateNestedManyWithoutProductInput
   variants?: Prisma.VariantUncheckedCreateNestedManyWithoutProductInput
@@ -1014,7 +1014,7 @@ export type ProductUncheckedUpdateWithoutProductColorsInput = {
 }
 
 export type ProductCreateWithoutVariantsInput = {
-  id: string
+  id?: string
   title: string
   slug: string
   description: string
@@ -1022,7 +1022,7 @@ export type ProductCreateWithoutVariantsInput = {
   isAvailable?: boolean
   isNew?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   favorites?: Prisma.FavoriteCreateNestedManyWithoutProductInput
   lastSeenProducts?: Prisma.LastSeenProductCreateNestedManyWithoutProductInput
   brand: Prisma.BrandCreateNestedOneWithoutProductsInput
@@ -1031,7 +1031,7 @@ export type ProductCreateWithoutVariantsInput = {
 }
 
 export type ProductUncheckedCreateWithoutVariantsInput = {
-  id: string
+  id?: string
   title: string
   slug: string
   description: string
@@ -1041,7 +1041,7 @@ export type ProductUncheckedCreateWithoutVariantsInput = {
   brandId: string
   categoryId: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutProductInput
   lastSeenProducts?: Prisma.LastSeenProductUncheckedCreateNestedManyWithoutProductInput
   productColors?: Prisma.ProductColorUncheckedCreateNestedManyWithoutProductInput
@@ -1098,7 +1098,7 @@ export type ProductUncheckedUpdateWithoutVariantsInput = {
 }
 
 export type ProductCreateManyBrandInput = {
-  id: string
+  id?: string
   title: string
   slug: string
   description: string
@@ -1107,7 +1107,7 @@ export type ProductCreateManyBrandInput = {
   isNew?: boolean
   categoryId: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type ProductUpdateWithoutBrandInput = {
@@ -1158,7 +1158,7 @@ export type ProductUncheckedUpdateManyWithoutBrandInput = {
 }
 
 export type ProductCreateManyCategoryInput = {
-  id: string
+  id?: string
   title: string
   slug: string
   description: string
@@ -1167,7 +1167,7 @@ export type ProductCreateManyCategoryInput = {
   isNew?: boolean
   brandId: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type ProductUpdateWithoutCategoryInput = {

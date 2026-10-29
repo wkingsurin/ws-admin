@@ -351,7 +351,7 @@ export type VariantScalarWhereWithAggregatesInput = {
 }
 
 export type VariantCreateInput = {
-  id: string
+  id?: string
   sku: string
   price: number
   oldPrice?: number | null
@@ -359,14 +359,14 @@ export type VariantCreateInput = {
   size: string
   isActive?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   cartItems?: Prisma.CartItemCreateNestedManyWithoutVariantInput
   color: Prisma.ProductColorCreateNestedOneWithoutVariantsInput
   product: Prisma.ProductCreateNestedOneWithoutVariantsInput
 }
 
 export type VariantUncheckedCreateInput = {
-  id: string
+  id?: string
   productId: string
   colorId: string
   sku: string
@@ -376,7 +376,7 @@ export type VariantUncheckedCreateInput = {
   size: string
   isActive?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   cartItems?: Prisma.CartItemUncheckedCreateNestedManyWithoutVariantInput
 }
 
@@ -411,7 +411,7 @@ export type VariantUncheckedUpdateInput = {
 }
 
 export type VariantCreateManyInput = {
-  id: string
+  id?: string
   productId: string
   colorId: string
   sku: string
@@ -421,7 +421,7 @@ export type VariantCreateManyInput = {
   size: string
   isActive?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type VariantUpdateManyMutationInput = {
@@ -626,7 +626,7 @@ export type NullableIntFieldUpdateOperationsInput = {
 }
 
 export type VariantCreateWithoutCartItemsInput = {
-  id: string
+  id?: string
   sku: string
   price: number
   oldPrice?: number | null
@@ -634,13 +634,13 @@ export type VariantCreateWithoutCartItemsInput = {
   size: string
   isActive?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   color: Prisma.ProductColorCreateNestedOneWithoutVariantsInput
   product: Prisma.ProductCreateNestedOneWithoutVariantsInput
 }
 
 export type VariantUncheckedCreateWithoutCartItemsInput = {
-  id: string
+  id?: string
   productId: string
   colorId: string
   sku: string
@@ -650,7 +650,7 @@ export type VariantUncheckedCreateWithoutCartItemsInput = {
   size: string
   isActive?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type VariantCreateOrConnectWithoutCartItemsInput = {
@@ -698,7 +698,7 @@ export type VariantUncheckedUpdateWithoutCartItemsInput = {
 }
 
 export type VariantCreateWithoutProductInput = {
-  id: string
+  id?: string
   sku: string
   price: number
   oldPrice?: number | null
@@ -706,13 +706,13 @@ export type VariantCreateWithoutProductInput = {
   size: string
   isActive?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   cartItems?: Prisma.CartItemCreateNestedManyWithoutVariantInput
   color: Prisma.ProductColorCreateNestedOneWithoutVariantsInput
 }
 
 export type VariantUncheckedCreateWithoutProductInput = {
-  id: string
+  id?: string
   colorId: string
   sku: string
   price: number
@@ -721,7 +721,7 @@ export type VariantUncheckedCreateWithoutProductInput = {
   size: string
   isActive?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   cartItems?: Prisma.CartItemUncheckedCreateNestedManyWithoutVariantInput
 }
 
@@ -769,7 +769,7 @@ export type VariantScalarWhereInput = {
 }
 
 export type VariantCreateWithoutColorInput = {
-  id: string
+  id?: string
   sku: string
   price: number
   oldPrice?: number | null
@@ -777,13 +777,13 @@ export type VariantCreateWithoutColorInput = {
   size: string
   isActive?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   cartItems?: Prisma.CartItemCreateNestedManyWithoutVariantInput
   product: Prisma.ProductCreateNestedOneWithoutVariantsInput
 }
 
 export type VariantUncheckedCreateWithoutColorInput = {
-  id: string
+  id?: string
   productId: string
   sku: string
   price: number
@@ -792,7 +792,7 @@ export type VariantUncheckedCreateWithoutColorInput = {
   size: string
   isActive?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   cartItems?: Prisma.CartItemUncheckedCreateNestedManyWithoutVariantInput
 }
 
@@ -823,7 +823,7 @@ export type VariantUpdateManyWithWhereWithoutColorInput = {
 }
 
 export type VariantCreateManyProductInput = {
-  id: string
+  id?: string
   colorId: string
   sku: string
   price: number
@@ -832,7 +832,7 @@ export type VariantCreateManyProductInput = {
   size: string
   isActive?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type VariantUpdateWithoutProductInput = {
@@ -877,7 +877,7 @@ export type VariantUncheckedUpdateManyWithoutProductInput = {
 }
 
 export type VariantCreateManyColorInput = {
-  id: string
+  id?: string
   productId: string
   sku: string
   price: number
@@ -886,7 +886,7 @@ export type VariantCreateManyColorInput = {
   size: string
   isActive?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type VariantUpdateWithoutColorInput = {

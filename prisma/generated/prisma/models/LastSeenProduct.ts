@@ -221,14 +221,14 @@ export type LastSeenProductScalarWhereWithAggregatesInput = {
 }
 
 export type LastSeenProductCreateInput = {
-  id: string
+  id?: string
   viewedAt?: Date | string
   product: Prisma.ProductCreateNestedOneWithoutLastSeenProductsInput
   user: Prisma.UserCreateNestedOneWithoutLastSeenProductsInput
 }
 
 export type LastSeenProductUncheckedCreateInput = {
-  id: string
+  id?: string
   userId: string
   productId: string
   viewedAt?: Date | string
@@ -249,7 +249,7 @@ export type LastSeenProductUncheckedUpdateInput = {
 }
 
 export type LastSeenProductCreateManyInput = {
-  id: string
+  id?: string
   userId: string
   productId: string
   viewedAt?: Date | string
@@ -388,13 +388,13 @@ export type LastSeenProductUncheckedUpdateManyWithoutUserNestedInput = {
 }
 
 export type LastSeenProductCreateWithoutProductInput = {
-  id: string
+  id?: string
   viewedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutLastSeenProductsInput
 }
 
 export type LastSeenProductUncheckedCreateWithoutProductInput = {
-  id: string
+  id?: string
   userId: string
   viewedAt?: Date | string
 }
@@ -436,13 +436,13 @@ export type LastSeenProductScalarWhereInput = {
 }
 
 export type LastSeenProductCreateWithoutUserInput = {
-  id: string
+  id?: string
   viewedAt?: Date | string
   product: Prisma.ProductCreateNestedOneWithoutLastSeenProductsInput
 }
 
 export type LastSeenProductUncheckedCreateWithoutUserInput = {
-  id: string
+  id?: string
   productId: string
   viewedAt?: Date | string
 }
@@ -474,7 +474,7 @@ export type LastSeenProductUpdateManyWithWhereWithoutUserInput = {
 }
 
 export type LastSeenProductCreateManyProductInput = {
-  id: string
+  id?: string
   userId: string
   viewedAt?: Date | string
 }
@@ -498,7 +498,7 @@ export type LastSeenProductUncheckedUpdateManyWithoutProductInput = {
 }
 
 export type LastSeenProductCreateManyUserInput = {
-  id: string
+  id?: string
   productId: string
   viewedAt?: Date | string
 }

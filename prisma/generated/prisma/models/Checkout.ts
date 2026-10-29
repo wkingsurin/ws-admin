@@ -289,7 +289,7 @@ export type CheckoutScalarWhereWithAggregatesInput = {
 }
 
 export type CheckoutCreateInput = {
-  id: string
+  id?: string
   address?: string | null
   city?: string | null
   country?: string | null
@@ -297,12 +297,12 @@ export type CheckoutCreateInput = {
   paymentMethod?: $Enums.PaymentMethod | null
   deliveryMethod?: $Enums.DeliveryMethod | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCheckoutInput
 }
 
 export type CheckoutUncheckedCreateInput = {
-  id: string
+  id?: string
   userId: string
   address?: string | null
   city?: string | null
@@ -311,7 +311,7 @@ export type CheckoutUncheckedCreateInput = {
   paymentMethod?: $Enums.PaymentMethod | null
   deliveryMethod?: $Enums.DeliveryMethod | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type CheckoutUpdateInput = {
@@ -341,7 +341,7 @@ export type CheckoutUncheckedUpdateInput = {
 }
 
 export type CheckoutCreateManyInput = {
-  id: string
+  id?: string
   userId: string
   address?: string | null
   city?: string | null
@@ -350,7 +350,7 @@ export type CheckoutCreateManyInput = {
   paymentMethod?: $Enums.PaymentMethod | null
   deliveryMethod?: $Enums.DeliveryMethod | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type CheckoutUpdateManyMutationInput = {
@@ -467,7 +467,7 @@ export type CheckoutUncheckedUpdateOneWithoutUserNestedInput = {
 }
 
 export type CheckoutCreateWithoutUserInput = {
-  id: string
+  id?: string
   address?: string | null
   city?: string | null
   country?: string | null
@@ -475,11 +475,11 @@ export type CheckoutCreateWithoutUserInput = {
   paymentMethod?: $Enums.PaymentMethod | null
   deliveryMethod?: $Enums.DeliveryMethod | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type CheckoutUncheckedCreateWithoutUserInput = {
-  id: string
+  id?: string
   address?: string | null
   city?: string | null
   country?: string | null
@@ -487,7 +487,7 @@ export type CheckoutUncheckedCreateWithoutUserInput = {
   paymentMethod?: $Enums.PaymentMethod | null
   deliveryMethod?: $Enums.DeliveryMethod | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type CheckoutCreateOrConnectWithoutUserInput = {

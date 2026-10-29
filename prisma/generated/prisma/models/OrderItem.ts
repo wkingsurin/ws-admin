@@ -365,7 +365,7 @@ export type OrderItemScalarWhereWithAggregatesInput = {
 }
 
 export type OrderItemCreateInput = {
-  id: string
+  id?: string
   productId: string
   variantId: string
   title: string
@@ -376,12 +376,12 @@ export type OrderItemCreateInput = {
   selectedSize: string
   image: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   order: Prisma.OrderCreateNestedOneWithoutItemsInput
 }
 
 export type OrderItemUncheckedCreateInput = {
-  id: string
+  id?: string
   orderId: string
   productId: string
   variantId: string
@@ -393,7 +393,7 @@ export type OrderItemUncheckedCreateInput = {
   selectedSize: string
   image: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type OrderItemUpdateInput = {
@@ -429,7 +429,7 @@ export type OrderItemUncheckedUpdateInput = {
 }
 
 export type OrderItemCreateManyInput = {
-  id: string
+  id?: string
   orderId: string
   productId: string
   variantId: string
@@ -441,7 +441,7 @@ export type OrderItemCreateManyInput = {
   selectedSize: string
   image: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type OrderItemUpdateManyMutationInput = {
@@ -586,7 +586,7 @@ export type OrderItemUncheckedUpdateManyWithoutOrderNestedInput = {
 }
 
 export type OrderItemCreateWithoutOrderInput = {
-  id: string
+  id?: string
   productId: string
   variantId: string
   title: string
@@ -597,11 +597,11 @@ export type OrderItemCreateWithoutOrderInput = {
   selectedSize: string
   image: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type OrderItemUncheckedCreateWithoutOrderInput = {
-  id: string
+  id?: string
   productId: string
   variantId: string
   title: string
@@ -612,7 +612,7 @@ export type OrderItemUncheckedCreateWithoutOrderInput = {
   selectedSize: string
   image: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type OrderItemCreateOrConnectWithoutOrderInput = {
@@ -661,7 +661,7 @@ export type OrderItemScalarWhereInput = {
 }
 
 export type OrderItemCreateManyOrderInput = {
-  id: string
+  id?: string
   productId: string
   variantId: string
   title: string
@@ -672,7 +672,7 @@ export type OrderItemCreateManyOrderInput = {
   selectedSize: string
   image: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type OrderItemUpdateWithoutOrderInput = {

@@ -8,23 +8,23 @@ datasource db {
 }
 
 model Brand {
-  id       String    @id
+  id       String    @id @default(cuid())
   name     String    @unique
   slug     String    @unique
   products Product[]
 }
 
 model Cart {
-  id        String     @id
+  id        String     @id @default(cuid())
   userId    String     @unique
   createdAt DateTime   @default(now())
-  updatedAt DateTime
+  updatedAt DateTime   @updatedAt
   user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   items     CartItem[]
 }
 
 model CartItem {
-  id        String   @id
+  id        String   @id @default(cuid())
   cartId    String
   variantId String
   quantity  Int      @default(1)
@@ -36,14 +36,14 @@ model CartItem {
 }
 
 model Category {
-  id       String    @id
+  id       String    @id @default(cuid())
   name     String
   slug     String    @unique
   products Product[]
 }
 
 model Checkout {
-  id             String          @id
+  id             String          @id @default(cuid())
   userId         String          @unique
   address        String?
   city           String?
@@ -52,12 +52,12 @@ model Checkout {
   paymentMethod  PaymentMethod?
   deliveryMethod DeliveryMethod?
   createdAt      DateTime        @default(now())
-  updatedAt      DateTime
+  updatedAt      DateTime        @updatedAt
   user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Favorite {
-  id        String   @id
+  id        String   @id @default(cuid())
   userId    String
   productId String
   createdAt DateTime @default(now())
@@ -68,7 +68,7 @@ model Favorite {
 }
 
 model LastSeenProduct {
-  id        String   @id
+  id        String   @id @default(cuid())
   userId    String
   productId String
   viewedAt  DateTime @default(now())
@@ -80,7 +80,7 @@ model LastSeenProduct {
 }
 
 model Order {
-  id                 String         @id
+  id                 String         @id @default(cuid())
   orderNumber        String         @unique
   userId             String?
   status             OrderStatus    @default(PENDING)
@@ -99,13 +99,13 @@ model Order {
   totalPrice         Int
   isPaid             Boolean        @default(false)
   createdAt          DateTime       @default(now())
-  updatedAt          DateTime
+  updatedAt          DateTime       @updatedAt
   user               User?          @relation(fields: [userId], references: [id])
   items              OrderItem[]
 }
 
 model OrderItem {
-  id            String   @id
+  id            String   @id @default(cuid())
   orderId       String
   productId     String
   variantId     String
@@ -117,12 +117,12 @@ model OrderItem {
   selectedSize  String
   image         String
   createdAt     DateTime @default(now())
-  updatedAt     DateTime
+  updatedAt     DateTime @updatedAt
   order         Order    @relation(fields: [orderId], references: [id])
 }
 
 model Product {
-  id               String            @id
+  id               String            @id @default(cuid())
   title            String
   slug             String            @unique
   description      String
@@ -132,7 +132,7 @@ model Product {
   brandId          String
   categoryId       String
   createdAt        DateTime          @default(now())
-  updatedAt        DateTime
+  updatedAt        DateTime          @updatedAt
   favorites        Favorite[]
   lastSeenProducts LastSeenProduct[]
   brand            Brand             @relation(fields: [brandId], references: [id])
@@ -142,7 +142,7 @@ model Product {
 }
 
 model ProductColor {
-  id        String         @id
+  id        String         @id @default(cuid())
   productId String
   name      String
   slug      String
@@ -155,7 +155,7 @@ model ProductColor {
 }
 
 model ProductImage {
-  id      String       @id
+  id      String       @id @default(cuid())
   colorId String
   src     String
   userId  String?
@@ -164,12 +164,12 @@ model ProductImage {
 }
 
 model User {
-  id               String            @id
+  id               String            @id @default(cuid())
   telegramId       BigInt?           @unique
   name             String?
   email            String            @unique
   createdAt        DateTime          @default(now())
-  updatedAt        DateTime
+  updatedAt        DateTime          @updatedAt
   cart             Cart?
   checkout         Checkout?
   favorites        Favorite[]
@@ -180,7 +180,7 @@ model User {
 }
 
 model UserAddress {
-  id         String   @id
+  id         String   @id @default(cuid())
   userId     String   @unique
   recipient  String?
   country    String?
@@ -189,12 +189,12 @@ model UserAddress {
   postalCode String?
   phone      String?
   createdAt  DateTime @default(now())
-  updatedAt  DateTime
+  updatedAt  DateTime @updatedAt
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Variant {
-  id        String       @id
+  id        String       @id @default(cuid())
   productId String
   colorId   String
   sku       String       @unique
@@ -204,7 +204,7 @@ model Variant {
   size      String
   isActive  Boolean      @default(true)
   createdAt DateTime     @default(now())
-  updatedAt DateTime
+  updatedAt DateTime     @updatedAt
   cartItems CartItem[]
   color     ProductColor @relation(fields: [colorId], references: [id])
   product   Product      @relation(fields: [productId], references: [id])
