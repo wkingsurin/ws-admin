@@ -3,7 +3,6 @@ import { IOrder, IOrderItem } from "../types/types";
 import DeliveryMethod from "../components/delivery-method";
 import PaymentStatus from "../components/payment-status";
 import CellImage from "@/components/data-table/cell-image";
-import CellStatus from "@/components/data-table/service-cells/cell-status";
 
 export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   {
@@ -13,6 +12,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     initialWidth: 220,
     minWidth: 150,
     maxWidth: 300,
+    searchable: true,
   },
   {
     id: "orderNumber",
@@ -21,6 +21,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     initialWidth: 150,
     minWidth: 100,
     maxWidth: 300,
+    searchable: true,
   },
   {
     id: "customerName",
@@ -30,6 +31,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     minWidth: 120,
     maxWidth: 300,
     render: (order) => order.customer.name,
+    searchable: true,
   },
   {
     id: "customerEmail",
@@ -39,6 +41,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     minWidth: 160,
     maxWidth: 300,
     render: (order) => order.customer.email,
+    searchable: true,
   },
   {
     id: "address",
@@ -49,6 +52,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     maxWidth: 300,
     render: (order) => order.shipping.address,
     editable: true,
+    searchable: true,
   },
   {
     id: "city",
@@ -59,6 +63,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     maxWidth: 300,
     render: (order) => order.shipping.city,
     editable: true,
+    searchable: true,
   },
   {
     id: "country",
@@ -69,6 +74,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     maxWidth: 300,
     render: (order) => order.shipping.country,
     editable: true,
+    searchable: true,
   },
   {
     id: "postalCode",
@@ -79,6 +85,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     maxWidth: 300,
     render: (order) => order.shipping.postalCode,
     editable: true,
+    searchable: true,
   },
   {
     id: "paymentMethod",
@@ -100,6 +107,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
         { label: "PayPal", value: "PAYPAL" },
       ],
     },
+    searchable: true,
   },
   {
     id: "deliveryMethod",
@@ -124,6 +132,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     },
     editor: "custom",
     className: "px-2",
+    searchable: true,
   },
   {
     id: "price",
@@ -133,6 +142,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     minWidth: 90,
     maxWidth: 300,
     render: (order) => order.totals.total,
+    searchable: true,
   },
   {
     id: "isPaid",
@@ -156,6 +166,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     },
     editor: "custom",
     className: "px-2",
+    searchable: true,
   },
   {
     id: "createdAt",
@@ -164,6 +175,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     initialWidth: 120,
     minWidth: 120,
     maxWidth: 300,
+    searchable: true,
   },
   {
     id: "updatedAt",
@@ -172,6 +184,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     initialWidth: 120,
     minWidth: 120,
     maxWidth: 300,
+    searchable: true,
   },
 ];
 
@@ -192,6 +205,7 @@ export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
     initialWidth: 220,
     minWidth: 150,
     maxWidth: 300,
+    searchable: true,
   },
   {
     id: "variantId",
@@ -200,6 +214,7 @@ export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
     initialWidth: 220,
     minWidth: 150,
     maxWidth: 300,
+    searchable: true,
   },
   {
     id: "sku",
@@ -208,6 +223,7 @@ export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
     initialWidth: 160,
     minWidth: 120,
     maxWidth: 300,
+    searchable: true,
   },
   {
     id: "title",
@@ -216,6 +232,7 @@ export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
     initialWidth: 220,
     minWidth: 150,
     maxWidth: 300,
+    searchable: true,
   },
   {
     id: "selectedColor",
@@ -225,6 +242,7 @@ export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
     minWidth: 140,
     maxWidth: 300,
     render: (orderItem) => orderItem.selectedColor,
+    searchable: true,
   },
   {
     id: "selectedSize",
@@ -234,6 +252,7 @@ export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
     minWidth: 140,
     maxWidth: 300,
     render: (orderItem) => orderItem.selectedSize,
+    searchable: true,
   },
   {
     id: "price",
@@ -242,6 +261,7 @@ export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
     initialWidth: 100,
     minWidth: 80,
     maxWidth: 300,
+    searchable: true,
   },
   {
     id: "quantity",
@@ -250,5 +270,6 @@ export const ORDER_ITEM_COLUMNS: DataTableColumn<IOrderItem>[] = [
     initialWidth: 120,
     minWidth: 80,
     maxWidth: 300,
+    searchable: true,
   },
 ];

@@ -13,6 +13,7 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     initialWidth: 220,
     minWidth: 150,
     maxWidth: 300,
+    searchable: true,
   },
   {
     id: "brand",
@@ -22,6 +23,7 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     minWidth: 100,
     maxWidth: 300,
     render: (product) => product.brand.name,
+    searchable: true,
   },
   {
     id: "category",
@@ -31,6 +33,7 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     minWidth: 100,
     maxWidth: 300,
     render: (product) => product.category.name,
+    searchable: true,
   },
   {
     id: "title",
@@ -40,6 +43,7 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     minWidth: 160,
     maxWidth: 300,
     editable: true,
+    searchable: true,
   },
   {
     id: "description",
@@ -50,6 +54,7 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     maxWidth: 300,
     render: (product) => product.description,
     editable: true,
+    searchable: true,
   },
   {
     id: "currency",
@@ -59,6 +64,7 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     minWidth: 120,
     maxWidth: 120,
     render: (product) => product.currency,
+    searchable: true,
   },
   {
     id: "isAvailable",
@@ -82,6 +88,7 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     },
     editor: "custom",
     className: "px-2",
+    searchable: true,
   },
   {
     id: "isNew",
@@ -105,6 +112,7 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     },
     editor: "custom",
     className: "px-2",
+    searchable: true,
   },
 ];
 
@@ -127,6 +135,7 @@ export const VARIANT_COLUMNS: DataTableColumn<IVariantRow>[] = [
     initialWidth: 220,
     minWidth: 150,
     maxWidth: 300,
+    searchable: true,
   },
   {
     id: "sku",
@@ -135,6 +144,7 @@ export const VARIANT_COLUMNS: DataTableColumn<IVariantRow>[] = [
     initialWidth: 150,
     minWidth: 100,
     maxWidth: 300,
+    searchable: true,
   },
   {
     id: "color",
@@ -156,6 +166,7 @@ export const VARIANT_COLUMNS: DataTableColumn<IVariantRow>[] = [
         ].map((name) => ({ label: name, value: name }));
       },
     },
+    searchable: true,
   },
   {
     id: "size",
@@ -180,6 +191,7 @@ export const VARIANT_COLUMNS: DataTableColumn<IVariantRow>[] = [
     },
     editor: "custom",
     className: "px-2",
+    searchable: true,
   },
   {
     id: "price",
@@ -190,6 +202,7 @@ export const VARIANT_COLUMNS: DataTableColumn<IVariantRow>[] = [
     maxWidth: 300,
     editable: true,
     render: (variant) => variant.price,
+    searchable: true,
   },
   {
     id: "oldPrice",
@@ -200,6 +213,7 @@ export const VARIANT_COLUMNS: DataTableColumn<IVariantRow>[] = [
     maxWidth: 300,
     editable: true,
     render: (variant) => variant.oldPrice,
+    searchable: true,
   },
   {
     id: "stock",
@@ -210,5 +224,6 @@ export const VARIANT_COLUMNS: DataTableColumn<IVariantRow>[] = [
     maxWidth: 300,
     editable: true,
     render: (variant) => variant.stock,
+    searchable: true,
   },
 ];

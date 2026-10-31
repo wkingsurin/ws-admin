@@ -12,6 +12,7 @@ export const CUSTOMER_COLUMNS: DataTableColumn<IUser>[] = [
     initialWidth: 220,
     minWidth: 150,
     maxWidth: 300,
+    searchable: true,
   },
   {
     id: "name",
@@ -22,6 +23,7 @@ export const CUSTOMER_COLUMNS: DataTableColumn<IUser>[] = [
     maxWidth: 300,
     editable: true,
     maxSymbols: 300,
+    searchable: true,
   },
   {
     id: "email",
@@ -32,6 +34,7 @@ export const CUSTOMER_COLUMNS: DataTableColumn<IUser>[] = [
     maxWidth: 300,
     editable: true,
     maxSymbols: 300,
+    searchable: true,
   },
   {
     id: "recipient",
@@ -42,6 +45,7 @@ export const CUSTOMER_COLUMNS: DataTableColumn<IUser>[] = [
     maxWidth: 300,
     render: (user) => user.address.recipient,
     editable: true,
+    searchable: true,
   },
   {
     id: "country",
@@ -52,6 +56,7 @@ export const CUSTOMER_COLUMNS: DataTableColumn<IUser>[] = [
     maxWidth: 300,
     render: (user) => user.address.country,
     editable: true,
+    searchable: true,
   },
   {
     id: "city",
@@ -62,6 +67,7 @@ export const CUSTOMER_COLUMNS: DataTableColumn<IUser>[] = [
     maxWidth: 300,
     render: (user) => user.address.city,
     editable: true,
+    searchable: true,
   },
   {
     id: "street",
@@ -72,6 +78,7 @@ export const CUSTOMER_COLUMNS: DataTableColumn<IUser>[] = [
     maxWidth: 300,
     render: (user) => user.address.street,
     editable: true,
+    searchable: true,
   },
   {
     id: "postalCode",
@@ -82,6 +89,7 @@ export const CUSTOMER_COLUMNS: DataTableColumn<IUser>[] = [
     maxWidth: 300,
     render: (user) => user.address.postalCode,
     editable: true,
+    searchable: true,
   },
   {
     id: "phone",
@@ -92,6 +100,7 @@ export const CUSTOMER_COLUMNS: DataTableColumn<IUser>[] = [
     maxWidth: 300,
     render: (user) => user.address.phone,
     editable: true,
+    searchable: true,
   },
   {
     id: "createdAt",
@@ -100,6 +109,7 @@ export const CUSTOMER_COLUMNS: DataTableColumn<IUser>[] = [
     initialWidth: 150,
     minWidth: 100,
     maxWidth: 300,
+    searchable: true,
   },
 ];
 
@@ -112,7 +122,7 @@ export const FAVORITE_COLUMNS: DataTableColumn<IFavoriteRow>[] = [
     minWidth: 100,
     maxWidth: 100,
     render: (item) => {
-      return <CellImage alt={item.title} src={item.image?.src ?? ''} />;
+      return <CellImage alt={item.title} src={item.image?.src ?? ""} />;
     },
   },
   {
@@ -122,6 +132,7 @@ export const FAVORITE_COLUMNS: DataTableColumn<IFavoriteRow>[] = [
     initialWidth: 220,
     minWidth: 150,
     maxWidth: 300,
+    searchable: true,
   },
   {
     id: "productId",
@@ -130,6 +141,7 @@ export const FAVORITE_COLUMNS: DataTableColumn<IFavoriteRow>[] = [
     initialWidth: 220,
     minWidth: 150,
     maxWidth: 300,
+    searchable: true,
   },
   {
     id: "createdAt",
@@ -138,6 +150,7 @@ export const FAVORITE_COLUMNS: DataTableColumn<IFavoriteRow>[] = [
     initialWidth: 120,
     minWidth: 120,
     maxWidth: 300,
+    searchable: true,
   },
 ];
 
@@ -158,6 +171,7 @@ export const CART_COLUMNS: DataTableColumn<ICartItemRow>[] = [
     initialWidth: 220,
     minWidth: 150,
     maxWidth: 300,
+    searchable: true,
   },
   {
     id: "variantId",
@@ -166,6 +180,7 @@ export const CART_COLUMNS: DataTableColumn<ICartItemRow>[] = [
     initialWidth: 220,
     minWidth: 160,
     maxWidth: 300,
+    searchable: true,
   },
   {
     id: "sku",
@@ -174,6 +189,7 @@ export const CART_COLUMNS: DataTableColumn<ICartItemRow>[] = [
     initialWidth: 150,
     minWidth: 150,
     maxWidth: 300,
+    searchable: true,
   },
   {
     id: "slug",
@@ -182,6 +198,7 @@ export const CART_COLUMNS: DataTableColumn<ICartItemRow>[] = [
     initialWidth: 220,
     minWidth: 150,
     maxWidth: 300,
+    searchable: true,
   },
   {
     id: "brandName",
@@ -190,6 +207,7 @@ export const CART_COLUMNS: DataTableColumn<ICartItemRow>[] = [
     initialWidth: 100,
     minWidth: 100,
     maxWidth: 300,
+    searchable: true,
   },
   {
     id: "categoryName",
@@ -198,6 +216,7 @@ export const CART_COLUMNS: DataTableColumn<ICartItemRow>[] = [
     initialWidth: 120,
     minWidth: 120,
     maxWidth: 300,
+    searchable: true,
   },
   {
     id: "title",
@@ -206,6 +225,7 @@ export const CART_COLUMNS: DataTableColumn<ICartItemRow>[] = [
     initialWidth: 220,
     minWidth: 150,
     maxWidth: 300,
+    searchable: true,
   },
   {
     id: "selectedColor",
@@ -236,6 +256,7 @@ export const CART_COLUMNS: DataTableColumn<ICartItemRow>[] = [
     },
     editor: "custom",
     className: "px-2",
+    searchable: true,
   },
   {
     id: "selectedSize",
@@ -264,6 +285,7 @@ export const CART_COLUMNS: DataTableColumn<ICartItemRow>[] = [
     },
     editor: "custom",
     className: "px-2",
+    searchable: true,
   },
   {
     id: "price",
@@ -272,6 +294,7 @@ export const CART_COLUMNS: DataTableColumn<ICartItemRow>[] = [
     initialWidth: 100,
     minWidth: 100,
     maxWidth: 300,
+    searchable: true,
   },
   {
     id: "oldPrice",
@@ -280,6 +303,7 @@ export const CART_COLUMNS: DataTableColumn<ICartItemRow>[] = [
     initialWidth: 100,
     minWidth: 100,
     maxWidth: 300,
+    searchable: true,
   },
   {
     id: "quantity",
@@ -289,6 +313,7 @@ export const CART_COLUMNS: DataTableColumn<ICartItemRow>[] = [
     minWidth: 100,
     maxWidth: 300,
     editable: true,
+    searchable: true,
   },
   {
     id: "maxStock",
@@ -297,6 +322,7 @@ export const CART_COLUMNS: DataTableColumn<ICartItemRow>[] = [
     initialWidth: 100,
     minWidth: 100,
     maxWidth: 300,
+    searchable: true,
   },
   {
     id: "createdAt",
@@ -305,5 +331,6 @@ export const CART_COLUMNS: DataTableColumn<ICartItemRow>[] = [
     initialWidth: 120,
     minWidth: 120,
     maxWidth: 300,
+    searchable: true,
   },
 ];

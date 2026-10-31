@@ -54,6 +54,7 @@ export interface DataTableColumn<T> {
   onSave?: (row: T, value: string) => void;
 
   editor?: "text" | "custom";
+  searchable?: boolean;
 }
 
 export interface DataTableProps<T> {

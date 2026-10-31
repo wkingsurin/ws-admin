@@ -26,6 +26,7 @@ import Cell from "./cell";
 import CellStatus from "./service-cells/cell-status";
 import CellStatusHead from "./service-cells/cell-status-head";
 import normalizeFilterValue from "@/features/shared/normalizeFilterValue";
+import { useTableSearch } from "../dashboard/search-context";
 
 export default function DataTable<T>({
   data,
@@ -39,6 +40,29 @@ export default function DataTable<T>({
   statusCell = false,
 }: DataTableProps<T>) {
   const [pressedCtrl, setPressedCtrl] = useState<boolean>(false);
+
+  const { searchQuery } = useTableSearch();
+
+  const searchableColumns = columns.filter((column) => column.searchable);
+  const normalizedQuery = searchQuery.trim().toLowerCase();
+
+  const searchedData = data.filter((row) => {
+    if (!normalizedQuery) return true;
+
+    return searchableColumns.some((column) => {
+      const value = getColumnValue(column, row);
+
+      if (
+        typeof value !== "string" &&
+        typeof value !== "number" &&
+        typeof value !== "boolean"
+      ) {
+        return false;
+      }
+
+      return String(value).toLowerCase().includes(normalizedQuery);
+    });
+  });
 
   const [sort, setSort] = useState<SortState>({
     columnId: null,
@@ -109,7 +133,7 @@ export default function DataTable<T>({
     window.addEventListener("pointerup", handlePointerUp);
   };
 
-  const filteredData = [...data].filter((row) => {
+  const filteredData = [...searchedData].filter((row) => {
     return columns.every((column) => {
       const selectedFilters = columnFilters[column.id] ?? [];
 

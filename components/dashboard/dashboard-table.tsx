@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import ActionsBar from "./actions-bar";
+import { SearchProvider } from "./search-context";
 
 export default function DashboardTable({
   toolbar,
@@ -11,10 +12,12 @@ export default function DashboardTable({
   className: string;
 }) {
   return (
-    <div className={`flex flex-col min-h-0 ${className ?? ""}`}>
-      <ActionsBar>{toolbar}</ActionsBar>
+    <SearchProvider>
+      <div className={`flex flex-col min-h-0 ${className ?? ""}`}>
+        <ActionsBar>{toolbar}</ActionsBar>
 
-      <div className="flex-1 min-h-0">{children}</div>
-    </div>
+        <div className="flex-1 min-h-0">{children}</div>
+      </div>
+    </SearchProvider>
   );
 }
