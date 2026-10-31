@@ -218,6 +218,8 @@ export default function DataTable<T>({
         >
           <colgroup>
             <col style={{ width: "40px" }} />
+            {pageCell && <col style={{ width: "50px" }} />}
+
             {columns.map((column) => (
               <col
                 key={column.id}
@@ -228,7 +230,6 @@ export default function DataTable<T>({
             ))}
 
             {statusCell && <col style={{ width: "60px" }} />}
-            {pageCell && <col style={{ width: "50px" }} />}
           </colgroup>
 
           <TableHeader className="sticky top-0 z-10 bg-[#FCFDFE] shadow-[0_2px_12px_rgba(0,0,0,0.05)]">
@@ -238,6 +239,12 @@ export default function DataTable<T>({
                 indeterminate={someSelected}
                 onSelect={() => toggleAll(rowIds)}
               />
+              {pageCell && (
+                <LinkHead
+                  label="page"
+                  className="sticky left-10 bg-[#FCFDFE] z-10 uppercase bold font-mono text-[12px] text-[#99A1AF] leading-[100%] text-center"
+                />
+              )}
 
               {columns.map((column) => (
                 <TableHead
@@ -290,12 +297,6 @@ export default function DataTable<T>({
               {statusCell && (
                 <CellStatusHead className="bg-[#FCFDFE] uppercase bold font-mono text-[12px] text-[#99A1AF] leading-[100%] text-center" />
               )}
-              {pageCell && (
-                <LinkHead
-                  label="page"
-                  className="sticky right-0 bg-[#FCFDFE] z-10 uppercase bold font-mono text-[12px] text-[#99A1AF] leading-[100%] text-center"
-                />
-              )}
             </TableRow>
           </TableHeader>
 
@@ -313,6 +314,7 @@ export default function DataTable<T>({
                     checked={selectedIds[rowId] === true}
                     onSelect={() => onToggleRow(rowId)}
                   />
+                  {pageCell && <LinkCell href={`/${rowId}`} />}
 
                   {columns.map((column) => {
                     const value = getColumnValue(column, row);
@@ -348,7 +350,6 @@ export default function DataTable<T>({
                   })}
 
                   {statusCell && status && <CellStatus status={status} />}
-                  {pageCell && <LinkCell href={`/${rowId}`} />}
                 </TableRow>
               );
             })}

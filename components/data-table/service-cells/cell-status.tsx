@@ -22,7 +22,7 @@ export default function CellStatus({ status }: CellStatusProps) {
                 : "";
 
   return (
-    <TableCell className="sticky right-[50px] bg-white ">
+    <TableCell className="sticky right-0 bg-white ">
       <div className="flex items-center justify-center w-full h-full border-l-[0.5px] border-black/10">
         <span className={`block w-2 h-2 rounded-full ${style}`} />
       </div>

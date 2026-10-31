@@ -9,7 +9,7 @@ export default function LinkHead({
 }) {
   return (
     <TableHead className={`min-w-0 px-0 ${className ?? ""}`}>
-      <div className="flex items-center justify-center w-full h-full border-l-[0.5px] border-black/10">{label}</div>
+      <div className="flex items-center justify-center w-full h-full border-r-[0.5px] border-black/10">{label}</div>
     </TableHead>
   );
 }
