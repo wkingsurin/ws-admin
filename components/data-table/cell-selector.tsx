@@ -28,13 +28,17 @@ export default function CellSelector({
         }
       }}
     >
-      <SelectTrigger className="w-full items-center justify-between rounded-sm border-[0.5px] border-[#E5E7EB] bg-white focus-visible:border-none shadow-none px-2">
+      <SelectTrigger className="w-full items-center justify-between rounded-sm border-[0.5px] border-[#E5E7EB] bg-white focus-visible:border-none shadow-none px-2 font-mono text-xs text-[#1E2939]">
         <SelectValue />
       </SelectTrigger>
-      <SelectContent alignItemWithTrigger={false}>
+      <SelectContent alignItemWithTrigger={false} className="min-w-auto">
         <SelectGroup>
           {options.map((option) => (
-            <SelectItem key={option.value} value={option.value}>
+            <SelectItem
+              key={option.value}
+              value={option.value}
+              className="font-mono text-xs"
+            >
               {option.label}
             </SelectItem>
           ))}

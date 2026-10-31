@@ -33,10 +33,10 @@ export default function ProductCondition({
       >
         <SelectValue />
       </SelectTrigger>
-      <SelectContent alignItemWithTrigger={false}>
+      <SelectContent alignItemWithTrigger={false} className='min-w-auto'>
         <SelectGroup>
           {items.map((item) => (
-            <SelectItem key={item.label} value={item.value}>
+            <SelectItem key={item.label} value={item.value} className='font-mono text-xs'>
               {item.label}
             </SelectItem>
           ))}

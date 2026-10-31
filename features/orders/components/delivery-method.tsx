@@ -35,10 +35,10 @@ export default function DeliveryMethod({
       >
         <SelectValue />
       </SelectTrigger>
-      <SelectContent alignItemWithTrigger={false}>
+      <SelectContent alignItemWithTrigger={false} className='min-w-auto'>
         <SelectGroup>
           {items.map((item) => (
-            <SelectItem key={item.value} value={item.value}>
+            <SelectItem key={item.value} value={item.value} className='font-mono text-xs'>
               {item.label}
             </SelectItem>
           ))}

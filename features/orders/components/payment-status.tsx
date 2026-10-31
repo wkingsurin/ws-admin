@@ -17,8 +17,8 @@ export default function PaymentStatus({
   onChange,
 }: PaymentStatusProps) {
   const items = [
-    { label: "Paid", value: true },
-    { label: "Unpaid", value: false },
+    { label: "Paid", value: "true" },
+    { label: "Unpaid", value: "false" },
   ];
 
   return (
@@ -33,10 +33,14 @@ export default function PaymentStatus({
       >
         <SelectValue />
       </SelectTrigger>
-      <SelectContent alignItemWithTrigger={false}>
+      <SelectContent alignItemWithTrigger={false} className="min-w-auto">
         <SelectGroup>
           {items.map((item) => (
-            <SelectItem key={item.label} value={item.value}>
+            <SelectItem
+              key={item.label}
+              value={item.value}
+              className="font-mono text-xs"
+            >
               {item.label}
             </SelectItem>
           ))}
