@@ -1,13 +1,10 @@
 import OrderDetails from "./details/order-details";
-import Toolbar from "./toolbar/toolbar";
-import OrderItemsTable from "@/features/orders/components/details/table";
-import DashboardTable from "@/components/dashboard/dashboard-table";
-import OrderToolbar from "@/features/orders/components/details/toolbar";
 import { notFound } from "next/navigation";
 import { DetailRow } from "./types";
 import { mapOrder } from "@/features/orders/map-order";
 import { getOrderById } from "@/features/orders/get-order";
 import { OrderStatus } from "@/prisma/generated/prisma/enums";
+import OrderPageClient from "./client";
 
 type OrderDetails = {
   order: DetailRow[];
@@ -66,18 +63,10 @@ export default async function OrderPage({
   };
 
   return (
-    <div className="flex flex-col gap-3 h-full min-h-0">
-      <div className="flex flex-col gap-6 flex-1 min-h-0 overflow-hidden">
-        <Toolbar id={id} />
-
-        <hr className="bg-black/10" />
-
-        <OrderDetails data={orderDetails} />
-
-        <DashboardTable className="flex-1 min-h-0" toolbar={<OrderToolbar />}>
-          <OrderItemsTable data={mappedOrder.items} />
-        </DashboardTable>
-      </div>
-    </div>
+    <OrderPageClient
+      id={id}
+      orderDetails={orderDetails}
+      items={mappedOrder.items}
+    />
   );
 }

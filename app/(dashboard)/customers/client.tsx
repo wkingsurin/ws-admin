@@ -1,3 +1,5 @@
+'use client'
+
 import DashboardTable from "@/components/dashboard/dashboard-table";
 import CustomersTable from "@/features/customers/components/table";
 import CustomersToolbar from "@/features/customers/components/toolbar";
