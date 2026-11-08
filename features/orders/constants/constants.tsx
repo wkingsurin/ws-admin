@@ -3,6 +3,7 @@ import { IOrder, IOrderItem } from "../types/types";
 import DeliveryMethod from "../components/delivery-method";
 import PaymentStatus from "../components/payment-status";
 import CellImage from "@/components/data-table/cell-image";
+import normalizeDate from "@/lib/normalize-date";
 
 export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   {
@@ -171,7 +172,8 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   {
     id: "createdAt",
     header: "createdAt",
-    accessorKey: "createdAt",
+    accessor: (order) => order.createdAt,
+    render: (order) => normalizeDate(order.createdAt.toISOString()),
     initialWidth: 120,
     minWidth: 120,
     maxWidth: 300,
@@ -180,7 +182,8 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   {
     id: "updatedAt",
     header: "updatedAt",
-    accessorKey: "updatedAt",
+    accessor: (order) => order.updatedAt,
+    render: (order) => normalizeDate(order.updatedAt.toISOString()),
     initialWidth: 120,
     minWidth: 120,
     maxWidth: 300,

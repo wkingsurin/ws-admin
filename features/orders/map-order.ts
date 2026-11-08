@@ -1,4 +1,3 @@
-import normalizeDate from "@/lib/normalize-date";
 import { IOrderRow } from "./components/details/types";
 import { OrderWithRelations } from "./types/prisma-types";
 
@@ -7,8 +6,8 @@ export function mapOrder(order: OrderWithRelations): IOrderRow {
     id: order.id,
     orderNumber: order.orderNumber,
 
-    createdAt: normalizeDate(order.createdAt.toISOString()),
-    updatedAt: normalizeDate(order.updatedAt.toISOString()),
+    createdAt: order.createdAt,
+    updatedAt: order.updatedAt,
 
     customer: {
       name: order.customerName,

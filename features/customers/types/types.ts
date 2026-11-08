@@ -2,16 +2,16 @@ export interface IUser {
   id: string;
   name: string;
   email: string;
-  createdAt: string;
+  createdAt: Date;
   address: {
-    recipient: string;
-    country: string;
-    city: string;
-    street: string;
-    postalCode: string;
-    phone?: string;
-    createdAt: string;
-    updatedAt: string;
+    recipient: string | null;
+    country: string | null;
+    city: string | null;
+    street: string | null;
+    postalCode: string | null;
+    phone?: string | null;
+    createdAt: Date;
+    updatedAt: Date;
   };
 }
 
@@ -19,7 +19,7 @@ export interface IFavorite {
   id: string;
   userId: string;
   productId: string;
-  createdAt: string;
+  createdAt: Date;
 }
 
 export interface IFavoriteRow extends IFavorite {

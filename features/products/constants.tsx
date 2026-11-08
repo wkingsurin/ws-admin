@@ -4,6 +4,7 @@ import ProductAvailability from "./components/product-availability";
 import ProductCondition from "./components/product-condition";
 import { IVariantRow } from "./components/variants/types";
 import CellImage from "@/components/data-table/cell-image";
+import normalizeDate from "@/lib/normalize-date";
 
 export const ProductColumns: DataTableColumn<IProduct>[] = [
   {
@@ -113,6 +114,24 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     editor: "custom",
     className: "px-2",
     searchable: true,
+  },
+  {
+    id: "createdAt",
+    header: "createdAt",
+    accessor: (product) => product.createdAt,
+    render: (product) => normalizeDate(product.createdAt.toISOString()),
+    initialWidth: 130,
+    minWidth: 120,
+    maxWidth: 300,
+  },
+  {
+    id: "updatedAt",
+    header: "updatedAt",
+    accessor: (product) => product.updatedAt,
+    render: (product) => normalizeDate(product.updatedAt.toISOString()),
+    initialWidth: 130,
+    minWidth: 120,
+    maxWidth: 300,
   },
 ];
 
@@ -225,5 +244,14 @@ export const VARIANT_COLUMNS: DataTableColumn<IVariantRow>[] = [
     editable: true,
     render: (variant) => variant.stock,
     searchable: true,
+  },
+  {
+    id: "createdAt",
+    header: "createdAt",
+    accessor: (variant) => variant.createdAt,
+    render: (product) => normalizeDate(product.createdAt.toISOString()),
+    initialWidth: 130,
+    minWidth: 120,
+    maxWidth: 300,
   },
 ];

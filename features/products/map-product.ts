@@ -42,8 +42,13 @@ export const mapProduct = (product: ProductWithRelations): IProduct => {
           colorId: color?.id ?? "",
           size: variant.size,
         },
+        createdAt: variant.createdAt,
+        updatedAt: variant.updatedAt,
       };
     }),
+
+    createdAt: product.createdAt,
+    updatedAt: product.updatedAt,
   };
 
   return mappedProduct;

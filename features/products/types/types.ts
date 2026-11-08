@@ -15,6 +15,9 @@ export interface IVariant {
   oldPrice: number | null;
   stock: number;
   attributes: { colorId: string; size: string };
+
+  createdAt: Date;
+  updatedAt: Date;
 }
 export interface IProduct {
   id: string;
@@ -42,4 +45,7 @@ export interface IProduct {
   };
 
   variants: IVariant[];
+
+  createdAt: Date;
+  updatedAt: Date;
 }

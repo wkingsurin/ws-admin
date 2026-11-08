@@ -96,8 +96,6 @@ export async function updateData({
                   update: address,
 
                   create: {
-                    id: crypto.randomUUID(),
-                    updatedAt: new Date(),
                     ...address,
                   },
                 },

@@ -28,6 +28,8 @@ export async function getProducts(): Promise<ProductWithRelations[]> {
           stock: true,
           price: true,
           oldPrice: true,
+          createdAt: true,
+          updatedAt: true,
         },
       },
     },

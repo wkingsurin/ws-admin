@@ -53,8 +53,8 @@ export interface IOrderTotals {
 export interface IOrder {
   id: string;
   orderNumber: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
 
   customer: IOrderCustomer;
 

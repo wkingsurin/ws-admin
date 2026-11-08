@@ -3,6 +3,7 @@ import { ICartItem, IFavoriteRow, IUser } from "./types/types";
 import CellImage from "@/components/data-table/cell-image";
 import CellSelector from "@/components/data-table/cell-selector";
 import { ICartItemRow } from "./components/customer/types";
+import normalizeDate from "@/lib/normalize-date";
 
 export const CUSTOMER_COLUMNS: DataTableColumn<IUser>[] = [
   {
@@ -105,7 +106,8 @@ export const CUSTOMER_COLUMNS: DataTableColumn<IUser>[] = [
   {
     id: "createdAt",
     header: "createdAt",
-    accessorKey: "createdAt",
+    accessor: (user) => user.createdAt,
+    render: (user) => normalizeDate(user.createdAt.toISOString()),
     initialWidth: 150,
     minWidth: 100,
     maxWidth: 300,
@@ -146,7 +148,8 @@ export const FAVORITE_COLUMNS: DataTableColumn<IFavoriteRow>[] = [
   {
     id: "createdAt",
     header: "createdAt",
-    accessorKey: "createdAt",
+    accessor: (item) => item.createdAt,
+    render: (item) => normalizeDate(item.createdAt.toISOString()),
     initialWidth: 120,
     minWidth: 120,
     maxWidth: 300,
@@ -327,7 +330,8 @@ export const CART_COLUMNS: DataTableColumn<ICartItemRow>[] = [
   {
     id: "createdAt",
     header: "createdAt",
-    accessorKey: "createdAt",
+    accessor: (item) => item.createdAt,
+    render: (item) => normalizeDate(item.createdAt.toISOString()),
     initialWidth: 120,
     minWidth: 120,
     maxWidth: 300,

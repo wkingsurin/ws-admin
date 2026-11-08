@@ -8,14 +8,14 @@ export const mapCustomer = (user: UserWithRelations): IUser => {
     email: user.email,
     createdAt: user.createdAt,
     address: {
-      recipient: user.address?.recipient ?? "",
-      country: user.address?.country ?? "",
-      city: user.address?.city ?? "",
-      street: user.address?.street ?? "",
-      postalCode: user.address?.postalCode ?? "",
-      phone: user.address?.phone ?? "",
+      recipient: user.address?.recipient ?? null,
+      country: user.address?.country ?? null,
+      city: user.address?.city ?? null,
+      street: user.address?.street ?? null,
+      postalCode: user.address?.postalCode ?? null,
+      phone: user.address?.phone ?? null,
       createdAt: user.address?.createdAt ?? new Date(),
-      updatedAt: user.address?.updatedAt ?? new Date(1),
+      updatedAt: user.address?.updatedAt ?? new Date(),
     },
   };
 };

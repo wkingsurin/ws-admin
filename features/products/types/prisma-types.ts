@@ -29,6 +29,8 @@ export const productInclude = {
       stock: true,
       price: true,
       oldPrice: true,
+      createdAt: true,
+      updatedAt: true,
     },
   },
 } satisfies Prisma.ProductInclude;
