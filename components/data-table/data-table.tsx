@@ -27,6 +27,8 @@ import CellStatus from "./service-cells/cell-status";
 import CellStatusHead from "./service-cells/cell-status-head";
 import normalizeFilterValue from "@/features/shared/normalizeFilterValue";
 import { useTableSearch } from "../dashboard/search-context";
+import { compareValues } from "./utils/compare-values";
+import { isEmptyValue } from "./utils/is-empty-value";
 
 export default function DataTable<T>({
   data,
@@ -155,18 +157,16 @@ export default function DataTable<T>({
     const aValue = getColumnValue(column, a);
     const bValue = getColumnValue(column, b);
 
-    if (aValue == null) return 1;
-    if (bValue == null) return -1;
+    const aEmpty = isEmptyValue(aValue);
+    const bEmpty = isEmptyValue(bValue);
 
-    if (aValue < bValue) {
-      return sort.direction === "asc" ? -1 : 1;
-    }
+    if (aEmpty && bEmpty) return 0;
+    if (aEmpty) return 1;
+    if (bEmpty) return -1;
 
-    if (bValue < aValue) {
-      return sort.direction === "asc" ? 1 : -1;
-    }
+    const result = compareValues(aValue, bValue);
 
-    return 0;
+    return sort.direction === "asc" ? result : -result;
   });
   const rowIds = sortedData.map(getRowId);
 
@@ -357,17 +357,21 @@ export default function DataTable<T>({
                     return (
                       <Cell
                         key={column.id}
-                        editValue={value == null ? "" : String(value)}
+                        editValue={
+                          value == null || value == undefined
+                            ? null
+                            : String(value)
+                        }
                         className={column.className}
                         hovered={pressedCtrl}
-                        onSave={(value) => column.onSave?.(row, value)}
+                        onSave={(value) => column.onSave?.(row, String(value))}
                         editable={column.editable ?? false}
                         maxSymbols={column.maxSymbols}
                       >
                         {column.render
                           ? column.render(row)
                           : value == null
-                            ? ""
+                            ? null
                             : String(value)}
                       </Cell>
                     );

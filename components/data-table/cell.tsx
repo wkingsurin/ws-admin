@@ -7,13 +7,13 @@ import { Textarea } from "../ui/textarea";
 
 interface CellProps {
   children: ReactNode;
-  editValue?: string;
+  editValue?: string | null;
   className?: string;
 
   hovered: boolean;
   editable: boolean;
   maxSymbols?: number;
-  onSave?: (value: string) => void;
+  onSave?: (value: string | null) => void;
 }
 
 export default function Cell({
@@ -25,8 +25,8 @@ export default function Cell({
   onSave,
   maxSymbols,
 }: CellProps) {
-  const [inputValue, setInputValue] = useState<string>(() =>
-    String(editValue ?? ""),
+  const [inputValue, setInputValue] = useState<string | null>(
+    () => editValue ?? null,
   );
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
@@ -60,7 +60,7 @@ export default function Cell({
         {isEditing ? (
           <form className="flex items-center w-full" onSubmit={onSubmit}>
             <Textarea
-              value={inputValue}
+              value={String(inputValue)}
               className="w-full min-h-5 h-full p-0 rounded-none resize-none"
               onChange={(event) => setInputValue(event.target.value)}
               onBlur={cancelEditing}
@@ -83,7 +83,7 @@ export default function Cell({
               autoFocus
             />
           </form>
-        ) : hovered ? (
+        ) : hovered && children !== null && children !== "" ? (
           <CellValue value={children} visible={hovered} />
         ) : (
           children
