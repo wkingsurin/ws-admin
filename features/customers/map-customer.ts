@@ -7,6 +7,7 @@ export const mapCustomer = (user: UserWithRelations): IUser => {
     name: user.name ?? "",
     email: user.email,
     createdAt: user.createdAt,
+    updatedAt: user.updatedAt,
     address: {
       recipient: user.address?.recipient ?? null,
       country: user.address?.country ?? null,

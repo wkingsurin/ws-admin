@@ -13,6 +13,7 @@ export function mapUser(user: UserWithRelations): IUser {
     name: user.name ?? "",
     email: user.email,
     createdAt: user.createdAt,
+    updatedAt: user.updatedAt,
     address: {
       recipient: address.recipient ?? null,
       country: address.country ?? null,
