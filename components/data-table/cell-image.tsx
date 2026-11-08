@@ -7,6 +7,8 @@ import {
 } from "../ui/dialog";
 
 export default function CellImage({ alt, src }: { alt: string; src: string }) {
+  if (!src || src === "/") return <p>No image</p>;
+
   return (
     <Dialog>
       <DialogTrigger

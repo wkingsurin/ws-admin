@@ -141,7 +141,10 @@ export const VARIANT_COLUMNS: DataTableColumn<IVariantRow>[] = [
     header: "image",
     accessor: (variant) => variant.images.length,
     render: (variant) => (
-      <CellImage src={variant.images[0].src} alt={variant.color?.name ?? ""} />
+      <CellImage
+        src={variant.images[0]?.src ?? "/"}
+        alt={variant.color?.name ?? ""}
+      />
     ),
     initialWidth: 100,
     minWidth: 100,
