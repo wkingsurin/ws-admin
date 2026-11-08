@@ -11,6 +11,7 @@ import { IVariantRow } from "@/features/products/components/variants/types";
 import getColors from "@/features/products/components/get-colors";
 import mapColor from "@/features/products/components/variants/mapColor";
 import ProductPageClient from "./client";
+import normalizeDate from "@/lib/normalize-date";
 
 type ProductDetails = DetailRow[];
 
@@ -69,8 +70,14 @@ export default async function ProductPage({
     { label: "Stock", value: String(stock) },
     { label: "Price", value: "7790" },
     { label: "Old price", value: "9790" },
-    { label: "Created at", value: "2026-07-25 14:59:19" },
-    { label: "Updated at", value: "2026-07-25 14:59:19" },
+    {
+      label: "Created at",
+      value: normalizeDate(mappedProduct.createdAt.toISOString()),
+    },
+    {
+      label: "Updated at",
+      value: normalizeDate(mappedProduct.updatedAt.toISOString()),
+    },
   ];
   const productRows = productDetails.filter(
     (row) =>

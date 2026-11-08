@@ -5,6 +5,7 @@ import { mapOrder } from "@/features/orders/map-order";
 import { getOrderById } from "@/features/orders/get-order";
 import { OrderStatus } from "@/prisma/generated/prisma/enums";
 import OrderPageClient from "./client";
+import normalizeDate from "@/lib/normalize-date";
 
 type OrderDetails = {
   order: DetailRow[];
@@ -37,8 +38,14 @@ export default async function OrderPage({
       { label: "Number", value: mappedOrder.orderNumber },
     ],
     orderDate: [
-      { label: "Created at", value: mappedOrder.createdAt },
-      { label: "Updated at", value: mappedOrder.updatedAt },
+      {
+        label: "Created at",
+        value: normalizeDate(mappedOrder.createdAt.toISOString()),
+      },
+      {
+        label: "Updated at",
+        value: normalizeDate(mappedOrder.updatedAt.toISOString()),
+      },
     ],
     customer: [
       { label: "Id", value: mappedOrder.customer.name },

@@ -10,30 +10,36 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { DetailRow } from "../../orders/[id]/types";
 import ImageCard from "./details/image-card";
-import { ICartItem, IFavoriteRow, IUser } from "@/features/customers/types/types";
+import { IFavoriteRow, IUser } from "@/features/customers/types/types";
+import { ICartItemRow } from "@/features/customers/components/customer/types";
+import normalizeDate from "@/lib/normalize-date";
 
 interface CustomerProps {
-  data: { customer: IUser; cartItems?: ICartItem[]; favorites?: IFavoriteRow[] };
+  data: {
+    customer: IUser;
+    cartItems?: ICartItemRow[];
+    favorites?: IFavoriteRow[];
+  };
 }
 
 export default function CustomerClientPage({ data }: CustomerProps) {
-  const { cartItems = [], favorites = [] } = data;
+  const { customer: user, cartItems = [], favorites = [] } = data;
 
   const searchParams = useSearchParams();
   const currentPage = searchParams.get("page");
 
   const customer: DetailRow[] = [
-    { label: "Id", value: "cms0hunvx001c2wua6bldro7m" },
-    { label: "Name", value: "Jane Doe" },
-    { label: "Email", value: "janedoe@example.com" },
-    { label: "Recipient", value: "" },
-    { label: "Country", value: "" },
-    { label: "City", value: "" },
-    { label: "Street", value: "" },
-    { label: "PostalCode", value: "" },
-    { label: "Phone", value: "" },
-    { label: "Created at", value: "2026-07-25 14:59:19" },
-    { label: "Updated at", value: "2026-07-25 14:59:19" },
+    { label: "Id", value: user.id },
+    { label: "Name", value: user.name },
+    { label: "Email", value: user.email },
+    { label: "Recipient", value: user.address.recipient ?? "—" },
+    { label: "Country", value: user.address.country ?? "—" },
+    { label: "City", value: user.address.city ?? "—" },
+    { label: "Street", value: user.address.street ?? "—" },
+    { label: "PostalCode", value: user.address.postalCode ?? "—" },
+    { label: "Phone", value: user.address.phone ?? "—" },
+    { label: "Created at", value: normalizeDate(user.createdAt.toISOString()) },
+    { label: "Updated at", value: normalizeDate(user.updatedAt.toISOString()) },
   ];
   const customerRows = customer.filter(
     (row) =>
@@ -94,13 +100,13 @@ export default function CustomerClientPage({ data }: CustomerProps) {
 
         <div className="flex gap-3">
           <Link
-            className={`px-3 border-b-[2px] pb-2 ${currentPage !== "favorites" ? "border-[#1E2939]" : "border-transparent"}`}
+            className={`px-2 border-b-[2px] pb-1 text-sm leading-base ${currentPage !== "favorites" ? "border-[#1E2939]" : "border-transparent"}`}
             href={"?page=cart"}
           >
             Cart
           </Link>
           <Link
-            className={`px-3 border-b-[2px] pb-2 ${currentPage === "favorites" ? "border-[#1E2939]" : "border-transparent"}`}
+            className={`px-2 border-b-[2px] pb-1 text-sm leading-base ${currentPage === "favorites" ? "border-[#1E2939]" : "border-transparent"}`}
             href={"?page=favorites"}
           >
             Favorites

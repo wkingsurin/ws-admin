@@ -15,12 +15,24 @@ export default async function CatalogPage() {
       ...new Set(product.variants.map((variant) => variant.size)),
     ].sort();
 
+    const colorsMap = new Map(
+      mappedProduct.options.color.map((color) => [color.id, color]),
+    );
+
     return {
       ...mappedProduct,
-      variants: mappedProduct.variants.map((variant) => ({
-        ...variant,
-        availableSizes,
-      })),
+      variants: mappedProduct.variants.map((variant) => {
+        const color = colorsMap.get(variant.attributes.colorId);
+
+        return {
+          ...variant,
+          availableSizes,
+
+          color: color ? { id: color.id, name: color.name } : null,
+
+          images: color?.images ?? [],
+        };
+      }),
     };
   });
 
