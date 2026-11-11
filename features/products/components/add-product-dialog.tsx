@@ -345,11 +345,8 @@ export default function AddProductDialog({
             </div>
           </div>
         </div>
-        <div className="flex justify-end gap-3 w-full border-t-[1px] border-[#F3F4F6] pt-4">
+        <div className="flex items-center justify-end gap-3 w-full border-t-[1px] border-[#F3F4F6] pt-4">
           {error && <p className="text-sm text-red-600">{error}</p>}
-          <Button className="w-45 px-4 bg-white border-[1px] border-[#E5E7EB] text-black hover:bg-[#F9FAFB]">
-            Check data
-          </Button>
           <Button className="w-45 px-4" onClick={handleCreateProduct}>
             Create
           </Button>

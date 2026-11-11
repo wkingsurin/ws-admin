@@ -17,12 +17,10 @@ export default function Toolbar({
           <ToolButton
             key={tool.label}
             icon={tool.icon}
-            onClick={tool.onClick}
             className="px-0 bg-white border-[#E5E7EB] hover:bg-black/5! text-black hover:text-black"
             size={tool.dialogSize ?? "auto"}
-          >
-            {tool.dialog}
-          </ToolButton>
+            dialog={tool.dialog}
+          />
         ))}
       </div>
       <div className="flex items-center gap-1 min-h-0">
@@ -32,12 +30,10 @@ export default function Toolbar({
               key={tool.label}
               icon={tool.icon}
               label={tool.label}
-              onClick={tool.onClick}
               className="w-auto px-3"
               size={tool.dialogSize ?? "md"}
-            >
-              {tool.dialog}
-            </ToolButton>
+              dialog={tool.dialog}
+            />
           ))}
       </div>
     </div>

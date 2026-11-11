@@ -306,9 +306,8 @@ export default function AddVariantDialog({
           )}
         </div>
 
-        {error && <p className="text-sm text-destructive">{error}</p>}
-
-        <div className="flex justify-end w-full">
+        <div className="relative flex items-center justify-end w-full">
+          {error && <p className="absolute left-0 top-0 text-sm text-destructive">{error}</p>}
           <Button type="submit" disabled={isSaving} className="min-w-60 px-4">
             {isSaving ? "Saving..." : "Confirm"}
           </Button>

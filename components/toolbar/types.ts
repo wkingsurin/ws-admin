@@ -4,7 +4,6 @@ import { ReactNode } from "react";
 export type Tool = {
   label?: string;
   icon: LucideIcon;
-  dialog: ReactNode;
+  dialog: (props: { onClose: () => void }) => ReactNode;
   dialogSize?: "default" | "auto" | "md" | "lg";
-  onClick: () => void;
 };

@@ -2,9 +2,10 @@
 
 import Toolbar from "@/components/toolbar/toolbar";
 import { Tool } from "@/components/toolbar/types";
-import { Plus } from "lucide-react";
+import { Plus, FunnelX } from "lucide-react";
 import { useTableStore } from "@/lib/store/table.store";
 import AddProductDialog from "./add-product-dialog";
+import ResetFiltersDialog from "@/components/reset-filters-dialog";
 
 interface ProductsToolbarProps {
   brands: { id: string; name: string; slug: string }[];
@@ -19,15 +20,31 @@ export default function ProductsToolbar({
     (s) => Object.keys(s.selectedIds).length > 0,
   );
 
+  const hasFilters = useTableStore((s) => s.hasColumnFilters());
+  const resetFilters = useTableStore((s) => s.resetFilters);
+
   const services: Tool[] = [
     {
       label: "Add row",
       icon: Plus,
-      dialog: <AddProductDialog brands={brands} categories={categories} />,
+      dialog: ({ onClose }) => (
+        <AddProductDialog brands={brands} categories={categories} />
+      ),
       dialogSize: "lg",
-      onClick: () => console.log("Order created"),
     },
   ];
+
+  if (hasFilters) {
+    services.unshift({
+      label: "Reset filters",
+      icon: FunnelX,
+      dialog: ({ onClose }) => (
+        <ResetFiltersDialog onClick={resetFilters} onClose={onClose} />
+      ),
+      dialogSize: "auto",
+    });
+  }
+
   const tools: Tool[] = [];
 
   return <Toolbar serviceTools={services} tools={isSelected ? tools : []} />;
