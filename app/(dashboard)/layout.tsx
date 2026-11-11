@@ -1,5 +1,5 @@
 import Main from "@/components/main";
-import SelectionReset from "./selection-reset";
+import TableReset from "./table-reset";
 
 export default function DashboardLayout({
   children,
@@ -8,7 +8,7 @@ export default function DashboardLayout({
 }) {
   return (
     <Main>
-      <SelectionReset />
+      <TableReset />
       {children}
     </Main>
   );

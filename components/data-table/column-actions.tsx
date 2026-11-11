@@ -1,4 +1,10 @@
-import { ArrowDown, ArrowUp, ChevronDown } from "lucide-react";
+import {
+  ArrowDown,
+  ArrowUp,
+  ChevronDown,
+  FunnelX,
+  RotateCcw,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,6 +22,7 @@ interface ColumnActionsProps<T> {
   onFilterChange: (value: string, checked: boolean) => void;
   sortDirection: SortDirection | null;
   onSort: (direction: SortDirection) => void;
+  onReset: () => void;
 }
 
 export default function ColumnActions<T>({
@@ -25,6 +32,7 @@ export default function ColumnActions<T>({
   onFilterChange,
   sortDirection,
   onSort,
+  onReset,
 }: ColumnActionsProps<T>) {
   const hasActiveFilters = selectedFilters.length > 0;
 
@@ -89,6 +97,21 @@ export default function ColumnActions<T>({
               selectedFilters={selectedFilters}
               onCheckedChange={onFilterChange}
             />
+
+            <DropdownMenuSeparator />
+
+            <DropdownMenuItem className="group/item" onClick={onReset}>
+              <span
+                className={`${sortDirection === "desc" ? "text-black" : "text-black/50 group-hover/item:text-black"}`}
+              >
+                Reset filters
+              </span>
+              <span className="absolute right-2">
+                <FunnelX
+                  className={`size-4 stroke-[1.5px] stroke-black/50 group-hover/item:stroke-black`}
+                />
+              </span>
+            </DropdownMenuItem>
           </>
         )}
       </DropdownMenuContent>

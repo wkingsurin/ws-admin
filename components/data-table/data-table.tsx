@@ -9,13 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-import {
-  ColumnFilters,
-  ColumnWidths,
-  DataTableColumn,
-  DataTableProps,
-  SortState,
-} from "./types";
+import { ColumnWidths, DataTableColumn, DataTableProps } from "./types";
 import DataTableResizer from "./data-table-resizer";
 import LinkCell from "./service-cells/link-cell";
 import CheckboxCell from "./service-cells/checkbox-cell";
@@ -29,6 +23,7 @@ import normalizeFilterValue from "@/features/shared/normalizeFilterValue";
 import { useTableSearch } from "../dashboard/search-context";
 import { compareValues } from "./utils/compare-values";
 import { isEmptyValue } from "./utils/is-empty-value";
+import { useTableStore } from "@/lib/store/table.store";
 
 export default function DataTable<T>({
   data,
@@ -66,11 +61,13 @@ export default function DataTable<T>({
     });
   });
 
-  const [sort, setSort] = useState<SortState>({
-    columnId: null,
-    direction: null,
-  });
-  const [columnFilters, setColumnFilters] = useState<ColumnFilters>({});
+  const columnFilters = useTableStore((s) => s.columnFilters);
+  const sort = useTableStore((s) => s.sort);
+
+  const updateColumnFilters = useTableStore((s) => s.updateColumnFilter);
+  const resetColumnFilters = useTableStore((s) => s.resetColumnFilter);
+  const setSort = useTableStore((s) => s.setSort);
+
   const [columnWidths, setColumnWidths] = useState<ColumnWidths>(() =>
     Object.fromEntries(
       columns.map((column) => {
@@ -284,29 +281,15 @@ export default function DataTable<T>({
                       data={data}
                       selectedFilters={columnFilters[column.id] ?? []}
                       onFilterChange={(value, checked) => {
-                        const normalizedValue = normalizeFilterValue(value);
-
-                        setColumnFilters((prev) => {
-                          const current = prev[column.id] ?? [];
-
-                          return {
-                            ...prev,
-                            [column.id]: checked
-                              ? current.includes(normalizedValue)
-                                ? current
-                                : [...current, normalizedValue]
-                              : current.filter(
-                                  (item) => item !== normalizedValue,
-                                ),
-                          };
-                        });
+                        updateColumnFilters(column.id, value, checked);
                       }}
                       sortDirection={
-                        sort?.columnId === column.id ? sort.direction : null
+                        sort.columnId === column.id ? sort.direction : null
                       }
                       onSort={(direction) => {
                         setSort({ columnId: column.id, direction });
                       }}
+                      onReset={() => resetColumnFilters(column.id)}
                     />
                   </div>
 
