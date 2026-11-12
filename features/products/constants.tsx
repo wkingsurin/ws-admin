@@ -37,6 +37,16 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     searchable: true,
   },
   {
+    id: "slug",
+    header: "slug",
+    accessor: (product) => product.slug,
+    initialWidth: 160,
+    minWidth: 100,
+    maxWidth: 300,
+    render: (product) => product.slug,
+    searchable: true,
+  },
+  {
     id: "title",
     header: "title",
     accessorKey: "title",

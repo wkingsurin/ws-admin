@@ -32,13 +32,17 @@ export default function ProductVariantsTable({
   variants,
   onChange,
 }: ProductVariantsTableProps) {
+  const [error, setError] = useState<{ message: string } | null>(null);
   const [inProcess, setInProcess] = useState<boolean>(false);
   const [selectedSize, setSelectedSize] = useState<string>("");
 
   const existingSizes = variants.map((variant) => variant.size);
 
   const handleAddSize = () => {
-    if (!selectedSize || existingSizes.includes(selectedSize)) return;
+    if (!selectedSize || existingSizes.includes(selectedSize)) {
+      setError({ message: `Не выбран размер или он уже существует.` });
+      return;
+    }
 
     const nextVariants = [
       ...variants,
@@ -55,11 +59,13 @@ export default function ProductVariantsTable({
 
     setSelectedSize("");
     setInProcess(false);
+    setError(null);
   };
 
   const handleClearSize = () => {
     setSelectedSize("");
     setInProcess(false);
+    setError(null);
   };
 
   const handleFieldChange = (
@@ -76,6 +82,7 @@ export default function ProductVariantsTable({
 
   const handleRemoveSize = (size: string) => {
     onChange(variants.filter((variant) => variant.size !== size));
+    setError(null);
   };
 
   return (
@@ -204,10 +211,18 @@ export default function ProductVariantsTable({
         <div className="flex gap-3">
           <Select
             value={selectedSize}
-            onValueChange={(value) => setSelectedSize(value ?? "")}
+            onValueChange={(value) => {
+              setSelectedSize(value ?? "");
+              setError(null);
+            }}
           >
-            <SelectTrigger className="w-full select-none">
-              <SelectValue placeholder="Select size" />
+            <SelectTrigger
+              className={`w-full select-none ${error?.message ? "border-red-500" : ""}`}
+            >
+              <SelectValue
+                placeholder="Select size"
+                className={error?.message ? "text-red-500" : ""}
+              />
             </SelectTrigger>
             <SelectContent alignItemWithTrigger={false}>
               <SelectGroup>

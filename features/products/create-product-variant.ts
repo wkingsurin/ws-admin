@@ -71,6 +71,9 @@ function validateVariant(variant: CreateVariantInput) {
   if (oldPrice !== null && (!Number.isSafeInteger(oldPrice) || oldPrice < 0)) {
     throw new Error(`Некорректная старая цена для размера ${size}`);
   }
+  if (oldPrice !== null && oldPrice < price) {
+    throw new Error(`Старая цена не может быть меньше новой`)
+  }
 
   if (
     variant.stock.trim() === "" ||
