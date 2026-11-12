@@ -9,10 +9,10 @@ import CartItemsTable from "@/features/customers/components/customer/cart-table"
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { DetailRow } from "../../orders/[id]/types";
-import ImageCard from "./details/image-card";
 import { IFavoriteRow, IUser } from "@/features/customers/types/types";
 import { ICartItemRow } from "@/features/customers/components/customer/types";
 import normalizeDate from "@/lib/normalize-date";
+import ImageCard from "@/components/shared/image-card";
 
 interface CustomerProps {
   data: {

@@ -1,8 +1,3 @@
-import DashboardTable from "@/components/dashboard/dashboard-table";
-import Toolbar from "./toolbar/toolbar";
-import VariantsTable from "@/features/products/components/variants/table";
-import ImageCard from "./details/image-card";
-import ProductToolbar from "@/features/products/components/variants/toolbar";
 import { notFound } from "next/navigation";
 import { DetailRow } from "../../orders/[id]/types";
 import { getProductById } from "@/features/products/get-product";
