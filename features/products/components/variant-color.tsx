@@ -88,7 +88,7 @@ export default function VariantColor({
                 <Input
                   type="file"
                   id={inputId}
-                  accept="image/*"
+                  accept="image/jpeg/,image/png,image/webp,image/avif"
                   className="hidden"
                   multiple
                   onChange={(e) => {

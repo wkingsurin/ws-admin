@@ -20,6 +20,11 @@ import VariantColor from "./variant-color";
 import { ProductColorDraft } from "./create-product/types";
 import { createProduct } from "../create-product";
 import { uploadProductImage } from "../upload-product-image";
+import { toast } from "@/components/ui/toast";
+import {
+  InvalidValidationResult,
+  validateImageFile,
+} from "../utils/validate-image-file";
 
 interface AddProductDialogProps {
   brands: { id: string; name: string; slug: string }[];
@@ -47,6 +52,11 @@ export default function AddProductDialog({
   const [activeColorId, setActiveColorId] = useState<string | null>(null);
   const [newColorName, setNewColorName] = useState("");
   const [inProcess, setInProcess] = useState<boolean>(false);
+
+  const activeBrand = brands.find((brand) => brand.id === activeBrandId);
+  const activeCategory = categories.find(
+    (category) => category.id === activeCategoryId,
+  );
 
   const handleAddColor = () => {
     const name = newColorName.trim();
@@ -89,14 +99,65 @@ export default function AddProductDialog({
     );
   };
 
-  const handleImagesChange = (colorId: string, newImages: File[]) => {
-    setColors((prev) =>
-      prev.map((color) =>
-        color.id === colorId
-          ? { ...color, images: [...color.images, ...newImages] }
-          : color,
-      ),
+  const handleImagesChange = async (colorId: string, newImages: File[]) => {
+    const results = await Promise.all(
+      newImages.map(async (file) => ({
+        file,
+        result: await validateImageFile(file),
+      })),
     );
+
+    const validImages = results
+      .filter(({ result }) => result.valid)
+      .map(({ file }) => file);
+
+    const invalidFiles = results.filter(
+      (item): item is { file: File; result: InvalidValidationResult } =>
+        item.result.valid === false,
+    );
+
+    const invalidExtensions = invalidFiles
+      .filter(({ result }) => result.reason === "extension")
+      .map(({ file }) => file.name);
+
+    const invalidMime = invalidFiles
+      .filter(({ result }) => result.reason === "mime")
+      .map(({ file }) => file.name);
+
+    const corruptedFiles = invalidFiles
+      .filter(({ result }) => result.reason === "corrupted")
+      .map(({ file }) => file.name);
+
+    if (invalidExtensions.length > 0) {
+      toast.add({
+        title: `Недопустимый формат: ${invalidExtensions.join(", ")}`,
+        type: "error",
+      });
+    }
+
+    if (invalidMime.length > 0) {
+      toast.add({
+        title: `Несоответствие формата файла: ${invalidMime.join(", ")}`,
+        type: "error",
+      });
+    }
+
+    if (corruptedFiles.length > 0) {
+      toast.add({
+        title: `Повреждённые изображения: ${corruptedFiles.join(", ")}`,
+        type: "error",
+      });
+    }
+
+    if (validImages.length > 0) {
+      setColors((prev) =>
+        prev.map((color) =>
+          color.id === colorId
+            ? { ...color, images: [...color.images, ...validImages] }
+            : color,
+        ),
+      );
+    }
   };
 
   const handleImageDelete = (colorId: string, imageIndex: number) => {
@@ -237,7 +298,7 @@ export default function AddProductDialog({
               </Label>
               <Select
                 id="brand"
-                value={activeBrandId ?? ""}
+                value={activeBrand?.name ?? ""}
                 onValueChange={(value) => setActiveBrandId(value ?? "")}
               >
                 <SelectTrigger className="w-full bg-[#F9FAFB] select-none">
@@ -266,7 +327,7 @@ export default function AddProductDialog({
               </Label>
               <Select
                 id="category"
-                value={activeCategoryId}
+                value={activeCategory?.name ?? ""}
                 onValueChange={(value) => setActiveCategoryId(value ?? "")}
               >
                 <SelectTrigger className="w-full bg-[#F9FAFB] select-none">
