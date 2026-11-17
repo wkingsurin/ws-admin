@@ -1,12 +1,12 @@
 import { DataTableColumn } from "@/components/data-table/types";
-import { IProduct } from "./types/types";
 import ProductAvailability from "./components/product-availability";
 import ProductCondition from "./components/product-condition";
-import { IVariantRow } from "./components/variants/types";
+import { IProductRow, IVariantRow } from "./components/variants/types";
 import CellImage from "@/components/data-table/cell-image";
 import normalizeDate from "@/lib/normalize-date";
+import CellSelector from "@/components/data-table/cell-selector";
 
-export const ProductColumns: DataTableColumn<IProduct>[] = [
+export const ProductColumns: DataTableColumn<IProductRow>[] = [
   {
     id: "id",
     header: "id",
@@ -23,7 +23,27 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     initialWidth: 150,
     minWidth: 100,
     maxWidth: 300,
-    render: (product) => product.brand.name,
+    render: (product, { onSave } = { onSave: () => {} }) => (
+      <CellSelector
+        value={product.brand.id}
+        options={product.brands}
+        onChange={onSave}
+      />
+    ),
+    filter: {
+      type: "checkbox",
+      options: (data: IProductRow[]) => {
+        return [
+          ...new Set(
+            data
+              .map((variant) => variant.brand?.name)
+              .filter((name): name is string => Boolean(name)),
+          ),
+        ].map((name) => ({ label: name, value: name }));
+      },
+    },
+    editor: "custom",
+    className: "px-2",
     searchable: true,
   },
   {
@@ -33,7 +53,27 @@ export const ProductColumns: DataTableColumn<IProduct>[] = [
     initialWidth: 160,
     minWidth: 100,
     maxWidth: 300,
-    render: (product) => product.category.name,
+    render: (product, { onSave } = { onSave: () => {} }) => (
+      <CellSelector
+        value={product.category.id}
+        options={product.categories}
+        onChange={onSave}
+      />
+    ),
+    filter: {
+      type: "checkbox",
+      options: (data: IProductRow[]) => {
+        return [
+          ...new Set(
+            data
+              .map((variant) => variant.category?.name)
+              .filter((name): name is string => Boolean(name)),
+          ),
+        ].map((name) => ({ label: name, value: name }));
+      },
+    },
+    editor: "custom",
+    className: "px-2",
     searchable: true,
   },
   {

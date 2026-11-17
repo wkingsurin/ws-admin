@@ -7,6 +7,8 @@ import getCategories from "@/features/products/components/get-categories";
 
 export default async function CatalogPage() {
   const products = await getProducts();
+  const brands = await getBrands();
+  const categories = await getCategories();
 
   const mappedProducts: IProductRow[] = products.map((product) => {
     const mappedProduct = mapProduct(product);
@@ -33,13 +35,16 @@ export default async function CatalogPage() {
           images: color?.images ?? [],
         };
       }),
+      brands: brands.map((brand) => ({ label: brand.name, value: brand.id })),
+      categories: categories.map((category) => ({
+        label: category.name,
+        value: category.id,
+      })),
     };
   });
 
-  const brands = await getBrands();
   const sortedBrands = brands.sort((a, b) => (b.name[0] > a.name[0] ? -1 : 1));
 
-  const categories = await getCategories();
   const sotredCategories = categories.sort((a, b) =>
     b.name[0] > a.name[0] ? -1 : 1,
   );

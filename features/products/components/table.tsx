@@ -15,6 +15,42 @@ export default function ProductsTable({ data }: { data: IProductRow[] }) {
   const toggleAll = useTableStore((s) => s.toggleAll);
 
   const columns = ProductColumns.map((column) => {
+    if (column.id === "brand") {
+      return {
+        ...column,
+        onSave: async (product: IProduct, value: string) => {
+          const result = await updateData({
+            entity: "PRODUCT",
+            id: product.id,
+            data: { brandId: value },
+          });
+
+          toast.add({
+            title: result.message,
+            type: result.success ? "success" : "error",
+          });
+        },
+      };
+    }
+
+    if (column.id === "category") {
+      return {
+        ...column,
+        onSave: async (product: IProduct, value: string) => {
+          const result = await updateData({
+            entity: "PRODUCT",
+            id: product.id,
+            data: { categoryId: value },
+          });
+
+          toast.add({
+            title: result.message,
+            type: result.success ? "success" : "error",
+          });
+        },
+      };
+    }
+
     if (column.id === "title") {
       return {
         ...column,

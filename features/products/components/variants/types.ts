@@ -8,4 +8,6 @@ export interface IVariantRow extends IVariant {
 
 export interface IProductRow extends Omit<IProduct, "variants"> {
   variants: IVariantRow[];
+  brands: { label: string; value: string }[];
+  categories: { label: string; value: string }[];
 }

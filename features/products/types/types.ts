@@ -27,11 +27,13 @@ export interface IProduct {
   currency: string;
 
   brand: {
+    id: string;
     name: string;
     slug: string;
   };
 
   category: {
+    id: string;
     name: string;
     slug: string;
   };
