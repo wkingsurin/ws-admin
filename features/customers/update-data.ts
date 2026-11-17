@@ -49,6 +49,8 @@ export type UpdateDataParams =
         description?: string;
         isAvailable?: boolean;
         isNew?: boolean;
+        brandId?: string;
+        categoryId?: string;
       };
     }
   | {
@@ -128,7 +130,7 @@ export async function updateData({
       }
 
       case "PRODUCT": {
-        const { isAvailable, ...productData } = data;
+        const { isAvailable, brandId, categoryId, ...productData } = data;
 
         await runSerializableTransaction(async (tx) => {
           if (isAvailable) {
@@ -144,6 +146,12 @@ export async function updateData({
             data: {
               ...productData,
               ...(isAvailable !== undefined && { isAvailable }),
+              ...(brandId !== undefined && {
+                brand: { connect: { id: brandId } },
+              }),
+              ...(categoryId !== undefined && {
+                category: { connect: { id: categoryId } },
+              }),
             },
           });
         });
