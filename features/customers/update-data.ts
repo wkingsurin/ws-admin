@@ -60,6 +60,7 @@ export type UpdateDataParams =
         price?: number;
         oldPrice?: number | null;
         stock?: number;
+        isActive?: boolean;
       };
     }
   | {
@@ -168,7 +169,7 @@ export async function updateData({
       }
 
       case "VARIANT": {
-        const { price, oldPrice, stock } = data;
+        const { price, oldPrice, stock, isActive } = data;
 
         await runSerializableTransaction(async (tx) => {
           if (price !== undefined && (!Number.isInteger(price) || price < 0)) {
@@ -219,6 +220,7 @@ export async function updateData({
                 ...(price !== undefined && { price }),
                 ...(oldPrice !== undefined && { oldPrice }),
                 ...(stock !== undefined && { stock }),
+                ...(isActive !== undefined && { isActive }),
               },
             });
 
