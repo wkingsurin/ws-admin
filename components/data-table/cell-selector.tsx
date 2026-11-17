@@ -11,12 +11,14 @@ interface CellSelectorProps {
   value: string;
   options: { label: string; value: string }[];
   onChange?: (value: string) => void;
+  className?: string;
 }
 
 export default function CellSelector({
   value,
   options,
   onChange,
+  className = "",
 }: CellSelectorProps) {
   return (
     <Select
@@ -28,7 +30,10 @@ export default function CellSelector({
         }
       }}
     >
-      <SelectTrigger size="sm" className="w-full items-center justify-between rounded-sm border-[0.5px] border-[#E5E7EB] bg-white focus-visible:border-none shadow-none px-2 font-mono text-xs text-[#1E2939]">
+      <SelectTrigger
+        size="sm"
+        className={`w-full items-center justify-between rounded-sm border-[0.5px] border-[#E5E7EB] bg-white focus-visible:border-none shadow-none px-2 font-mono text-xs text-[#1E2939] ${className}`}
+      >
         <SelectValue />
       </SelectTrigger>
       <SelectContent alignItemWithTrigger={false} className="min-w-auto">
