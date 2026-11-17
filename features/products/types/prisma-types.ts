@@ -29,6 +29,7 @@ export const productInclude = {
       stock: true,
       price: true,
       oldPrice: true,
+      isActive: true,
       createdAt: true,
       updatedAt: true,
     },

@@ -15,6 +15,7 @@ export interface IVariant {
   oldPrice: number | null;
   stock: number;
   attributes: { colorId: string; size: string };
+  isActive: boolean;
 
   createdAt: Date;
   updatedAt: Date;

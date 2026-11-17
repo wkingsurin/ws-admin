@@ -17,9 +17,6 @@ export async function getProductById(id: string) {
         },
       },
       variants: {
-        where: {
-          isActive: true,
-        },
         select: {
           id: true,
           sku: true,
@@ -29,6 +26,7 @@ export async function getProductById(id: string) {
           price: true,
           oldPrice: true,
           color: { include: { images: true } },
+          isActive: true,
           createdAt: true,
           updatedAt: true,
         },

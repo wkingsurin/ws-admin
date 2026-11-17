@@ -69,6 +69,24 @@ export default function VariantsTable({ data }: { data: IVariantRow[] }) {
       };
     }
 
+    if (column.id === "isActive") {
+      return {
+        ...column,
+        onSave: async (variant: IVariant, value: string) => {
+          const result = await updateData({
+            entity: "VARIANT",
+            id: variant.id,
+            data: { isActive: value === "true" ? true : false },
+          });
+
+          toast.add({
+            title: result.message,
+            type: result.success ? "success" : "error",
+          });
+        },
+      };
+    }
+
     return column;
   });
 

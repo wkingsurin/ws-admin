@@ -299,6 +299,35 @@ export const VARIANT_COLUMNS: DataTableColumn<IVariantRow>[] = [
     searchable: true,
   },
   {
+    id: "isActive",
+    header: "isActive",
+    accessor: (variant) => variant.isActive,
+    initialWidth: 120,
+    minWidth: 120,
+    maxWidth: 300,
+    render: (variant, { onSave } = { onSave: () => {} }) => (
+      <CellSelector
+        value={String(variant.isActive)}
+        options={[
+          { label: "Active", value: "true" },
+          { label: "Inactive", value: "false" },
+        ]}
+        onChange={onSave}
+        className={`${variant.isActive ? "bg-green-200 border-green-300" : "bg-red-200 border-red-300"}`}
+      />
+    ),
+    filter: {
+      type: "checkbox",
+      options: [
+        { label: "Active", value: "true" },
+        { label: "Inactive", value: "false" },
+      ],
+    },
+    editor: "custom",
+    className: "px-2",
+    searchable: true,
+  },
+  {
     id: "createdAt",
     header: "createdAt",
     accessor: (variant) => variant.createdAt,
