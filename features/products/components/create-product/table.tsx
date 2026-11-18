@@ -90,7 +90,7 @@ export default function ProductVariantsTable({
       <div className="rounded-xl border-[1px] overflow-hidden">
         <div className="flex items-center w-full h-[30px] px-3 bg-[#F9FAFB] border-b-[1px] border-[#F3F4F6]">
           <span className=" text-[#364153] text-xs font-semibold select-none">
-            Variants of size
+            Sizes
           </span>
         </div>
         <table className="w-full min-w-[600px] table-fixed text-sm bg-white">

@@ -34,21 +34,7 @@ export default function AddVariantDialog({
 }: AddVariantDialogProps) {
   const sizes = ["S", "M", "L", "XL", "2XL", "3XL"];
 
-  const [colors, setColors] = useState<AddVariantColorDraft[]>(
-    initialColors.map((color) => ({
-      id: crypto.randomUUID(),
-      colorId: color.id,
-      name: color.name,
-      variants: color.variants.map((variant) => ({
-        size: variant.size,
-        price: variant.price,
-        oldPrice: variant.oldPrice,
-        stock: variant.stock,
-        isActive: variant.isActive,
-      })),
-      images: [],
-    })),
-  );
+  const [colors, setColors] = useState<AddVariantColorDraft[]>([]);
 
   const [activeColorId, setActiveColorId] = useState<string | null>(null);
   const [newColorName, setNewColorName] = useState("");
@@ -191,75 +177,73 @@ export default function AddVariantDialog({
         }}
       >
         <div className="flex flex-col gap-2 w-full h-full p-3 bg-[#F9FAFB] rounded-lg border-[1px] border-[#E5E7EB]/80">
-          <span className="text-xs font-bold text-[#101828] pb-1 select-none">
-            Colors and variants
-          </span>
+          {colors.length > 0 && (
+            <div className="flex flex-col gap-2">
+              {colors.map((color) => {
+                const isExistingColor = Boolean(color.colorId);
 
-          <div className="flex flex-col gap-2">
-            {colors.map((color) => {
-              const isExistingColor = Boolean(color.colorId);
+                return (
+                  <VariantColor
+                    key={color.id}
+                    mode={isExistingColor ? "add-variants" : "create-product"}
+                    color={color.name}
+                    sizes={sizes}
+                    variants={color.variants}
+                    images={color.images}
+                    isActive={activeColorId === color.id}
+                    onClick={() =>
+                      setActiveColorId((prev) =>
+                        prev === color.id ? null : color.id,
+                      )
+                    }
+                    onDelete={() => {
+                      if (isExistingColor) return;
 
-              return (
-                <VariantColor
-                  key={color.id}
-                  mode={isExistingColor ? "add-variants" : "create-product"}
-                  color={color.name}
-                  sizes={sizes}
-                  variants={color.variants}
-                  images={color.images}
-                  isActive={activeColorId === color.id}
-                  onClick={() =>
-                    setActiveColorId((prev) =>
-                      prev === color.id ? null : color.id,
-                    )
-                  }
-                  onDelete={() => {
-                    if (isExistingColor) return;
+                      setColors((prev) =>
+                        prev.filter((item) => item.id !== color.id),
+                      );
 
-                    setColors((prev) =>
-                      prev.filter((item) => item.id !== color.id),
-                    );
+                      setActiveColorId((prev) =>
+                        prev === color.id ? null : prev,
+                      );
 
-                    setActiveColorId((prev) =>
-                      prev === color.id ? null : prev,
-                    );
+                      setError(null);
+                    }}
+                    onVariantChange={(variants) =>
+                      handleColorVariantsChange(color.id, variants)
+                    }
+                    onImageChange={(files) => {
+                      if (isExistingColor) return;
 
-                    setError(null);
-                  }}
-                  onVariantChange={(variants) =>
-                    handleColorVariantsChange(color.id, variants)
-                  }
-                  onImageChange={(files) => {
-                    if (isExistingColor) return;
+                      setColors((prev) =>
+                        prev.map((item) =>
+                          item.id === color.id
+                            ? { ...item, images: [...item.images, ...files] }
+                            : item,
+                        ),
+                      );
+                    }}
+                    onImageDelete={(index) => {
+                      if (isExistingColor) return;
 
-                    setColors((prev) =>
-                      prev.map((item) =>
-                        item.id === color.id
-                          ? { ...item, images: [...item.images, ...files] }
-                          : item,
-                      ),
-                    );
-                  }}
-                  onImageDelete={(index) => {
-                    if (isExistingColor) return;
-
-                    setColors((prev) =>
-                      prev.map((item) =>
-                        item.id === color.id
-                          ? {
-                              ...item,
-                              images: item.images.filter(
-                                (_, imageIndex) => imageIndex !== index,
-                              ),
-                            }
-                          : item,
-                      ),
-                    );
-                  }}
-                />
-              );
-            })}
-          </div>
+                      setColors((prev) =>
+                        prev.map((item) =>
+                          item.id === color.id
+                            ? {
+                                ...item,
+                                images: item.images.filter(
+                                  (_, imageIndex) => imageIndex !== index,
+                                ),
+                              }
+                            : item,
+                        ),
+                      );
+                    }}
+                  />
+                );
+              })}
+            </div>
+          )}
 
           {!inProcess ? (
             <Button
@@ -307,7 +291,11 @@ export default function AddVariantDialog({
         </div>
 
         <div className="relative flex items-center justify-end w-full">
-          {error && <p className="absolute left-0 top-0 text-sm text-destructive">{error}</p>}
+          {error && (
+            <p className="absolute left-0 top-0 text-sm text-destructive">
+              {error}
+            </p>
+          )}
           <Button type="submit" disabled={isSaving} className="min-w-60 px-4">
             {isSaving ? "Saving..." : "Confirm"}
           </Button>
