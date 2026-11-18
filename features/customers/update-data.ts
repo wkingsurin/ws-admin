@@ -172,18 +172,8 @@ export async function updateData({
         const { price, oldPrice, stock, isActive } = data;
 
         await runSerializableTransaction(async (tx) => {
-          if (price !== undefined && (!Number.isInteger(price) || price < 0)) {
-            throw new Error("Цена должна быть целым числом не меньше нуля");
-          }
-
-          if (
-            oldPrice !== undefined &&
-            oldPrice !== null &&
-            (!Number.isInteger(oldPrice) || oldPrice < 0)
-          ) {
-            throw new Error(
-              "Старая цена должны быть null или целым числом не меньше нуля",
-            );
+          if (price !== undefined && (!Number.isInteger(price) || price <= 0)) {
+            throw new Error("Цена должна быть целым числом больше нуля");
           }
 
           if (stock !== undefined && (!Number.isInteger(stock) || stock < 0)) {
@@ -195,11 +185,24 @@ export async function updateData({
             select: {
               id: true,
               productId: true,
+              price: true,
             },
           });
 
           if (!variant) {
             throw new Error("Вариант товара не найден");
+          }
+
+          if (
+            oldPrice !== undefined &&
+            oldPrice !== null &&
+            (!Number.isInteger(oldPrice) ||
+              oldPrice < 0 ||
+              oldPrice <= variant.price)
+          ) {
+            throw new Error(
+              "Старая цена должны быть null или целым числом больше текущей цены",
+            );
           }
 
           if (stock !== undefined) {
