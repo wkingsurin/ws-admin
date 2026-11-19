@@ -39,24 +39,28 @@ export default async function OrderPage({
     ],
     orderDate: [
       {
-        label: "Created at",
+        label: "Created",
         value: normalizeDate(mappedOrder.createdAt.toISOString()),
       },
       {
-        label: "Updated at",
+        label: "Updated",
         value: normalizeDate(mappedOrder.updatedAt.toISOString()),
       },
     ],
     customer: [
-      { label: "Id", value: mappedOrder.customer.name },
-      { label: "Name", value: mappedOrder.customer.name },
-      { label: "Email", value: mappedOrder.customer.email },
+      { label: "Id", value: mappedOrder.customer.id },
+      { label: "Name", value: mappedOrder.customer.name, editable: true },
+      { label: "Email", value: mappedOrder.customer.email, editable: true },
     ],
     shipping: [
-      { label: "Address", value: mappedOrder.shipping.address },
-      { label: "City", value: mappedOrder.shipping.city },
-      { label: "Country", value: mappedOrder.shipping.country },
-      { label: "Postal code", value: mappedOrder.shipping.postalCode },
+      { label: "Address", value: mappedOrder.shipping.address, editable: true },
+      { label: "City", value: mappedOrder.shipping.city, editable: true },
+      { label: "Country", value: mappedOrder.shipping.country, editable: true },
+      {
+        label: "Postal code",
+        value: mappedOrder.shipping.postalCode,
+        editable: true,
+      },
     ],
     shippingMethods: [
       { label: "Payment method", value: mappedOrder.payment.method },

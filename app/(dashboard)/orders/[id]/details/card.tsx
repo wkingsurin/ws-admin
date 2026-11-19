@@ -13,7 +13,6 @@ import { OrderStatus } from "@/prisma/generated/prisma/enums";
 interface DetailsCardProps {
   title: string;
   status?: OrderStatus;
-  editable?: boolean;
   data: DetailRow[];
   editDialog?: ReactNode;
   bottom?: ReactNode;
@@ -26,7 +25,6 @@ export default function DetailsCard({
   data,
   editDialog,
   bottom,
-  editable,
   mode = "light",
 }: DetailsCardProps) {
   return (
@@ -43,7 +41,7 @@ export default function DetailsCard({
             </span>
             {status && <Status value={status} />}
           </div>
-          {editable && (
+          {editDialog && (
             <Dialog>
               <DialogTrigger
                 render={

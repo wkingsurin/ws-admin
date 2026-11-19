@@ -10,6 +10,7 @@ export function mapOrder(order: OrderWithRelations): IOrderRow {
     updatedAt: order.updatedAt,
 
     customer: {
+      id: order.userId ?? '',
       name: order.customerName,
       email: order.customerEmail,
     },

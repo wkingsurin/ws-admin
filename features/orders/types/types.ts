@@ -9,6 +9,7 @@ export type OrderStatus =
 export type PaymentMethod = "CARD" | "CASH" | "PAYPAL";
 
 export interface IOrderCustomer {
+  id: string;
   name: string;
   email: string;
 }
