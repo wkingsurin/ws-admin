@@ -170,6 +170,15 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
     searchable: true,
   },
   {
+    id: "userId",
+    header: "userId ",
+    accessor: (order) => order.id,
+    initialWidth: 220,
+    minWidth: 220,
+    maxWidth: 300,
+    searchable: true,
+  },
+  {
     id: "createdAt",
     header: "createdAt",
     accessor: (order) => order.createdAt,
