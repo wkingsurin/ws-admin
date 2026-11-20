@@ -140,6 +140,7 @@ export default function OrdersTable({ data }: { data: IOrder[] }) {
         onToggleRow={toggleRow}
         toggleAll={toggleAll}
         statusCell
+        path="/orders"
       />
     </div>
   );

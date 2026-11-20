@@ -15,11 +15,12 @@ export default function OrderTable({ data }: { data: IOrderItem[] }) {
     <DataTable
       data={data}
       columns={ORDER_ITEM_COLUMNS}
-      getRowId={(item) => item.id}
+      getRowId={(item) => item.productId}
       selectedIds={selectedIds}
       onToggleRow={toggleRow}
       toggleAll={toggleAll}
-      pageCell={false}
-    />
+      pageCell
+      path="/catalog"
+      />
   );
 }

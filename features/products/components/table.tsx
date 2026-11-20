@@ -135,6 +135,7 @@ export default function ProductsTable({ data }: { data: IProductRow[] }) {
         selectedIds={selectedIds}
         onToggleRow={toggleRow}
         toggleAll={toggleAll}
+        path="/catalog"
       />
     </div>
   );
