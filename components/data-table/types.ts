@@ -69,4 +69,6 @@ export interface DataTableProps<T> {
 
   pageCell?: boolean;
   statusCell?: boolean;
+
+  path: string;
 }

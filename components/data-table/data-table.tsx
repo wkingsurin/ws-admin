@@ -24,6 +24,7 @@ import { useTableSearch } from "../dashboard/search-context";
 import { compareValues } from "./utils/compare-values";
 import { isEmptyValue } from "./utils/is-empty-value";
 import { useTableStore } from "@/lib/store/table.store";
+import TablePlaceholder from "./table-placeholder";
 
 export default function DataTable<T>({
   data,
@@ -35,6 +36,7 @@ export default function DataTable<T>({
   onToggleRow,
   pageCell = true,
   statusCell = false,
+  path,
 }: DataTableProps<T>) {
   const [pressedCtrl, setPressedCtrl] = useState<boolean>(false);
 
@@ -230,11 +232,11 @@ export default function DataTable<T>({
   return (
     <div className="flex flex-col min-w-0 h-full min-h-0">
       <div
-        className="flex-1 min-h-0 min-w-0 border-[0.5px] border-black/10 overflow-auto"
+        className="relative flex-1 min-h-0 min-w-0 border-[0.5px] border-black/10 overflow-auto"
         ref={tableScrollRef}
       >
         <Table
-          className="table-fixed w-max"
+          className={`table-fixed w-max ${sortedData.length === 0 && "hidden"}`}
           style={{ width: `${tableWidth}px` }}
         >
           <colgroup>
@@ -321,7 +323,7 @@ export default function DataTable<T>({
                     checked={selectedIds[rowId] === true}
                     onSelect={() => onToggleRow(rowId)}
                   />
-                  {pageCell && <LinkCell href={`/${rowId}`} />}
+                  {pageCell && <LinkCell href={`${path}/${rowId}`} />}
 
                   {columns.map((column) => {
                     const value = getColumnValue(column, row);
@@ -366,6 +368,7 @@ export default function DataTable<T>({
             })}
           </TableBody>
         </Table>
+        {sortedData.length === 0 && <TablePlaceholder />}
       </div>
 
       <div
