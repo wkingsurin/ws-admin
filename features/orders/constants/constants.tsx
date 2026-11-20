@@ -172,7 +172,7 @@ export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
   {
     id: "userId",
     header: "userId ",
-    accessor: (order) => order.id,
+    accessor: (order) => order.customer.id,
     initialWidth: 220,
     minWidth: 220,
     maxWidth: 300,
