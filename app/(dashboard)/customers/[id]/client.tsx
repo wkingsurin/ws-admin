@@ -13,17 +13,20 @@ import { IFavoriteRow, IUser } from "@/features/customers/types/types";
 import { ICartItemRow } from "@/features/customers/components/customer/types";
 import normalizeDate from "@/lib/normalize-date";
 import ImageCard from "@/components/shared/image-card";
+import OrdersTable from "@/features/customers/components/customer/orders-table";
+import { IOrder } from "@/features/orders/types/types";
 
 interface CustomerProps {
   data: {
     customer: IUser;
     cartItems?: ICartItemRow[];
     favorites?: IFavoriteRow[];
+    orders: IOrder[];
   };
 }
 
 export default function CustomerClientPage({ data }: CustomerProps) {
-  const { customer: user, cartItems = [], favorites = [] } = data;
+  const { customer: user, cartItems = [], favorites = [], orders } = data;
 
   const searchParams = useSearchParams();
   const currentPage = searchParams.get("page");
@@ -100,7 +103,7 @@ export default function CustomerClientPage({ data }: CustomerProps) {
 
         <div className="flex gap-3">
           <Link
-            className={`px-2 border-b-[2px] pb-1 text-sm leading-base ${currentPage !== "favorites" ? "border-[#1E2939]" : "border-transparent"}`}
+            className={`px-2 border-b-[2px] pb-1 text-sm leading-base ${currentPage === "cart" || currentPage === null ? "border-[#1E2939]" : "border-transparent"}`}
             href={"?page=cart"}
           >
             Cart
@@ -110,6 +113,12 @@ export default function CustomerClientPage({ data }: CustomerProps) {
             href={"?page=favorites"}
           >
             Favorites
+          </Link>
+          <Link
+            className={`px-2 border-b-[2px] pb-1 text-sm leading-base ${currentPage === "orders" ? "border-[#1E2939]" : "border-transparent"}`}
+            href={"?page=orders"}
+          >
+            Orders
           </Link>
         </div>
 
@@ -121,8 +130,10 @@ export default function CustomerClientPage({ data }: CustomerProps) {
         >
           {currentPage === "favorites" ? (
             <FavoritesTable data={favorites} />
-          ) : (
+          ) : currentPage === "cart" || currentPage === null ? (
             <CartItemsTable data={cartItems} />
+          ) : (
+            <OrdersTable data={orders} />
           )}
         </DashboardTable>
       </div>

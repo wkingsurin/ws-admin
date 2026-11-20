@@ -4,6 +4,7 @@ import CellImage from "@/components/data-table/cell-image";
 import CellSelector from "@/components/data-table/cell-selector";
 import { ICartItemRow } from "./components/customer/types";
 import normalizeDate from "@/lib/normalize-date";
+import { IOrder } from "../orders/types/types";
 
 export const CUSTOMER_COLUMNS: DataTableColumn<IUser>[] = [
   {
@@ -332,6 +333,38 @@ export const CART_COLUMNS: DataTableColumn<ICartItemRow>[] = [
     header: "createdAt",
     accessor: (item) => item.createdAt,
     render: (item) => normalizeDate(item.createdAt.toISOString()),
+    initialWidth: 120,
+    minWidth: 120,
+    maxWidth: 300,
+    searchable: true,
+  },
+];
+
+export const ORDER_COLUMNS: DataTableColumn<IOrder>[] = [
+  {
+    id: "id",
+    header: "id",
+    accessorKey: "id",
+    initialWidth: 220,
+    minWidth: 150,
+    maxWidth: 300,
+    searchable: true,
+  },
+  {
+    id: "createdAt",
+    header: "createdAt",
+    accessor: (item) => item.createdAt,
+    render: (item) => normalizeDate(item.createdAt.toISOString()),
+    initialWidth: 120,
+    minWidth: 120,
+    maxWidth: 300,
+    searchable: true,
+  },
+  {
+    id: "updatedAt",
+    header: "updatedAt",
+    accessor: (item) => item.updatedAt,
+    render: (item) => normalizeDate(item.updatedAt.toISOString()),
     initialWidth: 120,
     minWidth: 120,
     maxWidth: 300,

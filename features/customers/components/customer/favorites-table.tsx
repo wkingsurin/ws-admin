@@ -15,10 +15,11 @@ export default function FavoritesTable({ data }: { data: IFavoriteRow[] }) {
     <DataTable
       data={data}
       columns={FAVORITE_COLUMNS}
-      getRowId={(item) => item.id}
+      getRowId={(item) => item.productId}
       selectedIds={selectedIds}
       onToggleRow={toggleRow}
       toggleAll={toggleAll}
+      path="/catalog"
     />
   );
 }

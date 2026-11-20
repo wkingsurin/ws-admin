@@ -60,11 +60,11 @@ export default function CartItemsTable({ data }: { data: ICartItemRow[] }) {
     <DataTable
       data={data}
       columns={columns}
-      getRowId={(item) => item.id}
+      getRowId={(item) => item.productId}
       selectedIds={selectedIds}
       onToggleRow={toggleRow}
       toggleAll={toggleAll}
-      pageCell={false}
+      path="/catalog"
     />
   );
 }

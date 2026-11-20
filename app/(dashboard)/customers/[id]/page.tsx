@@ -6,6 +6,8 @@ import { getFavoritesByUserId } from "@/features/customers/get-favorites";
 import { mapCustomer } from "@/features/customers/map-customer";
 import mapCartItem from "@/features/customers/map-cartItem";
 import mapFavorite from "@/features/customers/map-favorite";
+import { getOrders } from "@/features/orders/get-orders";
+import { mapOrder } from "@/features/orders/map-order";
 
 export default async function CustomerPage({
   params,
@@ -17,6 +19,7 @@ export default async function CustomerPage({
   const customer = await getCustomerById(id);
   const customerCart = await getCartByUserId(id);
   const customerFavorites = await getFavoritesByUserId(id);
+  const customerOrders = await getOrders(id);
 
   if (!customer) {
     notFound();
@@ -28,12 +31,15 @@ export default async function CustomerPage({
 
   const mappedFavorites = customerFavorites.map(mapFavorite);
 
+  const mappedOrders = customerOrders.map(mapOrder);
+
   return (
     <CustomerClientPage
       data={{
         customer: mappedCustomer,
         cartItems: mappedCartItems,
         favorites: mappedFavorites,
+        orders: mappedOrders,
       }}
     />
   );

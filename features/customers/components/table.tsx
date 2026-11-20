@@ -164,6 +164,7 @@ export default function CustomersTable({ data }: { data: IUser[] }) {
         selectedIds={selectedIds}
         onToggleRow={toggleRow}
         toggleAll={toggleAll}
+        path="/customers"
       />
     </div>
   );

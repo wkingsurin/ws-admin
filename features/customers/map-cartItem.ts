@@ -4,6 +4,7 @@ export default function mapCartItem(cartItem: CartItemWithAvailableOptions) {
   return {
     id: cartItem.id,
     cartItemId: cartItem.id,
+    productId: cartItem.variant.productId,
     title: cartItem.variant.product.title,
     slug: cartItem.variant.product.slug,
     variantId: cartItem.variantId,
